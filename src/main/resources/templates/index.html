@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <div th:replace="~{fragments/head}"></div>
+    <th:block th:replace="~{fragments/head}"></th:block>
     <title>Carp - Map</title>
 </head>
 
@@ -15,88 +15,13 @@
 
 <!--header-top start -->
 <header id="header-top" class="header-top">
-    <ul>
-        <li>
-            <div class="header-top-left">
-                <ul>
-                    <li class="select-opt">
-                        <select name="language" id="language">
-                            <option value="default">EN</option>
-                            <option value="Bangla">BN</option>
-                            <option value="Arabic">AB</option>
-                        </select>
-                    </li>
-                    <li class="select-opt">
-                        <select name="currency" id="currency">
-                            <option value="usd">USD</option>
-                            <option value="euro">Euro</option>
-                            <option value="bdt">BDT</option>
-                        </select>
-                    </li>
-                    <li class="select-opt">
-                        <a href="#"><span class="lnr lnr-magnifier"></span></a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-        <li class="head-responsive-right pull-right">
-            <div class="header-top-right">
-                <ul>
-                    <li class="header-top-contact">
-                        +1 222 777 6565
-                    </li>
-                    <li class="header-top-contact">
-                        <a href="#">sign in</a>
-                    </li>
-                    <li class="header-top-contact">
-                        <a href="#">register</a>
-                    </li>
-                </ul>
-            </div>
-        </li>
-    </ul>
-
+    <th:block th:replace="~{fragments/header}"></th:block>
 </header><!--/.header-top-->
 <!--header-top end -->
-
-<!-- top-area Start -->
 <section class="top-area">
-    <div class="header-area">
-        <!-- Start Navigation -->
-        <nav class="navbar navbar-default bootsnav  navbar-sticky navbar-scrollspy" data-minus-value-desktop="70"
-             data-minus-value-mobile="55" data-speed="1000">
-
-            <div class="container">
-
-                <!-- Start Header Navigation -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                    <a class="navbar-brand" href="index.html">Carp - <span>Map</span></a>
-
-                </div><!--/.navbar-header-->
-                <!-- End Header Navigation -->
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
-                    <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class=" scroll active"><a href="#home"><b>Начало</b></a></li>
-                        <li class="scroll"><a href="#works"><b>Кой сме ние</b></a></li>
-                        <li class="scroll"><a href="#explore"><b>Водоеми</b></a></li>
-<!--                        <li class="scroll"><a href="#reviews">review</a></li>-->
-                        <li class="scroll"><a href="#blog"><b>Блог</b></a></li>
-                        <li class="scroll"><a href="#contact"><b>Контакти</b></a></li>
-                    </ul><!--/.nav -->
-                </div><!-- /.navbar-collapse -->
-            </div><!--/.container-->
-        </nav><!--/nav-->
-        <!-- End Navigation -->
-    </div><!--/.header-area-->
-    <div class="clearfix"></div>
-
+    <th:block th:replace="~{fragments/navbar}"></th:block>
 </section><!-- /.top-area-->
-<!-- top-area End -->
+
 
 <!--welcome-hero start -->
 <section id="home" class="welcome-hero">
@@ -186,8 +111,6 @@
 
 </section><!--/.list-topics-->
 <!--list-topics end-->
-
-
 
 
 <!-- statistics strat -->

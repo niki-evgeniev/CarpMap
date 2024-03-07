@@ -1,11 +1,20 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/head}">
+<head>
+    <th:block th:replace="~{fragments/head}"></th:block>
     <meta charset="UTF-8">
     <title>Водоеми</title>
 </head>
 <body>
+<header id="header-top" class="header-top">
+    <th:block th:replace="~{fragments/header}"></th:block>
+</header><!--/.header-top-->
+<!--header-top end -->
+
+<section class="top-area">
+    <th:block th:replace="~{fragments/navbar}"></th:block>
+</section><!-- /.top-area-->
 <!--explore start -->
 <section id="explore" class="explore">
     <div class="container">
