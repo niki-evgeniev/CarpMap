@@ -7,8 +7,8 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class UserController {
 
-    @GetMapping("/users/login")
+    @GetMapping("/packages")
     public ModelAndView login(){
-        return new ModelAndView("login");
+        return new ModelAndView("packages");
     }
 }
