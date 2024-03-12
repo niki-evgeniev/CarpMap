@@ -32,18 +32,20 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public  ModelAndView register(@Valid RegisterDTO registerDTO, BindingResult bindingResult){
+    public ModelAndView register(@Valid RegisterDTO registerDTO,
+                                 BindingResult bindingResult) {
 
-       if(!bindingResult.hasErrors()){
-           boolean registerUser = usersService.registerUser(registerDTO);
-            return new ModelAndView("login");
-       }
-
+        if (!bindingResult.hasErrors()) {
+            boolean registerUser = usersService.registerUser(registerDTO);
+            if (registerUser) {
+                return new ModelAndView("login");
+            }
+        }
         return new ModelAndView("register");
     }
 
     @ModelAttribute
-    RegisterDTO registerDTO(){
+    RegisterDTO registerDTO() {
         return new RegisterDTO();
     }
 }

@@ -10,6 +10,10 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import static com.example.carpmap.Cammon.Users.ERROR_REGISTER_USER;
+import static com.example.carpmap.Cammon.Users.SUCCESSFUL_REGISTER_USER;
+
+
 @Service
 public class UsersServiceImpl implements UsersService {
 
@@ -23,16 +27,19 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public boolean registerUser(RegisterDTO registerDTO) {
-        Optional<User> byUsername = userRepository.findByUsername(registerDTO.getUsername());
+        String name = registerDTO.getName();
+        String username = registerDTO.getUsername();
+        String email = registerDTO.getEmail();
 
-        if (byUsername.isEmpty() && registerDTO.getPassword().equals(registerDTO.getConfirmPassword())) {
+        Optional<User> user = userRepository.findByUsername(username);
 
+        if (user.isEmpty() && registerDTO.getPassword().equals(registerDTO.getConfirmPassword())) {
             User userRegister = modelMapper.map(registerDTO, User.class);
             userRegister.setCreateOn(LocalDate.now());
-
+            System.out.printf(SUCCESSFUL_REGISTER_USER, name, username, email);
             return true;
-
         }
+        System.out.printf(ERROR_REGISTER_USER, name, username, email);
         return false;
     }
 }
