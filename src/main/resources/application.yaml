@@ -34,13 +34,15 @@ spring:
   #api-key:
   #api-secret:
   #cloud-name:
-mobilele:
+
+carpmap:
   remember.me.key: ${REMEMBER_ME_KEY:12345}
+
 logging:
   level:
     org.hibernate.SQL: DEBUG
     org.hibernate.orm.jdbc.bind: TRACE
-#    org.springframework.security: TRACE
+    org.springframework.security: TRACE
 
 
 

@@ -44,6 +44,16 @@ public class UserController {
         return new ModelAndView("register");
     }
 
+    @RequestMapping("/login-error")
+    public ModelAndView errorLogin() {
+
+        ModelAndView modelAndView = new ModelAndView("login");
+        modelAndView.addObject("bad_credentials", true);
+        System.out.println("ERROR LOGIN");
+
+        return modelAndView;
+    }
+
     @ModelAttribute
     RegisterDTO registerDTO() {
         return new RegisterDTO();
