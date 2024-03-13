@@ -13,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableMethodSecurity
@@ -32,10 +31,11 @@ public class SecurityConfiguration {
         httpSecurity.authorizeHttpRequests(
                 authorizeRequest -> authorizeRequest
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                        .requestMatchers("/js/**", "/lib/**").permitAll()
                         .requestMatchers("/", "/users/login", "/users/register", "/users/profile",
                                 "/users/login-error").permitAll()
                         .requestMatchers("reservoirs").permitAll()
-                        .requestMatchers("/js/**", "/lib/**").permitAll()
+
                         .anyRequest().authenticated()
         ).formLogin(
                 formLogin -> {

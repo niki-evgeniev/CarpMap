@@ -22,7 +22,6 @@ public class UsersServiceImpl implements UsersService {
 
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
-
     private final ModelMapper modelMapper;
 
     public UsersServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository, ModelMapper modelMapper) {
@@ -45,12 +44,10 @@ public class UsersServiceImpl implements UsersService {
             List<UserRole> all = userRoleRepository.findAll();
             userRegister.setRoles(all);
             System.out.printf(SUCCESSFUL_REGISTER_USER, name, username, email);
-
-            System.out.println();
-
             userRepository.save(userRegister);
             return true;
         }
+
         System.out.printf(ERROR_REGISTER_USER, name, username, email);
         return false;
     }

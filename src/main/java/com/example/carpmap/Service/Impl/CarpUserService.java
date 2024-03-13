@@ -27,7 +27,10 @@ public class CarpUserService implements UserDetailsService {
         return org.springframework.security.core.userdetails.User
                 .withUsername(user.getUsername())
                 .password(user.getPassword())
-                .authorities(user.getRoles().stream().map(CarpUserService::map).toList())
+                .authorities(user.getRoles()
+                        .stream()
+                        .map(CarpUserService::map)
+                        .toList())
                 .build();
     }
 
