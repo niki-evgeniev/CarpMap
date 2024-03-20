@@ -39,44 +39,59 @@
                                     <p class="text-center small">Enter your username & password to login</p>
                                 </div>
 
-                                <form class="row g-3 needs-validation" novalidate>
+                                <form th:method="POST"
+                                      th:action="@{/users/login}"
+                                      class="row g-3 needs-validation" novalidate>
+                                    <p th:if="${bad_credentials}" class="errors alert alert-danger">
+                                        Invalid username or password.
+                                    </p>
 
                                     <div class="col-12">
-                                        <label for="yourUsername" class="form-label">Username</label>
+                                        <label for="yourUsername"
+                                               class="form-label">Username</label>
                                         <div class="input-group has-validation">
                                             <span class="input-group-text" id="inputGroupPrepend">@</span>
-                                            <input type="text" name="username" class="form-control" id="yourUsername"
+                                            <input type="text"
+                                                   name="username"
+                                                   class="form-control"
+                                                   id="yourUsername"
                                                    required>
                                             <div class="invalid-feedback">Please enter your username.</div>
                                         </div>
                                     </div>
 
                                     <div class="col-12">
-                                        <label for="yourPassword" class="form-label">Password</label>
-                                        <input type="password" name="password" class="form-control" id="yourPassword"
+                                        <label for="yourPassword"
+                                               class="form-label">Password</label>
+                                        <input type="password"
+                                               name="password"
+                                               class="form-control"
+                                               id="yourPassword"
                                                required>
                                         <div class="invalid-feedback">Please enter your password!</div>
                                     </div>
 
                                     <div class="col-12">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="remember" value="true"
-                                                   id="rememberMe">
-                                            <label class="form-check-label" for="rememberMe">Remember me</label>
+                                            <input class="form-check-input"
+                                                   type="checkbox"
+                                                   name="remember-me"
+                                                   id="remember-me">
+                                            <label class="form-check-label"
+                                                   for="remember-me">Remember me</label>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <button class="btn btn-primary w-100" type="submit">Login</button>
                                     </div>
                                     <div class="col-12">
-                                        <p class="small mb-0">Don't have account? <a href="pages-register.html">Create
+                                        <p class="small mb-0">Don't have account? <a th:href="@{/users/register}">Create
                                             an account</a></p>
                                     </div>
                                 </form>
 
                             </div>
                         </div>
-
                         <div class="credits">
                             <!-- All the links in the footer should remain intact. -->
                             <!-- You can delete the links only if you purchased the pro version. -->
@@ -88,16 +103,15 @@
                     </div>
                 </div>
             </div>
-
         </section>
-
     </div>
     <th:block th:replace="~{fragments/footer}"></th:block>
+    <th:block th:replace="~{fragments/js}"></th:block>
 </main><!-- End #main -->
 
+<!-- Back to Top -->
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
 
 </body>
-
 </html>

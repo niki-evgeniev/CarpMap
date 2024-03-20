@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 <!-- Spinner Start -->
 <div id="spinner"
@@ -30,13 +31,20 @@
         </div>
         <div class="col-lg-4 text-center text-lg-end">
             <div class="d-inline-flex align-items-center" style="height: 45px;">
-                <a th:href="@{/users/register}">
-                    <small class="me-3 text-light">
-                        <i class="fa fa-user me-2"></i>Register</small></a>
-                <a th:href="@{/users/login}">
-                    <small class="me-3 text-light">
-                        <i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
-                <div class="dropdown">
+                <th:block sec:authorize="!isAuthenticated()">
+                    <a th:href="@{/users/register}">
+                        <small class="me-3 text-light">
+                            <i class="fa fa-user me-2"></i>Register</small></a>
+                    <a th:href="@{/users/login}">
+                        <small class="me-3 text-light">
+                            <i class="fa fa-sign-in-alt me-2"></i>Login</small></a>
+                </th:block>
+                <th:block sec:authorize="isAuthenticated()">
+                    <a href="#" class="me-3 text-light"><i class="fas fa-user-alt me-2"></i> Welcome ,
+                    <span sec:authentication="name"></span></a>
+                </th:block>
+                <div sec:authorize="isAuthenticated()"
+                        class="dropdown">
                     <a href="#" class="dropdown-toggle text-light" data-bs-toggle="dropdown"><small><i
                             class="fa fa-home me-2"></i> My Dashboard</small></a>
                     <div class="dropdown-menu rounded">

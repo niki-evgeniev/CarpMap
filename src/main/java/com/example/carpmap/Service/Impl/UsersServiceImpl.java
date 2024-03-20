@@ -7,6 +7,7 @@ import com.example.carpmap.Repository.UserRepository;
 import com.example.carpmap.Repository.UserRoleRepository;
 import com.example.carpmap.Service.UsersService;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -23,11 +24,13 @@ public class UsersServiceImpl implements UsersService {
     private final UserRepository userRepository;
     private final UserRoleRepository userRoleRepository;
     private final ModelMapper modelMapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public UsersServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository, ModelMapper modelMapper) {
+    public UsersServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
         this.modelMapper = modelMapper;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -40,6 +43,7 @@ public class UsersServiceImpl implements UsersService {
 
         if (user.isEmpty() && registerDTO.getPassword().equals(registerDTO.getConfirmPassword())) {
             User userRegister = modelMapper.map(registerDTO, User.class);
+            userRegister.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
             userRegister.setCreateOn(LocalDate.now());
             List<UserRole> all = userRoleRepository.findAll();
             userRegister.setRoles(all);
