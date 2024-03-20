@@ -34,6 +34,22 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public void addAdminIfNotExist() {
+        if (userRepository.count() == 0){
+            User firstAdmnUser = new User();
+            firstAdmnUser.setName("adminov");
+            firstAdmnUser.setCreateOn(LocalDate.now());
+            firstAdmnUser.setEmail("admin@admin");
+            firstAdmnUser.setPassword("734909fa01c605fa23051a67f16de8f522a2ef6969341effb1cbc4cac8d03860837749d5521cca0f654ceca0ea6f4aa2");
+            firstAdmnUser.setUsername("admin");
+            List<UserRole> all = userRoleRepository.findAll();
+            firstAdmnUser.setRoles(all);
+
+            userRepository.save(firstAdmnUser);
+        }
+    }
+
+    @Override
     public boolean registerUser(RegisterDTO registerDTO) {
         String name = registerDTO.getName();
         String username = registerDTO.getUsername();
@@ -46,7 +62,7 @@ public class UsersServiceImpl implements UsersService {
             userRegister.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
             userRegister.setCreateOn(LocalDate.now());
             List<UserRole> all = userRoleRepository.findAll();
-            userRegister.setRoles(all);
+            userRegister.setRoles(List.of(all.get(2)));
             System.out.printf(SUCCESSFUL_REGISTER_USER, name, username, email);
             userRepository.save(userRegister);
             return true;
@@ -55,4 +71,6 @@ public class UsersServiceImpl implements UsersService {
         System.out.printf(ERROR_REGISTER_USER, name, username, email);
         return false;
     }
+
+
 }

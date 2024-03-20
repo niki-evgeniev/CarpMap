@@ -1249,3 +1249,8 @@
 body > div.container-fluid.position-relative.p-0 > nav {
     background-color: #70a9ff;
 }
+
+@media (min-width: 192px)
+.body > div.container-fluid.bg-primary.px-5.d-none.d-lg-block {
+    display: block;
+}
