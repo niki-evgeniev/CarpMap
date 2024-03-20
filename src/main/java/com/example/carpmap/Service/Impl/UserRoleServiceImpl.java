@@ -16,13 +16,13 @@ public class UserRoleServiceImpl implements UserRoleService {
     }
 
     @Override
-    public void addRole() {
+    public void addRoleIfNotExist() {
         if (userRoleRepository.count() == 0) {
             RoleType[] values = RoleType.values();
             for (RoleType value : values) {
-               UserRole userRole = new UserRole();
-               userRole.setRoleType(value);
-               userRoleRepository.save(userRole);
+                UserRole userRole = new UserRole();
+                userRole.setRoleType(value);
+                userRoleRepository.save(userRole);
             }
 
         }

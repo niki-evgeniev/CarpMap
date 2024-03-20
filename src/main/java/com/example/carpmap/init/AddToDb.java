@@ -18,7 +18,7 @@ public class AddToDb implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        userRoleService.addRole();
+        userRoleService.addRoleIfNotExist();
         usersService.addAdminIfNotExist();
 
     }
