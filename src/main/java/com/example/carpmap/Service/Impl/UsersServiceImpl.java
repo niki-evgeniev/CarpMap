@@ -1,5 +1,6 @@
 package com.example.carpmap.Service.Impl;
 
+import com.example.carpmap.Models.DTO.Users.ErrorRegister;
 import com.example.carpmap.Models.DTO.Users.RegisterDTO;
 import com.example.carpmap.Models.Entity.User;
 import com.example.carpmap.Models.Entity.UserRole;
@@ -11,11 +12,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
-import static com.example.carpmap.Cammon.Users.ERROR_REGISTER_USER;
-import static com.example.carpmap.Cammon.Users.SUCCESSFUL_REGISTER_USER;
+import static com.example.carpmap.Cammon.Users.*;
 
 
 @Service
@@ -44,32 +44,44 @@ public class UsersServiceImpl implements UsersService {
             firstAdmnUser.setUsername("admin");
             List<UserRole> all = getAllUserRoles();
             firstAdmnUser.setRoles(all);
-
             userRepository.save(firstAdmnUser);
         }
     }
 
     @Override
-    public boolean registerUser(RegisterDTO registerDTO) {
+    public List<ErrorRegister> registerNewUser(RegisterDTO registerDTO) {
+
+        List<ErrorRegister> errors = new ArrayList<>();
+        ErrorRegister errorRegister = new ErrorRegister();
         String name = registerDTO.getName();
         String username = registerDTO.getUsername();
         String email = registerDTO.getEmail();
 
-        Optional<User> user = userRepository.findByUsername(username);
-
-        if (user.isEmpty() && registerDTO.getPassword().equals(registerDTO.getConfirmPassword())) {
-            User userRegister = modelMapper.map(registerDTO, User.class);
-            userRegister.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
-            userRegister.setCreateOn(LocalDate.now());
-            userRegister.setRoles(List.of(getAllUserRoles()
-                    .get(2)));
-            System.out.printf(SUCCESSFUL_REGISTER_USER, name, username, email);
-            userRepository.save(userRegister);
-            return true;
+        if (!registerDTO.getPassword().equals(registerDTO.getConfirmPassword())) {
+            errorRegister.setError(PASSWORD_NOT_MATCH);
+            errors.add(errorRegister);
+        } else if (userRepository.findByEmail(registerDTO.getEmail()).isPresent()) {
+            errorRegister.setError(EMAIL_EXIST);
+            errors.add(errorRegister);
+        } else if (userRepository.findByUsername(registerDTO.getUsername()).isPresent()) {
+            errorRegister.setError(USERNAME_EXIST);
+            errors.add(errorRegister);
         }
 
-        System.out.printf(ERROR_REGISTER_USER, name, username, email);
-        return false;
+        if (!errors.isEmpty()) {
+            System.out.printf(ERROR_REGISTER_USER, name, username, email);
+            return errors;
+        }
+
+        User userRegister = modelMapper.map(registerDTO, User.class);
+        userRegister.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
+        userRegister.setCreateOn(LocalDate.now());
+        userRegister.setRoles(List.of(getAllUserRoles()
+                .get(2)));
+        System.out.printf(SUCCESSFUL_REGISTER_USER, name, username, email);
+        userRepository.save(userRegister);
+
+        return errors;
     }
 
     private List<UserRole> getAllUserRoles() {

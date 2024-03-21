@@ -13,8 +13,7 @@
 
 <th:block th:replace="~{fragments/navbar}"></th:block>
 <main>
-    <div class="container">
-
+    <div class="registerUser">
         <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
             <div class="container">
                 <div class="row justify-content-center">
@@ -40,6 +39,13 @@
                                       th:action="@{/users/register}"
                                       th:object="${registerDTO}"
                                       class="row g-3 needs-validation" novalidate>
+
+                                    <p th:if="registerUser != null"
+                                       th:each="err : ${registerUser}"
+                                       th:text="${err.getError()}"
+                                       class="errors alert alert-danger">
+                                        Invalid username or password.
+                                    </p>
                                     <div class="col-12">
                                         <label for="name"
                                                class="form-label">Your Name</label>
@@ -155,8 +161,8 @@
             </div>
 
         </section>
+</div>
 
-    </div>
 </main><!-- End #main -->
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i

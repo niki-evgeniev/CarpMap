@@ -1,5 +1,6 @@
 package com.example.carpmap.Controller;
 
+import com.example.carpmap.Models.DTO.Users.ErrorRegister;
 import com.example.carpmap.Models.DTO.Users.RegisterDTO;
 import com.example.carpmap.Service.UsersService;
 import jakarta.validation.Valid;
@@ -11,6 +12,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
+import static com.example.carpmap.Cammon.Users.ERROR_LOGIN;
+
 @Controller
 @RequestMapping("/users/")
 public class UserController {
@@ -21,27 +26,30 @@ public class UserController {
         this.usersService = usersService;
     }
 
-    @GetMapping("/login")
+    @GetMapping("login")
     public ModelAndView login() {
         return new ModelAndView("login");
     }
 
-    @GetMapping("/register")
+    @GetMapping("register")
     public ModelAndView register() {
         return new ModelAndView("register");
     }
 
-    @PostMapping("/register")
+    @PostMapping("register")
     public ModelAndView register(@Valid RegisterDTO registerDTO,
                                  BindingResult bindingResult) {
 
         if (!bindingResult.hasErrors()) {
-            boolean registerUser = usersService.registerUser(registerDTO);
-            if (registerUser) {
-                return new ModelAndView("login");
+           List<ErrorRegister> registerUsersErrors = usersService.registerNewUser(registerDTO);
+
+            if (!registerUsersErrors.isEmpty()){
+                ModelAndView modelAndView = new ModelAndView("register");
+                modelAndView.addObject("registerUser", registerUsersErrors);
+                return modelAndView;
             }
         }
-        return new ModelAndView("register");
+        return new ModelAndView("login");
     }
 
     @RequestMapping("/login-error")
@@ -49,7 +57,7 @@ public class UserController {
 
         ModelAndView modelAndView = new ModelAndView("login");
         modelAndView.addObject("bad_credentials", true);
-        System.out.println("ERROR LOGIN");
+        System.out.println(ERROR_LOGIN);
 
         return modelAndView;
     }
