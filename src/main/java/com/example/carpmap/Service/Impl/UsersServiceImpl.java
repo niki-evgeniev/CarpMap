@@ -37,7 +37,7 @@ public class UsersServiceImpl implements UsersService {
     public void addAdminIfNotExist() {
         if (userRepository.count() == 0) {
             User firstAdmnUser = new User();
-            firstAdmnUser.setName("adminov");
+            firstAdmnUser.setName("Adminov");
             firstAdmnUser.setCreateOn(LocalDate.now());
             firstAdmnUser.setEmail("admin@admin");
             firstAdmnUser.setPassword("734909fa01c605fa23051a67f16de8f522a2ef6969341effb1cbc4cac8d03860837749d5521cca0f654ceca0ea6f4aa2");
@@ -53,7 +53,8 @@ public class UsersServiceImpl implements UsersService {
 
         List<ErrorRegister> errors = new ArrayList<>();
         ErrorRegister errorRegister = new ErrorRegister();
-        String name = registerDTO.getName();
+        String nameToUpperCaseFirstLetter = registerDTO.getName().substring(0, 1).toUpperCase()
+                + registerDTO.getName().substring(1);
         String username = registerDTO.getUsername();
         String email = registerDTO.getEmail();
 
@@ -69,16 +70,17 @@ public class UsersServiceImpl implements UsersService {
         }
 
         if (!errors.isEmpty()) {
-            System.out.printf(ERROR_REGISTER_USER, name, username, email);
+            System.out.printf(ERROR_REGISTER_USER, nameToUpperCaseFirstLetter, username, email);
             return errors;
         }
 
         User userRegister = modelMapper.map(registerDTO, User.class);
+        userRegister.setName(nameToUpperCaseFirstLetter);
         userRegister.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
         userRegister.setCreateOn(LocalDate.now());
         userRegister.setRoles(List.of(getAllUserRoles()
                 .get(2)));
-        System.out.printf(SUCCESSFUL_REGISTER_USER, name, username, email);
+        System.out.printf(SUCCESSFUL_REGISTER_USER, nameToUpperCaseFirstLetter, username, email);
         userRepository.save(userRegister);
 
         return errors;
