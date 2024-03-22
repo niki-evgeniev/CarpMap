@@ -109,7 +109,8 @@
                                                required>
                                         <div class="text-danger"
                                              th:if="${#fields.hasErrors('password')}"
-                                             th:errors="*{password}">Please enter your password!</div>
+                                             th:errors="*{password}">Please enter your password!
+                                        </div>
                                     </div>
                                     <div class="col-12">
                                         <label for="confirmPassword"
@@ -124,7 +125,8 @@
                                         <div class="text-danger"
                                              th:if="${#fields.hasErrors('confirmPassword')}"
                                              th:unless="registerDTO.isPasswordMatch == false"
-                                             th:errors="*{confirmPassword}">Please enter your password!</div>
+                                             th:errors="*{confirmPassword}">Please enter your password!
+                                        </div>
                                     </div>
 
                                     <div class="col-12">
@@ -161,15 +163,15 @@
             </div>
 
         </section>
-</div>
+    </div>
 
 </main><!-- End #main -->
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-        class="bi bi-arrow-up-short"></i></a>
-
 <th:block th:replace="~{fragments/footer}"></th:block>
 <th:block th:replace="~{fragments/js}"></th:block>
+<!-- Back to Top -->
+<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
 
 </body>
 

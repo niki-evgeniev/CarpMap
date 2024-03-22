@@ -41,9 +41,9 @@ public class UserController {
                                  BindingResult bindingResult) {
 
         if (!bindingResult.hasErrors()) {
-           List<ErrorRegister> registerUsersErrors = usersService.registerNewUser(registerDTO);
+            List<ErrorRegister> registerUsersErrors = usersService.registerNewUser(registerDTO);
 
-            if (!registerUsersErrors.isEmpty()){
+            if (!registerUsersErrors.isEmpty()) {
                 ModelAndView modelAndView = new ModelAndView("register");
                 modelAndView.addObject("registerUser", registerUsersErrors);
                 return modelAndView;

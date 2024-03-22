@@ -32,47 +32,47 @@ font-family: 'Roboto', sans-serif;
     margin: 0;
 }
 
-*{
-    -webkit-box-sizing:border-box;
-    -moz-box-sizing:border-box;
-    -o-box-sizing:border-box;
-    -ms-box-sizing:border-box;
-    box-sizing:border-box;
-}
-body{
-    font-family: 'Poppins', sans-serif;
-    font-size:14px;
-    color:#a09e9c;
-    text-transform:initial;
-    max-width:1920px;
-    margin:0 auto;
-    overflow-x:hidden;
-    background-color: #FFFAF0;
-}
+/**{*/
+/*    -webkit-box-sizing:border-box;*/
+/*    -moz-box-sizing:border-box;*/
+/*    -o-box-sizing:border-box;*/
+/*    -ms-box-sizing:border-box;*/
+/*    box-sizing:border-box;*/
+/*}*/
+/*body{*/
+/*    font-family: 'Poppins', sans-serif;*/
+/*    font-size:14px;*/
+/*    color:#a09e9c;*/
+/*    text-transform:initial;*/
+/*    max-width:1920px;*/
+/*    margin:0 auto;*/
+/*    overflow-x:hidden;*/
+/*    background-color: #FFFAF0;*/
+/*}*/
 
-a,a:hover,a:active,a:focus {
-    display:inline-block;
-    text-decoration:none;
-    color: #343a3f;
-    font-size:16px;
-    padding:0;
-    font-weight: 500;
-    text-transform: capitalize;
-}
-h1,h2,h3,h4,h5,h6 {
-    margin: 0;
-    color:#343a3f;
-    font-size: 18px;
-    font-weight: 500;
-    text-transform: capitalize;
-}
-p {
-    margin: 0;
-    color:#767f86;
-    font-size:14px;
-    line-height: 1.8;
-    text-transform: initial;
-}
+/*a,a:hover,a:active,a:focus {*/
+/*    display:inline-block;*/
+/*    text-decoration:none;*/
+/*    color: #343a3f;*/
+/*    font-size:16px;*/
+/*    padding:0;*/
+/*    font-weight: 500;*/
+/*    text-transform: capitalize;*/
+/*}*/
+/*h1,h2,h3,h4,h5,h6 {*/
+/*    margin: 0;*/
+/*    color:#343a3f;*/
+/*    font-size: 18px;*/
+/*    font-weight: 500;*/
+/*    text-transform: capitalize;*/
+/*}*/
+/*p {*/
+/*    margin: 0;*/
+/*    color:#767f86;*/
+/*    font-size:14px;*/
+/*    line-height: 1.8;*/
+/*    text-transform: initial;*/
+/*}*/
 img{border:none;max-width:100%; height:auto;}
 ul{
     padding: 0;
@@ -243,3 +243,8 @@ html,body{height: 100%;}
 .single-explore-txt.bg-theme-2 .explore-map-icon a svg:hover{color: #00c437;}
 .single-explore-item:hover{box-shadow: 0 10px 20px rgba(21,19,19,.2);}
 /*========================Thank you=================
+ */
+
+#explore > div > div.explore-content > div > div > div > div.single-explore-img > img {
+    max-width: 500px;
+}
