@@ -48,6 +48,9 @@ public class User extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<UserRole> roles = new ArrayList<>();
 
+//    @OneToMany
+//    private List<Reservoir> reservoirs;
+
     public User() {
     }
 
