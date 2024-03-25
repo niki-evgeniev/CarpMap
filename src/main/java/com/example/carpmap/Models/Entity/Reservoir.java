@@ -20,7 +20,7 @@ public class Reservoir extends BaseEntity {
 
     @Column
     private String coordinate;
-    
+
     @ManyToOne
     private User user;
 

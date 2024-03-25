@@ -11,11 +11,12 @@ public class ReservoirsController {
 
 
     @GetMapping("viewAll")
-    public ModelAndView reservoirs(){
+    public ModelAndView reservoirs() {
         return new ModelAndView("reservoirs");
     }
+
     @GetMapping("reservoirsAdd")
-    public ModelAndView reservoirsAdd(){
+    public ModelAndView reservoirsAdd() {
         return new ModelAndView("reservoirsAdd");
     }
 }

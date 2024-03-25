@@ -51,8 +51,7 @@ public class UserController {
             } else {
                 return new ModelAndView("login");
             }
-        }
-        if (bindingResult.hasErrors()){
+        } else {
             for (ObjectError allError : bindingResult.getAllErrors()) {
                 System.out.println(allError.getDefaultMessage());
             }
