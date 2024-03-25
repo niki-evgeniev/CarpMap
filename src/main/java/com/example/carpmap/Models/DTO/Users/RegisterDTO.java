@@ -17,11 +17,11 @@ public class RegisterDTO {
     private String username;
 
     @NotEmpty(message = "Password cannot be empty!")
-    @Size(min = 3, max = 20, message = "Password length must be between 3 and 20 character!")
+    @Size(min = 8, max = 20, message = "Password length must be between 8 and 20 character!")
     private String password;
 
     @NotEmpty(message = "ConfirmPassword cannot be empty!")
-    @Size(min = 3, max = 20, message = "Password length must be between 3 and 20 character!")
+    @Size(min = 8, max = 20, message = "Password length must be between 8 and 20 character!")
     private String confirmPassword;
 
     public RegisterDTO() {
@@ -67,11 +67,4 @@ public class RegisterDTO {
         this.confirmPassword = confirmPassword;
     }
 
-    @NotNull(message = "Passwords do not match")
-    private boolean isPasswordMatch() {
-        if (password == null || confirmPassword == null) {
-            return false;
-        }
-        return password.equals(confirmPassword);
-    }
 }

@@ -26,7 +26,8 @@ public class UsersServiceImpl implements UsersService {
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
 
-    public UsersServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
+    public UsersServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository,
+                            ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
         this.modelMapper = modelMapper;
@@ -71,6 +72,9 @@ public class UsersServiceImpl implements UsersService {
 
         if (!errors.isEmpty()) {
             System.out.printf(ERROR_REGISTER_USER, nameToUpperCaseFirstLetter, username, email);
+            for (ErrorRegister error : errors) {
+                System.out.printf("%n %s ", error.getError());
+            }
             return errors;
         }
 

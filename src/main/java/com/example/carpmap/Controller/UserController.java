@@ -6,6 +6,7 @@ import com.example.carpmap.Service.UsersService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -47,9 +48,16 @@ public class UserController {
                 ModelAndView modelAndView = new ModelAndView("register");
                 modelAndView.addObject("registerUser", registerUsersErrors);
                 return modelAndView;
+            } else {
+                return new ModelAndView("login");
             }
         }
-        return new ModelAndView("login");
+        if (bindingResult.hasErrors()){
+            for (ObjectError allError : bindingResult.getAllErrors()) {
+                System.out.println(allError.getDefaultMessage());
+            }
+        }
+        return new ModelAndView("register");
     }
 
     @RequestMapping("/login-error")
