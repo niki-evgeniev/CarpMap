@@ -10,4 +10,5 @@ public interface UsersService {
     void addAdminIfNotExist();
 
     List<ErrorRegister> registerNewUser(RegisterDTO registerDTO);
+
 }

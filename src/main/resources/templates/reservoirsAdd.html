@@ -20,48 +20,96 @@
 
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">General Form Elements</h5>
+                        <h2 class="card-title text-center">Add reservoirs</h2>
 
                         <!-- General Form Elements -->
-                        <form>
+                        <form th:method="POST"
+                        th:action="@{/reservoirs/reservoirsAdd}"
+                        th:object="${reservoirsAddDTO}">
                             <div class="row mb-3">
                                 <label for="inputText"
-                                       class="col-sm-2 col-form-label">Text</label>
+                                       class="col-sm-2 col-form-label">Name</label>
                                 <div class="col-sm-10">
-                                    <input type="text"
+                                    <input th:field="*{name}"
+                                           th:errorclass="is-invalid"
+                                            type="text"
                                            name="inputText"
                                            id="inputText"
+                                           class="form-control">
+                                    <div class="text-primary"
+                                         th:if="${#fields.hasErrors('name')}"
+                                         th:errors="*{name}">Please, enter your name!
+                                    </div>
+                                </div>
+                            </div>
+                            <h6 class="card-title text-center">Add GPS Coordinates</h6>
+
+                            <div class="row mb-3">
+                                <label for="Latitude"
+                                       class="col-sm-2 col-form-label">Latitude</label>
+                                <div class="col-sm-10">
+                                    <input th:field="*{latitude}"
+                                           th:errorclass="is-invalid"
+                                           type="number"
+                                           name="Latitude"
+                                           id="Latitude"
+                                           class="form-control">
+                                    <div class="text-primary"
+                                         th:if="${#fields.hasErrors('latitude')}"
+                                         th:errors="*{latitude}">Please, enter your name!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="Longitude"
+                                       class="col-sm-2 col-form-label">Longitude</label>
+                                <div class="col-sm-10">
+                                    <input th:field="*{longitude}"
+                                           th:errorclass="is-invalid"
+                                            type="number"
+                                           name="Longitude"
+                                           id="Longitude"
+                                           class="form-control">
+                                    <div class="text-primary"
+                                         th:if="${#fields.hasErrors('longitude')}"
+                                         th:errors="*{longitude}">Please, enter your name!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="urlImage"
+                                       class="col-sm-2 col-form-label">Add url image</label>
+                                <div class="col-sm-10">
+                                    <input th:field="*{urlImage}"
+                                           th:errorclass="is-invalid"
+                                           type="text"
+                                           name="urlImage"
+                                           id="urlImage"
+                                           class="form-control">
+                                    <div class="text-primary"
+                                         th:if="${#fields.hasErrors('urlImage')}"
+                                         th:errors="*{urlImage}">Please, enter your name!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="formFile"
+                                       class="col-sm-2 col-form-label">File Upload</label>
+                                <div class="col-sm-10">
+                                    <input type="file"
+                                           name="formFile"
+                                           id="formFile"
                                            class="form-control">
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                <label for="createDate"
+                                       class="col-sm-2 col-form-label">Create date</label>
                                 <div class="col-sm-10">
-                                    <input type="email" class="form-control">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                                <div class="col-sm-10">
-                                    <input type="password" class="form-control">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="inputNumber" class="col-sm-2 col-form-label">Number</label>
-                                <div class="col-sm-10">
-                                    <input type="number" class="form-control">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="file" id="formFile">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="inputDate" class="col-sm-2 col-form-label">Date</label>
-                                <div class="col-sm-10">
-                                    <input type="date" class="form-control">
+                                    <input type="datetime-local"
+                                           name="createDate"
+                                           id="createDate"
+                                           class="form-control">
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -72,16 +120,13 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="inputColor" class="col-sm-2 col-form-label">Color Picker</label>
+                                <label for="textArea"
+                                       class="col-sm-2 col-form-label">Description</label>
                                 <div class="col-sm-10">
-                                    <input type="color" class="form-control form-control-color" id="exampleColorInput"
-                                           value="#4154f1" title="Choose your color">
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="inputPassword" class="col-sm-2 col-form-label">Textarea</label>
-                                <div class="col-sm-10">
-                                    <textarea class="form-control" style="height: 100px"></textarea>
+                                    <textarea name="textArea"
+                                              id="textArea"
+                                              class="form-control"
+                                              style="height: 100px"></textarea>
                                 </div>
                             </div>
                             <fieldset class="row mb-3">
