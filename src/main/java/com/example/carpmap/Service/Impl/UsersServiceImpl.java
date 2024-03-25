@@ -2,8 +2,10 @@ package com.example.carpmap.Service.Impl;
 
 import com.example.carpmap.Models.DTO.Users.ErrorRegister;
 import com.example.carpmap.Models.DTO.Users.RegisterDTO;
+import com.example.carpmap.Models.Entity.Country;
 import com.example.carpmap.Models.Entity.User;
 import com.example.carpmap.Models.Entity.UserRole;
+import com.example.carpmap.Repository.CountryRepository;
 import com.example.carpmap.Repository.UserRepository;
 import com.example.carpmap.Repository.UserRoleRepository;
 import com.example.carpmap.Service.UsersService;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static com.example.carpmap.Cammon.Users.*;
 
@@ -25,19 +28,26 @@ public class UsersServiceImpl implements UsersService {
     private final UserRoleRepository userRoleRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
+    private final CountryRepository countryRepository;
 
     public UsersServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository,
-                            ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
+                            ModelMapper modelMapper, PasswordEncoder passwordEncoder,
+                            CountryRepository countryRepository) {
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
+        this.countryRepository = countryRepository;
     }
 
     @Override
     public void addAdminIfNotExist() {
         if (userRepository.count() == 0) {
             User firstAdmnUser = new User();
+            Optional<Country> bg = countryRepository.findById(1L);
+            if (bg.isPresent()){
+                firstAdmnUser.setCountry(bg.get().getCountry());
+            }
             firstAdmnUser.setName("Adminov");
             firstAdmnUser.setCreateOn(LocalDate.now());
             firstAdmnUser.setEmail("admin@admin");

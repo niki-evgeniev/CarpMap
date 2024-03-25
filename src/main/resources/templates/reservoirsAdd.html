@@ -27,6 +27,49 @@
                         th:action="@{/reservoirs/reservoirsAdd}"
                         th:object="${reservoirsAddDTO}">
                             <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label">Country</label>
+                                <div class="col-sm-10">
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Choose country</option>
+                                        <option value="1">Bulgaria</option>
+                                        <option value="2">Romania</option>
+                                    </select>
+                                </div>
+                            </div>
+<!--                            <div class="row mb-3">-->
+<!--                                <label for="country"-->
+<!--                                       class="col-sm-2 col-form-label">Country</label>-->
+<!--                                <div class="col-sm-10">-->
+<!--                                    <input th:field="*{country}"-->
+<!--                                           th:errorclass="is-invalid"-->
+<!--                                           type="text"-->
+<!--                                           name="country"-->
+<!--                                           id="country"-->
+<!--                                           class="form-control">-->
+<!--                                    <div class="text-primary"-->
+<!--                                         th:if="${#fields.hasErrors('country')}"-->
+<!--                                         th:errors="*{country}">Please, enter your name!-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                            <div class="row mb-3">
+                                <label for="city"
+                                       class="col-sm-2 col-form-label">City</label>
+                                <div class="col-sm-10">
+                                    <input th:field="*{city}"
+                                           th:errorclass="is-invalid"
+                                           type="text"
+                                           name="city"
+                                           id="city"
+                                           class="form-control">
+                                    <div class="text-primary"
+                                         th:if="${#fields.hasErrors('city')}"
+                                         th:errors="*{city}">Please, enter your name!
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-3">
                                 <label for="inputText"
                                        class="col-sm-2 col-form-label">Name</label>
                                 <div class="col-sm-10">

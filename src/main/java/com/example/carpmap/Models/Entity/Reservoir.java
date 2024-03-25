@@ -5,43 +5,41 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "reservoirs")
 public class Reservoir extends BaseEntity {
 
-    @Column
-    private String name;
-
-    @Column
-    private String descriptions;
-
-    @Column
+    @Column(name = "city", nullable = false)
     private String city;
 
-    @Column
-    private String coordinate;
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "latitude")
+    private String latitude;
+
+    @Column(name = "longitude")
+    private String longitude;
+
+    @Column(name = "url_image")
+    private String urlImage;
+
+    @Column(name = "create_date")
+    private LocalDateTime createDate;
+
+    @Column(name = "descriptions")
+    private String descriptions;
 
     @ManyToOne
     private User user;
 
+    @ManyToOne
+    private Country country;
+
 
     public Reservoir() {
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescriptions() {
-        return descriptions;
-    }
-
-    public void setDescriptions(String descriptions) {
-        this.descriptions = descriptions;
     }
 
     public String getCity() {
@@ -52,12 +50,52 @@ public class Reservoir extends BaseEntity {
         this.city = city;
     }
 
-    public String getCoordinate() {
-        return coordinate;
+    public String getName() {
+        return name;
     }
 
-    public void setCoordinate(String coordinate) {
-        this.coordinate = coordinate;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
+    }
+
+    public LocalDateTime getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(LocalDateTime createDate) {
+        this.createDate = createDate;
+    }
+
+    public String getDescriptions() {
+        return descriptions;
+    }
+
+    public void setDescriptions(String descriptions) {
+        this.descriptions = descriptions;
     }
 
     public User getUser() {
@@ -66,5 +104,13 @@ public class Reservoir extends BaseEntity {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

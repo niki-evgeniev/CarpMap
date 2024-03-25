@@ -6,6 +6,12 @@ import jakarta.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 public class ReservoirsAddDTO {
+    @NotEmpty(message = "Name cannot be empty!")
+    @Size(min = 3, max = 20, message = "Name length must be between 3 and 20 character!")
+    private String country;
+    @NotEmpty(message = "Name cannot be empty!")
+    @Size(min = 3, max = 20, message = "Name length must be between 3 and 20 character!")
+    private String city;
 
     @NotEmpty(message = "Name cannot be empty!")
     @Size(min = 3, max = 20, message = "Name length must be between 3 and 20 character!")
@@ -30,6 +36,22 @@ public class ReservoirsAddDTO {
     private String description;
 
     public ReservoirsAddDTO() {
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public String getName() {
