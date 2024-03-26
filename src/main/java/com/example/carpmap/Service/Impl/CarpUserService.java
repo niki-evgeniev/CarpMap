@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 public class CarpUserService implements UserDetailsService {
+
     private final UserRepository userRepository;
 
     public CarpUserService(UserRepository userRepository) {

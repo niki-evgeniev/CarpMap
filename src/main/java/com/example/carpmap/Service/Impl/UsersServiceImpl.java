@@ -20,7 +20,6 @@ import java.util.Optional;
 
 import static com.example.carpmap.Cammon.Users.*;
 
-
 @Service
 public class UsersServiceImpl implements UsersService {
 
@@ -45,7 +44,7 @@ public class UsersServiceImpl implements UsersService {
         if (userRepository.count() == 0) {
             User firstAdmnUser = new User();
             Optional<Country> bg = countryRepository.findById(1L);
-            if (bg.isPresent()){
+            if (bg.isPresent()) {
                 firstAdmnUser.setCountry(bg.get().getCountry());
             }
             firstAdmnUser.setName("Adminov");

@@ -6,6 +6,8 @@ import com.example.carpmap.Repository.UserRoleRepository;
 import com.example.carpmap.Service.UserRoleService;
 import org.springframework.stereotype.Service;
 
+import static com.example.carpmap.Cammon.SuccessfulMessages.*;
+
 @Service
 public class UserRoleServiceImpl implements UserRoleService {
 
@@ -24,7 +26,7 @@ public class UserRoleServiceImpl implements UserRoleService {
                 userRole.setRoleType(value);
                 userRoleRepository.save(userRole);
             }
-            System.out.printf("Successful register user role: %n");
+            System.out.printf(SUCCESSFUL_REGISTER_ROLE);
             for (RoleType value : values) {
                 System.out.println(" " + value);
             }
