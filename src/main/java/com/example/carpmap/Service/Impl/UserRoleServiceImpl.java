@@ -24,6 +24,10 @@ public class UserRoleServiceImpl implements UserRoleService {
                 userRole.setRoleType(value);
                 userRoleRepository.save(userRole);
             }
+            System.out.printf("Successful register user role: %n");
+            for (RoleType value : values) {
+                System.out.println(" " + value);
+            }
         }
     }
 }

@@ -53,9 +53,12 @@ public class UsersServiceImpl implements UsersService {
             firstAdmnUser.setEmail("admin@admin");
             firstAdmnUser.setPassword("734909fa01c605fa23051a67f16de8f522a2ef6969341effb1cbc4cac8d03860837749d5521cca0f654ceca0ea6f4aa2");
             firstAdmnUser.setUsername("admin");
+            firstAdmnUser.setTeam("Carpoholics");
             List<UserRole> all = getAllUserRoles();
             firstAdmnUser.setRoles(all);
             userRepository.save(firstAdmnUser);
+            System.out.printf(SUCCESSFUL_REGISTER_USER,
+                    firstAdmnUser.getName(), firstAdmnUser.getUsername(), firstAdmnUser.getEmail());
         }
     }
 

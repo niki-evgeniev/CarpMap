@@ -3,7 +3,7 @@ package com.example.carpmap.Cammon;
 public class Users {
 
     public static final String SUCCESSFUL_REGISTER_USER =
-            "Successful register user with %n name: %s, %n username: %s, %n email: %s";
+            "Successful register user with %n name: %s, %n username: %s, %n email: %s %n";
     public static final String ERROR_LOGIN =
             "ERROR LOGIN";
     public static final String PASSWORD_NOT_MATCH =
