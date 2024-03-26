@@ -43,22 +43,27 @@ public class UsersServiceImpl implements UsersService {
     public void addAdminIfNotExist() {
         if (userRepository.count() == 0) {
             User firstAdmnUser = new User();
-            Optional<Country> bg = countryRepository.findById(1L);
-            if (bg.isPresent()) {
-                firstAdmnUser.setCountry(bg.get().getCountry());
-            }
-            firstAdmnUser.setName("Adminov");
-            firstAdmnUser.setCreateOn(LocalDate.now());
-            firstAdmnUser.setEmail("admin@admin");
-            firstAdmnUser.setPassword("734909fa01c605fa23051a67f16de8f522a2ef6969341effb1cbc4cac8d03860837749d5521cca0f654ceca0ea6f4aa2");
-            firstAdmnUser.setUsername("admin");
-            firstAdmnUser.setTeam("Carpoholics");
-            List<UserRole> all = getAllUserRoles();
-            firstAdmnUser.setRoles(all);
+            mapFirstAdmin(firstAdmnUser);
+
             userRepository.save(firstAdmnUser);
             System.out.printf(SUCCESSFUL_REGISTER_USER,
                     firstAdmnUser.getName(), firstAdmnUser.getUsername(), firstAdmnUser.getEmail());
         }
+    }
+
+    private void mapFirstAdmin(User firstAdmnUser) {
+        Optional<Country> bg = countryRepository.findById(1L);
+        if (bg.isPresent()) {
+            firstAdmnUser.setCountry(bg.get().getCountry());
+        }
+        firstAdmnUser.setName("Adminov");
+        firstAdmnUser.setCreateOn(LocalDate.now());
+        firstAdmnUser.setEmail("admin@admin");
+        firstAdmnUser.setPassword("734909fa01c605fa23051a67f16de8f522a2ef6969341effb1cbc4cac8d03860837749d5521cca0f654ceca0ea6f4aa2");
+        firstAdmnUser.setUsername("admin");
+        firstAdmnUser.setTeam("Carpoholics");
+        List<UserRole> all = getAllUserRoles();
+        firstAdmnUser.setRoles(all);
     }
 
     @Override
