@@ -62,7 +62,7 @@
                                            name="city"
                                            id="city"
                                            class="form-control">
-                                    <div class="text-primary"
+                                    <div class="text-primary text-center"
                                          th:if="${#fields.hasErrors('city')}"
                                          th:errors="*{city}">Please, enter your name!
                                     </div>
@@ -79,7 +79,7 @@
                                            name="inputText"
                                            id="inputText"
                                            class="form-control">
-                                    <div class="text-primary"
+                                    <div class="text-primary text-center"
                                          th:if="${#fields.hasErrors('name')}"
                                          th:errors="*{name}">Please, enter your name!
                                     </div>
@@ -97,7 +97,7 @@
                                            name="Latitude"
                                            id="Latitude"
                                            class="form-control">
-                                    <div class="text-primary"
+                                    <div class="text-primary text-center"
                                          th:if="${#fields.hasErrors('latitude')}"
                                          th:errors="*{latitude}">Please, enter your name!
                                     </div>
@@ -113,7 +113,7 @@
                                            name="Longitude"
                                            id="Longitude"
                                            class="form-control">
-                                    <div class="text-primary"
+                                    <div class="text-primary text-center"
                                          th:if="${#fields.hasErrors('longitude')}"
                                          th:errors="*{longitude}">Please, enter your name!
                                     </div>
@@ -129,7 +129,7 @@
                                            name="urlImage"
                                            id="urlImage"
                                            class="form-control">
-                                    <div class="text-primary"
+                                    <div class="text-primary text-center"
                                          th:if="${#fields.hasErrors('urlImage')}"
                                          th:errors="*{urlImage}">Please, enter your name!
                                     </div>
@@ -149,10 +149,16 @@
                                 <label for="createDate"
                                        class="col-sm-2 col-form-label">Create date</label>
                                 <div class="col-sm-10">
-                                    <input type="datetime-local"
+                                    <input th:field="*{createDate}"
+                                           th:errorclass="is-invalid"
+                                            type="datetime-local"
                                            name="createDate"
                                            id="createDate"
                                            class="form-control">
+                                    <div class="text-primary text-center"
+                                         th:if="${#fields.hasErrors('createDate')}"
+                                         th:errors="*{createDate}">Please, enter your name!
+                                    </div>
                                 </div>
                             </div>
                             <div class="row mb-3">

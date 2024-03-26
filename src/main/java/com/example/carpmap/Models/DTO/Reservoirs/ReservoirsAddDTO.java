@@ -1,38 +1,42 @@
 package com.example.carpmap.Models.DTO.Reservoirs;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 
 public class ReservoirsAddDTO {
-    @NotEmpty(message = "Name cannot be empty!")
-    @Size(min = 3, max = 20, message = "Name length must be between 3 and 20 character!")
+    @NotEmpty
+    @Size(min = 3, max = 20, message = "Country length must be between 3 and 20 character!")
     private String country;
-    @NotEmpty(message = "Name cannot be empty!")
-    @Size(min = 3, max = 20, message = "Name length must be between 3 and 20 character!")
+    @NotEmpty
+    @Size(min = 3, max = 20, message = "City length must be between 3 and 20 character!")
     private String city;
 
-    @NotEmpty(message = "Name cannot be empty!")
+    @NotEmpty
     @Size(min = 3, max = 20, message = "Name length must be between 3 and 20 character!")
     private String name;
 
-    @NotEmpty(message = "latitude cannot be empty!")
-    @Size(min = 3, max = 20, message = "latitude length must be between 3 and 20 character!")
+    @NotEmpty
+    @Size(min = 3, max = 20, message = "Latitude length must be between 3 and 20 character!")
     private String latitude;
 
-    @NotEmpty(message = "longitude cannot be empty!")
-    @Size(min = 3, max = 20, message = "longitude length must be between 3 and 20 character!")
+    @NotEmpty
+    @Size(min = 3, max = 20, message = "Longitude length must be between 3 and 20 character!")
     private String longitude;
 
-    @NotEmpty(message = "urlImage cannot be empty!")
-    @Size(min = 3, max = 20, message = "urlImage length must be between 3 and 20 character!")
+    @NotEmpty
+    @Size(min = 3, max = 20, message = "URL Image length must be between 3 and 20 character!")
     private String urlImage;
 
+    @PastOrPresent
+    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime createDate;
 
-    @NotEmpty(message = "description cannot be empty!")
-    @Size(min = 3, max = 20, message = "description length must be between 3 and 20 character!")
+    @NotEmpty
+    @Size(min = 3, max = 20, message = "Description length must be between 3 and 20 character!")
     private String description;
 
     public ReservoirsAddDTO() {

@@ -29,7 +29,7 @@ public class Reservoir extends BaseEntity {
     @Column(name = "create_date")
     private LocalDateTime createDate;
 
-    @Column(name = "descriptions")
+    @Column(name = "descriptions", columnDefinition = "TEXT")
     private String descriptions;
 
     @ManyToOne

@@ -18,11 +18,13 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public void addFirstCountry() {
-        Country bulgariaCountry = new Country();
-        bulgariaCountry.setCountry("Bulgaria");
-        bulgariaCountry.setCountryCode("BG");
-        countryRepository.save(bulgariaCountry);
-        System.out.printf(SUCCESSFUL_REGISTER_COUNTRY,
-                bulgariaCountry.getCountry(), bulgariaCountry.getCountryCode());
+        if (countryRepository.count() == 0) {
+            Country bulgariaCountry = new Country();
+            bulgariaCountry.setCountry("Bulgaria");
+            bulgariaCountry.setCountryCode("BG");
+            countryRepository.save(bulgariaCountry);
+            System.out.printf(SUCCESSFUL_REGISTER_COUNTRY,
+                    bulgariaCountry.getCountry(), bulgariaCountry.getCountryCode());
+        }
     }
 }
