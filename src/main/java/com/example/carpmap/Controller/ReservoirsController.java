@@ -1,7 +1,7 @@
 package com.example.carpmap.Controller;
 
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsAddDTO;
-import com.example.carpmap.Models.DTO.Reservoirs.AllCountryDTO;
+import com.example.carpmap.Models.DTO.Reservoirs.CountryDTO;
 import com.example.carpmap.Service.CountryService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -35,7 +35,7 @@ public class ReservoirsController {
 
         ModelAndView modelAndView = new ModelAndView("reservoirsAdd");
 
-        List<AllCountryDTO> allCountry = countryService.getAllCountry();
+        List<CountryDTO> allCountry = countryService.getAllCountry();
         modelAndView.addObject("allCountry", allCountry);
 
         return modelAndView;

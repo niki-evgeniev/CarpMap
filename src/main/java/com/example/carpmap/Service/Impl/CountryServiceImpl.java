@@ -1,6 +1,6 @@
 package com.example.carpmap.Service.Impl;
 
-import com.example.carpmap.Models.DTO.Reservoirs.AllCountryDTO;
+import com.example.carpmap.Models.DTO.Reservoirs.CountryDTO;
 import com.example.carpmap.Models.Entity.Country;
 import com.example.carpmap.Repository.CountryRepository;
 import com.example.carpmap.Service.CountryService;
@@ -36,12 +36,12 @@ public class CountryServiceImpl implements CountryService {
     }
 
     @Override
-    public List<AllCountryDTO> getAllCountry() {
+    public List<CountryDTO> getAllCountry() {
         List<Country> all = countryRepository.findAll();
-        List<AllCountryDTO> allCountryDTO = new ArrayList<>();
+        List<CountryDTO> allCountryDTO = new ArrayList<>();
 
         for (Country country : all) {
-            AllCountryDTO map = modelMapper.map(country, AllCountryDTO.class);
+            CountryDTO map = modelMapper.map(country, CountryDTO.class);
             allCountryDTO.add(map);
         }
 

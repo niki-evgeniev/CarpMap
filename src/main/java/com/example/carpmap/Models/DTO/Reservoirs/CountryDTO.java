@@ -1,10 +1,10 @@
 package com.example.carpmap.Models.DTO.Reservoirs;
 
-public class AllCountryDTO {
+public class CountryDTO {
 
     private String country;
 
-    public AllCountryDTO() {
+    public CountryDTO() {
     }
 
     public String getCountry() {
