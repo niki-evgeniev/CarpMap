@@ -46,9 +46,9 @@ public class ReservoirsController {
                                       BindingResult bindingResult) {
         System.out.println();
 
-     if (!bindingResult.hasErrors()){
-         return new ModelAndView("redirect:/");
-     }
+        if (!bindingResult.hasErrors()) {
+            return new ModelAndView("redirect:/");
+        }
         return new ModelAndView("reservoirsAdd");
     }
 
