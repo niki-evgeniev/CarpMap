@@ -1,9 +1,14 @@
 package com.example.carpmap.Service.Impl;
 
+import com.example.carpmap.Models.DTO.Reservoirs.AllCountryDTO;
 import com.example.carpmap.Models.Entity.Country;
 import com.example.carpmap.Repository.CountryRepository;
 import com.example.carpmap.Service.CountryService;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.example.carpmap.Cammon.SuccessfulMessages.*;
 
@@ -11,9 +16,11 @@ import static com.example.carpmap.Cammon.SuccessfulMessages.*;
 public class CountryServiceImpl implements CountryService {
 
     private final CountryRepository countryRepository;
+    private final ModelMapper modelMapper;
 
-    public CountryServiceImpl(CountryRepository countryRepository) {
+    public CountryServiceImpl(CountryRepository countryRepository, ModelMapper modelMapper) {
         this.countryRepository = countryRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -26,5 +33,18 @@ public class CountryServiceImpl implements CountryService {
             System.out.printf(SUCCESSFUL_REGISTER_COUNTRY,
                     bulgariaCountry.getCountry(), bulgariaCountry.getCountryCode());
         }
+    }
+
+    @Override
+    public List<AllCountryDTO> getAllCountry() {
+        List<Country> all = countryRepository.findAll();
+        List<AllCountryDTO> allCountryDTO = new ArrayList<>();
+
+        for (Country country : all) {
+            AllCountryDTO map = modelMapper.map(country, AllCountryDTO.class);
+            allCountryDTO.add(map);
+        }
+
+        return allCountryDTO;
     }
 }
