@@ -2,7 +2,9 @@ package com.example.carpmap.Controller;
 
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsAddDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.CountryDTO;
+import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsNameDTO;
 import com.example.carpmap.Service.CountryService;
+import com.example.carpmap.Service.Exception.ObjectNotFoundException;
 import com.example.carpmap.Service.ReservoirsService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -44,15 +46,19 @@ public class ReservoirsController {
     @PostMapping("reservoirsAdd")
     public ModelAndView reservoirsAdd(@Valid ReservoirsAddDTO reservoirsAddDTO,
                                       BindingResult bindingResult) {
-        System.out.println();
+
         if (!bindingResult.hasErrors()) {
+
+            ReservoirsNameDTO reservoirsNameDTO = reservoirsService
+                    .checkNameExist(reservoirsAddDTO.getName())
+                    .orElseThrow( ()-> new ObjectNotFoundException("Reservoirs exist"));
+
             boolean isAddedReservoirs = reservoirsService.addReservoirs(reservoirsAddDTO);
             if (isAddedReservoirs) {
                 return new ModelAndView("redirect:/");
             }
         }
         ModelAndView modelAndView = getAllCountry();
-
         return modelAndView;
     }
 
