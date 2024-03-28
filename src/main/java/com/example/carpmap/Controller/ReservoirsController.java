@@ -3,6 +3,7 @@ package com.example.carpmap.Controller;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsAddDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.CountryDTO;
 import com.example.carpmap.Service.CountryService;
+import com.example.carpmap.Service.ReservoirsService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -19,9 +20,12 @@ import java.util.List;
 public class ReservoirsController {
 
     private final CountryService countryService;
+    private final ReservoirsService reservoirsService;
 
-    public ReservoirsController(CountryService countryService) {
+    public ReservoirsController(CountryService countryService, ReservoirsService reservoirsService) {
         this.countryService = countryService;
+
+        this.reservoirsService = reservoirsService;
     }
 
 
@@ -33,11 +37,7 @@ public class ReservoirsController {
     @GetMapping("reservoirsAdd")
     public ModelAndView reservoirsAdd() {
 
-        ModelAndView modelAndView = new ModelAndView("reservoirsAdd");
-
-        List<CountryDTO> allCountry = countryService.getAllCountry();
-        modelAndView.addObject("allCountry", allCountry);
-
+        ModelAndView modelAndView = getAllCountry();
         return modelAndView;
     }
 
@@ -45,11 +45,22 @@ public class ReservoirsController {
     public ModelAndView reservoirsAdd(@Valid ReservoirsAddDTO reservoirsAddDTO,
                                       BindingResult bindingResult) {
         System.out.println();
-
         if (!bindingResult.hasErrors()) {
-            return new ModelAndView("redirect:/");
+            boolean isAddedReservoirs = reservoirsService.addReservoirs(reservoirsAddDTO);
+            if (isAddedReservoirs) {
+                return new ModelAndView("redirect:/");
+            }
         }
-        return new ModelAndView("reservoirsAdd");
+        ModelAndView modelAndView = getAllCountry();
+
+        return modelAndView;
+    }
+
+    private ModelAndView getAllCountry() {
+        ModelAndView modelAndView = new ModelAndView("reservoirsAdd");
+        List<CountryDTO> allCountry = countryService.getAllCountry();
+        modelAndView.addObject("allCountry", allCountry);
+        return modelAndView;
     }
 
     @ModelAttribute

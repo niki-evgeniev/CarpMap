@@ -30,7 +30,7 @@ public class Reservoir extends BaseEntity {
     private LocalDateTime createDate;
 
     @Column(name = "descriptions", columnDefinition = "TEXT")
-    private String descriptions;
+    private String description;
 
     @ManyToOne
     private User user;
@@ -90,12 +90,12 @@ public class Reservoir extends BaseEntity {
         this.createDate = createDate;
     }
 
-    public String getDescriptions() {
-        return descriptions;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescriptions(String descriptions) {
-        this.descriptions = descriptions;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public User getUser() {

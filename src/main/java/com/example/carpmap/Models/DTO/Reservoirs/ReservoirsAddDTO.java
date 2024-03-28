@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDateTime;
 
 public class ReservoirsAddDTO {
+
     @NotEmpty
     @Size(min = 3, max = 20, message = "Country length must be between 3 and 20 character!")
     private String country;
@@ -28,7 +29,7 @@ public class ReservoirsAddDTO {
     private String longitude;
 
     @NotEmpty
-    @Size(min = 3, max = 20, message = "URL Image length must be between 3 and 20 character!")
+    @Size(min = 3, max = 240, message = "URL Image length must be between 3 and 20 character!")
     private String urlImage;
 
     @PastOrPresent
@@ -36,7 +37,7 @@ public class ReservoirsAddDTO {
     private LocalDateTime createDate;
 
     @NotEmpty
-    @Size(min = 3, max = 20, message = "Description length must be between 3 and 20 character!")
+    @Size(min = 3, max = 240, message = "Description length must be between 3 and 20 character!")
     private String description;
 
     public ReservoirsAddDTO() {

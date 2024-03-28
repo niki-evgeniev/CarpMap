@@ -30,6 +30,11 @@ public class CountryServiceImpl implements CountryService {
             bulgariaCountry.setCountry("Bulgaria");
             bulgariaCountry.setCountryCode("BG");
             countryRepository.save(bulgariaCountry);
+
+            Country germanyCountry = new Country();
+            germanyCountry.setCountry("Germany");
+            germanyCountry.setCountryCode("GN");
+            countryRepository.save(germanyCountry);
             System.out.printf(SUCCESSFUL_REGISTER_COUNTRY,
                     bulgariaCountry.getCountry(), bulgariaCountry.getCountryCode());
         }
