@@ -78,6 +78,9 @@
                                          th:if="${#fields.hasErrors('name')}"
                                          th:errors="*{name}">Please, enter your name!
                                     </div>
+                                    <div class="text-primary text-center"
+                                         th:if="${isExistNameOfReservoir == true}"
+                                    >Existing name</div>
                                 </div>
                             </div>
                             <h6 class="card-title text-center">Add GPS Coordinates</h6>

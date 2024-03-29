@@ -1,5 +1,6 @@
 package com.example.carpmap.Service.Impl;
 
+import com.example.carpmap.Models.DTO.Reservoirs.ReservoirAllDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsAddDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsNameDTO;
 import com.example.carpmap.Models.Entity.Country;
@@ -8,11 +9,13 @@ import com.example.carpmap.Models.Entity.User;
 import com.example.carpmap.Repository.CountryRepository;
 import com.example.carpmap.Repository.ReservoirRepository;
 import com.example.carpmap.Repository.UserRepository;
-import com.example.carpmap.Service.Exception.ObjectNotFoundException;
 import com.example.carpmap.Service.ReservoirsService;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 
 import java.util.Optional;
 
@@ -39,11 +42,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     @Override
     public boolean addReservoirs(ReservoirsAddDTO reservoirsAddDTO) {
 
-//        Optional<Reservoir> findReservoirExist = reservoirRepository.findByName(reservoirsAddDTO.getName());
-
         Reservoir addNewReservoirs = modelMapper.map(reservoirsAddDTO, Reservoir.class);
-//        Country country = countryRepository.findByCountry(reservoirsAddDTO.getCountry()).orElseThrow(
-//                () -> new ObjectNotFoundException("Country: " + reservoirsAddDTO.getCountry() + " Not Found"));
 
         Optional<Country> country = countryRepository.findByCountry(reservoirsAddDTO.getCountry());
         if (country.isPresent()) {
@@ -66,12 +65,27 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     }
 
     @Override
-    public Optional<ReservoirsNameDTO> checkNameExist(String name) {
+    public Optional<ReservoirsNameDTO> checkNameExisting(String name) {
 
         Optional<Reservoir> existName = reservoirRepository.findByName(name);
 
         ReservoirsNameDTO nameReservoir = modelMapper.map(existName, ReservoirsNameDTO.class);
 
         return Optional.ofNullable(nameReservoir);
+    }
+
+    @Override
+    public Page<ReservoirAllDTO> getAllReservoirs(Pageable pageable) {
+
+        Page<Reservoir> findAll = reservoirRepository.findAll(pageable);
+        Page<ReservoirAllDTO> all = findAll.map(reservoir -> {
+            ReservoirAllDTO reservoirAllDTO = new ReservoirAllDTO();
+            reservoirAllDTO.setCity(reservoir.getCity());
+            reservoirAllDTO.setId(reservoir.getId());
+            reservoirAllDTO.setName(reservoir.getName());
+            reservoirAllDTO.setDescription(reservoir.getDescription());
+            return reservoirAllDTO;
+        });
+        return all;
     }
 }

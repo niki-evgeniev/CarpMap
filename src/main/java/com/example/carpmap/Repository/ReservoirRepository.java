@@ -1,8 +1,11 @@
 package com.example.carpmap.Repository;
 
 import com.example.carpmap.Models.Entity.Reservoir;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
 
 import java.util.Optional;
 
@@ -10,4 +13,6 @@ import java.util.Optional;
 public interface ReservoirRepository extends JpaRepository<Reservoir, Long> {
 
     Optional<Reservoir> findByName(String name);
+
+    Page<Reservoir> findAll (Pageable pageable);
 }
