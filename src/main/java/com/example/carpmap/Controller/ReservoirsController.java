@@ -35,9 +35,9 @@ public class ReservoirsController {
     }
 
 
-    @GetMapping("viewAll")
-    public ModelAndView reservoirs(
-            @PageableDefault(page = 3, sort = "name") Pageable pageable) {
+    @GetMapping("reservoirsAll")
+    public ModelAndView reservoirsAll(
+            @PageableDefault(size = 3, sort = "name") Pageable pageable) {
 
         ModelAndView modelAndView = new ModelAndView("reservoirs");
         Page<ReservoirAllDTO> all = reservoirsService.getAllReservoirs(pageable);

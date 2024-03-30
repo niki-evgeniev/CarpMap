@@ -17,6 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
+import java.util.List;
 import java.util.Optional;
 
 import static com.example.carpmap.Cammon.ErrorMessages.COUNTRY_NOT_FOUND;
@@ -76,16 +77,11 @@ public class ReservoirsServiceImpl implements ReservoirsService {
 
     @Override
     public Page<ReservoirAllDTO> getAllReservoirs(Pageable pageable) {
-
-        Page<Reservoir> findAll = reservoirRepository.findAll(pageable);
-        Page<ReservoirAllDTO> all = findAll.map(reservoir -> {
-            ReservoirAllDTO reservoirAllDTO = new ReservoirAllDTO();
-            reservoirAllDTO.setCity(reservoir.getCity());
-            reservoirAllDTO.setId(reservoir.getId());
-            reservoirAllDTO.setName(reservoir.getName());
-            reservoirAllDTO.setDescription(reservoir.getDescription());
-            return reservoirAllDTO;
+        Page<Reservoir> findAllReservoir = reservoirRepository.findAll(pageable);
+        Page<ReservoirAllDTO> allReservoirs = findAllReservoir.map(reservoir -> {
+//            ReservoirAllDTO reservoirAllDTO = new ReservoirAllDTO();
+            return modelMapper.map(reservoir, ReservoirAllDTO.class);
         });
-        return all;
+        return allReservoirs;
     }
 }

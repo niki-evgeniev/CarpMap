@@ -10,6 +10,8 @@ public class ReservoirAllDTO {
 
     private String description;
 
+    private String urlImage;
+
     public ReservoirAllDTO() {
     }
 
@@ -43,5 +45,13 @@ public class ReservoirAllDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getUrlImage() {
+        return urlImage;
+    }
+
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 }

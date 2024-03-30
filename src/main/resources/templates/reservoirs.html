@@ -20,15 +20,18 @@
     <div class="container">
         <link rel="stylesheet" href="/css/style2.css">
         <div class="section-header">
-            <h2>explore</h2>
-            <p>Explore New place, food, culture around the world and many more</p>
+            <h2 class="text-center">explore</h2>
+            <p class="text-center">Explore New place, food, culture around the world and many more</p>
         </div><!--/.section-header-->
         <div class="explore-content">
-            <div class="row">
-                <div class=" col-md-4 col-sm-6">
+            <div
+                 class="row">
+                <div class=" col-md-4 col-sm-6"
+                     th:each="res : ${all.getContent()}"
+                     th:object="${res}">
                     <div class="single-explore-item">
                         <div class="single-explore-img">
-                            <img src="/images/e1.jpg" alt="explore image">
+                            <img th:src="*{urlImage}" alt="explore image">
                             <div class="single-explore-img-info">
                                 <button onclick="window.location.href='#'">best rated</button>
                                 <div class="single-explore-image-icon-box">
@@ -48,7 +51,7 @@
                             </div>
                         </div>
                         <div class="single-explore-txt bg-theme-1">
-                            <h2><a href="#">tommy helfinger bar</a></h2>
+                            <h2><a href="#" th:text="*{name}">tommy helfinger bar</a></h2>
                             <p class="explore-rating-price">
                                 <span class="explore-rating">5.0</span>
                                 <a href="#"> 10 ratings</a>
@@ -68,7 +71,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-10">
-                                        <p>
+                                        <p th:text="*{description}">
                                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                                             tempor incid ut labore et dolore magna aliqua....
                                         </p>
@@ -79,7 +82,7 @@
                                 <div class="row">
                                     <div class="col-sm-5">
                                         <button class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2" >Details</button>
-                                        <a class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2"> TT </a>
+<!--                                        <a class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2"> TT </a>-->
                                     </div>
                                     <div class="col-sm-7">
                                         <div class="explore-map-icon">
