@@ -13,7 +13,7 @@ public interface ReservoirsService {
 
     boolean addReservoirs(ReservoirsAddDTO reservoirsAddDTO);
 
-    Optional<ReservoirsNameDTO> checkNameExisting(String name);
+    boolean checkNameExisting(String name);
 
     Page<ReservoirAllDTO> getAllReservoirs(Pageable pageable);
 }

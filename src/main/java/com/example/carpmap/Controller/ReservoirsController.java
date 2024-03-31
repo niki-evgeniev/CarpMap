@@ -3,7 +3,6 @@ package com.example.carpmap.Controller;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirAllDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsAddDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.CountryDTO;
-import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsNameDTO;
 import com.example.carpmap.Service.CountryService;
 import com.example.carpmap.Service.ReservoirsService;
 import jakarta.validation.Valid;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/reservoirs/")
@@ -37,7 +35,7 @@ public class ReservoirsController {
 
     @GetMapping("reservoirsAll")
     public ModelAndView reservoirsAll(
-            @PageableDefault(size = 3, sort = "name") Pageable pageable) {
+            @PageableDefault(size = 6, sort = "name") Pageable pageable) {
 
         ModelAndView modelAndView = new ModelAndView("reservoirs");
         Page<ReservoirAllDTO> all = reservoirsService.getAllReservoirs(pageable);
@@ -55,17 +53,14 @@ public class ReservoirsController {
     @PostMapping("reservoirsAdd")
     public ModelAndView reservoirsAdd(@Valid ReservoirsAddDTO reservoirsAddDTO,
                                       BindingResult bindingResult) {
-        Optional<ReservoirsNameDTO> reservoirsNameDTO = reservoirsService.checkNameExisting(reservoirsAddDTO.getName());
-        boolean isExistNameOfReservoir = false;
-        if (!bindingResult.hasErrors() && reservoirsNameDTO.isEmpty()) {
+        boolean isExistNameOfReservoir = reservoirsService.checkNameExisting(reservoirsAddDTO.getName());
+        if (!bindingResult.hasErrors() && !isExistNameOfReservoir) {
             boolean isAddedReservoirs = reservoirsService.addReservoirs(reservoirsAddDTO);
             if (isAddedReservoirs) {
                 return new ModelAndView("redirect:/");
             }
-        } else if (reservoirsNameDTO.isPresent()) {
-
-            isExistNameOfReservoir = true;
         }
+
         ModelAndView modelAndView = getAllCountry();
         modelAndView.addObject("isExistNameOfReservoir", isExistNameOfReservoir);
         return modelAndView;

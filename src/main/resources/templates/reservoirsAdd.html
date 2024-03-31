@@ -80,7 +80,8 @@
                                     </div>
                                     <div class="text-primary text-center"
                                          th:if="${isExistNameOfReservoir == true}"
-                                    >Existing name</div>
+                                    >Existing name
+                                    </div>
                                 </div>
                             </div>
                             <h6 class="card-title text-center">Add GPS Coordinates</h6>
@@ -176,7 +177,8 @@
                                             name="description"
                                             id="description"
                                             class="form-control"
-                                            style="height: 100px"></textarea>
+                                            style="height: 100px"
+                                            maxlength="240"></textarea>
                                     <div class="text-primary text-center"
                                          th:if="${#fields.hasErrors('description')}"
                                          th:errors="*{description}">Please, enter your name!

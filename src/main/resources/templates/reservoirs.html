@@ -25,7 +25,7 @@
         </div><!--/.section-header-->
         <div class="explore-content">
             <div
-                 class="row">
+                    class="row">
                 <div class=" col-md-4 col-sm-6"
                      th:each="res : ${all.getContent()}"
                      th:object="${res}">
@@ -81,8 +81,8 @@
                             <div class="explore-open-close-part">
                                 <div class="row">
                                     <div class="col-sm-5">
-                                        <button class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2" >Details</button>
-<!--                                        <a class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2"> TT </a>-->
+                                        <button class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2">Details</button>
+                                        <!--                                        <a class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2"> TT </a>-->
                                     </div>
                                     <div class="col-sm-7">
                                         <div class="explore-map-icon">
@@ -102,6 +102,25 @@
     </div><!--/.container-->
 
 </section><!--/.explore-->
+<nav aria-label="Page navigation" class="d-flex justify-content-center">
+    <ul th:fragment="ALL" class="pagination text-center">
+        <li th:class="${!all.hasPrevious()} ? 'page-item disabled' : 'page-item'">
+            <a class="page-link" th:if="${all.hasPrevious()}"
+               th:href="@{/reservoirs/reservoirsAll(page=${all.previousPageable().pageNumber})}">Previous</a>
+        </li>
+
+        <li th:each="i : ${#numbers.sequence(0, all.totalPages - 1)}"
+            th:class="${i == all.number} ? 'page-item active' : 'page-item'">
+            <a class="page-link" th:href="@{/reservoirs/reservoirsAll(page=${i})}" th:text="${i + 1}"></a>
+        </li>
+
+        <li th:class="${!all.hasNext()} ? 'page-item disabled' : 'page-item'">
+            <a class="page-link" th:if="${all.hasNext()}"
+               th:href="@{/reservoirs/reservoirsAll(page=${all.nextPageable().pageNumber})}">Next</a>
+        </li>
+    </ul>
+</nav>
+<br>
 
 <th:block th:replace="~{fragments/footer}"></th:block>
 
