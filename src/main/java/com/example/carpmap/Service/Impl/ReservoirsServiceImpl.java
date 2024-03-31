@@ -69,9 +69,12 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     public Optional<ReservoirsNameDTO> checkNameExisting(String name) {
 
         Optional<Reservoir> existName = reservoirRepository.findByName(name);
-
         ReservoirsNameDTO nameReservoir = modelMapper.map(existName, ReservoirsNameDTO.class);
-
+        if (existName.isPresent()){
+            //TODO ОПРАВИ ДА ВРЪЯА БООЛИАН
+        }else {
+            return false;
+        }
         return Optional.ofNullable(nameReservoir);
     }
 

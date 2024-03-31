@@ -63,6 +63,7 @@ public class ReservoirsController {
                 return new ModelAndView("redirect:/");
             }
         } else if (reservoirsNameDTO.isPresent()) {
+
             isExistNameOfReservoir = true;
         }
         ModelAndView modelAndView = getAllCountry();
