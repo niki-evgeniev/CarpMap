@@ -77,4 +77,10 @@ public class ReservoirsController {
     ReservoirsAddDTO reservoirsAddDTO() {
         return new ReservoirsAddDTO();
     }
+
+
+    @GetMapping("snippet")
+    public ModelAndView snippet(){
+        return new ModelAndView("test");
+    }
 }
