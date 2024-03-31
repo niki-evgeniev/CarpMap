@@ -38,8 +38,8 @@ public class ReservoirsController {
             @PageableDefault(size = 6, sort = "name") Pageable pageable) {
 
         ModelAndView modelAndView = new ModelAndView("reservoirs");
-        Page<ReservoirAllDTO> all = reservoirsService.getAllReservoirs(pageable);
-        modelAndView.addObject("all", all);
+        Page<ReservoirAllDTO> allReservoir = reservoirsService.getAllReservoirs(pageable);
+        modelAndView.addObject("allReservoir", allReservoir);
         return modelAndView;
     }
 
