@@ -9,35 +9,35 @@ import java.time.LocalDateTime;
 
 public class ReservoirsAddDTO {
 
-    @NotEmpty
-    @Size(min = 3, max = 20, message = "Country length must be between 3 and 20 character!")
+    @NotEmpty(message = "Reservoirs country must not be empty")
+    @Size(min = 3, max = 20, message = "Country for Reservoirs length must be between 3 and 20 character!")
     private String country;
-    @NotEmpty
-    @Size(min = 3, max = 20, message = "City length must be between 3 and 20 character!")
+    @NotEmpty(message = "Reservoirs city must not be empty")
+    @Size(min = 3, max = 20, message = "City for Reservoirs length must be between 3 and 20 character!")
     private String city;
 
-    @NotEmpty
-    @Size(min = 3, max = 20, message = "Name length must be between 3 and 20 character!")
+    @NotEmpty(message = "Reservoirs name must not be empty")
+    @Size(min = 3, max = 20, message = "Name for Reservoirs length must be between 3 and 20 character!")
     private String name;
 
-    @NotEmpty
-    @Size(min = 3, max = 20, message = "Latitude length must be between 3 and 20 character!")
+    @NotEmpty(message = "Reservoirs latitude must not be empty")
+    @Size(min = 3, max = 20, message = "Latitude for Reservoirs length must be between 3 and 20 character!")
     private String latitude;
 
-    @NotEmpty
-    @Size(min = 3, max = 20, message = "Longitude length must be between 3 and 20 character!")
+    @NotEmpty(message = "Reservoirs longitude must not be empty")
+    @Size(min = 3, max = 20, message = "Longitude for Reservoirs length must be between 3 and 20 character!")
     private String longitude;
 
-    @NotEmpty
-    @Size(min = 3, max = 240, message = "URL Image length must be between 3 and 20 character!")
+    @NotEmpty(message = "Reservoirs URL Image must not be empty")
+    @Size(min = 3, max = 240, message = "URL Image for Reservoirs  length must be between 3 and 20 character!")
     private String urlImage;
 
     @PastOrPresent
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime createDate;
 
-    @NotEmpty
-    @Size(min = 3, max = 240, message = "Description length must be between 3 and 20 character!")
+    @NotEmpty(message = "Reservoirs description must not be empty")
+    @Size(min = 3, max = 240, message = "Description for Reservoirs length must be between 3 and 20 character!")
     private String description;
 
     public ReservoirsAddDTO() {

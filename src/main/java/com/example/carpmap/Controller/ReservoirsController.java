@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,6 +59,10 @@ public class ReservoirsController {
             boolean isAddedReservoirs = reservoirsService.addReservoirs(reservoirsAddDTO);
             if (isAddedReservoirs) {
                 return new ModelAndView("redirect:/");
+            }
+        }else {
+            for (ObjectError allError : bindingResult.getAllErrors()) {
+                System.out.println(allError.getDefaultMessage());
             }
         }
 
