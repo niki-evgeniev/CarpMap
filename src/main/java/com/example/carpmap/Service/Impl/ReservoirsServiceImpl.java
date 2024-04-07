@@ -2,6 +2,7 @@ package com.example.carpmap.Service.Impl;
 
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirAllDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsAddDTO;
+import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsDetailsDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsNameDTO;
 import com.example.carpmap.Models.Entity.Country;
 import com.example.carpmap.Models.Entity.Reservoir;
@@ -81,5 +82,13 @@ public class ReservoirsServiceImpl implements ReservoirsService {
             return modelMapper.map(reservoir, ReservoirAllDTO.class);
         });
         return allReservoirs;
+    }
+
+    @Override
+    public ReservoirsDetailsDTO getDetails(Long id) {
+        Optional<Reservoir> byId = reservoirRepository.findById(id);
+        ReservoirsDetailsDTO map = modelMapper.map(byId, ReservoirsDetailsDTO.class);
+        System.out.println();
+        return map;
     }
 }

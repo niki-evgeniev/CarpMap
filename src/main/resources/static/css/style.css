@@ -1262,3 +1262,7 @@ body > div.container-fluid.position-relative.p-0 > nav {
 .body > div.container-fluid.bg-primary.px-5.d-none.d-lg-block {
     display: block;
 }
+
+.cd__intro {
+    margin-top: 8%;
+}

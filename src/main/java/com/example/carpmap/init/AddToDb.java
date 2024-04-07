@@ -25,7 +25,5 @@ public class AddToDb implements CommandLineRunner {
         userRoleService.addRoleIfNotExist();
         countryService.addFirstCountry();
         usersService.addAdminIfNotExist();
-
-
     }
 }

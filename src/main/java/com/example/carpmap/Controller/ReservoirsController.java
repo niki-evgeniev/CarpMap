@@ -3,6 +3,7 @@ package com.example.carpmap.Controller;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirAllDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsAddDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.CountryDTO;
+import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsDetailsDTO;
 import com.example.carpmap.Service.CountryService;
 import com.example.carpmap.Service.ReservoirsService;
 import jakarta.validation.Valid;
@@ -12,10 +13,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -60,14 +58,24 @@ public class ReservoirsController {
             if (isAddedReservoirs) {
                 return new ModelAndView("redirect:/");
             }
-        }else {
+        } else {
             for (ObjectError allError : bindingResult.getAllErrors()) {
                 System.out.println(allError.getDefaultMessage());
             }
         }
-
         ModelAndView modelAndView = getAllCountry();
         modelAndView.addObject("isExistNameOfReservoir", isExistNameOfReservoir);
+        return modelAndView;
+    }
+
+    @GetMapping("{id}")
+    public ModelAndView details(@PathVariable("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView("reservoirsDetails");
+
+        ReservoirsDetailsDTO reservoirsDetailsDTO = reservoirsService.getDetails(id);
+
+        modelAndView.addObject("details", reservoirsDetailsDTO);
+
         return modelAndView;
     }
 
@@ -81,11 +89,5 @@ public class ReservoirsController {
     @ModelAttribute
     ReservoirsAddDTO reservoirsAddDTO() {
         return new ReservoirsAddDTO();
-    }
-
-
-    @GetMapping("snippet")
-    public ModelAndView snippet(){
-        return new ModelAndView("test");
     }
 }

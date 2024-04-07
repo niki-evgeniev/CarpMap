@@ -65,7 +65,6 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView("login");
         modelAndView.addObject("bad_credentials", true);
         System.out.println(ERROR_LOGIN);
-
         return modelAndView;
     }
 

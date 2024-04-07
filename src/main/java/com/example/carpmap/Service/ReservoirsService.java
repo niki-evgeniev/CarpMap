@@ -2,6 +2,7 @@ package com.example.carpmap.Service;
 
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirAllDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsAddDTO;
+import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsDetailsDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsNameDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,4 +17,6 @@ public interface ReservoirsService {
     boolean checkNameExisting(String name);
 
     Page<ReservoirAllDTO> getAllReservoirs(Pageable pageable);
+
+    ReservoirsDetailsDTO getDetails(Long id);
 }
