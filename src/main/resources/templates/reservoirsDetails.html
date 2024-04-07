@@ -89,6 +89,15 @@
                          th:text="'Kординати - Longitude: ' + *{longitude}">
                         Black dress for Women
                     </div>
+                    <div class="product-title text-bold my-3"
+                         th:text="'Добавен на : ' + *{createDate.toLocalDate()}">
+                        Black dress for Women
+                    </div>
+                    <div class="product-title text-bold my-3"
+                         th:text="'Видове риба : ' + *{fishTypeList} ">
+                        Black dress for Women
+                    </div>
+
                 </div>
 
                 <div class="product-details my-4">

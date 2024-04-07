@@ -1,5 +1,5 @@
 INSERT INTO reservoirs(id, city, name, descriptions,create_date, latitude, longitude, url_image, country_id, user_id)
-VALUES (1, 'Севлиево', 'Кастел', 'descriptions: Кастел, Севлиево','2024-03-28 23:15:00.000000', 312, 123,
+VALUES (8, 'Севлиево', 'Кастел', 'descriptions: Кастел, Севлиево','2024-03-28 23:15:00.000000', 312, 123,
         'https://imgrabo.com/pics/guide/20210930163629_15489.jpeg',
         1, 1),
        (2, 'Севлиево', 'Кулеков лейк', 'descriptions: Кулеков лейк, Севлиево','2024-03-28 23:15:00.000000', 312, 123,

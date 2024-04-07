@@ -7,6 +7,7 @@ import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsNameDTO;
 import com.example.carpmap.Models.Entity.Country;
 import com.example.carpmap.Models.Entity.Reservoir;
 import com.example.carpmap.Models.Entity.User;
+import com.example.carpmap.Models.Enums.FishType;
 import com.example.carpmap.Repository.CountryRepository;
 import com.example.carpmap.Repository.ReservoirRepository;
 import com.example.carpmap.Repository.UserRepository;
@@ -53,6 +54,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
 
             if (findUser.isPresent()) {
                 addNewReservoirs.setUser(findUser.get());
+                addNewReservoirs.setFishType(List.of(FishType.Шаран, FishType.Амур, FishType.Толобстолоб));
                 reservoirRepository.save(addNewReservoirs);
                 System.out.printf(SUCCESSFUL_ADD_RESERVOIR,
                         reservoirsAddDTO.getName(), reservoirsAddDTO.getCountry());
@@ -68,9 +70,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
 
     @Override
     public boolean checkNameExisting(String name) {
-
         Optional<Reservoir> existName = reservoirRepository.findByName(name);
-        ReservoirsNameDTO nameReservoir = modelMapper.map(existName, ReservoirsNameDTO.class);
         return existName.isPresent();
     }
 
@@ -78,7 +78,6 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     public Page<ReservoirAllDTO> getAllReservoirs(Pageable pageable) {
         Page<Reservoir> findAllReservoir = reservoirRepository.findAll(pageable);
         Page<ReservoirAllDTO> allReservoirs = findAllReservoir.map(reservoir -> {
-//            ReservoirAllDTO reservoirAllDTO = new ReservoirAllDTO();
             return modelMapper.map(reservoir, ReservoirAllDTO.class);
         });
         return allReservoirs;
@@ -86,9 +85,10 @@ public class ReservoirsServiceImpl implements ReservoirsService {
 
     @Override
     public ReservoirsDetailsDTO getDetails(Long id) {
-        Optional<Reservoir> byId = reservoirRepository.findById(id);
-        ReservoirsDetailsDTO map = modelMapper.map(byId, ReservoirsDetailsDTO.class);
+        Optional<Reservoir> findReservoir = reservoirRepository.findById(id);
+        ReservoirsDetailsDTO reservoirsDetailsDTO = modelMapper.map(findReservoir, ReservoirsDetailsDTO.class);
+
         System.out.println();
-        return map;
+        return reservoirsDetailsDTO;
     }
 }

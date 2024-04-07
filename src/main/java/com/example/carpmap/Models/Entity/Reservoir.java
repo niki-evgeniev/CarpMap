@@ -1,11 +1,10 @@
 package com.example.carpmap.Models.Entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import com.example.carpmap.Models.Enums.FishType;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "reservoirs")
@@ -31,6 +30,11 @@ public class Reservoir extends BaseEntity {
 
     @Column(name = "descriptions", columnDefinition = "TEXT")
     private String description;
+
+    //TODO
+    @Column(name = "fish")
+    @Enumerated(EnumType.STRING)
+    private List<FishType> fishType;
 
     @ManyToOne
     private User user;
@@ -112,5 +116,13 @@ public class Reservoir extends BaseEntity {
 
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    public List<FishType> getFishType() {
+        return fishType;
+    }
+
+    public void setFishType(List<FishType> fishType) {
+        this.fishType = fishType;
     }
 }
