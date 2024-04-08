@@ -36,7 +36,6 @@ public class ReservoirsController {
     @GetMapping("reservoirsAll")
     public ModelAndView reservoirsAll(
             @PageableDefault(size = 6, sort = "name") Pageable pageable) {
-
         ModelAndView modelAndView = new ModelAndView("reservoirs");
         Page<ReservoirAllDTO> allReservoir = reservoirsService.getAllReservoirs(pageable);
         modelAndView.addObject("allReservoir", allReservoir);
@@ -45,7 +44,6 @@ public class ReservoirsController {
 
     @GetMapping("reservoirsAdd")
     public ModelAndView reservoirsAdd() {
-
         ModelAndView modelAndView = getAllCountry();
         List<FishNameDTO> fishNamesDTOS = fishService.getAllFishName();
         modelAndView.addObject("fishNames", fishNamesDTOS);
@@ -74,11 +72,8 @@ public class ReservoirsController {
     @GetMapping("{id}")
     public ModelAndView details(@PathVariable("id") Long id) {
         ModelAndView modelAndView = new ModelAndView("reservoirsDetails");
-
         ReservoirsDetailsDTO reservoirsDetailsDTO = reservoirsService.getDetails(id);
-
         modelAndView.addObject("details", reservoirsDetailsDTO);
-        System.out.println();
         return modelAndView;
     }
 

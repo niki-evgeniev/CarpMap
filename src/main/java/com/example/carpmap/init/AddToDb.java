@@ -10,15 +10,13 @@ public class AddToDb implements CommandLineRunner {
     private final UserRoleService userRoleService;
     private final UsersService usersService;
     private final CountryService countryService;
-    private final ReservoirsService reservoirsService;
     private final FishService fishService;
 
     public AddToDb(UserRoleService userRoleService, UsersService usersService,
-                   CountryService countryService, ReservoirsService reservoirsService, FishService fishService) {
+                   CountryService countryService, FishService fishService) {
         this.userRoleService = userRoleService;
         this.usersService = usersService;
         this.countryService = countryService;
-        this.reservoirsService = reservoirsService;
         this.fishService = fishService;
     }
 

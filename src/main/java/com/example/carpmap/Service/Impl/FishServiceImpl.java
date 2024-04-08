@@ -1,9 +1,10 @@
-package com.example.carpmap.Service;
+package com.example.carpmap.Service.Impl;
 
 import com.example.carpmap.Models.DTO.Reservoirs.FishNameDTO;
 import com.example.carpmap.Models.Entity.Fish;
 import com.example.carpmap.Models.Enums.FishType;
 import com.example.carpmap.Repository.FishRepository;
+import com.example.carpmap.Service.FishService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

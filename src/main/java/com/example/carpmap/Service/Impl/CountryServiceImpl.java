@@ -49,7 +49,6 @@ public class CountryServiceImpl implements CountryService {
             CountryDTO map = modelMapper.map(country, CountryDTO.class);
             allCountryDTO.add(map);
         }
-
         return allCountryDTO;
     }
 }

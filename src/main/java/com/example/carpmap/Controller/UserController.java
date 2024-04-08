@@ -40,7 +40,6 @@ public class UserController {
     @PostMapping("register")
     public ModelAndView register(@Valid RegisterDTO registerDTO,
                                  BindingResult bindingResult) {
-
         if (!bindingResult.hasErrors()) {
             List<ErrorRegister> registerUsersErrors = usersService.registerNewUser(registerDTO);
 
@@ -61,7 +60,6 @@ public class UserController {
 
     @RequestMapping("/login-error")
     public ModelAndView errorLogin() {
-
         ModelAndView modelAndView = new ModelAndView("login");
         modelAndView.addObject("bad_credentials", true);
         System.out.println(ERROR_LOGIN);

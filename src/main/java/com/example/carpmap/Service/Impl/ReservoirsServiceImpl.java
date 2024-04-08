@@ -45,7 +45,6 @@ public class ReservoirsServiceImpl implements ReservoirsService {
         this.fishRepository = fishRepository;
     }
 
-
     @Override
     public boolean addReservoirs(ReservoirsAddDTO reservoirsAddDTO) {
 
@@ -100,14 +99,17 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     public ReservoirsDetailsDTO getDetails(Long id) {
         Optional<Reservoir> findReservoir = reservoirRepository.findById(id);
         ReservoirsDetailsDTO reservoirsDetailsDTO = modelMapper.map(findReservoir, ReservoirsDetailsDTO.class);
-        List<FishNameDTO> fishNameDTOS = new ArrayList<>();
-        for (Fish fish : findReservoir.get().getFish()) {
-            FishNameDTO fish1 = new FishNameDTO();
-            fish1.setFishName(fish.getFishName());
-            fishNameDTOS.add(fish1);
+        List<FishNameDTO> fihsNameList = new ArrayList<>();
+
+        if (findReservoir.isPresent()) {
+            List<Fish> allDetailsFishTypes = findReservoir.get().getFish();
+            for (Fish fish : allDetailsFishTypes) {
+                FishNameDTO mapDBFishType = new FishNameDTO();
+                mapDBFishType.setFishName(fish.getFishName());
+                fihsNameList.add(mapDBFishType);
+            }
         }
-        reservoirsDetailsDTO.setFishNameDTO(fishNameDTOS);
-        System.out.println();
+        reservoirsDetailsDTO.setFishNameDTO(fihsNameList);
         return reservoirsDetailsDTO;
     }
 }
