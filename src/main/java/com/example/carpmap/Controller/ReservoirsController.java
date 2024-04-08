@@ -1,10 +1,8 @@
 package com.example.carpmap.Controller;
 
-import com.example.carpmap.Models.DTO.Reservoirs.ReservoirAllDTO;
-import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsAddDTO;
-import com.example.carpmap.Models.DTO.Reservoirs.CountryDTO;
-import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsDetailsDTO;
+import com.example.carpmap.Models.DTO.Reservoirs.*;
 import com.example.carpmap.Service.CountryService;
+import com.example.carpmap.Service.FishService;
 import com.example.carpmap.Service.ReservoirsService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -24,11 +22,14 @@ public class ReservoirsController {
 
     private final CountryService countryService;
     private final ReservoirsService reservoirsService;
+    private final FishService fishService;
 
 
-    public ReservoirsController(CountryService countryService, ReservoirsService reservoirsService) {
+    public ReservoirsController(CountryService countryService, ReservoirsService reservoirsService,
+                                FishService fishService) {
         this.countryService = countryService;
         this.reservoirsService = reservoirsService;
+        this.fishService = fishService;
     }
 
 
@@ -46,6 +47,8 @@ public class ReservoirsController {
     public ModelAndView reservoirsAdd() {
 
         ModelAndView modelAndView = getAllCountry();
+        List<FishNameDTO> fishNamesDTOS = fishService.getAllFishName();
+        modelAndView.addObject("fishNames", fishNamesDTOS);
         return modelAndView;
     }
 

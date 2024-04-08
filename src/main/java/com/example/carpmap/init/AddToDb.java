@@ -1,8 +1,6 @@
 package com.example.carpmap.init;
 
-import com.example.carpmap.Service.CountryService;
-import com.example.carpmap.Service.UserRoleService;
-import com.example.carpmap.Service.UsersService;
+import com.example.carpmap.Service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -12,12 +10,16 @@ public class AddToDb implements CommandLineRunner {
     private final UserRoleService userRoleService;
     private final UsersService usersService;
     private final CountryService countryService;
+    private final ReservoirsService reservoirsService;
+    private final FishService fishService;
 
     public AddToDb(UserRoleService userRoleService, UsersService usersService,
-                   CountryService countryService) {
+                   CountryService countryService, ReservoirsService reservoirsService, FishService fishService) {
         this.userRoleService = userRoleService;
         this.usersService = usersService;
         this.countryService = countryService;
+        this.reservoirsService = reservoirsService;
+        this.fishService = fishService;
     }
 
     @Override
@@ -25,5 +27,6 @@ public class AddToDb implements CommandLineRunner {
         userRoleService.addRoleIfNotExist();
         countryService.addFirstCountry();
         usersService.addAdminIfNotExist();
+        fishService.addFishType();
     }
 }

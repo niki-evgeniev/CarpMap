@@ -8,4 +8,6 @@ public class SuccessfulMessages {
             "Successful register Country: %s, %n country code: %s %n";
     public static final String SUCCESSFUL_ADD_RESERVOIR =
             "Success added reservoir: %s %n country: %s";
+    public static final String SUCCESSFUL_ADD_FISH_TYPE =
+            "Success added Fish type: %s %n";
 }

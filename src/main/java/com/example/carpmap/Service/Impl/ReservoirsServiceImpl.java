@@ -5,10 +5,12 @@ import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsAddDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsDetailsDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsNameDTO;
 import com.example.carpmap.Models.Entity.Country;
+import com.example.carpmap.Models.Entity.Fish;
 import com.example.carpmap.Models.Entity.Reservoir;
 import com.example.carpmap.Models.Entity.User;
 import com.example.carpmap.Models.Enums.FishType;
 import com.example.carpmap.Repository.CountryRepository;
+import com.example.carpmap.Repository.FishRepository;
 import com.example.carpmap.Repository.ReservoirRepository;
 import com.example.carpmap.Repository.UserRepository;
 import com.example.carpmap.Service.ReservoirsService;
@@ -19,6 +21,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,19 +36,24 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     private final ReservoirRepository reservoirRepository;
     private final CountryRepository countryRepository;
     private final UserRepository userRepository;
+    private final FishRepository fishRepository;
 
     public ReservoirsServiceImpl(ModelMapper modelMapper, ReservoirRepository reservoirRepository,
-                                 CountryRepository countryRepository, UserRepository userRepository) {
+                                 CountryRepository countryRepository, UserRepository userRepository,
+                                 FishRepository fishRepository) {
         this.modelMapper = modelMapper;
         this.reservoirRepository = reservoirRepository;
         this.countryRepository = countryRepository;
         this.userRepository = userRepository;
+        this.fishRepository = fishRepository;
     }
+
 
     @Override
     public boolean addReservoirs(ReservoirsAddDTO reservoirsAddDTO) {
 
         Reservoir addNewReservoirs = modelMapper.map(reservoirsAddDTO, Reservoir.class);
+
 
         Optional<Country> country = countryRepository.findByCountry(reservoirsAddDTO.getCountry());
         if (country.isPresent()) {
@@ -53,8 +61,20 @@ public class ReservoirsServiceImpl implements ReservoirsService {
             Optional<User> findUser = userRepository.findById(1L);
 
             if (findUser.isPresent()) {
+                List<Fish> fish = new ArrayList<>();
+                for (String fishName : reservoirsAddDTO.getFishName()) {
+//                    Fish fishToAdd = new Fish();
+//                    fishToAdd.setFishName(fishName);
+//                    fish.add(fishToAdd);
+                    Optional<Fish> byFishName = fishRepository.findByFishName(fishName);
+                    if (byFishName.isPresent()){
+                        fish.add(byFishName.get());
+                    }
+                }
+
+                System.out.println();
+                addNewReservoirs.setFish(fish);
                 addNewReservoirs.setUser(findUser.get());
-                addNewReservoirs.setFishType(List.of(FishType.Шаран, FishType.Амур, FishType.Толобстолоб));
                 reservoirRepository.save(addNewReservoirs);
                 System.out.printf(SUCCESSFUL_ADD_RESERVOIR,
                         reservoirsAddDTO.getName(), reservoirsAddDTO.getCountry());

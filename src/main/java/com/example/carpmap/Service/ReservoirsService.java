@@ -12,6 +12,7 @@ import java.util.Optional;
 
 public interface ReservoirsService {
 
+
     boolean addReservoirs(ReservoirsAddDTO reservoirsAddDTO);
 
     boolean checkNameExisting(String name);
@@ -19,4 +20,6 @@ public interface ReservoirsService {
     Page<ReservoirAllDTO> getAllReservoirs(Pageable pageable);
 
     ReservoirsDetailsDTO getDetails(Long id);
+
+
 }

@@ -4,6 +4,7 @@ import com.example.carpmap.Models.Enums.FishType;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -31,16 +32,18 @@ public class Reservoir extends BaseEntity {
     @Column(name = "descriptions", columnDefinition = "TEXT")
     private String description;
 
-    //TODO
-    @Column(name = "fish")
-    @Enumerated(EnumType.STRING)
-    private List<FishType> fishType;
-
     @ManyToOne
     private User user;
 
     @ManyToOne
     private Country country;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "fish_types_reservoirs",
+            joinColumns = @JoinColumn(name = "reservoirs_id"),
+            inverseJoinColumns = @JoinColumn(name = "fish_id"))
+    private List<Fish> fish;
 
 
     public Reservoir() {
@@ -118,11 +121,11 @@ public class Reservoir extends BaseEntity {
         this.country = country;
     }
 
-    public List<FishType> getFishType() {
-        return fishType;
+    public List<Fish> getFish() {
+        return fish;
     }
 
-    public void setFishType(List<FishType> fishType) {
-        this.fishType = fishType;
+    public void setFish(List<Fish> fish) {
+        this.fish = fish;
     }
 }

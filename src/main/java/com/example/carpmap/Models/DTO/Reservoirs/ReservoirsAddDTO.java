@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ReservoirsAddDTO {
 
@@ -39,6 +40,9 @@ public class ReservoirsAddDTO {
     @NotEmpty(message = "Reservoirs description must not be empty")
     @Size(min = 3, max = 240, message = "Description for Reservoirs length must be between 3 and 20 character!")
     private String description;
+
+    @NotEmpty(message = "Select at least 1 type of fish")
+    private String[] fishName;
 
     public ReservoirsAddDTO() {
     }
@@ -105,5 +109,13 @@ public class ReservoirsAddDTO {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String[] getFishName() {
+        return fishName;
+    }
+
+    public void setFishName(String[] fishName) {
+        this.fishName = fishName;
     }
 }
