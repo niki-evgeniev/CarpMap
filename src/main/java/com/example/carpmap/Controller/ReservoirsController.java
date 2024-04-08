@@ -78,7 +78,7 @@ public class ReservoirsController {
         ReservoirsDetailsDTO reservoirsDetailsDTO = reservoirsService.getDetails(id);
 
         modelAndView.addObject("details", reservoirsDetailsDTO);
-
+        System.out.println();
         return modelAndView;
     }
 

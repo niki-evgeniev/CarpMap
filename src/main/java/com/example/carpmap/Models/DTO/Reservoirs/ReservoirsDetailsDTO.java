@@ -23,7 +23,7 @@ public class ReservoirsDetailsDTO {
 
     private LocalDateTime createDate;
 
-    private List<FishType> fishTypeList;
+    private List<FishNameDTO> fishNameDTO;
 
     public ReservoirsDetailsDTO() {
     }
@@ -92,11 +92,11 @@ public class ReservoirsDetailsDTO {
         this.createDate = createDate;
     }
 
-    public List<FishType> getFishTypeList() {
-        return fishTypeList;
+    public List<FishNameDTO> getFishNameDTO() {
+        return fishNameDTO;
     }
 
-    public void setFishTypeList(List<FishType> fishTypeList) {
-        this.fishTypeList = fishTypeList;
+    public void setFishNameDTO(List<FishNameDTO> fishNameDTO) {
+        this.fishNameDTO = fishNameDTO;
     }
 }

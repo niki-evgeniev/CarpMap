@@ -1,9 +1,6 @@
 package com.example.carpmap.Service.Impl;
 
-import com.example.carpmap.Models.DTO.Reservoirs.ReservoirAllDTO;
-import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsAddDTO;
-import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsDetailsDTO;
-import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsNameDTO;
+import com.example.carpmap.Models.DTO.Reservoirs.*;
 import com.example.carpmap.Models.Entity.Country;
 import com.example.carpmap.Models.Entity.Fish;
 import com.example.carpmap.Models.Entity.Reservoir;
@@ -27,7 +24,7 @@ import java.util.Optional;
 
 import static com.example.carpmap.Cammon.ErrorMessages.COUNTRY_NOT_FOUND;
 import static com.example.carpmap.Cammon.ErrorMessages.USER_WHO_ADD_RESERVOIRS_NOT_FOUND;
-import static com.example.carpmap.Cammon.SuccessfulMessages.SUCCESSFUL_ADD_RESERVOIR;
+import static com.example.carpmap.Cammon.SuccessfulMessages.*;
 
 @Service
 public class ReservoirsServiceImpl implements ReservoirsService {
@@ -63,16 +60,12 @@ public class ReservoirsServiceImpl implements ReservoirsService {
             if (findUser.isPresent()) {
                 List<Fish> fish = new ArrayList<>();
                 for (String fishName : reservoirsAddDTO.getFishName()) {
-//                    Fish fishToAdd = new Fish();
-//                    fishToAdd.setFishName(fishName);
-//                    fish.add(fishToAdd);
-                    Optional<Fish> byFishName = fishRepository.findByFishName(fishName);
-                    if (byFishName.isPresent()){
-                        fish.add(byFishName.get());
-                    }
+                    Optional<Fish> findFishName = fishRepository.findByFishName(fishName);
+                    findFishName.ifPresent(fish::add);
+                    System.out.printf(SUCCESSFUL_ADD_FISH_TYPE_TO_RESERVOIR,
+                            fishName, reservoirsAddDTO.getName());
                 }
 
-                System.out.println();
                 addNewReservoirs.setFish(fish);
                 addNewReservoirs.setUser(findUser.get());
                 reservoirRepository.save(addNewReservoirs);
@@ -107,7 +100,13 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     public ReservoirsDetailsDTO getDetails(Long id) {
         Optional<Reservoir> findReservoir = reservoirRepository.findById(id);
         ReservoirsDetailsDTO reservoirsDetailsDTO = modelMapper.map(findReservoir, ReservoirsDetailsDTO.class);
-
+        List<FishNameDTO> fishNameDTOS = new ArrayList<>();
+        for (Fish fish : findReservoir.get().getFish()) {
+            FishNameDTO fish1 = new FishNameDTO();
+            fish1.setFishName(fish.getFishName());
+            fishNameDTOS.add(fish1);
+        }
+        reservoirsDetailsDTO.setFishNameDTO(fishNameDTOS);
         System.out.println();
         return reservoirsDetailsDTO;
     }

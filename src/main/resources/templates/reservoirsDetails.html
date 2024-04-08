@@ -34,7 +34,7 @@
         class="text-center"> Bootstrap 5 Product Details #3 </h6>
     <div class="cd__action text-center">
         <a th:href="@{/reservoirs/reservoirsAll}"
-           title="Back to download and tutorial page" class="cd__btn back">Back to Tutorial</a>
+           title="Back to download and tutorial page" class="cd__btn back">BACK</a>
     </div>
 </header>
 <!--$%adsense%$-->
@@ -47,31 +47,32 @@
                     <img class="img-fluid"
                          th:src="*{urlImage}"
                          alt="ProductS">
+                    <br>
                     <img class="img-fluid"
                          th:src="*{urlImage}"
                          alt="ProductS">
-                    <div class="row my-3 previews">
-                        <div class="col-md-3">
-                            <img class="w-100"
-                                 src="https://cdn.pixabay.com/photo/2015/07/24/18/40/model-858754_960_720.jpg"
-                                 alt="Sale">
-                        </div>
-                        <div class="col-md-3">
-                            <img class="w-100"
-                                 src="https://cdn.pixabay.com/photo/2015/07/24/18/38/model-858749_960_720.jpg"
-                                 alt="Sale">
-                        </div>
-                        <div class="col-md-3">
-                            <img class="w-100"
-                                 src="https://cdn.pixabay.com/photo/2015/07/24/18/39/model-858751_960_720.jpg"
-                                 alt="Sale">
-                        </div>
-                        <div class="col-md-3">
-                            <img class="w-100"
-                                 src="https://cdn.pixabay.com/photo/2015/07/24/18/37/model-858748_960_720.jpg"
-                                 alt="Sale">
-                        </div>
-                    </div>
+<!--                    <div class="row my-3 previews">-->
+<!--                        <div class="col-md-3">-->
+<!--                            <img class="w-100"-->
+<!--                                 src="https://cdn.pixabay.com/photo/2015/07/24/18/40/model-858754_960_720.jpg"-->
+<!--                                 alt="Sale">-->
+<!--                        </div>-->
+<!--                        <div class="col-md-3">-->
+<!--                            <img class="w-100"-->
+<!--                                 src="https://cdn.pixabay.com/photo/2015/07/24/18/38/model-858749_960_720.jpg"-->
+<!--                                 alt="Sale">-->
+<!--                        </div>-->
+<!--                        <div class="col-md-3">-->
+<!--                            <img class="w-100"-->
+<!--                                 src="https://cdn.pixabay.com/photo/2015/07/24/18/39/model-858751_960_720.jpg"-->
+<!--                                 alt="Sale">-->
+<!--                        </div>-->
+<!--                        <div class="col-md-3">-->
+<!--                            <img class="w-100"-->
+<!--                                 src="https://cdn.pixabay.com/photo/2015/07/24/18/37/model-858748_960_720.jpg"-->
+<!--                                 alt="Sale">-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
             </div>
             <div class="col-md-7">
@@ -96,11 +97,13 @@
                          th:text="'Добавен на : ' + *{createDate.toLocalDate()}">
                         Black dress for Women
                     </div>
-                    <div class="product-title text-bold my-3"
-                         th:text="'Видове риба : ' + *{fishTypeList} ">
-                        Black dress for Women
-                    </div>
-
+                </div>
+                <div class="product-details my-4">
+                    <p class="details-title text-color mb-1">Видове риба</p>
+                    <p th:each="fishi : *{fishNameDTO}"
+                       class="description">
+                        <span th:text="${fishi.fishName}"></span>
+                    </p>
                 </div>
 
                 <div class="product-details my-4">
