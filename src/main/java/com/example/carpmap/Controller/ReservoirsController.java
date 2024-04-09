@@ -66,6 +66,8 @@ public class ReservoirsController {
         }
         ModelAndView modelAndView = getAllCountry();
         modelAndView.addObject("isExistNameOfReservoir", isExistNameOfReservoir);
+        List<FishNameDTO> fishNamesDTOS = fishService.getAllFishName();
+        modelAndView.addObject("fishNames", fishNamesDTOS);
         return modelAndView;
     }
 

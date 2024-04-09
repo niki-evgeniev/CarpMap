@@ -47,11 +47,9 @@ public class ReservoirsServiceImpl implements ReservoirsService {
 
     @Override
     public boolean addReservoirs(ReservoirsAddDTO reservoirsAddDTO) {
-
         Reservoir addNewReservoirs = modelMapper.map(reservoirsAddDTO, Reservoir.class);
-
-
         Optional<Country> country = countryRepository.findByCountry(reservoirsAddDTO.getCountry());
+        
         if (country.isPresent()) {
             addNewReservoirs.setCountry(country.get());
             Optional<User> findUser = userRepository.findById(1L);
