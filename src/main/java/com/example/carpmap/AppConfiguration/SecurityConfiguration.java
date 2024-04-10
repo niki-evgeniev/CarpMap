@@ -35,7 +35,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/", "/users/login", "/users/register", "/users/profile",
                                 "/users/login-error").permitAll()
                         .requestMatchers("/reservoirs/reservoirsAll", "/reservoirs/reservoirsAdd", "/reservoirs/{id}").permitAll()
-                        .requestMatchers("about", "/blog").permitAll()
+                        .requestMatchers("about", "/blog", "/contact").permitAll()
 
                         .anyRequest().authenticated()
         ).formLogin(
