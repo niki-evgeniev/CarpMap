@@ -1,5 +1,6 @@
 package com.example.carpmap.Models.Entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -9,19 +10,25 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "blog")
 public class Blog extends BaseEntity{
-
+    @Column(name = "title_blog", nullable = false)
     private String titleBlog;
 
+    @Column(name = "author_name", nullable = false)
     private String authorName;
 
+    @Column(name = "url_image", nullable = false)
     private String urlImage;
 
+    @Column(name = "url_video", nullable = false)
     private String urlVideo;
 
+    @Column(name = "date_added")
     private LocalDate dateAdded;
 
+    @Column(name = "date_modified")
     private LocalDate dateModified;
 
+    @Column(name = "description")
     private String description;
 
     @ManyToOne
