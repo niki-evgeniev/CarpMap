@@ -11,13 +11,15 @@ public class AddToDb implements CommandLineRunner {
     private final UsersService usersService;
     private final CountryService countryService;
     private final FishService fishService;
+    private final BlogService blogService;
 
     public AddToDb(UserRoleService userRoleService, UsersService usersService,
-                   CountryService countryService, FishService fishService) {
+                   CountryService countryService, FishService fishService, BlogService blogService) {
         this.userRoleService = userRoleService;
         this.usersService = usersService;
         this.countryService = countryService;
         this.fishService = fishService;
+        this.blogService = blogService;
     }
 
     @Override
@@ -26,5 +28,6 @@ public class AddToDb implements CommandLineRunner {
         countryService.addFirstCountry();
         usersService.addAdminIfNotExist();
         fishService.addFishType();
+        blogService.addBlog();
     }
 }

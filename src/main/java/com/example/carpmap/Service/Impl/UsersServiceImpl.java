@@ -47,7 +47,8 @@ public class UsersServiceImpl implements UsersService {
 
             userRepository.save(firstAdmnUser);
             System.out.printf(SUCCESSFUL_REGISTER_USER,
-                    firstAdmnUser.getName(), firstAdmnUser.getUsername(), firstAdmnUser.getEmail());
+                    firstAdmnUser.getFirstName() ,firstAdmnUser.getLastName(),
+                    firstAdmnUser.getUsername(), firstAdmnUser.getEmail());
         }
     }
 
@@ -56,8 +57,11 @@ public class UsersServiceImpl implements UsersService {
 
         List<ErrorRegister> errors = new ArrayList<>();
         ErrorRegister errorRegister = new ErrorRegister();
-        String nameToUpperCaseFirstLetter = registerDTO.getName().substring(0, 1).toUpperCase()
+        String firstNameToUpperCaseFirstLetter = registerDTO.getName().substring(0, 1).toUpperCase()
                 + registerDTO.getName().substring(1);
+        String lastNameToUpperCaseFirstLetter = registerDTO.getName().substring(0, 1).toUpperCase()
+                + registerDTO.getName().substring(1);
+
         String username = registerDTO.getUsername();
         String email = registerDTO.getEmail();
 
@@ -73,7 +77,8 @@ public class UsersServiceImpl implements UsersService {
         }
 
         if (!errors.isEmpty()) {
-            System.out.printf(ERROR_REGISTER_USER, nameToUpperCaseFirstLetter, username, email);
+            System.out.printf(ERROR_REGISTER_USER, firstNameToUpperCaseFirstLetter, lastNameToUpperCaseFirstLetter,
+                    username, email);
             for (ErrorRegister error : errors) {
                 System.out.printf("%n %s ", error.getError());
             }
@@ -81,12 +86,14 @@ public class UsersServiceImpl implements UsersService {
         }
 
         User userRegister = modelMapper.map(registerDTO, User.class);
-        userRegister.setName(nameToUpperCaseFirstLetter);
+        userRegister.setFirstName(firstNameToUpperCaseFirstLetter);
+        userRegister.setLastName(lastNameToUpperCaseFirstLetter);
         userRegister.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
         userRegister.setCreateOn(LocalDate.now());
         userRegister.setRoles(List.of(getAllUserRoles()
                 .get(2)));
-        System.out.printf(SUCCESSFUL_REGISTER_USER, nameToUpperCaseFirstLetter, username, email);
+        System.out.printf(SUCCESSFUL_REGISTER_USER, firstNameToUpperCaseFirstLetter,lastNameToUpperCaseFirstLetter,
+                username, email);
         userRepository.save(userRegister);
 
         return errors;
@@ -97,7 +104,8 @@ public class UsersServiceImpl implements UsersService {
         if (bg.isPresent()) {
             firstAdmnUser.setCountry(bg.get().getCountry());
         }
-        firstAdmnUser.setName("Adminov");
+        firstAdmnUser.setFirstName("Nikolay");
+        firstAdmnUser.setLastName("Ivanov");
         firstAdmnUser.setCreateOn(LocalDate.now());
         firstAdmnUser.setEmail("admin@admin");
         firstAdmnUser.

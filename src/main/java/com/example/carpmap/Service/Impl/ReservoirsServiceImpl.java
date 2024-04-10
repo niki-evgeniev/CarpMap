@@ -5,7 +5,6 @@ import com.example.carpmap.Models.Entity.Country;
 import com.example.carpmap.Models.Entity.Fish;
 import com.example.carpmap.Models.Entity.Reservoir;
 import com.example.carpmap.Models.Entity.User;
-import com.example.carpmap.Models.Enums.FishType;
 import com.example.carpmap.Repository.CountryRepository;
 import com.example.carpmap.Repository.FishRepository;
 import com.example.carpmap.Repository.ReservoirRepository;
