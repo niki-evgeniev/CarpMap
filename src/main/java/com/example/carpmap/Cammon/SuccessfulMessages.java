@@ -9,7 +9,7 @@ public class SuccessfulMessages {
                     " Country code: %s %n";
     public static final String SUCCESSFUL_ADD_RESERVOIR =
             "Success added reservoir: %s %n" +
-                    " Country: %s";
+                    " Country: %s %n";
     public static final String SUCCESSFUL_ADD_FISH_TYPE =
             "Success added Fish type: %s in DB %n";
     public static final String SUCCESSFUL_ADD_FISH_TYPE_TO_RESERVOIR =

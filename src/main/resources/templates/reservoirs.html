@@ -51,7 +51,8 @@
                             </div>
                         </div>
                         <div class="single-explore-txt bg-theme-1">
-                            <h2><a href="#" th:text="*{name}">tommy helfinger bar</a></h2>
+                            <h2><a th:href="@{/reservoirs/{id}(id = *{id})}"
+                                   th:text="*{name}">tommy helfinger bar</a></h2>
                             <p class="explore-rating-price">
                                 <span class="explore-rating">5.0</span>
                                 <a href="#"> 10 ratings</a>

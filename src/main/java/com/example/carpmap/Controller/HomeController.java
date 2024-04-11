@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Controller
 public class HomeController {
 
@@ -23,10 +26,10 @@ public class HomeController {
     @GetMapping("/")
     public ModelAndView index(@AuthenticationPrincipal UserDetails userDetails) {
         counter = counter + 1;
-        System.out.println("Visiting app " + counter);
+        System.out.println("Total visitors in app " + counter);
         String ipAddress = ipAddressService.getIp();
-        System.out.println(ipAddress);
-        if (userDetails != null){
+        System.out.println(LocalDateTime.now() + " Visitor address : " + ipAddress);
+        if (userDetails != null) {
             usersService.checkIpAddressLogin(userDetails.getUsername(), ipAddress);
         } else {
             usersService.getIpVisitor(ipAddress);

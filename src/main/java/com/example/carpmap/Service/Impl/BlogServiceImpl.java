@@ -40,7 +40,6 @@ public class BlogServiceImpl implements BlogService {
             blog.setId(id);
             blog.setAuthorName(byId.get().getUsername());
             LocalDate now = LocalDate.now();
-            System.out.println();
             blog.setDateAdded(LocalDate.parse("2023-07-25"));
             blog.setDescription("ЗЕЛКА 2 testing blog descriptions ");
             blog.setUrlImage("https://res.cloudinary.com/dsy8h2u3x/image/upload/v1712780225/taae8qfs1fiduriwnmwh.jpg");

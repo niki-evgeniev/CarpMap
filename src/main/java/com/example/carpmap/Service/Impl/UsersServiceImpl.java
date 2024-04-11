@@ -52,7 +52,7 @@ public class UsersServiceImpl implements UsersService {
 
             userRepository.save(firstAdmnUser);
             System.out.printf(SUCCESSFUL_REGISTER_USER,
-                    firstAdmnUser.getFirstName() ,firstAdmnUser.getLastName(),
+                    firstAdmnUser.getFirstName(), firstAdmnUser.getLastName(),
                     firstAdmnUser.getUsername(), firstAdmnUser.getEmail());
         }
     }
@@ -97,7 +97,7 @@ public class UsersServiceImpl implements UsersService {
         userRegister.setCreateOn(LocalDate.now());
         userRegister.setRoles(List.of(getAllUserRoles()
                 .get(2)));
-        System.out.printf(SUCCESSFUL_REGISTER_USER, firstNameToUpperCaseFirstLetter,lastNameToUpperCaseFirstLetter,
+        System.out.printf(SUCCESSFUL_REGISTER_USER, firstNameToUpperCaseFirstLetter, lastNameToUpperCaseFirstLetter,
                 username, email);
         userRepository.save(userRegister);
 
@@ -106,28 +106,25 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public void checkIpAddressLogin(String username, String ipAddress) {
-        Optional<IpAddress> byAddress = ipAddressRepository.findByAddress(ipAddress);
-        if (byAddress.isEmpty()){
-            IpAddress ipAddress1 = new IpAddress();
-            ipAddress1.setAddress(ipAddress);
-            Optional<User> byUsername = userRepository.findByUsername(username);
-            ipAddress1.setUser(byUsername.get());
-            ipAddress1.setTimeToAdd(LocalDate.now());
-            System.out.println();
-            ipAddressRepository.save(ipAddress1);
+        Optional<IpAddress> findExistingIpAddress = ipAddressRepository.findByAddress(ipAddress);
+        if (findExistingIpAddress.isEmpty()) {
+            IpAddress newAddress = new IpAddress();
+            newAddress.setAddress(ipAddress);
+            Optional<User> findUser = userRepository.findByUsername(username);
+            newAddress.setUser(findUser.get());
+            newAddress.setTimeToAdd(LocalDate.now());
+            ipAddressRepository.save(newAddress);
         }
     }
 
     @Override
     public void getIpVisitor(String ipAddress) {
-        System.out.println();
         Optional<IpAddress> byAddress = ipAddressRepository.findByAddress(ipAddress);
-        System.out.println();
-        if (byAddress.isEmpty()){
-            IpAddress ipAddress1 = new IpAddress();
-            ipAddress1.setAddress(ipAddress);
-            ipAddress1.setTimeToAdd(LocalDate.now());
-            ipAddressRepository.save(ipAddress1);
+        if (byAddress.isEmpty()) {
+            IpAddress addNewIpVisitor = new IpAddress();
+            addNewIpVisitor.setAddress(ipAddress);
+            addNewIpVisitor.setTimeToAdd(LocalDate.now());
+            ipAddressRepository.save(addNewIpVisitor);
         }
     }
 

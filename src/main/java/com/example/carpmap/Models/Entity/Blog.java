@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "blog")
-public class Blog extends BaseEntity{
+public class Blog extends BaseEntity {
     @Column(name = "title_blog", nullable = false)
     private String titleBlog;
 
@@ -22,7 +22,7 @@ public class Blog extends BaseEntity{
     @Column(name = "url_video", nullable = false)
     private String urlVideo;
 
-    @Column(name = "date_added")
+    @Column(name = "date_added", nullable = false)
     private LocalDate dateAdded;
 
     @Column(name = "date_modified")
