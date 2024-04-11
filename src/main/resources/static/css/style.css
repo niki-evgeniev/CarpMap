@@ -1270,3 +1270,7 @@ body > div.container-fluid.position-relative.p-0 > nav {
 body > div.container-fluid.contact.bg-light.py-5 {
     margin-top: 7%;
 }
+
+body > div.container-fluid.about.py-5 {
+    margin-top: 6%;
+}

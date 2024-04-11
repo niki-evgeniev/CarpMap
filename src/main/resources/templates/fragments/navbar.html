@@ -19,13 +19,13 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
                 <a href="/" class="nav-item nav-link active">Home</a>
-                <a th:href="@{/about}"  class="nav-item nav-link">About</a>
                 <a sec:authorize="isAuthenticated()"
-                   th:href="@{/reservoirs/reservoirsAdd}" class="nav-item nav-link">add</a>
+                   th:href="@{/reservoirs/reservoirsAdd}" class="nav-item nav-link">Add</a>
                 <a th:href="@{/reservoirs/reservoirsAll}" class="nav-item nav-link">Reservoirs</a>
                 <a th:href="@{/blog}" class="nav-item nav-link">Blog</a>
+                <a th:href="@{/about}"  class="nav-item nav-link">About</a>
                 <div sec:authorize="isAuthenticated()" class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Admin Panel</a>
                     <div class="dropdown-menu m-0">
                         <a th:href="@{/reservoirs/snippet}" class="dropdown-item">Destination</a>
                         <a href="tour.html" class="dropdown-item">Explore Tour</a>

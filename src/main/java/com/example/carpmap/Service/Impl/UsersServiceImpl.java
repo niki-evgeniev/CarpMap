@@ -3,9 +3,11 @@ package com.example.carpmap.Service.Impl;
 import com.example.carpmap.Models.DTO.Users.ErrorRegister;
 import com.example.carpmap.Models.DTO.Users.RegisterDTO;
 import com.example.carpmap.Models.Entity.Country;
+import com.example.carpmap.Models.Entity.IpAddress;
 import com.example.carpmap.Models.Entity.User;
 import com.example.carpmap.Models.Entity.UserRole;
 import com.example.carpmap.Repository.CountryRepository;
+import com.example.carpmap.Repository.IpAddressRepository;
 import com.example.carpmap.Repository.UserRepository;
 import com.example.carpmap.Repository.UserRoleRepository;
 import com.example.carpmap.Service.UsersService;
@@ -14,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -28,15 +31,17 @@ public class UsersServiceImpl implements UsersService {
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
     private final CountryRepository countryRepository;
+    private final IpAddressRepository ipAddressRepository;
 
     public UsersServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository,
                             ModelMapper modelMapper, PasswordEncoder passwordEncoder,
-                            CountryRepository countryRepository) {
+                            CountryRepository countryRepository, IpAddressRepository ipAddressRepository) {
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
         this.countryRepository = countryRepository;
+        this.ipAddressRepository = ipAddressRepository;
     }
 
     @Override
@@ -97,6 +102,33 @@ public class UsersServiceImpl implements UsersService {
         userRepository.save(userRegister);
 
         return errors;
+    }
+
+    @Override
+    public void checkIpAddressLogin(String username, String ipAddress) {
+        Optional<IpAddress> byAddress = ipAddressRepository.findByAddress(ipAddress);
+        if (byAddress.isEmpty()){
+            IpAddress ipAddress1 = new IpAddress();
+            ipAddress1.setAddress(ipAddress);
+            Optional<User> byUsername = userRepository.findByUsername(username);
+            ipAddress1.setUser(byUsername.get());
+            ipAddress1.setTimeToAdd(LocalDate.now());
+            System.out.println();
+            ipAddressRepository.save(ipAddress1);
+        }
+    }
+
+    @Override
+    public void getIpVisitor(String ipAddress) {
+        System.out.println();
+        Optional<IpAddress> byAddress = ipAddressRepository.findByAddress(ipAddress);
+        System.out.println();
+        if (byAddress.isEmpty()){
+            IpAddress ipAddress1 = new IpAddress();
+            ipAddress1.setAddress(ipAddress);
+            ipAddress1.setTimeToAdd(LocalDate.now());
+            ipAddressRepository.save(ipAddress1);
+        }
     }
 
     private void mapFirstAdmin(User firstAdmnUser) {
