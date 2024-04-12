@@ -1,5 +1,7 @@
 package com.example.carpmap.Models.DTO.Reservoirs;
 
+import com.example.carpmap.Models.Enums.ReservoirType;
+
 public class ReservoirAllDTO {
 
     private Long id;
@@ -11,6 +13,10 @@ public class ReservoirAllDTO {
     private String description;
 
     private String urlImage;
+
+    private String countryCode;
+
+    private ReservoirType reservoirType;
 
     public ReservoirAllDTO() {
     }
@@ -53,5 +59,21 @@ public class ReservoirAllDTO {
 
     public void setUrlImage(String urlImage) {
         this.urlImage = urlImage;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
+
+    public void setCountryCode(String countryCode) {
+        this.countryCode = countryCode;
+    }
+
+    public ReservoirType getReservoirType() {
+        return reservoirType;
+    }
+
+    public void setReservoirType(ReservoirType reservoirType) {
+        this.reservoirType = reservoirType;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.carpmap.Models.DTO.Reservoirs;
 
 import com.example.carpmap.Models.Enums.FishType;
+import com.example.carpmap.Models.Enums.ReservoirType;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,6 +23,10 @@ public class ReservoirsDetailsDTO {
     private String longitude;
 
     private LocalDateTime createDate;
+
+    private String country;
+
+    private ReservoirType reservoirType;
 
     private List<FishNameDTO> fishNameDTO;
 
@@ -90,6 +95,22 @@ public class ReservoirsDetailsDTO {
 
     public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public ReservoirType getReservoirType() {
+        return reservoirType;
+    }
+
+    public void setReservoirType(ReservoirType reservoirType) {
+        this.reservoirType = reservoirType;
     }
 
     public List<FishNameDTO> getFishNameDTO() {

@@ -1,5 +1,6 @@
 package com.example.carpmap.Controller;
 
+import com.example.carpmap.Repository.IpAddressRepository;
 import com.example.carpmap.Service.IpAddressService;
 import com.example.carpmap.Service.UsersService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,7 +17,7 @@ public class HomeController {
 
     private final IpAddressService ipAddressService;
     private final UsersService usersService;
-    private int counter;
+    private int counter = 60;
 
     public HomeController(IpAddressService ipAddressService, UsersService usersService) {
         this.ipAddressService = ipAddressService;
@@ -34,7 +35,10 @@ public class HomeController {
         } else {
             usersService.getIpVisitor(ipAddress);
         }
-        return new ModelAndView("index");
+
+        ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("counter", counter);
+        return modelAndView;
     }
 
     @GetMapping("/about")

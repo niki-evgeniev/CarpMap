@@ -1,6 +1,7 @@
 package com.example.carpmap.Models.Entity;
 
 import com.example.carpmap.Models.Enums.FishType;
+import com.example.carpmap.Models.Enums.ReservoirType;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
@@ -28,6 +29,10 @@ public class Reservoir extends BaseEntity {
 
     @Column(name = "create_date")
     private LocalDateTime createDate;
+
+    @Column(name = "reservoir_type")
+    @Enumerated(EnumType.STRING)
+    private ReservoirType reservoirType;
 
     @Column(name = "descriptions", columnDefinition = "TEXT")
     private String description;
@@ -95,6 +100,14 @@ public class Reservoir extends BaseEntity {
 
     public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
+    }
+
+    public ReservoirType getReservoirType() {
+        return reservoirType;
+    }
+
+    public void setReservoirType(ReservoirType reservoirType) {
+        this.reservoirType = reservoirType;
     }
 
     public String getDescription() {

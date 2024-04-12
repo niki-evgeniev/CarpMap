@@ -62,10 +62,10 @@ public class UsersServiceImpl implements UsersService {
 
         List<ErrorRegister> errors = new ArrayList<>();
         ErrorRegister errorRegister = new ErrorRegister();
-        String firstNameToUpperCaseFirstLetter = registerDTO.getName().substring(0, 1).toUpperCase()
-                + registerDTO.getName().substring(1);
-        String lastNameToUpperCaseFirstLetter = registerDTO.getName().substring(0, 1).toUpperCase()
-                + registerDTO.getName().substring(1);
+        String firstNameToUpperCaseFirstLetter = registerDTO.getFirstName().substring(0, 1).toUpperCase()
+                + registerDTO.getFirstName().substring(1);
+        String lastNameToUpperCaseFirstLetter = registerDTO.getLastName().substring(0, 1).toUpperCase()
+                + registerDTO.getLastName().substring(1);
 
         String username = registerDTO.getUsername();
         String email = registerDTO.getEmail();
@@ -114,6 +114,10 @@ public class UsersServiceImpl implements UsersService {
             newAddress.setUser(findUser.get());
             newAddress.setTimeToAdd(LocalDate.now());
             ipAddressRepository.save(newAddress);
+        } else if (findExistingIpAddress.get().getUser() == null) {
+            Optional<User> findUser = userRepository.findByUsername(username);
+            findExistingIpAddress.get().setUser(findUser.get());
+            ipAddressRepository.save(findExistingIpAddress.get());
         }
     }
 

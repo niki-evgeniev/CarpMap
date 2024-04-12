@@ -48,7 +48,7 @@ public class UserController {
                 modelAndView.addObject("registerUser", registerUsersErrors);
                 return modelAndView;
             } else {
-                return new ModelAndView("login");
+                return new ModelAndView("redirect:/");
             }
         } else {
             for (ObjectError allError : bindingResult.getAllErrors()) {

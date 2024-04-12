@@ -32,10 +32,10 @@ public class SecurityConfiguration {
                 authorizeRequest -> authorizeRequest
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/js/**", "/lib/**").permitAll()
-                        .requestMatchers("/", "/users/login", "/users/register", "/users/profile",
+                        .requestMatchers("/", "/users/login", "/users/profile",
                                 "/users/login-error").permitAll()
                         .requestMatchers("/reservoirs/reservoirsAll", "/reservoirs/reservoirsAdd", "/reservoirs/{id}").permitAll()
-                        .requestMatchers("about", "/blog", "/contact").permitAll()
+                        .requestMatchers("/about", "/blog", "/contact").permitAll()
 
                         .anyRequest().authenticated()
         ).formLogin(

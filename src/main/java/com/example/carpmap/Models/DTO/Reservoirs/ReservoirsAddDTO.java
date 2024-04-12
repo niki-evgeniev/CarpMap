@@ -1,6 +1,8 @@
 package com.example.carpmap.Models.DTO.Reservoirs;
 
+import com.example.carpmap.Models.Enums.ReservoirType;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PastOrPresent;
 import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -32,10 +34,13 @@ public class ReservoirsAddDTO {
     @NotEmpty(message = "Reservoirs URL Image must not be empty")
     @Size(min = 3, max = 240, message = "URL Image for Reservoirs  length must be between 3 and 20 character!")
     private String urlImage;
+    @NotNull
+    private ReservoirType reservoirType;
 
     @PastOrPresent
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime createDate;
+
 
     @NotEmpty(message = "Reservoirs description must not be empty")
     @Size(min = 3, max = 240, message = "Description for Reservoirs length must be between 3 and 20 character!")
@@ -93,6 +98,14 @@ public class ReservoirsAddDTO {
 
     public void setUrlImage(String urlImage) {
         this.urlImage = urlImage;
+    }
+
+    public ReservoirType getReservoirType() {
+        return reservoirType;
+    }
+
+    public void setReservoirType(ReservoirType reservoirType) {
+        this.reservoirType = reservoirType;
     }
 
     public LocalDateTime getCreateDate() {

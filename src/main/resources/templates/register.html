@@ -47,23 +47,37 @@
                                         Invalid username or password.
                                     </p>
                                     <div class="col-12">
-                                        <label for="name"
-                                               class="form-label">Your Name</label>
-                                        <input th:field="*{name}"
+                                        <label for="firstName"
+                                               class="form-label">First Name</label>
+                                        <input th:field="*{firstName}"
                                                th:errorclass="bg-danger"
                                                type="text"
-                                               name="name"
+                                               name="firstName"
                                                class="form-control"
-                                               id="name" required>
+                                               id="firstName" required>
                                         <div class="text-danger"
-                                             th:if="${#fields.hasErrors('name')}"
-                                             th:errors="*{name}">Please, enter your name!
+                                             th:if="${#fields.hasErrors('firstName')}"
+                                             th:errors="*{firstName}">Please, enter your name!
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="lastName"
+                                               class="form-label">Last Name</label>
+                                        <input th:field="*{lastName}"
+                                               th:errorclass="bg-danger"
+                                               type="text"
+                                               name="lastName"
+                                               class="form-control"
+                                               id="lastName" required>
+                                        <div class="text-danger"
+                                             th:if="${#fields.hasErrors('lastName')}"
+                                             th:errors="*{lastName}">Please, enter your name!
                                         </div>
                                     </div>
 
                                     <div class="col-12">
                                         <label for="email"
-                                               class="form-label">Your Email</label>
+                                               class="form-label">Email</label>
                                         <input th:field="*{email}"
                                                th:errorclass="bg-danger"
                                                type="email"

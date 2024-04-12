@@ -57,10 +57,11 @@
                                 <span class="explore-rating">5.0</span>
                                 <a href="#"> 10 ratings</a>
                                 <span class="explore-price-box">
-											form
-											<span class="explore-price">5$-300$</span>
+											Country
+											<span th:text="*{countryCode}" class="explore-price">5$-300$</span>
 										</span>
-                                <a href="#">resturent</a>
+                                <a th:text="*{reservoirType}"
+                                   href="#">resturent</a>
                             </p>
                             <div class="explore-person">
                                 <div class="row">
@@ -83,8 +84,8 @@
                                 <div class="row">
                                     <div class="col-sm-5">
                                         <a class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2"
-                                                data-abc="true"
-                                                th:href="@{/reservoirs/{id}(id = *{id})}">Details</a>
+                                           data-abc="true"
+                                           th:href="@{/reservoirs/{id}(id = *{id})}">Details</a>
                                         <!--                                        <a class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2"> TT </a>-->
                                     </div>
                                     <div class="col-sm-7">

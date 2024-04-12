@@ -36,13 +36,13 @@ spring:
   #cloud-name:
 
 carpmap:
-  remember.me.key: ${REMEMBER_ME_KEY:12345}
+  remember.me.key: ${REMEMBER_ME_KEY}
 
 logging:
-#  level:
+  level:
 #    org.hibernate.SQL: DEBUG
-#    org.hibernate.orm.jdbc.bind: TRACE
-#    org.springframework.security: TRACE
+    org.hibernate.orm.jdbc.bind: DEBUG
+    org.springframework.security: ERROR
 
 
 
