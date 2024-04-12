@@ -1274,3 +1274,7 @@ body > div.container-fluid.contact.bg-light.py-5 {
 body > div.container-fluid.about.py-5 {
     margin-top: 6%;
 }
+
+#exampleModal > div{
+    max-width: 900px;
+}
