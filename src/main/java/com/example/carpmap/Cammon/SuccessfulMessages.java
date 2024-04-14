@@ -14,10 +14,11 @@ public class SuccessfulMessages {
             "Success added Fish type: %s in DB %n";
     public static final String SUCCESSFUL_ADD_FISH_TYPE_TO_RESERVOIR =
             "Success added type fish : %s for reservoir %s %n";
-
     public static final String SUCCESSFUL_ADD_BLOG =
             "Successful added blog with %n" +
                     " Title: %s %n" +
                     " Description: %s %n" +
                     " Added by %s %n";
+    public static final String SUCCESSFUL_LOGIN =
+            "Successful login user with username: %s %n";
 }

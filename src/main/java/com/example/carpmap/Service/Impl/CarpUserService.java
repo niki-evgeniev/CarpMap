@@ -14,6 +14,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.Optional;
 
+import static com.example.carpmap.Cammon.SuccessfulMessages.SUCCESSFUL_LOGIN;
+
 public class CarpUserService implements UserDetailsService {
 
     private final UserRepository userRepository;
@@ -25,9 +27,11 @@ public class CarpUserService implements UserDetailsService {
     
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByUsername(username)
+        UserDetails userDetails = userRepository.findByUsername(username)
                 .map(CarpUserService::map)
                 .orElseThrow(() -> new UsernameNotFoundException("User " + username + " not found"));
+        System.out.printf(SUCCESSFUL_LOGIN, userDetails.getUsername());
+        return userDetails;
     }
 
     private static UserDetails map(User user) {

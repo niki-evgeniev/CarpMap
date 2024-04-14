@@ -17,7 +17,7 @@ public class HomeController {
 
     private final IpAddressService ipAddressService;
     private final UsersService usersService;
-    private int counter = 100;
+    private int counter = 169;
 
     public HomeController(IpAddressService ipAddressService, UsersService usersService) {
         this.ipAddressService = ipAddressService;
