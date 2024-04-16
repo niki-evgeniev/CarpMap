@@ -11,7 +11,7 @@ public interface UsersService {
 
     List<ErrorRegister> registerNewUser(RegisterDTO registerDTO);
 
-    void checkIpAddressLogin(String username, String ipAddress);
-
-    void getIpVisitor(String ipAddress);
+//    void checkIpAddressLogin(String username, String ipAddress);
+//
+//    void getIpVisitor(String ipAddress);
 }

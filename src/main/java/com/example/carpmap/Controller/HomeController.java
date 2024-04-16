@@ -17,7 +17,9 @@ public class HomeController {
 
     private final IpAddressService ipAddressService;
     private final UsersService usersService;
-    private int counter = 169;
+
+    private Long counter = 0L;
+
 
     public HomeController(IpAddressService ipAddressService, UsersService usersService) {
         this.ipAddressService = ipAddressService;
@@ -26,14 +28,22 @@ public class HomeController {
 
     @GetMapping("/")
     public ModelAndView index(@AuthenticationPrincipal UserDetails userDetails) {
-        counter = counter + 1;
+
+        if (counter == 0) {
+            counter = ipAddressService.findAllVisits();
+
+        } else {
+            counter = counter + 1L;
+
+        }
         System.out.println("Total visitors in app " + counter);
         String ipAddress = ipAddressService.getIp();
         System.out.println(LocalDateTime.now() + " Visitor address : " + ipAddress);
+
         if (userDetails != null) {
-            usersService.checkIpAddressLogin(userDetails.getUsername(), ipAddress);
+            ipAddressService.checkIpAddressLogin(userDetails.getUsername(), ipAddress);
         } else {
-            usersService.getIpVisitor(ipAddress);
+            ipAddressService.getIpVisitor(ipAddress);
         }
 
         ModelAndView modelAndView = new ModelAndView("index");

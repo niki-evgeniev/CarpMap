@@ -104,33 +104,7 @@ public class UsersServiceImpl implements UsersService {
         return errors;
     }
 
-    @Override
-    public void checkIpAddressLogin(String username, String ipAddress) {
-        Optional<IpAddress> findExistingIpAddress = ipAddressRepository.findByAddress(ipAddress);
-        if (findExistingIpAddress.isEmpty()) {
-            IpAddress newAddress = new IpAddress();
-            newAddress.setAddress(ipAddress);
-            Optional<User> findUser = userRepository.findByUsername(username);
-            newAddress.setUser(findUser.get());
-            newAddress.setTimeToAdd(LocalDate.now());
-            ipAddressRepository.save(newAddress);
-        } else if (findExistingIpAddress.get().getUser() == null) {
-            Optional<User> findUser = userRepository.findByUsername(username);
-            findExistingIpAddress.get().setUser(findUser.get());
-            ipAddressRepository.save(findExistingIpAddress.get());
-        }
-    }
 
-    @Override
-    public void getIpVisitor(String ipAddress) {
-        Optional<IpAddress> byAddress = ipAddressRepository.findByAddress(ipAddress);
-        if (byAddress.isEmpty()) {
-            IpAddress addNewIpVisitor = new IpAddress();
-            addNewIpVisitor.setAddress(ipAddress);
-            addNewIpVisitor.setTimeToAdd(LocalDate.now());
-            ipAddressRepository.save(addNewIpVisitor);
-        }
-    }
 
     private void mapFirstAdmin(User firstAdmnUser) {
         Optional<Country> bg = countryRepository.findById(1L);
