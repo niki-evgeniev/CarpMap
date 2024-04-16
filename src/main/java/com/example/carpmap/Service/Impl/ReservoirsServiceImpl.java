@@ -47,7 +47,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     public boolean addReservoirs(ReservoirsAddDTO reservoirsAddDTO) {
         Reservoir addNewReservoirs = modelMapper.map(reservoirsAddDTO, Reservoir.class);
         Optional<Country> country = countryRepository.findByCountry(reservoirsAddDTO.getCountry());
-        
+
         if (country.isPresent()) {
             addNewReservoirs.setCountry(country.get());
             Optional<User> findUser = userRepository.findById(1L);
@@ -112,11 +112,12 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     @Override
     public void deleteReservoir(Long id) {
         Optional<Reservoir> toDelete = reservoirRepository.findById(id);
+
         if (toDelete.isPresent()) {
             reservoirRepository.deleteById(id);
             System.out.printf(SUCCESSFUL_DELETE_RESERVOIR, toDelete.get().getName());
-        }else {
-            System.out.print(NOT_FOUND_TO_DELETE_RESERVOIR );
+        } else {
+            System.out.print(NOT_FOUND_TO_DELETE_RESERVOIR);
         }
     }
 

@@ -15,5 +15,4 @@ public interface IpAddressRepository extends JpaRepository<IpAddress, Long> {
     @Query("SELECT SUM(i.countVisits) FROM IpAddress i")
     Long sumAllCounts();
 
-
 }
