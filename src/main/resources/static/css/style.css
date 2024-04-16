@@ -1278,3 +1278,7 @@ body > div.container-fluid.about.py-5 {
 #exampleModal > div{
     max-width: 900px;
 }
+
+.deleteReservoir {
+    margin-top: 5%;
+}

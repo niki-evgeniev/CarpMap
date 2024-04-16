@@ -119,4 +119,12 @@ public class ReservoirsServiceImpl implements ReservoirsService {
             System.out.print(NOT_FOUND_TO_DELETE_RESERVOIR );
         }
     }
+
+    @Override
+    public ReservoirsAddDTO findReservoirToEdit(Long id) {
+        Optional<Reservoir> findReservoirToEdit = reservoirRepository.findById(id);
+        ReservoirsAddDTO map = modelMapper.map(findReservoirToEdit, ReservoirsAddDTO.class);
+
+        return map;
+    }
 }
