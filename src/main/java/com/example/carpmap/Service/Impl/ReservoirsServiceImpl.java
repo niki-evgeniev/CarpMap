@@ -21,8 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.example.carpmap.Cammon.ErrorMessages.COUNTRY_NOT_FOUND;
-import static com.example.carpmap.Cammon.ErrorMessages.USER_WHO_ADD_RESERVOIRS_NOT_FOUND;
+import static com.example.carpmap.Cammon.ErrorMessages.*;
 import static com.example.carpmap.Cammon.SuccessfulMessages.*;
 
 @Service
@@ -108,5 +107,16 @@ public class ReservoirsServiceImpl implements ReservoirsService {
         }
         reservoirsDetailsDTO.setFishNameDTO(fihsNameList);
         return reservoirsDetailsDTO;
+    }
+
+    @Override
+    public void deleteReservoir(Long id) {
+        Optional<Reservoir> toDelete = reservoirRepository.findById(id);
+        if (toDelete.isPresent()) {
+            reservoirRepository.deleteById(id);
+            System.out.printf(SUCCESSFUL_DELETE_RESERVOIR, toDelete.get().getName());
+        }else {
+            System.out.print(NOT_FOUND_TO_DELETE_RESERVOIR );
+        }
     }
 }

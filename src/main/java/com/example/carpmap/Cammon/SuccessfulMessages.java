@@ -21,4 +21,6 @@ public class SuccessfulMessages {
                     " Added by %s %n";
     public static final String SUCCESSFUL_LOGIN =
             "Successful login user with username: %s %n";
+    public static final String SUCCESSFUL_DELETE_RESERVOIR =
+            "Successful DELETE reservoir with name %s %n";
 }

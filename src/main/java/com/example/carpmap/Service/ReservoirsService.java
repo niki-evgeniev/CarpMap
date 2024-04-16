@@ -21,5 +21,5 @@ public interface ReservoirsService {
 
     ReservoirsDetailsDTO getDetails(Long id);
 
-
+    void deleteReservoir(Long id);
 }

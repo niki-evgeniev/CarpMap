@@ -48,7 +48,7 @@
                                 div covers 100% width of parent div -->
                                     <h3 class="modal-title w-100 text-center"
                                         id="exampleModalLabel"
-                                    th:text="*{name}">
+                                        th:text="*{name}">
                                         GeeksForGeeks
                                     </h3>
                                 </div>
@@ -157,6 +157,20 @@
                         convallis aenean et tortor at risus. Lorem sed risus ultricies tristique nulla. Pharetra
                         pharetra massa massa ultricies mi. Proin sed libero enim sed faucibus turpis in eu. Tempus
                         egestas sed sed risus pretium. </p>
+                </div>
+                <div class="col-sm-5">
+<!--                    <a class="btn btn-warning rounded-pill py-2 px-4 ms-lg-2"-->
+<!--                       data-abc="true"-->
+<!--                       th:href="@{/reservoirs/{id}(id = *{id})}">EDIT</a>-->
+<!--                    <a class="btn  btn-danger rounded-pill py-2 px-4 ms-lg-2"-->
+<!--                       data-abc="true"-->
+<!--                       th:href="@{/reservoirs/{id}(id = *{id})}">DELETE</a>-->
+                    <form
+                          th:method="DELETE"
+                          th:action="@{/reservoirs/{id}(id = *{id})}">
+                        <input type="submit" value="DELETE" class="btn btn-danger rounded-pill py-2 px-4 ms-lg-2"/>
+                    </form>
+                    <!--                                        <a class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2"> TT </a>-->
                 </div>
             </div>
         </div>

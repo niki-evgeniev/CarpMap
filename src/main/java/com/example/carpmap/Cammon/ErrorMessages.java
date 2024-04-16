@@ -6,4 +6,6 @@ public class ErrorMessages {
             "User %s who try to add reservoirs not found";
     public static final String COUNTRY_NOT_FOUND =
             "Country with name: %s not found";
+    public static final String NOT_FOUND_TO_DELETE_RESERVOIR =
+            "Reservoir with not found and cant be DELETE";
 }
