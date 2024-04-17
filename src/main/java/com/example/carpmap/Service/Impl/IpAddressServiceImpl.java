@@ -48,21 +48,25 @@ public class IpAddressServiceImpl implements IpAddressService {
         Optional<IpAddress> findExistingIpAddress = ipAddressRepository.findByAddress(ipAddress);
         if (findExistingIpAddress.isEmpty()) {
             IpAddress newAddress = new IpAddress();
-            newAddress.setAddress(ipAddress);
             Optional<User> findUser = userRepository.findByUsername(username);
-            newAddress.setUser(findUser.get());
+            newAddress.setAddress(ipAddress);
             newAddress.setTimeToAdd(LocalDateTime.now());
             newAddress.setCountVisits(1L);
+            newAddress.setUser(findUser.get());
             ipAddressRepository.save(newAddress);
         } else if (findExistingIpAddress.get().getUser() == null) {
             Optional<User> findUser = userRepository.findByUsername(username);
             findExistingIpAddress.get().setUser(findUser.get());
-            findExistingIpAddress.get().setCountVisits(findExistingIpAddress.get().getCountVisits() + 1L);
+            addView(findExistingIpAddress);
             ipAddressRepository.save(findExistingIpAddress.get());
         } else {
-            findExistingIpAddress.get().setCountVisits(findExistingIpAddress.get().getCountVisits() + 1L);
+            addView(findExistingIpAddress);
             ipAddressRepository.save(findExistingIpAddress.get());
         }
+    }
+
+    private static void addView(Optional<IpAddress> findExistingIpAddress) {
+        findExistingIpAddress.get().setCountVisits(findExistingIpAddress.get().getCountVisits() + 1L);
     }
 
     @Override

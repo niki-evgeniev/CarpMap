@@ -160,10 +160,10 @@
                         egestas sed sed risus pretium. </p>
                 </div>
                 <div class="col-sm-5">
-                    <a
-                            class="btn btn-warning rounded-pill py-2 px-4 ms-lg-2"
-                            data-abc="true"
-                            th:href="@{/reservoirs/reservoirsEdit/{id}(id = *{id})}">EDIT</a>
+                    <a sec:authorize="hasRole('ADMIN') or hasRole('MODERATOR')"
+                       class="btn btn-warning rounded-pill py-2 px-4 ms-lg-2"
+                       data-abc="true"
+                       th:href="@{/reservoirs/reservoirsEdit/{id}(id = *{id})}">EDIT</a>
                     <br>
                     <!--                    <a class="btn  btn-danger rounded-pill py-2 px-4 ms-lg-2"-->
                     <!--                       data-abc="true"-->
@@ -171,7 +171,7 @@
                     <form sec:authorize="hasRole('ADMIN')"
                           th:method="DELETE"
                           th:action="@{/reservoirs/{id}(id = *{id})}"
-                    class="deleteReservoir">
+                          class="deleteReservoir">
                         <input type="submit" value="DELETE" class="btn btn-danger rounded-pill py-2 px-4 ms-lg-2 "/>
                     </form>
                     <!--                                        <a class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2"> TT </a>-->
