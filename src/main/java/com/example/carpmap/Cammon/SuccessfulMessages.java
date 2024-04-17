@@ -23,4 +23,6 @@ public class SuccessfulMessages {
             "Successful login user with username: %s %n";
     public static final String SUCCESSFUL_DELETE_RESERVOIR =
             "Successful DELETE reservoir with name %s %n";
+    public static final String SUCCESSFUL_ADD_IMAGE_TO_RESERVOIR =
+            "SUCCESSFUL add picture to reservoir : %s %n";
 }

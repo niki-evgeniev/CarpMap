@@ -178,14 +178,14 @@
                     <!--                                        <a class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2"> TT </a>-->
                 </div>
                 <!--                    START-->
-                <div class="col-md-12">
-                    <img class="img-fluid" th:each="p : ${pictures}"
-                         th:src="${p}"
+                <div class="col-md-12" th:each="p : ${pictures}">
+                    <img class="img-fluid"
+                         th:src="${p.getImageURL()}"
                          data-toggle="modal"
-                         data-target="#Modal22"
+                         data-target="#exampleModal"
                          alt="ProductS">
                     <div class="modal fade"
-                         id="Modal22"
+                         id="exampleModal"
                          tabindex="-1"
                          role="dialog"
                          aria-labelledby="exampleModalLabel"
@@ -197,14 +197,14 @@
                                     <!-- w-100 class so that header
                                 div covers 100% width of parent div -->
                                     <h3 class="modal-title w-100 text-center"
-                                        id="Modal22"
+                                        id="exampleModal"
                                         th:text="*{name}">
                                         GeeksForGeeks
                                     </h3>
                                 </div>
                                 <!--Modal body with image-->
                                 <div class="modal-body">
-                                    <img th:src="${p}"/>
+                                    <img th:src="${p.getImageURL()}"/>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn"

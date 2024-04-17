@@ -3,6 +3,7 @@ package com.example.carpmap.Service.Impl;
 import com.example.carpmap.Models.DTO.Reservoirs.*;
 import com.example.carpmap.Models.Entity.*;
 import com.example.carpmap.Repository.*;
+import com.example.carpmap.Service.PictureService;
 import com.example.carpmap.Service.ReservoirsService;
 
 import org.modelmapper.ModelMapper;
@@ -26,17 +27,17 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     private final CountryRepository countryRepository;
     private final UserRepository userRepository;
     private final FishRepository fishRepository;
-    private final PictureRepository pictureRepository;
+    private final PictureService pictureService;
 
     public ReservoirsServiceImpl(ModelMapper modelMapper, ReservoirRepository reservoirRepository,
                                  CountryRepository countryRepository, UserRepository userRepository,
-                                 FishRepository fishRepository, PictureRepository pictureRepository) {
+                                 FishRepository fishRepository, PictureService pictureService) {
         this.modelMapper = modelMapper;
         this.reservoirRepository = reservoirRepository;
         this.countryRepository = countryRepository;
         this.userRepository = userRepository;
         this.fishRepository = fishRepository;
-        this.pictureRepository = pictureRepository;
+        this.pictureService = pictureService;
     }
 
     @Override
@@ -65,12 +66,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
                 System.out.printf(SUCCESSFUL_ADD_RESERVOIR,
                         reservoirsAddDTO.getName(), reservoirsAddDTO.getCountry());
 
-                for (String link : pictureLink) {
-                    Picture picture = new Picture();
-                    picture.setImageURL(link);
-                    picture.setReservoir(addNewReservoirs);
-                    pictureRepository.save(picture);
-                }
+                pictureService.saveImages(pictureLink, addNewReservoirs);
                 return true;
             } else {
                 System.out.printf(USER_WHO_ADD_RESERVOIRS_NOT_FOUND,
