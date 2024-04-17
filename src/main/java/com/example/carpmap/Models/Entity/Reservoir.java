@@ -24,8 +24,8 @@ public class Reservoir extends BaseEntity {
     @Column(name = "longitude")
     private String longitude;
 
-    @Column(name = "url_image")
-    private String urlImage;
+    @Column(name = "main_url_image")
+    private String mainUrlImage;
 
     @Column(name = "create_date")
     private LocalDateTime createDate;
@@ -86,12 +86,12 @@ public class Reservoir extends BaseEntity {
         this.longitude = longitude;
     }
 
-    public String getUrlImage() {
-        return urlImage;
+    public String getMainUrlImage() {
+        return mainUrlImage;
     }
 
-    public void setUrlImage(String urlImage) {
-        this.urlImage = urlImage;
+    public void setMainUrlImage(String mainUrlImage) {
+        this.mainUrlImage = mainUrlImage;
     }
 
     public LocalDateTime getCreateDate() {

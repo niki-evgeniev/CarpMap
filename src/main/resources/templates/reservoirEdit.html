@@ -121,77 +121,21 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="mainUrlImage"
+                                <label for="urlImage"
                                        class="col-sm-2 col-form-label">Add url image</label>
                                 <div class="col-sm-10">
-                                    <input th:field="*{mainUrlImage}"
+                                    <input th:field="*{urlImage}"
                                            th:errorclass="is-invalid"
                                            type="text"
-                                           name="mainUrlImage"
-                                           id="mainUrlImage"
+                                           name="urlImage"
+                                           id="urlImage"
                                            class="form-control">
                                     <div class="text-primary text-center"
-                                         th:if="${#fields.hasErrors('mainUrlImage')}"
-                                         th:errors="*{mainUrlImage}">Please, enter your name!
+                                         th:if="${#fields.hasErrors('urlImage')}"
+                                         th:errors="*{urlImage}">Please, enter your name!
                                     </div>
                                 </div>
                             </div>
-
-
-<!--                            older picture-->
-
-
-                            <div class="row mb-3">
-                                <label for="urlImage2"
-                                       class="col-sm-2 col-form-label">Add url image</label>
-                                <div class="col-sm-10">
-                                    <input th:field="*{urlImage2}"
-                                           th:errorclass="is-invalid"
-                                           type="text"
-                                           name="urlImage2"
-                                           id="urlImage2"
-                                           class="form-control">
-                                    <div class="text-primary text-center"
-                                         th:if="${#fields.hasErrors('urlImage2')}"
-                                         th:errors="*{urlImage2}">Please, enter your name!
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="urlImage3"
-                                       class="col-sm-2 col-form-label">Add url image</label>
-                                <div class="col-sm-10">
-                                    <input th:field="*{urlImage3}"
-                                           th:errorclass="is-invalid"
-                                           type="text"
-                                           name="urlImage3"
-                                           id="urlImage3"
-                                           class="form-control">
-                                    <div class="text-primary text-center"
-                                         th:if="${#fields.hasErrors('urlImage3')}"
-                                         th:errors="*{urlImage3}">Please, enter your name!
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-3">
-                                <label for="urlImage4"
-                                       class="col-sm-2 col-form-label">Add url image</label>
-                                <div class="col-sm-10">
-                                    <input th:field="*{urlImage4}"
-                                           th:errorclass="is-invalid"
-                                           type="text"
-                                           name="urlImage4"
-                                           id="urlImage4"
-                                           class="form-control">
-                                    <div class="text-primary text-center"
-                                         th:if="${#fields.hasErrors('urlImage4')}"
-                                         th:errors="*{urlImage4}">Please, enter your name!
-                                    </div>
-                                </div>
-                            </div>
-<!--                            END-->
-
-
                             <div class="row mb-3">
                                 <label for="formFile"
                                        class="col-sm-2 col-form-label">File Upload</label>
@@ -202,29 +146,6 @@
                                            class="form-control">
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <label for="createDate"
-                                       class="col-sm-2 col-form-label">Create date</label>
-                                <div class="col-sm-10">
-                                    <input th:field="*{createDate}"
-                                           th:errorclass="is-invalid"
-                                           type="datetime-local"
-                                           name="createDate"
-                                           id="createDate"
-                                           class="form-control">
-                                    <div class="text-primary text-center"
-                                         th:if="${#fields.hasErrors('createDate')}"
-                                         th:errors="*{createDate}">Please, enter your name!
-                                    </div>
-                                </div>
-                            </div>
-                            <!--                            <div class="row mb-3">-->
-                            <!--                                <label for="inputTime" class="col-sm-2 col-form-label">Time</label>-->
-                            <!--                                <div class="col-sm-10">-->
-                            <!--                                    <input type="time" class="form-control">-->
-                            <!--                                </div>-->
-                            <!--                            </div>-->
-
                             <div class="row mb-3">
                                 <label for="description"
                                        class="col-sm-2 col-form-label">Description</label>
@@ -296,9 +217,14 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Disabled</label>
+                                <label class="col-sm-2 col-form-label">Add date</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" value="Read only / Disabled" disabled>
+                                    <input th:field="*{createDate}"
+                                           id="createDate"
+                                           name="createDate"
+                                           type="text"
+                                           class="form-control"
+                                           value="Read only / Disabled" disabled>
                                 </div>
                             </div>
 

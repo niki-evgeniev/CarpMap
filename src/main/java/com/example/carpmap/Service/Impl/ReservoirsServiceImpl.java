@@ -1,14 +1,8 @@
 package com.example.carpmap.Service.Impl;
 
 import com.example.carpmap.Models.DTO.Reservoirs.*;
-import com.example.carpmap.Models.Entity.Country;
-import com.example.carpmap.Models.Entity.Fish;
-import com.example.carpmap.Models.Entity.Reservoir;
-import com.example.carpmap.Models.Entity.User;
-import com.example.carpmap.Repository.CountryRepository;
-import com.example.carpmap.Repository.FishRepository;
-import com.example.carpmap.Repository.ReservoirRepository;
-import com.example.carpmap.Repository.UserRepository;
+import com.example.carpmap.Models.Entity.*;
+import com.example.carpmap.Repository.*;
 import com.example.carpmap.Service.ReservoirsService;
 
 import org.modelmapper.ModelMapper;
@@ -32,21 +26,25 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     private final CountryRepository countryRepository;
     private final UserRepository userRepository;
     private final FishRepository fishRepository;
+    private final PictureRepository pictureRepository;
 
     public ReservoirsServiceImpl(ModelMapper modelMapper, ReservoirRepository reservoirRepository,
                                  CountryRepository countryRepository, UserRepository userRepository,
-                                 FishRepository fishRepository) {
+                                 FishRepository fishRepository, PictureRepository pictureRepository) {
         this.modelMapper = modelMapper;
         this.reservoirRepository = reservoirRepository;
         this.countryRepository = countryRepository;
         this.userRepository = userRepository;
         this.fishRepository = fishRepository;
+        this.pictureRepository = pictureRepository;
     }
 
     @Override
     public boolean addReservoirs(ReservoirsAddDTO reservoirsAddDTO) {
         Reservoir addNewReservoirs = modelMapper.map(reservoirsAddDTO, Reservoir.class);
         Optional<Country> country = countryRepository.findByCountry(reservoirsAddDTO.getCountry());
+        List<String> pictureLink = List.of(reservoirsAddDTO.getUrlImage2(),
+                reservoirsAddDTO.getUrlImage3(), reservoirsAddDTO.getUrlImage4());
 
         if (country.isPresent()) {
             addNewReservoirs.setCountry(country.get());
@@ -66,6 +64,13 @@ public class ReservoirsServiceImpl implements ReservoirsService {
                 reservoirRepository.save(addNewReservoirs);
                 System.out.printf(SUCCESSFUL_ADD_RESERVOIR,
                         reservoirsAddDTO.getName(), reservoirsAddDTO.getCountry());
+
+                for (String link : pictureLink) {
+                    Picture picture = new Picture();
+                    picture.setImageURL(link);
+                    picture.setReservoir(addNewReservoirs);
+                    pictureRepository.save(picture);
+                }
                 return true;
             } else {
                 System.out.printf(USER_WHO_ADD_RESERVOIRS_NOT_FOUND,
@@ -88,6 +93,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
         Page<ReservoirAllDTO> allReservoirs = findAllReservoir.map(reservoir -> {
             return modelMapper.map(reservoir, ReservoirAllDTO.class);
         });
+
         return allReservoirs;
     }
 
@@ -122,9 +128,10 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     }
 
     @Override
-    public ReservoirsAddDTO findReservoirToEdit(Long id) {
+    public ReservoirsEditDTO findReservoirToEdit(Long id) {
         Optional<Reservoir> findReservoirToEdit = reservoirRepository.findById(id);
-        ReservoirsAddDTO map = modelMapper.map(findReservoirToEdit, ReservoirsAddDTO.class);
+        ReservoirsEditDTO map = modelMapper.map(findReservoirToEdit, ReservoirsEditDTO.class);
+        map.setCountry(findReservoirToEdit.get().getCountry().toString());
 
         return map;
     }

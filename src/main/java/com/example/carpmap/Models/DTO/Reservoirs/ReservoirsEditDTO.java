@@ -8,9 +8,8 @@ import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-public class ReservoirsAddDTO {
+public class ReservoirsEditDTO {
 
     @NotEmpty(message = "Reservoirs country must not be empty")
     @Size(min = 3, max = 20, message = "Country for Reservoirs length must be between 3 and 20 character!")
@@ -33,21 +32,7 @@ public class ReservoirsAddDTO {
 
     @NotEmpty(message = "Reservoirs URL Image must not be empty")
     @Size(min = 3, max = 240, message = "URL Image for Reservoirs  length must be between 3 and 20 character!")
-    private String mainUrlImage;
-
-    @NotEmpty(message = "Reservoirs URL Image must not be empty")
-    @Size(min = 3, max = 240, message = "URL Image for Reservoirs  length must be between 3 and 20 character!")
-    private String urlImage2;
-
-    @NotEmpty(message = "Reservoirs URL Image must not be empty")
-    @Size(min = 3, max = 240, message = "URL Image for Reservoirs  length must be between 3 and 20 character!")
-    private String urlImage3;
-
-    @NotEmpty(message = "Reservoirs URL Image must not be empty")
-    @Size(min = 3, max = 240, message = "URL Image for Reservoirs  length must be between 3 and 20 character!")
-    private String urlImage4;
-
-
+    private String urlImage;
     @NotNull
     private ReservoirType reservoirType;
 
@@ -63,8 +48,7 @@ public class ReservoirsAddDTO {
     @NotEmpty(message = "Select at least 1 type of fish")
     private String[] fishName;
 
-
-    public ReservoirsAddDTO() {
+    public ReservoirsEditDTO() {
     }
 
     public String getCountry() {
@@ -107,36 +91,12 @@ public class ReservoirsAddDTO {
         this.longitude = longitude;
     }
 
-    public String getMainUrlImage() {
-        return mainUrlImage;
+    public String getUrlImage() {
+        return urlImage;
     }
 
-    public void setMainUrlImage(String mainUrlImage) {
-        this.mainUrlImage = mainUrlImage;
-    }
-
-    public String getUrlImage2() {
-        return urlImage2;
-    }
-
-    public void setUrlImage2(String urlImage2) {
-        this.urlImage2 = urlImage2;
-    }
-
-    public String getUrlImage3() {
-        return urlImage3;
-    }
-
-    public void setUrlImage3(String urlImage3) {
-        this.urlImage3 = urlImage3;
-    }
-
-    public String getUrlImage4() {
-        return urlImage4;
-    }
-
-    public void setUrlImage4(String urlImage4) {
-        this.urlImage4 = urlImage4;
+    public void setUrlImage(String urlImage) {
+        this.urlImage = urlImage;
     }
 
     public ReservoirType getReservoirType() {
@@ -170,5 +130,4 @@ public class ReservoirsAddDTO {
     public void setFishName(String[] fishName) {
         this.fishName = fishName;
     }
-
 }

@@ -3,6 +3,7 @@ package com.example.carpmap.Controller;
 import com.example.carpmap.Models.DTO.Reservoirs.*;
 import com.example.carpmap.Service.CountryService;
 import com.example.carpmap.Service.FishService;
+import com.example.carpmap.Service.PictureService;
 import com.example.carpmap.Service.ReservoirsService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -14,6 +15,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -23,13 +25,15 @@ public class ReservoirsController {
     private final CountryService countryService;
     private final ReservoirsService reservoirsService;
     private final FishService fishService;
+    private final PictureService pictureService;
 
 
     public ReservoirsController(CountryService countryService, ReservoirsService reservoirsService,
-                                FishService fishService) {
+                                FishService fishService, PictureService pictureService) {
         this.countryService = countryService;
         this.reservoirsService = reservoirsService;
         this.fishService = fishService;
+        this.pictureService = pictureService;
     }
 
 
@@ -75,7 +79,15 @@ public class ReservoirsController {
     public ModelAndView details(@PathVariable("id") Long id) {
         ModelAndView modelAndView = new ModelAndView("reservoirsDetails");
         ReservoirsDetailsDTO reservoirsDetailsDTO = reservoirsService.getDetails(id);
+        List<ReservoirPicturesDTO> reservoirPicturesList = pictureService.getAllReservoirPicture(id);
+        List<String> listStringPicture = new ArrayList<>();
+        for (ReservoirPicturesDTO reservoirPicturesDTO : reservoirPicturesList) {
+            listStringPicture.add(reservoirPicturesDTO.getImageURL());
+        }
         modelAndView.addObject("details", reservoirsDetailsDTO);
+        modelAndView.addObject("pictures", listStringPicture);
+
+        System.out.println();
         return modelAndView;
     }
 

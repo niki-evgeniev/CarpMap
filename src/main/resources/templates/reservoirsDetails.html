@@ -66,6 +66,7 @@
                             </div>
                         </div>
                     </div>
+
                     <!--                    <br>-->
                     <!--                    <a href="#" class="modal-fullscreen-lg-down">-->
                     <!--                    <img class="img-fluid"-->
@@ -176,11 +177,50 @@
                     </form>
                     <!--                                        <a class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2"> TT </a>-->
                 </div>
+                <!--                    START-->
+                <div class="col-md-12">
+                    <img class="img-fluid" th:each="p : ${pictures}"
+                         th:src="${p}"
+                         data-toggle="modal"
+                         data-target="#Modal22"
+                         alt="ProductS">
+                    <div class="modal fade"
+                         id="Modal22"
+                         tabindex="-1"
+                         role="dialog"
+                         aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog"
+                             role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <!-- w-100 class so that header
+                                div covers 100% width of parent div -->
+                                    <h3 class="modal-title w-100 text-center"
+                                        id="Modal22"
+                                        th:text="*{name}">
+                                        GeeksForGeeks
+                                    </h3>
+                                </div>
+                                <!--Modal body with image-->
+                                <div class="modal-body">
+                                    <img th:src="${p}"/>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn"
+                                            data-dismiss="modal">
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--                    END-->
+
             </div>
         </div>
     </div>
-
-
     <!-- Footer Start -->
     <th:block th:replace="~{fragments/footer}"></th:block>
     <!-- Footer End -->

@@ -1,9 +1,6 @@
 package com.example.carpmap.Service;
 
-import com.example.carpmap.Models.DTO.Reservoirs.ReservoirAllDTO;
-import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsAddDTO;
-import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsDetailsDTO;
-import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsNameDTO;
+import com.example.carpmap.Models.DTO.Reservoirs.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -23,5 +20,5 @@ public interface ReservoirsService {
 
     void deleteReservoir(Long id);
 
-    ReservoirsAddDTO findReservoirToEdit(Long id);
+    ReservoirsEditDTO findReservoirToEdit(Long id);
 }
