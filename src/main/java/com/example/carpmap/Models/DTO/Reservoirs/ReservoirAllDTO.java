@@ -10,6 +10,8 @@ public class ReservoirAllDTO {
 
     private String city;
 
+    private String information;
+
     private String description;
 
     private String urlImage;
@@ -43,6 +45,14 @@ public class ReservoirAllDTO {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getInformation() {
+        return information;
+    }
+
+    public void setInformation(String information) {
+        this.information = information;
     }
 
     public String getDescription() {

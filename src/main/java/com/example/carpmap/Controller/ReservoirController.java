@@ -21,6 +21,7 @@ public class ReservoirController {
 
     @DeleteMapping("{id}")
     public ModelAndView delete(@PathVariable("id") Long id) {
+        reservoirsService.deleteReservoir(id);
         return new ModelAndView("redirect:/reservoirs/reservoirsAll");
     }
 

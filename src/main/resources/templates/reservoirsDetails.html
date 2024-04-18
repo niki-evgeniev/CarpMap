@@ -28,9 +28,9 @@
     <!-- Start DEMO HTML (Use the following code into your project)-->
     <div class="container my-5">
         <div class="row" th:object="${details}">
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="main-img">
-                    <img class="img-fluid"
+                    <img class="img-fluid img-detail"
                          th:src="*{urlImage}"
                          data-toggle="modal"
                          data-target="#exampleModal"
@@ -66,161 +66,120 @@
                             </div>
                         </div>
                     </div>
-
-                    <!--                    <br>-->
-                    <!--                    <a href="#" class="modal-fullscreen-lg-down">-->
-                    <!--                    <img class="img-fluid"-->
-                    <!--                         th:src="*{urlImage}"-->
-                    <!--                         alt="ProductS">-->
-                    <!--                    </a>-->
+                    <!--                                        <br>-->
+                    <!--                                        <a href="#" class="modal-fullscreen-lg-down">-->
+                    <!--                                        <img class="img-fluid"-->
+                    <!--                                             th:src="*{urlImage}"-->
+                    <!--                                             alt="ProductS">-->
+                    <!--                                        </a>-->
 
                 </div>
+
             </div>
-            <div class="col-md-7">
+            <div class="col-md-6">
                 <div class="main-description px-2">
-                    <div class="category text-bold"
+                    <div class="category text-bold text-center"
                          th:text="'Име на водоема : ' + *{name}">
                         Category: Women
                     </div>
-                    <div class="category text-bold"
+                    <div class="category text-bold text-center"
                          th:text="'Намира се : ' + *{country} + ' - ' + *{city}">
                         Black dress for Women
                     </div>
-                    <div class="category text-bold"
+                    <div class="category text-bold text-center"
                          th:text="'Тип : ' + *{reservoirType}">
                         Black dress for Women
                     </div>
-                    <div class="product-title text-bold my-3"
+                    <div class="product-title text-bold my-3 text-center"
                          th:text="'Kординати - Latitude: ' + *{latitude}">
                         Black dress for Women
                     </div>
-                    <div class="product-title text-bold my-3"
+                    <div class="product-title text-bold my-3 text-center"
                          th:text="'Kординати - Longitude: ' + *{longitude}">
                         Black dress for Women
                     </div>
-                    <div class="product-title text-bold my-3"
+                    <div class="product-title text-bold my-3 text-center"
                          th:text="'Добавен на : ' + *{createDate.toLocalDate()}">
                         Black dress for Women
                     </div>
                 </div>
                 <div class="product-details my-4">
-                    <p class="details-title text-color mb-1">Видове риба</p>
+                    <p class="details-title text-color mb-1 text-center">Видове риба</p>
                     <p th:each="fishi : *{fishNameDTO}"
-                       class="description">
+                       class="description text-center">
                         <span th:text="${fishi.fishName}"></span>
                     </p>
                 </div>
-
-                <div class="product-details my-4">
-                    <p class="details-title text-color mb-1">Information</p>
-                    <p th:text="*{description}" class="description">Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit. Placeat excepturi
-                        odio recusandae aliquid ad impedit autem commodi earum voluptatem laboriosam? </p>
-                </div>
-                <div class="product-details my-4">
-                    <p class="details-title text-color mb-1">More Information</p>
-                    <p class="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet consectetur
-                        adipiscing. Justo nec ultrices dui sapien eget mi proin sed libero. Vel quam elementum pulvinar
-                        etiam non quam. Dignissim diam quis enim lobortis scelerisque. Molestie a iaculis at erat. Arcu
-                        risus quis varius quam. Pulvinar pellentesque habitant morbi tristique senectus. Aenean sed
-                        adipiscing diam donec. Nunc sed velit dignissim sodales. Id ornare arcu odio ut sem nulla
-                        pharetra diam sit. Pharetra vel turpis nunc eget lorem dolor sed viverra. Quis commodo odio
-                        aenean sed adipiscing diam donec adipiscing tristique. Sit amet porttitor eget dolor morbi.
-                        Eget magna fermentum iaculis eu. Augue neque gravida in fermentum. Vitae
-                        auctor eu augue ut lectus. Nec feugiat nisl pretium fusce id velit ut tortor. Id eu nisl nunc mi
-                        ipsum faucibus vitae aliquet nec. Malesuada proin libero nunc consequat interdum varius. Mattis
-                        molestie a iaculis at erat pellentesque adipiscing. Convallis tellus id interdum velit. Duis
-                        convallis convallis tellus id interdum. Condimentum lacinia quis vel eros donec ac. Lectus magna
-                        fringilla urna porttitor. Elit sed vulputate mi sit amet. Et netus et malesuada fames ac turpis.
-
-                        Sed nisi lacus sed viverra tellus. Nunc sed augue lacus viverra vitae congue eu. Diam maecenas
-                        ultricies mi eget mauris pharetra et ultrices. Nibh tellus molestie nunc non blandit massa enim.
-                        Orci ac auctor augue mauris augue neque gravida. Orci sagittis eu volutpat odio. Nulla porttitor
-                        massa id neque aliquam. Orci phasellus egestas tellus rutrum tellus pellentesque eu. Mi eget
-                        mauris pharetra et. Proin fermentum leo vel orci. Libero nunc consequat interdum varius sit
-                        amet. Pharetra convallis posuere morbi leo. Sed tempus urna et pharetra. Posuere urna nec
-                        tincidunt praesent semper.Elit sed vulputate mi sit amet mauris commodo. Arcu risus quis varius
-                        quam quisque id diam vel quam. Eu sem integer vitae justo eget. Bibendum est ultricies integer
-                        quis auctor. Faucibus nisl tincidunt eget nullam non. Habitant morbi tristique senectus et.
-                        Vestibulum sed arcu non odio euismod lacinia. Nullam ac tortor vitae purus. Morbi tristique
-                        senectus et netus. Fermentum iaculis eu non diam phasellus vestibulum lorem sed. Sapien
-                        pellentesque habitant morbi tristique senectus. Est lorem ipsum dolor sit amet consectetur
-                        adipiscing elit pellentesque. Dis parturient montes nascetur ridiculus mus mauris vitae.
-                        Vulputate mi sit amet mauris commodo quis imperdiet. Est ultricies integer quis auctor elit.
-                        Quis auctor elit sed vulputate mi sit amet. Quam adipiscing vitae proin sagittis nisl rhoncus
-                        mattis.
-
-                        Vitae congue eu consequat ac felis donec. Et leo duis ut diam quam nulla. Sit amet dictum sit
-                        amet justo donec. Dis parturient montes nascetur ridiculus mus mauris vitae ultricies leo.
-                        Semper viverra nam libero justo laoreet sit amet cursus sit. Quis vel eros donec ac odio tempor.
-                        Fermentum iaculis eu non diam phasellus vestibulum. Nunc lobortis mattis aliquam faucibus purus.
-                        Habitasse platea dictumst vestibulum rhoncus est. Non arcu risus quis varius. Tortor dignissim
-                        convallis aenean et tortor at risus. Lorem sed risus ultricies tristique nulla. Pharetra
-                        pharetra massa massa ultricies mi. Proin sed libero enim sed faucibus turpis in eu. Tempus
-                        egestas sed sed risus pretium. </p>
-                </div>
-                <div class="col-sm-5">
-                    <a sec:authorize="hasRole('ADMIN') or hasRole('MODERATOR')"
-                       class="btn btn-warning rounded-pill py-2 px-4 ms-lg-2"
-                       data-abc="true"
-                       th:href="@{/reservoirs/reservoirsEdit/{id}(id = *{id})}">EDIT</a>
-                    <br>
-                    <!--                    <a class="btn  btn-danger rounded-pill py-2 px-4 ms-lg-2"-->
-                    <!--                       data-abc="true"-->
-                    <!--                       th:href="@{/reservoirs/{id}(id = *{id})}">DELETE</a>-->
-                    <form sec:authorize="hasRole('ADMIN')"
-                          th:method="DELETE"
-                          th:action="@{/reservoirs/{id}(id = *{id})}"
-                          class="deleteReservoir">
-                        <input type="submit" value="DELETE" class="btn btn-danger rounded-pill py-2 px-4 ms-lg-2 "/>
-                    </form>
-                    <!--                                        <a class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2"> TT </a>-->
-                </div>
-                <!--                    START-->
-                <div class="col-md-12" th:each="p : ${pictures}">
-                    <img class="img-fluid"
-                         th:src="${p.getImageURL()}"
-                         data-toggle="modal"
-                         data-target="#exampleModal"
-                         alt="ProductS">
-                    <div class="modal fade"
-                         id="exampleModal"
-                         tabindex="-1"
-                         role="dialog"
-                         aria-labelledby="exampleModalLabel"
-                         aria-hidden="true">
-                        <div class="modal-dialog"
-                             role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <!-- w-100 class so that header
-                                div covers 100% width of parent div -->
-                                    <h3 class="modal-title w-100 text-center"
-                                        id="exampleModal"
-                                        th:text="*{name}">
-                                        GeeksForGeeks
-                                    </h3>
+<!--                <div class="product-details my-4">-->
+<!--                    <p class="details-title text-color mb-1 text-center">Information</p>-->
+<!--                    <p th:text="*{information}" class="description">Lorem ipsum dolor sit amet consectetur adipisicing-->
+<!--                        elit. Placeat excepturi-->
+<!--                        odio recusandae aliquid ad impedit autem commodi earum voluptatem laboriosam? </p>-->
+<!--                </div>-->
+            </div>
+        </div>
+    </div>
+    <div class="container my-5">
+        <div class="row">
+            <div class="product-details my-4 col-md-12" th:object="${details}">
+                <p class="details-title text-color mb-1">More Information</p>
+                <p class="description" th:text="*{description}"></p>
+            </div>
+        </div>
+        <div class="col-sm-12 text-end">
+            <a sec:authorize="hasRole('ADMIN') or hasRole('MODERATOR')"
+               class="btn btn-warning rounded-pill py-2 px-4 ms-lg-2 "
+               data-abc="true"
+               th:href="@{/reservoirs/reservoirsEdit/{id}(id = *{id})}">EDIT</a>
+            <br>
+            <!--                    <a class="btn  btn-danger rounded-pill py-2 px-4 ms-lg-2"-->
+            <!--                       data-abc="true"-->
+            <!--                       th:href="@{/reservoirs/{id}(id = *{id})}">DELETE</a>-->
+            <form sec:authorize="hasRole('ADMIN')"
+                  th:method="DELETE"
+                  th:action="@{/reservoirs/{id}(id = *{id})}"
+                  class="deleteReservoir text-end">
+                <input type="submit" value="DELETE" class="btn btn-danger rounded-pill py-2 px-4 ms-lg-2 "/>
+            </form>
+            <!--                                        <a class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2"> TT </a>-->
+        </div>
+    </div>
+    <!-- Gallery Start -->
+    <div class="container-fluid gallery py-5 my-5">
+        <div class="mx-auto text-center mb-5" style="max-width: 900px;">
+            <h5 class="section-title px-3">Gallery</h5>
+            <h1 class="mb-4">Галеря</h1>
+            <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum tempore nam, architecto
+                doloremque velit explicabo? Voluptate sunt eveniet fuga eligendi! Expedita laudantium fugiat corrupti
+                eum cum repellat a laborum quasi.
+            </p>
+        </div>
+        <div class="tab-class text-center">
+            <div class="tab-content">
+                <div id="GalleryTab-1" class="tab-pane fade show p-0 active">
+                    <div class="row g-2">
+                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3" th:each="pic : ${pictures}">
+                            <div class="gallery-item h-100">
+                                <img th:src="${pic.getImageURL()}" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                <div class="gallery-content">
+                                    <div class="gallery-info">
+                                        <h5 class="text-white text-uppercase mb-2">World Tour</h5>
+                                        <a href="#" class="btn-hover text-white">View All Place <i
+                                                class="fa fa-arrow-right ms-2"></i></a>
+                                    </div>
                                 </div>
-                                <!--Modal body with image-->
-                                <div class="modal-body">
-                                    <img th:src="${p.getImageURL()}"/>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn"
-                                            data-dismiss="modal">
-                                        Close
-                                    </button>
+                                <div class="gallery-plus-icon">
+                                    <a th:href="${pic.getImageURL()}" data-lightbox="gallery-2" class="my-auto"><i
+                                            class="fas fa-plus fa-2x text-white"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--                    END-->
-
             </div>
         </div>
     </div>
+    <!-- Gallery End -->
     <!-- Footer Start -->
     <th:block th:replace="~{fragments/footer}"></th:block>
     <!-- Footer End -->

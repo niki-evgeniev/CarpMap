@@ -60,4 +60,9 @@ public class HomeController {
     public ModelAndView contact() {
         return new ModelAndView("contact");
     }
+
+    @GetMapping("/gallery")
+    public ModelAndView gallery(){
+        return new ModelAndView("gallery");
+    }
 }

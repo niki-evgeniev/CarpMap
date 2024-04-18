@@ -28,16 +28,18 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     private final UserRepository userRepository;
     private final FishRepository fishRepository;
     private final PictureService pictureService;
+    private final PictureRepository pictureRepository;
 
     public ReservoirsServiceImpl(ModelMapper modelMapper, ReservoirRepository reservoirRepository,
                                  CountryRepository countryRepository, UserRepository userRepository,
-                                 FishRepository fishRepository, PictureService pictureService) {
+                                 FishRepository fishRepository, PictureService pictureService, PictureRepository pictureRepository) {
         this.modelMapper = modelMapper;
         this.reservoirRepository = reservoirRepository;
         this.countryRepository = countryRepository;
         this.userRepository = userRepository;
         this.fishRepository = fishRepository;
         this.pictureService = pictureService;
+        this.pictureRepository = pictureRepository;
     }
 
     @Override
@@ -114,6 +116,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     @Override
     public void deleteReservoir(Long id) {
         Optional<Reservoir> toDelete = reservoirRepository.findById(id);
+        pictureService.deleteAllListOfPicture(id);
 
         if (toDelete.isPresent()) {
             reservoirRepository.deleteById(id);

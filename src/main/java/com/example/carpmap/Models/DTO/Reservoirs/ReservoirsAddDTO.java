@@ -39,14 +39,11 @@ public class ReservoirsAddDTO {
     @Size(min = 3, max = 240, message = "URL Image for Reservoirs  length must be between 3 and 20 character!")
     private String urlImage2;
 
-    @NotEmpty(message = "Reservoirs URL Image must not be empty")
-    @Size(min = 3, max = 240, message = "URL Image for Reservoirs  length must be between 3 and 20 character!")
+    @NotNull
     private String urlImage3;
 
-    @NotEmpty(message = "Reservoirs URL Image must not be empty")
-    @Size(min = 3, max = 240, message = "URL Image for Reservoirs  length must be between 3 and 20 character!")
+    @NotNull
     private String urlImage4;
-
 
     @NotNull
     private ReservoirType reservoirType;
@@ -54,10 +51,13 @@ public class ReservoirsAddDTO {
     @PastOrPresent
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime createDate;
+    @NotEmpty(message = "Reservoirs information must not be empty")
+    @Size(min = 3, max = 240, message = "information for Reservoirs length must be between 3 and 20 character!")
+    private String information;
 
 
     @NotEmpty(message = "Reservoirs description must not be empty")
-    @Size(min = 3, max = 240, message = "Description for Reservoirs length must be between 3 and 20 character!")
+    @Size(min = 3, max = 5000, message = "Description for Reservoirs length must be between 3 and 20 character!")
     private String description;
 
     @NotEmpty(message = "Select at least 1 type of fish")
@@ -153,6 +153,14 @@ public class ReservoirsAddDTO {
 
     public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
+    }
+
+    public String getInformation() {
+        return information;
+    }
+
+    public void setInformation(String information) {
+        this.information = information;
     }
 
     public String getDescription() {

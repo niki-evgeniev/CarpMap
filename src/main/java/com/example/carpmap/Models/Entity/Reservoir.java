@@ -34,7 +34,9 @@ public class Reservoir extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private ReservoirType reservoirType;
 
-    @Column(name = "descriptions", columnDefinition = "TEXT")
+    @Column(name = "information", columnDefinition = "TEXT")
+    private String information;
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
     @ManyToOne
@@ -108,6 +110,14 @@ public class Reservoir extends BaseEntity {
 
     public void setReservoirType(ReservoirType reservoirType) {
         this.reservoirType = reservoirType;
+    }
+
+    public String getInformation() {
+        return information;
+    }
+
+    public void setInformation(String information) {
+        this.information = information;
     }
 
     public String getDescription() {

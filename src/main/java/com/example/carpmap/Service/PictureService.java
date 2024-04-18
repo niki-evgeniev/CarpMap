@@ -10,4 +10,6 @@ public interface PictureService {
     List<ReservoirPicturesDTO> getAllReservoirPicture(Long id);
 
     void saveImages(List<String> pictureLink, Reservoir addNewReservoirs);
+
+    void deleteAllListOfPicture(Long reservoirId);
 }

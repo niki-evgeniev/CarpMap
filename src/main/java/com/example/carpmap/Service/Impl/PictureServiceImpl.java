@@ -37,12 +37,20 @@ public class PictureServiceImpl implements PictureService {
     @Override
     public void saveImages(List<String> pictureLink, Reservoir addNewReservoirs) {
         for (String link : pictureLink) {
-            Picture picture = new Picture();
-            picture.setImageURL(link);
-            picture.setReservoir(addNewReservoirs);
-            pictureRepository.save(picture);
-            System.out.printf(SUCCESSFUL_ADD_IMAGE_TO_RESERVOIR, addNewReservoirs.getName());
+            if (!link.isBlank()) {
+                Picture picture = new Picture();
+                picture.setImageURL(link);
+                picture.setReservoir(addNewReservoirs);
+                pictureRepository.save(picture);
+                System.out.printf(SUCCESSFUL_ADD_IMAGE_TO_RESERVOIR, addNewReservoirs.getName());
+            }
         }
+    }
+
+    @Override
+    public void deleteAllListOfPicture(Long reservoirId) {
+        List<Picture> allByReservoirId = pictureRepository.findAllByReservoirId(reservoirId);
+        pictureRepository.deleteAll(allByReservoirId);
     }
 
     private ReservoirPicturesDTO reservoirPicturesDTO(Picture picture) {
