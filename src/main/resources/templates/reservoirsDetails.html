@@ -66,15 +66,7 @@
                             </div>
                         </div>
                     </div>
-                    <!--                                        <br>-->
-                    <!--                                        <a href="#" class="modal-fullscreen-lg-down">-->
-                    <!--                                        <img class="img-fluid"-->
-                    <!--                                             th:src="*{urlImage}"-->
-                    <!--                                             alt="ProductS">-->
-                    <!--                                        </a>-->
-
                 </div>
-
             </div>
             <div class="col-md-6">
                 <div class="main-description px-2">
@@ -110,12 +102,6 @@
                         <span th:text="${fishi.fishName}"></span>
                     </p>
                 </div>
-<!--                <div class="product-details my-4">-->
-<!--                    <p class="details-title text-color mb-1 text-center">Information</p>-->
-<!--                    <p th:text="*{information}" class="description">Lorem ipsum dolor sit amet consectetur adipisicing-->
-<!--                        elit. Placeat excepturi-->
-<!--                        odio recusandae aliquid ad impedit autem commodi earum voluptatem laboriosam? </p>-->
-<!--                </div>-->
             </div>
         </div>
     </div>
@@ -132,9 +118,6 @@
                data-abc="true"
                th:href="@{/reservoirs/reservoirsEdit/{id}(id = *{id})}">EDIT</a>
             <br>
-            <!--                    <a class="btn  btn-danger rounded-pill py-2 px-4 ms-lg-2"-->
-            <!--                       data-abc="true"-->
-            <!--                       th:href="@{/reservoirs/{id}(id = *{id})}">DELETE</a>-->
             <form sec:authorize="hasRole('ADMIN')"
                   th:method="DELETE"
                   th:action="@{/reservoirs/{id}(id = *{id})}"
@@ -148,7 +131,7 @@
     <div class="container-fluid gallery py-5 my-5">
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
             <h5 class="section-title px-3">Gallery</h5>
-            <h1 class="mb-4">Галеря</h1>
+            <h1 class="mb-4">Галерия</h1>
             <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum tempore nam, architecto
                 doloremque velit explicabo? Voluptate sunt eveniet fuga eligendi! Expedita laudantium fugiat corrupti
                 eum cum repellat a laborum quasi.
@@ -169,8 +152,8 @@
                                     </div>
                                 </div>
                                 <div class="gallery-plus-icon">
-                                    <a th:href="${pic.getImageURL()}" data-lightbox="gallery-2" class="my-auto"><i
-                                            class="fas fa-plus fa-2x text-white"></i></a>
+                                    <a th:href="${pic.getImageURL()}" data-lightbox="gallery-2" class="my-auto">
+                                        <i class="fas fa-search fa-2x text-white"></i></a>
                                 </div>
                             </div>
                         </div>

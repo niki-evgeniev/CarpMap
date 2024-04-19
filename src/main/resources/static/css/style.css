@@ -1287,3 +1287,10 @@ body > div.container-fluid.about.py-5 {
 .img-detail{
     margin-bottom: 8%;
 }
+.gallery-plus-icon {
+    font-size: 8rem;
+}
+
+.image-all-reservoir {
+    position: relative;
+}

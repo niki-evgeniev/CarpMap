@@ -20,35 +20,36 @@
     <div class="container">
         <link rel="stylesheet" href="/css/style2.css">
         <div class="section-header">
-            <h2 class="text-center">explore</h2>
-            <p class="text-center">Explore New place, food, culture around the world and many more</p>
+            <h2 class="text-center">Водоеми</h2>
+            <p class="text-center">Тук ще намерите повече от водоемите в България</p>
         </div><!--/.section-header-->
         <div class="explore-content">
-            <div
-                    class="row">
+            <div class="row">
                 <div class=" col-md-4 col-sm-6"
                      th:each="res : ${allReservoir.getContent()}"
                      th:object="${res}">
                     <div class="single-explore-item">
                         <div class="single-explore-img">
-                            <img th:src="*{urlImage}" alt="explore image">
-                            <div class="single-explore-img-info">
-                                <button onclick="window.location.href='#'">best rated</button>
-                                <div class="single-explore-image-icon-box">
-                                    <ul>
-                                        <li>
-                                            <div class="single-explore-image-icon">
-                                                <i class="fa fa-arrows-alt"></i>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="single-explore-image-icon">
-                                                <i class="fa fa-bookmark-o"></i>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            <a class="image-all-reservoir" th:href="@{/reservoirs/{id}(id = *{id})}">
+                            <img th:src="*{urlImage}" alt="explore image"></a>
+
+<!--                            <div class="single-explore-img-info">-->
+<!--                                <button onclick="window.location.href='#'">best rated</button>-->
+<!--                                <div class="single-explore-image-icon-box">-->
+<!--                                    <ul>-->
+<!--                                        <li>-->
+<!--                                            <div class="single-explore-image-icon">-->
+<!--                                                <i class="fa fa-arrows-alt"></i>-->
+<!--                                            </div>-->
+<!--                                        </li>-->
+<!--                                        <li>-->
+<!--                                            <div class="single-explore-image-icon">-->
+<!--                                                <i class="fa fa-bookmark-o"></i>-->
+<!--                                            </div>-->
+<!--                                        </li>-->
+<!--                                    </ul>-->
+<!--                                </div>-->
+<!--                            </div>-->
                         </div>
                         <div class="single-explore-txt bg-theme-1">
                             <h2><a th:href="@{/reservoirs/{id}(id = *{id})}"
