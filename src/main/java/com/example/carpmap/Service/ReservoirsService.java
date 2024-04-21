@@ -9,7 +9,6 @@ import java.util.Optional;
 
 public interface ReservoirsService {
 
-
     boolean addReservoirs(ReservoirsAddDTO reservoirsAddDTO);
 
     boolean checkNameExisting(String name);

@@ -31,10 +31,10 @@ public class AddToDb implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-//        userRoleService.addRoleIfNotExist();
-//        countryService.addFirstCountry();
-//        usersService.addAdminIfNotExist();
-//        fishService.addFishType();
-//        blogService.addBlog();
+        userRoleService.addRoleIfNotExist();
+        countryService.addFirstCountry();
+        usersService.addAdminIfNotExist();
+        fishService.addFishType();
+        blogService.addBlog();
     }
 }

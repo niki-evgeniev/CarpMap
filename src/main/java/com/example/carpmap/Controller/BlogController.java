@@ -19,11 +19,11 @@ public class BlogController {
 
 
     @GetMapping("/blog")
-    public ModelAndView blog(){
+    public ModelAndView blog() {
         ModelAndView modelAndView = new ModelAndView("blog");
-         List<BlogDetailsDTO> blogDetails = blogService.getDetailsBlog();
-         modelAndView.addObject("blogsDetails", blogDetails);
+        List<BlogDetailsDTO> blogDetails = blogService.getDetailsBlog();
+        modelAndView.addObject("blogsDetails", blogDetails);
 
-        return modelAndView ;
+        return modelAndView;
     }
 }

@@ -29,9 +29,9 @@ public class HomeController {
     @GetMapping("/")
     public ModelAndView index(@AuthenticationPrincipal UserDetails userDetails) {
 
-        if (counter == 0 ) {
+        if (counter == 0) {
             counter = ipAddressService.findAllVisits();
-            if (counter == null){
+            if (counter == null) {
                 counter = 1L;
             }
 
@@ -65,7 +65,7 @@ public class HomeController {
     }
 
     @GetMapping("/gallery")
-    public ModelAndView gallery(){
+    public ModelAndView gallery() {
         return new ModelAndView("gallery");
     }
 }

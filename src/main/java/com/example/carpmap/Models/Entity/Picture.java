@@ -6,7 +6,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "pictures")
-public class Picture extends BaseEntity{
+public class Picture extends BaseEntity {
 
     private String imageURL;
 

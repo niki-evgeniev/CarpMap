@@ -72,6 +72,7 @@ public class ReservoirController {
         return new ReservoirsAddDTO();
 
     }
+
     private static boolean checkForAdminRole(UserDetails userDetails) {
         String roleAdmin = "ROLE_" + RoleType.ADMIN;
         boolean hasRoleAdmin = userDetails.getAuthorities().stream()

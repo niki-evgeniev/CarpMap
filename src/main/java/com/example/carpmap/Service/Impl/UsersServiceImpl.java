@@ -105,7 +105,6 @@ public class UsersServiceImpl implements UsersService {
     }
 
 
-
     private void mapFirstAdmin(User firstAdmnUser) {
         Optional<Country> bg = countryRepository.findById(1L);
         if (bg.isPresent()) {

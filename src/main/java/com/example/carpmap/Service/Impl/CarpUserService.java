@@ -24,7 +24,7 @@ public class CarpUserService implements UserDetailsService {
         this.userRepository = userRepository;
 
     }
-    
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserDetails userDetails = userRepository.findByUsername(username)
