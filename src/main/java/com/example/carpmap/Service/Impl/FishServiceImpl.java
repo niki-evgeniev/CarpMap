@@ -53,13 +53,6 @@ public class FishServiceImpl implements FishService {
     @Override
     public List<FishNameDTO> getNonExistingFishType(List<String> fishName) {
         List<Fish> all = fishRepository.findAll();
-
-//        for (Fish fish : all) {
-//            if (fishName.contains(fish.getFishName())) {
-//               all.remove(fish);
-//            }
-//        }
-//
         List<FishNameDTO> fishNameDTOS = all.stream()
                 .map(this::fishNameDTO)
                 .toList();

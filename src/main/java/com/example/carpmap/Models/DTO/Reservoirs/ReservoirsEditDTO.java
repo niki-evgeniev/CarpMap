@@ -12,6 +12,8 @@ import java.util.List;
 
 public class ReservoirsEditDTO {
 
+    private Long id;
+
     @NotEmpty(message = "Reservoirs country must not be empty")
     @Size(min = 3, max = 20, message = "Country for Reservoirs length must be between 3 and 20 character!")
     private String country;
@@ -54,9 +56,18 @@ public class ReservoirsEditDTO {
     @NotEmpty(message = "Select at least 1 type of fish")
     private List<String> fishName;
 
+//    private List<FishNameDTO> fishName;
+
     public ReservoirsEditDTO() {
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getCountry() {
         return country;
@@ -153,4 +164,5 @@ public class ReservoirsEditDTO {
     public void setFishName(List<String> fishName) {
         this.fishName = fishName;
     }
+
 }

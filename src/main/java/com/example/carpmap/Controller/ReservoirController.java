@@ -1,9 +1,11 @@
 package com.example.carpmap.Controller;
 
+import com.example.carpmap.Models.DTO.Reservoirs.CountryDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.FishNameDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsAddDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsEditDTO;
 import com.example.carpmap.Models.Enums.RoleType;
+import com.example.carpmap.Service.CountryService;
 import com.example.carpmap.Service.FishService;
 import com.example.carpmap.Service.ReservoirsService;
 import jakarta.validation.Valid;
@@ -22,10 +24,12 @@ public class ReservoirController {
 
     private final ReservoirsService reservoirsService;
     private final FishService fishService;
+    private final CountryService countryService;
 
-    public ReservoirController(ReservoirsService reservoirsService, FishService fishService) {
+    public ReservoirController(ReservoirsService reservoirsService, FishService fishService, CountryService countryService) {
         this.reservoirsService = reservoirsService;
         this.fishService = fishService;
+        this.countryService = countryService;
     }
 
     @DeleteMapping("{id}")
@@ -44,26 +48,34 @@ public class ReservoirController {
 
         if (hasRoleAdmin) {
             ReservoirsEditDTO reservoirsEditDTO = reservoirsService.findReservoirToEdit(id);
-            //TODO FIX BUG
-//            List<FishNameDTO> fishTypeNonExist = fishService.getNonExistingFishType(reservoirsEditDTO.getFishName());
             List<FishNameDTO> allFishName = fishService.getAllFishName();
+            List<CountryDTO> allCountry = countryService.getAllCountry();
 
             ModelAndView modelAndView = new ModelAndView("reservoirEdit");
             modelAndView.addObject("reservoirsEditDTO", reservoirsEditDTO);
             modelAndView.addObject("fishTypeNonExist", allFishName);
+            modelAndView.addObject("allCountry", allCountry);
             return modelAndView;
         }
         return new ModelAndView("index");
     }
 
-    @PostMapping("reservoirsEdit")
+    @PostMapping("reservoirsEdit/{id}")
     public ModelAndView reservoirsEdit(@Valid ReservoirsEditDTO reservoirsEditDTO, BindingResult bindingResult) {
-        System.out.println();
-        Long idReservoir = reservoirsService.editReservoir(reservoirsEditDTO);
-        if (idReservoir == 0L) {
-            return new ModelAndView("index");
+        if (!bindingResult.hasErrors()) {
+            Long idReservoir = reservoirsService.editReservoir(reservoirsEditDTO);
+            if (idReservoir == 0L) {
+                return new ModelAndView("index");
+            }
+            return new ModelAndView("redirect:/reservoirs/" + idReservoir);
         }
-        return new ModelAndView("redirect:reservoirsAll/idReservoir");
+        List<FishNameDTO> allFishName = fishService.getAllFishName();
+        List<CountryDTO> allCountry = countryService.getAllCountry();
+        ModelAndView modelAndView = new ModelAndView("reservoirEdit");
+        modelAndView.addObject("fishTypeNonExist", allFishName);
+        modelAndView.addObject("allCountry", allCountry);
+
+        return modelAndView ;
     }
 
     @ModelAttribute

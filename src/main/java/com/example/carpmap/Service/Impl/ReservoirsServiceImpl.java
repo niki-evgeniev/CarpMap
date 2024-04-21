@@ -129,38 +129,58 @@ public class ReservoirsServiceImpl implements ReservoirsService {
 
     @Override
     public ReservoirsEditDTO findReservoirToEdit(Long id) {
-        Optional<Reservoir> findReservoirToEdit = reservoirRepository.findById(id);
-        ReservoirsEditDTO returnInfoForEdit = modelMapper.map(findReservoirToEdit, ReservoirsEditDTO.class);
-        returnInfoForEdit.setCountry(findReservoirToEdit.get().getCountry().getCountry());
-        List<Fish> fishReservoirToEdit = findReservoirToEdit.get().getFish();
+        Optional<Reservoir> editReservoirDetails = reservoirRepository.findById(id);
+        ReservoirsEditDTO returnInfoForEdit = modelMapper.map(editReservoirDetails, ReservoirsEditDTO.class);
+        returnInfoForEdit.setCountry(editReservoirDetails.get().getCountry().getCountry());
+        List<Fish> fishReservoirToEdit = editReservoirDetails.get().getFish();
         List<String> fishToAdd = new ArrayList<>();
-
         for (Fish f : fishReservoirToEdit) {
             fishToAdd.add(f.getFishName());
         }
         returnInfoForEdit.setFishName(fishToAdd);
+        System.out.printf(SUCCESSFUL_LOAD_RESERVOIR_TO_EDIT, returnInfoForEdit.getName(), returnInfoForEdit.getCountry(), returnInfoForEdit.getCity(),
+                returnInfoForEdit.getReservoirType(), returnInfoForEdit.getLatitude(), returnInfoForEdit.getLongitude());
+
+
         return returnInfoForEdit;
     }
 
     @Override
     public Long editReservoir(ReservoirsEditDTO reservoirsEditDTO) {
+        Optional<Reservoir> editReservoir = reservoirRepository.findById(reservoirsEditDTO.getId());
 
-        Optional<Reservoir> reservoirToEdit = reservoirRepository.findByName(reservoirsEditDTO.getName());
-        if (reservoirToEdit.isPresent()) {
-            Reservoir reservoirEditToDB = reservoirToEdit.get();
-            modelMapper.map(reservoirEditToDB, reservoirToEdit);
-            List<Fish> listAllFish = new ArrayList<>();
+        if (editReservoir.isPresent()) {
 
-            for (String fishName : reservoirsEditDTO.getFishName()) {
-                Optional<Fish> byFishName = fishRepository.findByFishName(fishName);
-                listAllFish.add(byFishName.get());
+            //map
+            if (!editReservoir.get().getCountry().getCountry().equals(reservoirsEditDTO.getCountry())) {
+                Optional<Country> setNewCountry = countryRepository.findByCountry(reservoirsEditDTO.getCountry());
+                editReservoir.get().setCountry(setNewCountry.get());
             }
-            reservoirEditToDB.setFish(listAllFish);
+            editReservoir.get().setCity(reservoirsEditDTO.getCity());
+            editReservoir.get().setName(reservoirsEditDTO.getName());
+            editReservoir.get().setLatitude(reservoirsEditDTO.getLatitude());
+            editReservoir.get().setLongitude(reservoirsEditDTO.getLongitude());
+            editReservoir.get().setMainUrlImage(reservoirsEditDTO.getMainUrlImage());
+            editReservoir.get().setInformation(reservoirsEditDTO.getInformation());
+            editReservoir.get().setDescription(reservoirsEditDTO.getDescription());
 
-            reservoirEditToDB.setModifiedDate(LocalDateTime.now());
+            if (editReservoir.get().getFish().size() != (reservoirsEditDTO.getFishName().size())) {
+                List<Fish> listAllFish = new ArrayList<>();
+                for (String fishName : reservoirsEditDTO.getFishName()) {
+                    Optional<Fish> byFishName = fishRepository.findByFishName(fishName);
+                    listAllFish.add(byFishName.get());
+                }
+                editReservoir.get().setFish(listAllFish);
+            }
+            editReservoir.get().setModifiedDate(LocalDateTime.now());
+            editReservoir.get().setReservoirType(reservoirsEditDTO.getReservoirType());
+            reservoirRepository.save(editReservoir.get());
 
-            System.out.println();
-            return reservoirToEdit.get().getId();
+            System.out.printf(SUCCESSFUL_EDIT_RESERVOIR, editReservoir.get().getName(),
+                    editReservoir.get().getCountry().getCountry(), editReservoir.get().getCity(),
+                    editReservoir.get().getReservoirType(), editReservoir.get().getLatitude(),
+                    editReservoir.get().getLongitude());
+            return reservoirsEditDTO.getId();
         }
         return 0L;
     }

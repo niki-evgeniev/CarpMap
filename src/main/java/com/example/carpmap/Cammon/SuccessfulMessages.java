@@ -8,12 +8,12 @@ public class SuccessfulMessages {
             "Successful register Country: %s, %n" +
                     " Country code: %s %n";
     public static final String SUCCESSFUL_ADD_RESERVOIR =
-            "Success added reservoir: %s %n" +
+            "Successful added reservoir: %s %n" +
                     " Country: %s %n";
     public static final String SUCCESSFUL_ADD_FISH_TYPE =
             "Success added Fish type: %s in DB %n";
     public static final String SUCCESSFUL_ADD_FISH_TYPE_TO_RESERVOIR =
-            "Success added type fish : %s for reservoir %s %n";
+            "Successful added type fish : %s for reservoir %s %n";
     public static final String SUCCESSFUL_ADD_BLOG =
             "Successful added blog with %n" +
                     " Title: %s %n" +
@@ -25,4 +25,22 @@ public class SuccessfulMessages {
             "Successful DELETE reservoir with name %s %n";
     public static final String SUCCESSFUL_ADD_IMAGE_TO_RESERVOIR =
             "SUCCESSFUL add picture to reservoir : %s %n";
+
+    public static final String SUCCESSFUL_LOAD_RESERVOIR_TO_EDIT =
+            "Successful load reservoir to edit with %n" +
+                    " name: %s %n" +
+                    " country: %s %n" +
+                    " city: %s %n" +
+                    " type: %s %n" +
+                    " latitude: %s %n" +
+                    " longitude: %s %n";
+
+    public static final String SUCCESSFUL_EDIT_RESERVOIR =
+            "Successful edit reservoir with %n" +
+                    " name: %s %n" +
+                    " country: %s %n" +
+                    " city: %s %n" +
+                    " type: %s %n" +
+                    " latitude: %s %n" +
+                    " longitude: %s %n";
 }
