@@ -8,12 +8,14 @@ import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ReservoirsEditDTO {
 
     @NotEmpty(message = "Reservoirs country must not be empty")
     @Size(min = 3, max = 20, message = "Country for Reservoirs length must be between 3 and 20 character!")
     private String country;
+
     @NotEmpty(message = "Reservoirs city must not be empty")
     @Size(min = 3, max = 20, message = "City for Reservoirs length must be between 3 and 20 character!")
     private String city;
@@ -32,24 +34,29 @@ public class ReservoirsEditDTO {
 
     @NotEmpty(message = "Reservoirs URL Image must not be empty")
     @Size(min = 3, max = 240, message = "URL Image for Reservoirs  length must be between 3 and 20 character!")
-    private String urlImage;
+    private String mainUrlImage;
+
     @NotNull
     private ReservoirType reservoirType;
 
-    @PastOrPresent
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     private LocalDateTime createDate;
 
+    private LocalDateTime modifiedDate;
+
+    @NotEmpty(message = "Reservoirs information must not be empty")
+    @Size(min = 3, max = 240, message = "information for Reservoirs length must be between 3 and 20 character!")
+    private String information;
 
     @NotEmpty(message = "Reservoirs description must not be empty")
-    @Size(min = 3, max = 240, message = "Description for Reservoirs length must be between 3 and 20 character!")
+    @Size(min = 3, max = 5000, message = "Description for Reservoirs length must be between 3 and 20 character!")
     private String description;
 
     @NotEmpty(message = "Select at least 1 type of fish")
-    private String[] fishName;
+    private List<String> fishName;
 
     public ReservoirsEditDTO() {
     }
+
 
     public String getCountry() {
         return country;
@@ -91,12 +98,12 @@ public class ReservoirsEditDTO {
         this.longitude = longitude;
     }
 
-    public String getUrlImage() {
-        return urlImage;
+    public String getMainUrlImage() {
+        return mainUrlImage;
     }
 
-    public void setUrlImage(String urlImage) {
-        this.urlImage = urlImage;
+    public void setMainUrlImage(String mainUrlImage) {
+        this.mainUrlImage = mainUrlImage;
     }
 
     public ReservoirType getReservoirType() {
@@ -115,6 +122,22 @@ public class ReservoirsEditDTO {
         this.createDate = createDate;
     }
 
+    public LocalDateTime getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(LocalDateTime modifiedDate) {
+        this.modifiedDate = modifiedDate;
+    }
+
+    public String getInformation() {
+        return information;
+    }
+
+    public void setInformation(String information) {
+        this.information = information;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -123,11 +146,11 @@ public class ReservoirsEditDTO {
         this.description = description;
     }
 
-    public String[] getFishName() {
+    public List<String> getFishName() {
         return fishName;
     }
 
-    public void setFishName(String[] fishName) {
+    public void setFishName(List<String> fishName) {
         this.fishName = fishName;
     }
 }

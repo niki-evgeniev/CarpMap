@@ -1294,3 +1294,11 @@ body > div.container-fluid.about.py-5 {
 .image-all-reservoir {
     position: relative;
 }
+
+.info-server {
+    margin-top: 5%;
+}
+
+.carousel-caption {
+    opacity: 0.5;
+}

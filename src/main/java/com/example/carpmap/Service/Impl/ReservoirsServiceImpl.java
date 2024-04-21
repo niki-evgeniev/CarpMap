@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -129,9 +130,39 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     @Override
     public ReservoirsEditDTO findReservoirToEdit(Long id) {
         Optional<Reservoir> findReservoirToEdit = reservoirRepository.findById(id);
-        ReservoirsEditDTO map = modelMapper.map(findReservoirToEdit, ReservoirsEditDTO.class);
-        map.setCountry(findReservoirToEdit.get().getCountry().toString());
+        ReservoirsEditDTO returnInfoForEdit = modelMapper.map(findReservoirToEdit, ReservoirsEditDTO.class);
+        returnInfoForEdit.setCountry(findReservoirToEdit.get().getCountry().getCountry());
+        List<Fish> fishReservoirToEdit = findReservoirToEdit.get().getFish();
+        List<String> fishToAdd = new ArrayList<>();
 
-        return map;
+        for (Fish f : fishReservoirToEdit) {
+            fishToAdd.add(f.getFishName());
+        }
+        returnInfoForEdit.setFishName(fishToAdd);
+        return returnInfoForEdit;
     }
+
+    @Override
+    public Long editReservoir(ReservoirsEditDTO reservoirsEditDTO) {
+
+        Optional<Reservoir> reservoirToEdit = reservoirRepository.findByName(reservoirsEditDTO.getName());
+        if (reservoirToEdit.isPresent()) {
+            Reservoir reservoirEditToDB = reservoirToEdit.get();
+            modelMapper.map(reservoirEditToDB, reservoirToEdit);
+            List<Fish> listAllFish = new ArrayList<>();
+
+            for (String fishName : reservoirsEditDTO.getFishName()) {
+                Optional<Fish> byFishName = fishRepository.findByFishName(fishName);
+                listAllFish.add(byFishName.get());
+            }
+            reservoirEditToDB.setFish(listAllFish);
+
+            reservoirEditToDB.setModifiedDate(LocalDateTime.now());
+
+            System.out.println();
+            return reservoirToEdit.get().getId();
+        }
+        return 0L;
+    }
+
 }

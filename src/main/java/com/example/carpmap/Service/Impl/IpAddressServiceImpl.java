@@ -67,6 +67,7 @@ public class IpAddressServiceImpl implements IpAddressService {
 
     private static void addView(Optional<IpAddress> findExistingIpAddress) {
         findExistingIpAddress.get().setCountVisits(findExistingIpAddress.get().getCountVisits() + 1L);
+        findExistingIpAddress.get().setLastSeen(LocalDateTime.now());
     }
 
     @Override
@@ -80,7 +81,10 @@ public class IpAddressServiceImpl implements IpAddressService {
             ipAddressRepository.save(addNewIpVisitor);
         } else {
             byAddress.get().setCountVisits(byAddress.get().getCountVisits() + 1);
+            byAddress.get().setLastSeen(LocalDateTime.now());
             ipAddressRepository.save(byAddress.get());
         }
+
+
     }
 }

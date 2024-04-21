@@ -9,4 +9,6 @@ public interface FishService {
     void addFishType();
 
     List<FishNameDTO> getAllFishName();
+
+    List<FishNameDTO> getNonExistingFishType(List<String> fishName);
 }

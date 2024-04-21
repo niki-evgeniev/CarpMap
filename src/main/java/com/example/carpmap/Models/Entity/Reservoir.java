@@ -30,12 +30,16 @@ public class Reservoir extends BaseEntity {
     @Column(name = "create_date")
     private LocalDateTime createDate;
 
+    @Column(name = "modified_date")
+    private LocalDateTime modifiedDate;
+
     @Column(name = "reservoir_type")
     @Enumerated(EnumType.STRING)
     private ReservoirType reservoirType;
 
     @Column(name = "information", columnDefinition = "TEXT")
     private String information;
+
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
@@ -102,6 +106,14 @@ public class Reservoir extends BaseEntity {
 
     public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
+    }
+
+    public LocalDateTime getModifiedDate() {
+        return modifiedDate;
+    }
+
+    public void setModifiedDate(LocalDateTime modifiedDate) {
+        this.modifiedDate = modifiedDate;
     }
 
     public ReservoirType getReservoirType() {

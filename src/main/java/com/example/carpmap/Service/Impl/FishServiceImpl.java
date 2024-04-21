@@ -1,7 +1,9 @@
 package com.example.carpmap.Service.Impl;
 
 import com.example.carpmap.Models.DTO.Reservoirs.FishNameDTO;
+import com.example.carpmap.Models.DTO.Reservoirs.ReservoirPicturesDTO;
 import com.example.carpmap.Models.Entity.Fish;
+import com.example.carpmap.Models.Entity.Picture;
 import com.example.carpmap.Models.Enums.FishType;
 import com.example.carpmap.Repository.FishRepository;
 import com.example.carpmap.Service.FishService;
@@ -28,7 +30,7 @@ public class FishServiceImpl implements FishService {
     public void addFishType() {
         if (fishRepository.count() == 0) {
             for (FishType value : FishType.values()) {
-                Fish fish =  new Fish();
+                Fish fish = new Fish();
                 fish.setFishName(value.name());
                 fishRepository.save(fish);
                 System.out.printf(SUCCESSFUL_ADD_FISH_TYPE, fish.getFishName());
@@ -46,5 +48,26 @@ public class FishServiceImpl implements FishService {
             fishAllNameDTO.add(fishNameDTO);
         }
         return fishAllNameDTO;
+    }
+
+    @Override
+    public List<FishNameDTO> getNonExistingFishType(List<String> fishName) {
+        List<Fish> all = fishRepository.findAll();
+
+//        for (Fish fish : all) {
+//            if (fishName.contains(fish.getFishName())) {
+//               all.remove(fish);
+//            }
+//        }
+//
+        List<FishNameDTO> fishNameDTOS = all.stream()
+                .map(this::fishNameDTO)
+                .toList();
+        return fishNameDTOS;
+    }
+
+    private FishNameDTO fishNameDTO(Fish fish) {
+        FishNameDTO map = modelMapper.map(fish, FishNameDTO.class);
+        return map;
     }
 }

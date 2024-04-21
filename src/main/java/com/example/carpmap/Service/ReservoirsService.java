@@ -21,4 +21,6 @@ public interface ReservoirsService {
     void deleteReservoir(Long id);
 
     ReservoirsEditDTO findReservoirToEdit(Long id);
+
+    Long editReservoir(ReservoirsEditDTO reservoirsEditDTO);
 }
