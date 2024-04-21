@@ -138,8 +138,12 @@ public class ReservoirsServiceImpl implements ReservoirsService {
             fishToAdd.add(f.getFishName());
         }
         returnInfoForEdit.setFishName(fishToAdd);
-        System.out.printf(SUCCESSFUL_LOAD_RESERVOIR_TO_EDIT, returnInfoForEdit.getName(), returnInfoForEdit.getCountry(), returnInfoForEdit.getCity(),
-                returnInfoForEdit.getReservoirType(), returnInfoForEdit.getLatitude(), returnInfoForEdit.getLongitude());
+        System.out.printf(SUCCESSFUL_LOAD_RESERVOIR_TO_EDIT, returnInfoForEdit.getName(),
+                returnInfoForEdit.getCountry(),
+                returnInfoForEdit.getCity(),
+                returnInfoForEdit.getReservoirType(),
+                returnInfoForEdit.getLatitude(),
+                returnInfoForEdit.getLongitude());
 
 
         return returnInfoForEdit;
@@ -177,8 +181,10 @@ public class ReservoirsServiceImpl implements ReservoirsService {
             reservoirRepository.save(editReservoir.get());
 
             System.out.printf(SUCCESSFUL_EDIT_RESERVOIR, editReservoir.get().getName(),
-                    editReservoir.get().getCountry().getCountry(), editReservoir.get().getCity(),
-                    editReservoir.get().getReservoirType(), editReservoir.get().getLatitude(),
+                    editReservoir.get().getCountry().getCountry(),
+                    editReservoir.get().getCity(),
+                    editReservoir.get().getReservoirType(),
+                    editReservoir.get().getLatitude(),
                     editReservoir.get().getLongitude());
             return reservoirsEditDTO.getId();
         }

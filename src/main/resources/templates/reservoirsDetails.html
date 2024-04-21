@@ -112,9 +112,10 @@
                 <p class="description" th:text="*{description}"></p>
             </div>
         </div>
-        <div class="col-sm-12 text-end">
-            <a sec:authorize="hasRole('ADMIN') or hasRole('MODERATOR')"
-               class="btn btn-warning rounded-pill py-2 px-4 ms-lg-2 "
+        <div class="col-sm-12 text-end" sec:authorize="hasRole('ADMIN') or hasRole('MODERATOR')">
+            <p class="details-title text-color mb-1">Admin Panel</p>
+            <br>
+            <a class="btn btn-warning rounded-pill py-2 px-4 ms-lg-2 "
                data-abc="true"
                th:href="@{/reservoirs/reservoirsEdit/{id}(id = *{id})}">EDIT</a>
             <br>
