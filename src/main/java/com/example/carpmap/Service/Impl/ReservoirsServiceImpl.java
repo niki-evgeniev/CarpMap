@@ -33,7 +33,8 @@ public class ReservoirsServiceImpl implements ReservoirsService {
 
     public ReservoirsServiceImpl(ModelMapper modelMapper, ReservoirRepository reservoirRepository,
                                  CountryRepository countryRepository, UserRepository userRepository,
-                                 FishRepository fishRepository, PictureService pictureService, PictureRepository pictureRepository) {
+                                 FishRepository fishRepository, PictureService pictureService,
+                                 PictureRepository pictureRepository) {
         this.modelMapper = modelMapper;
         this.reservoirRepository = reservoirRepository;
         this.countryRepository = countryRepository;
@@ -131,11 +132,13 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     public ReservoirsEditDTO findReservoirToEdit(Long id) {
         Optional<Reservoir> editReservoirDetails = reservoirRepository.findById(id);
         ReservoirsEditDTO returnInfoForEdit = modelMapper.map(editReservoirDetails, ReservoirsEditDTO.class);
-        returnInfoForEdit.setCountry(editReservoirDetails.get().getCountry().getCountry());
-        List<Fish> fishReservoirToEdit = editReservoirDetails.get().getFish();
+        editReservoirDetails.ifPresent(reservoir -> returnInfoForEdit.setCountry(reservoir.getCountry().getCountry()));
         List<String> fishToAdd = new ArrayList<>();
-        for (Fish f : fishReservoirToEdit) {
-            fishToAdd.add(f.getFishName());
+        if (editReservoirDetails.isPresent()) {
+            List<Fish> fishReservoirToEdit = editReservoirDetails.get().getFish();
+            for (Fish f : fishReservoirToEdit) {
+                fishToAdd.add(f.getFishName());
+            }
         }
         returnInfoForEdit.setFishName(fishToAdd);
         System.out.printf(SUCCESSFUL_LOAD_RESERVOIR_TO_EDIT, returnInfoForEdit.getName(),
@@ -144,7 +147,6 @@ public class ReservoirsServiceImpl implements ReservoirsService {
                 returnInfoForEdit.getReservoirType(),
                 returnInfoForEdit.getLatitude(),
                 returnInfoForEdit.getLongitude());
-
 
         return returnInfoForEdit;
     }
@@ -172,7 +174,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
                 List<Fish> listAllFish = new ArrayList<>();
                 for (String fishName : reservoirsEditDTO.getFishName()) {
                     Optional<Fish> byFishName = fishRepository.findByFishName(fishName);
-                    listAllFish.add(byFishName.get());
+                    byFishName.ifPresent(listAllFish::add);
                 }
                 editReservoir.get().setFish(listAllFish);
             }
