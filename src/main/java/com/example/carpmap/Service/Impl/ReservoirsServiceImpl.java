@@ -29,19 +29,18 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     private final UserRepository userRepository;
     private final FishRepository fishRepository;
     private final PictureService pictureService;
-    private final PictureRepository pictureRepository;
+
 
     public ReservoirsServiceImpl(ModelMapper modelMapper, ReservoirRepository reservoirRepository,
                                  CountryRepository countryRepository, UserRepository userRepository,
-                                 FishRepository fishRepository, PictureService pictureService,
-                                 PictureRepository pictureRepository) {
+                                 FishRepository fishRepository, PictureService pictureService) {
         this.modelMapper = modelMapper;
         this.reservoirRepository = reservoirRepository;
         this.countryRepository = countryRepository;
         this.userRepository = userRepository;
         this.fishRepository = fishRepository;
         this.pictureService = pictureService;
-        this.pictureRepository = pictureRepository;
+
     }
 
     @Override

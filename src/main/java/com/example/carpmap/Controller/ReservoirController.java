@@ -75,7 +75,7 @@ public class ReservoirController {
         modelAndView.addObject("fishTypeNonExist", allFishName);
         modelAndView.addObject("allCountry", allCountry);
 
-        return modelAndView ;
+        return modelAndView;
     }
 
     @ModelAttribute

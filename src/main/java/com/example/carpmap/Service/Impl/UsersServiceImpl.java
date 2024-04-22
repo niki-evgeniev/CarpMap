@@ -31,17 +31,15 @@ public class UsersServiceImpl implements UsersService {
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
     private final CountryRepository countryRepository;
-    private final IpAddressRepository ipAddressRepository;
 
     public UsersServiceImpl(UserRepository userRepository, UserRoleRepository userRoleRepository,
                             ModelMapper modelMapper, PasswordEncoder passwordEncoder,
-                            CountryRepository countryRepository, IpAddressRepository ipAddressRepository) {
+                            CountryRepository countryRepository) {
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
         this.countryRepository = countryRepository;
-        this.ipAddressRepository = ipAddressRepository;
     }
 
     @Override

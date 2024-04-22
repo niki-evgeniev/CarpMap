@@ -16,11 +16,11 @@ public class AddToDb implements CommandLineRunner {
     private final CountryService countryService;
     private final FishService fishService;
     private final BlogService blogService;
-
     private final IpAddressRepository ipAddressRepository;
 
     public AddToDb(UserRoleService userRoleService, UsersService usersService,
-                   CountryService countryService, FishService fishService, BlogService blogService, IpAddressRepository ipAddressRepository) {
+                   CountryService countryService, FishService fishService, BlogService blogService,
+                   IpAddressRepository ipAddressRepository) {
         this.userRoleService = userRoleService;
         this.usersService = usersService;
         this.countryService = countryService;

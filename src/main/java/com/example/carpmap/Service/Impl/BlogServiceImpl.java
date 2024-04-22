@@ -21,7 +21,6 @@ public class BlogServiceImpl implements BlogService {
 
     private final BlogRepository blogRepository;
     private final UserRepository userRepository;
-
     private final ModelMapper modelMapper;
 
     public BlogServiceImpl(BlogRepository blogRepository, UserRepository userRepository, ModelMapper modelMapper) {

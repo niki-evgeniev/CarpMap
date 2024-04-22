@@ -16,14 +16,12 @@ import java.time.LocalDateTime;
 public class HomeController {
 
     private final IpAddressService ipAddressService;
-    private final UsersService usersService;
 
     private Long counter = 0L;
 
 
-    public HomeController(IpAddressService ipAddressService, UsersService usersService) {
+    public HomeController(IpAddressService ipAddressService) {
         this.ipAddressService = ipAddressService;
-        this.usersService = usersService;
     }
 
     @GetMapping("/")
