@@ -105,11 +105,21 @@
             </div>
         </div>
     </div>
-    <div class="container my-5">
+    <div class="container my-5" th:object="${details}">
         <div class="row">
-            <div class="product-details my-4 col-md-12" th:object="${details}">
+            <div class="product-details my-4 col-md-12">
                 <p class="details-title text-color mb-1">More Information</p>
                 <p class="description" th:text="*{description}"></p>
+            </div>
+        </div>
+        <div class="col-12">
+            <div th:if="*{iFrameMap} != null"
+                    class="rounded">
+                <p class="details-title text-color mb-1">Guidance</p>
+                <iframe class="rounded w-100"
+                        th:src="*{iFrameMap}"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
         <div class="col-sm-12 text-end" sec:authorize="hasRole('ADMIN') or hasRole('MODERATOR')">

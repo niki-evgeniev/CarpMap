@@ -24,6 +24,8 @@ public class ReservoirsDetailsDTO {
 
     private String longitude;
 
+    private String iFrameMap;
+
     private LocalDateTime createDate;
 
     private String country;
@@ -97,6 +99,14 @@ public class ReservoirsDetailsDTO {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public String getiFrameMap() {
+        return iFrameMap;
+    }
+
+    public void setiFrameMap(String iFrameMap) {
+        this.iFrameMap = iFrameMap;
     }
 
     public LocalDateTime getCreateDate() {

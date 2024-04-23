@@ -24,6 +24,9 @@ public class Reservoir extends BaseEntity {
     @Column(name = "longitude")
     private String longitude;
 
+    @Column(name = "iFrame_map", columnDefinition = "TEXT")
+    private String iFrameMap;
+
     @Column(name = "main_url_image")
     private String mainUrlImage;
 
@@ -90,6 +93,14 @@ public class Reservoir extends BaseEntity {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public String getiFrameMap() {
+        return iFrameMap;
+    }
+
+    public void setiFrameMap(String iFrameMap) {
+        this.iFrameMap = iFrameMap;
     }
 
     public String getMainUrlImage() {
