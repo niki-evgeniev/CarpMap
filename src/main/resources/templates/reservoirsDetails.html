@@ -112,9 +112,9 @@
                 <p class="description" th:text="*{description}"></p>
             </div>
         </div>
-        <div class="col-12">
-            <div th:if="*{iFrameMap} != null"
-                    class="rounded">
+        <div th:unless="*{iFrameMap} == null or *{iFrameMap.isEmpty()}"
+                class="col-12">
+            <div class="rounded">
                 <p class="details-title text-color mb-1">Guidance</p>
                 <iframe class="rounded w-100"
                         th:src="*{iFrameMap}"

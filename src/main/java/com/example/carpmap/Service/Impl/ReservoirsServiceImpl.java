@@ -168,6 +168,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
             editReservoir.get().setMainUrlImage(reservoirsEditDTO.getMainUrlImage());
             editReservoir.get().setInformation(reservoirsEditDTO.getInformation());
             editReservoir.get().setDescription(reservoirsEditDTO.getDescription());
+            editReservoir.get().setiFrameMap(reservoirsEditDTO.getiFrameMap());
 
             if (editReservoir.get().getFish().size() != (reservoirsEditDTO.getFishName().size())) {
                 List<Fish> listAllFish = new ArrayList<>();

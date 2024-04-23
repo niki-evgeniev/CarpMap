@@ -34,6 +34,10 @@ public class ReservoirsEditDTO {
     @Size(min = 3, max = 20, message = "Longitude for Reservoirs length must be between 3 and 20 character!")
     private String longitude;
 
+    @NotEmpty(message = "Reservoirs iFrameMap must not be empty")
+    @Size(min = 3, max = 500, message = "iFrameMap for Reservoirs length must be between 3 and 500 character!")
+    private String iFrameMap;
+
     @NotEmpty(message = "Reservoirs URL Image must not be empty")
     @Size(min = 3, max = 240, message = "URL Image for Reservoirs  length must be between 3 and 20 character!")
     private String mainUrlImage;
@@ -107,6 +111,14 @@ public class ReservoirsEditDTO {
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public String getiFrameMap() {
+        return iFrameMap;
+    }
+
+    public void setiFrameMap(String iFrameMap) {
+        this.iFrameMap = iFrameMap;
     }
 
     public String getMainUrlImage() {

@@ -80,7 +80,8 @@ public class ReservoirsController {
         ModelAndView modelAndView = new ModelAndView("reservoirsDetails");
         ReservoirsDetailsDTO reservoirsDetailsDTO = reservoirsService.getDetails(id);
         List<ReservoirPicturesDTO> reservoirPicturesList = pictureService.getAllReservoirPicture(id);
-        modelAndView.addObject("details", reservoirsDetailsDTO);
+        modelAndView.addObject("details",reservoirsDetailsDTO);
+//        modelAndView.addObject("details", reservoirsDetailsDTO);
         modelAndView.addObject("pictures", reservoirPicturesList);
         return modelAndView;
     }
