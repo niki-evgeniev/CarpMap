@@ -32,28 +32,10 @@
                         <div class="single-explore-img">
                             <a class="image-all-reservoir" th:href="@{/reservoirs/{id}(id = *{id})}">
                                 <img th:src="*{urlImage}" alt="explore image"></a>
-
-                            <!--                            <div class="single-explore-img-info">-->
-                            <!--                                <button onclick="window.location.href='#'">best rated</button>-->
-                            <!--                                <div class="single-explore-image-icon-box">-->
-                            <!--                                    <ul>-->
-                            <!--                                        <li>-->
-                            <!--                                            <div class="single-explore-image-icon">-->
-                            <!--                                                <i class="fa fa-arrows-alt"></i>-->
-                            <!--                                            </div>-->
-                            <!--                                        </li>-->
-                            <!--                                        <li>-->
-                            <!--                                            <div class="single-explore-image-icon">-->
-                            <!--                                                <i class="fa fa-bookmark-o"></i>-->
-                            <!--                                            </div>-->
-                            <!--                                        </li>-->
-                            <!--                                    </ul>-->
-                            <!--                                </div>-->
-                            <!--                            </div>-->
                         </div>
                         <div class="single-explore-txt bg-theme-1">
                             <h2><a th:href="@{/reservoirs/{id}(id = *{id})}"
-                                   th:text="*{name}">tommy helfinger bar</a></h2>
+                                   th:text="'яз. ' + *{name}">tommy helfinger bar</a></h2>
                             <p class="explore-rating-price">
                                 <span class="explore-rating">5.0</span>
                                 <a href="#"> 10 ratings</a>

@@ -1,5 +1,6 @@
 package com.example.carpmap.AppConfiguration;
 
+import com.example.carpmap.Models.Enums.RoleType;
 import com.example.carpmap.Repository.UserRepository;
 import com.example.carpmap.Service.Impl.CarpUserService;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,6 +38,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/reservoirs/reservoirsAll", "/reservoirs/reservoirsAdd", "/reservoirs/{id}").permitAll()
                         .requestMatchers("/about", "/blog", "/contact").permitAll()
                         .requestMatchers("/gallery").permitAll()
+                        .requestMatchers("/reservoirs/reservoirsEdit/{id}").hasAnyRole(RoleType.MODERATOR.name())
 
                         .anyRequest().authenticated()
         ).formLogin(

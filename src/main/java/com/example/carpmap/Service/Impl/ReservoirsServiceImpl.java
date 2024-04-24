@@ -117,10 +117,10 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     @Override
     public void deleteReservoir(Long id) {
         Optional<Reservoir> toDelete = reservoirRepository.findById(id);
-        pictureService.deleteAllListOfPicture(id);
+//        pictureService.deleteAllListOfPicture(id);
 
         if (toDelete.isPresent()) {
-            reservoirRepository.deleteById(id);
+//            reservoirRepository.deleteById(id);
             System.out.printf(SUCCESSFUL_DELETE_RESERVOIR, toDelete.get().getName());
         } else {
             System.out.print(NOT_FOUND_TO_DELETE_RESERVOIR);

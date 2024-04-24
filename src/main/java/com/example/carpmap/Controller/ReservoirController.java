@@ -32,7 +32,7 @@ public class ReservoirController {
         this.countryService = countryService;
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("delete/{id}")
     public ModelAndView delete(@PathVariable("id") Long id,
                                @AuthenticationPrincipal UserDetails userDetails) {
         if (checkForAdminRole(userDetails)) {

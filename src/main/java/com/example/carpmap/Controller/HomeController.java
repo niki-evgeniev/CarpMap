@@ -19,7 +19,6 @@ public class HomeController {
 
     private Long counter = 0L;
 
-
     public HomeController(IpAddressService ipAddressService) {
         this.ipAddressService = ipAddressService;
     }
