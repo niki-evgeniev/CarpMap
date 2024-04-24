@@ -29,10 +29,10 @@
         </div>
         <div class="col-lg-4 text-center text-lg-end">
             <div class="d-inline-flex align-items-center" style="height: 45px;">
-                <th:block sec:authorize="isAuthenticated()">
-                    <a href="#" class="me-3 text-light"><i class="fas fa-user-alt me-2"></i> Welcome ,
-                        <span sec:authentication="name"></span></a>
-                </th:block>
+                <!--                <th:block sec:authorize="isAuthenticated()">-->
+                <!--                    <a href="#" class="me-3 text-light"><i class="fas fa-user-alt me-2"></i> Welcome ,-->
+                <!--                        <span sec:authentication="name"></span></a>-->
+                <!--                </th:block>-->
                 <a sec:authorize="hasRole('ADMIN')" th:href="@{/users/register}">
                     <small class="me-3 text-light">
                         <i class="fa fa-user me-2"></i>Register</small></a>
@@ -44,7 +44,19 @@
                     <a href="#" class="dropdown-toggle text-light" data-bs-toggle="dropdown"><small><i
                             class="fa fa-home me-2"></i> My Dashboard</small></a>
                     <div class="dropdown-menu rounded">
-                        <a href="#" class="dropdown-item"><i class="fas fa-user-alt me-2"></i> My Profile</a>
+                        <a href="#" class="dropdown-item text-end">Welcome,
+                            <span sec:authentication="name"></span></a>
+                        <th:block sec:authorize="hasRole('ADMIN')">
+                            <a href="#" class="dropdown-item text-end">ADMIN</a>
+                        </th:block>
+                        <th:block sec:authorize="hasRole('MODERATOR') and !hasRole('ADMIN')" >
+                            <a href="#" class="dropdown-item text-end">MODERATOR</a>
+                        </th:block>
+                        <th:block sec:authorize="hasRole('USER') and !hasRole('ADMIN') and !hasRole('MODERATOR')">
+                            <a href="#" class="dropdown-item text-end">USER</a>
+                        </th:block>
+
+                        <a th:href="@{/profile/details}" class="dropdown-item"><i class="fas fa-user-alt me-2"></i> My Profile</a>
                         <a href="#" class="dropdown-item"><i class="fas fa-comment-alt me-2"></i> Inbox</a>
                         <a href="#" class="dropdown-item"><i class="fas fa-bell me-2"></i> Notifications</a>
                         <a href="#" class="dropdown-item"><i class="fas fa-cog me-2"></i> Account Settings</a>
