@@ -12,14 +12,17 @@
 
 <th:block th:replace="~{fragments/navbar}"></th:block>
 <main>
-    <section class="section profile">
-        <div class="row">
-            <div class="col-xl-4">
 
+    <section class="section profile">
+        <div class="section-header">
+            <h2 class="text-center">Profile manager</h2>
+        </div><!--/.section-header-->
+        <div class="row profile-view">
+            <div class="col-xl-12">
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-
-                        <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
+                        <img src="/images/277348542_5331251560231792_5412271903652794342_n.jpg" alt="Profile"
+                             class="rounded-circle">
                         <h2>Kevin Anderson</h2>
                         <h3>Web Designer</h3>
                         <div class="social-links mt-2">
@@ -30,10 +33,6 @@
                         </div>
                     </div>
                 </div>
-
-            </div>
-
-            <div class="col-xl-8">
 
                 <div class="card">
                     <div class="card-body pt-3">
@@ -121,7 +120,8 @@
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
                                             Image</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <img src="assets/img/profile-img.jpg" alt="Profile">
+                                            <img src="/images/277348542_5331251560231792_5412271903652794342_n.jpg"
+                                                 alt="Profile">
                                             <div class="pt-2">
                                                 <a href="#" class="btn btn-primary btn-sm"
                                                    title="Upload new profile image"><i class="bi bi-upload"></i></a>

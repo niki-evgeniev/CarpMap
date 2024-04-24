@@ -1,4 +1,3 @@
-
 /*** Spinner Start ***/
 /*** Spinner ***/
 #spinner {
@@ -13,6 +12,7 @@
     visibility: visible;
     opacity: 1;
 }
+
 /*** Spinner End ***/
 
 .back-to-top {
@@ -146,9 +146,10 @@
 
 @media (max-width: 768px) {
     .topbar {
-        display: none;    
+        display: none;
     }
 }
+
 /*** Topbar End ***/
 
 
@@ -255,7 +256,7 @@
     }
 
     .navbar-light .navbar-nav .nav-link:hover,
-    .navbar-light .navbar-nav .nav-link.active  {
+    .navbar-light .navbar-nav .nav-link.active {
         color: var(--bs-primary) !important;
     }
 
@@ -273,7 +274,7 @@
         border-bottom: 1px solid rgba(255, 255, 255, .1);
         z-index: 999;
     }
-    
+
     .sticky-top.navbar-light {
         position: fixed;
         background: var(--bs-light);
@@ -343,7 +344,7 @@
 
 .carousel-header .carousel-inner .carousel-item {
     position: relative;
-    min-height: 100vh 
+    min-height: 100vh
 }
 
 .carousel-header .carousel-inner .carousel-item img {
@@ -353,7 +354,7 @@
     object-fit: cover;
 }
 
-.carousel-header .carousel-inner .carousel-item .carousel-caption  {
+.carousel-header .carousel-inner .carousel-item .carousel-caption {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -383,12 +384,13 @@
     .carousel-header .carousel-control-next .carousel-control-next-icon {
         opacity: 0;
     }
-    
+
     .search-bar {
         margin-top: -100px;
         transition: 0.5s;
     }
 }
+
 /*** Carousel Hero Header End ***/
 
 
@@ -405,6 +407,7 @@
 .bg-breadcrumb .breadcrumb-item a {
     color: var(--bs-secondary) !important;
 }
+
 /*** Single Page Hero Header End ***/
 
 
@@ -426,6 +429,7 @@
     margin-right: -50px;
     border: 1px solid var(--bs-primary) !important;
 }
+
 /*** About End ***/
 
 
@@ -433,6 +437,7 @@
 .service .service-content-inner {
     transition: 0.5s;
 }
+
 .service .service-content-inner:hover {
     position: relative;
     background: var(--bs-primary) !important;
@@ -449,6 +454,7 @@
 .service .service-content-inner:hover .service-icon i {
     color: var(--bs-white) !important;
 }
+
 /*** Service End ***/
 
 
@@ -491,6 +497,7 @@
 .destination .tab-class .nav-item {
     padding: 0 0 20px 0;
 }
+
 .destination .tab-class .nav-item a.active {
     background: var(--bs-primary) !important;
 }
@@ -518,6 +525,7 @@
 .destination .tab-class .tab-content .destination-img:hover img {
     transform: scale(1.2);
 }
+
 /*** Destination End ***/
 
 
@@ -585,15 +593,15 @@
 
 .packages .packages-item .packages-img .packages-price {
     position: absolute;
-    width: 100px; 
-    top: 0; 
-    left: 50%; 
+    width: 100px;
+    top: 0;
+    left: 50%;
     transform: translateX(-50%);
     display: inline-block;
     background: var(--bs-primary);
     color: var(--bs-white);
     border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px; 
+    border-bottom-right-radius: 10px;
     z-index: 5;
 }
 
@@ -637,6 +645,7 @@
 .packages .packages-carousel .owl-nav .owl-next:hover i {
     color: var(--bs-white);
 }
+
 /*** Packages End ***/
 
 
@@ -644,6 +653,7 @@
 .ExploreTour .tab-class .nav-item {
     padding: 0 0 20px 0;
 }
+
 .ExploreTour .tab-class .nav-item a.active {
     background: var(--bs-primary) !important;
 }
@@ -806,6 +816,7 @@
     width: 40px;
     background: var(--bs-primary);
 }
+
 /*** Explore Tour End ***/
 
 
@@ -854,8 +865,8 @@
 
 .gallery .gallery-item:hover .gallery-content .gallery-info,
 .gallery .gallery-item:hover .gallery-plus-icon {
-   opacity: 1;
-   margin: 0;
+    opacity: 1;
+    margin: 0;
 }
 
 .gallery .gallery-item img {
@@ -873,6 +884,7 @@
 .gallery .tab-class .nav-item {
     padding: 0 0 20px 0;
 }
+
 .gallery .tab-class .nav-item a.active {
     background: var(--bs-primary) !important;
 }
@@ -890,7 +902,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    
+
 }
 
 
@@ -922,7 +934,6 @@
 }
 
 
-
 /*** Tour Booking end ***/
 
 /*** Travel Guide Start ***/
@@ -932,8 +943,8 @@
 
 .guide .guide-item .guide-img .guide-icon {
     position: absolute;
-    bottom: 0; 
-    left: 50%; 
+    bottom: 0;
+    left: 50%;
     transform: translate(-50%, -50%);
     margin-bottom: -50px;
     display: flex;
@@ -970,6 +981,7 @@
 .guide .guide-item .guide-img-efects img {
     transition: 0.5s;
 }
+
 .guide .guide-item:hover .guide-img-efects img {
     transform: scale(1.1);
 }
@@ -1012,6 +1024,7 @@
 .guide .guide-item:hover .guide-title .guide-title-inner h4 {
     color: var(--bs-white);
 }
+
 /*** Travel Guide End ***/
 
 
@@ -1080,6 +1093,7 @@
 .blog .blog-item .blog-img:hover .blog-img-inner img {
     transform: scale(1.2);
 }
+
 /*** Blog End ***/
 
 /*** Testimonial Start ***/
@@ -1089,11 +1103,12 @@
 
 .testimonial .testimonial-carousel .testimonial-item .testimonial-img {
     position: relative;
-    width: 100px; 
-    height: 100px; 
-    top: 0; left: 50%; 
+    width: 100px;
+    height: 100px;
+    top: 0;
+    left: 50%;
     transform: translate(-50%, -50%);
-    border: 3px solid var(--bs-primary); 
+    border: 3px solid var(--bs-primary);
     border-style: dotted;
     border-radius: 50%;
 }
@@ -1166,10 +1181,11 @@
 }
 
 .testimonial .testimonial-carousel .owl-item.center .testimonial-item .testimonial-img {
-    border: 3px solid var(--bs-white); 
+    border: 3px solid var(--bs-white);
     border-style: dotted;
     transition: 0.5s;
 }
+
 /*** Testimonial End ***/
 
 /*** Contact Start ***/
@@ -1181,6 +1197,7 @@
     box-shadow: inset 1000px 0 0 0 var(--bs-light) !important;
     color: var(--bs-primary) !important;
 }
+
 /*** Contact End ***/
 
 /*** Subscribe Start ***/
@@ -1220,12 +1237,14 @@
     margin-left: -50px;
     border: 1px solid var(--bs-white) !important;
 }
+
 /*** Subscribe End ***/
 
 /*** Footer Start ***/
 .footer {
     background: var(--bs-dark);
 }
+
 .footer .footer-item a {
     line-height: 30px;
     color: var(--bs-white);
@@ -1244,21 +1263,25 @@
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     background: var(--bs-dark) !important;
 }
+
 /*** copyright end ***/
 
 body > div.container-fluid.position-relative.p-0 > nav {
     background-color: #70a9ff;
 }
+
 .registerUser {
     margin-top: 50px;
 }
-.addRes{
+
+.addRes {
     margin-right: auto;
     margin-top: 10%;
     margin-bottom: 10%;
 }
 
 @media (min-width: 192px)
+
 .body > div.container-fluid.bg-primary.px-5.d-none.d-lg-block {
     display: block;
 }
@@ -1268,14 +1291,14 @@ body > div.container-fluid.position-relative.p-0 > nav {
 }
 
 body > div.container-fluid.contact.bg-light.py-5 {
-    margin-top: 7%;
+    margin-top: 5%;
 }
 
 body > div.container-fluid.about.py-5 {
     margin-top: 6%;
 }
 
-#exampleModal > div{
+#exampleModal > div {
     max-width: 900px;
 }
 
@@ -1284,9 +1307,10 @@ body > div.container-fluid.about.py-5 {
     margin-bottom: 5%;
 }
 
-.img-detail{
+.img-detail {
     margin-bottom: 8%;
 }
+
 .gallery-plus-icon {
     font-size: 8rem;
 }
@@ -1302,3 +1326,72 @@ body > div.container-fluid.about.py-5 {
 .carousel-caption {
     opacity: 0.5;
 }
+
+.profile {
+    margin-top: 15%;
+    margin-bottom: 15%;
+}
+.explore {
+    margin-top: 3%;
+}
+
+/*--------------------------------------------------------------
+# Profile Page
+--------------------------------------------------------------*/
+.profile .profile-card img {
+    max-width: 120px;
+}
+
+.profile .profile-card h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2c384e;
+    margin: 10px 0 0 0;
+}
+
+.profile .profile-card h3 {
+    font-size: 18px;
+}
+
+.profile .profile-card .social-links a {
+    font-size: 20px;
+    display: inline-block;
+    color: rgba(1, 41, 112, 0.5);
+    line-height: 0;
+    margin-right: 10px;
+    transition: 0.3s;
+}
+
+.profile .profile-card .social-links a:hover {
+    color: #012970;
+}
+
+.profile .profile-overview .row {
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.profile .profile-overview .card-title {
+    color: #012970;
+}
+
+.profile .profile-overview .label {
+    font-weight: 600;
+    color: rgba(1, 41, 112, 0.6);
+}
+
+.profile .profile-edit label {
+    font-weight: 600;
+    color: rgba(1, 41, 112, 0.6);
+}
+
+.profile .profile-edit img {
+    max-width: 120px;
+}
+
+.profile-view {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 90%;
+}
+

@@ -34,8 +34,8 @@
             </p>
         </div>
         <div class="row g-4 justify-content-center">
-            <div th:each="bl : ${blogsDetails}"
-                 th:object="${bl}"
+            <div th:each="blog : ${blogsDetails}"
+                 th:object="${blog}"
                  class="col-lg-4 col-md-6">
                 <div class="blog-item">
                     <div class="blog-img">
@@ -43,7 +43,8 @@
                             <img class="img-fluid w-100 rounded-top"
                                  th:src="*{urlImage}" alt="Image">
                             <div class="blog-icon">
-                                <a href="#" class="my-auto"><i class="fas fa-link fa-2x text-white"></i></a>
+                                <a th:href="*{urlVideo}" class="my-auto">
+                                    <i class="fas fa-link fa-2x text-white"></i></a>
                             </div>
                         </div>
                         <div class="blog-info d-flex align-items-center border border-start-0 border-end-0">
@@ -60,7 +61,7 @@
                         <p th:text="'Posted By: ' + *{authorName}"
                            class="mb-3"> Royal Hamblin </p>
                         <a th:text="*{titleBlog}"
-                           href="#"
+                           th:href="*{urlVideo}"
                            class="h4">Adventures Trip</a>
                         <p th:text="*{description}"
                            class="my-3">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam

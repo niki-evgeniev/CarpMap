@@ -44,23 +44,25 @@
                     <a href="#" class="dropdown-toggle text-light" data-bs-toggle="dropdown"><small><i
                             class="fa fa-home me-2"></i> My Dashboard</small></a>
                     <div class="dropdown-menu rounded">
-                        <a href="#" class="dropdown-item text-end">Welcome,
+                        <a href="#" class="dropdown-item text-center text-info">Welcome,
                             <span sec:authentication="name"></span></a>
                         <th:block sec:authorize="hasRole('ADMIN')">
-                            <a href="#" class="dropdown-item text-end">ADMIN</a>
+                            <a href="#" class="dropdown-item text-center text-info"><b>ADMIN</b></a>
                         </th:block>
-                        <th:block sec:authorize="hasRole('MODERATOR') and !hasRole('ADMIN')" >
-                            <a href="#" class="dropdown-item text-end">MODERATOR</a>
+                        <th:block sec:authorize="hasRole('MODERATOR') and !hasRole('ADMIN')">
+                            <a href="#" class="dropdown-item text-center text-info"><b>MODERATOR</b></a>
                         </th:block>
                         <th:block sec:authorize="hasRole('USER') and !hasRole('ADMIN') and !hasRole('MODERATOR')">
-                            <a href="#" class="dropdown-item text-end">USER</a>
+                            <a href="#" class="dropdown-item text-center text-info"><b>USER</b></a>
                         </th:block>
 
-                        <a th:href="@{/profile/details}" class="dropdown-item"><i class="fas fa-user-alt me-2"></i> My Profile</a>
+                        <a th:href="@{/profile/details}" class="dropdown-item"><i class="fas fa-user-alt me-2"></i> My
+                            Profile</a>
                         <a href="#" class="dropdown-item"><i class="fas fa-comment-alt me-2"></i> Inbox</a>
                         <a href="#" class="dropdown-item"><i class="fas fa-bell me-2"></i> Notifications</a>
                         <a href="#" class="dropdown-item"><i class="fas fa-cog me-2"></i> Account Settings</a>
-                        <a href="#" class="dropdown-item"><i class="fas fa-power-off me-2"></i> Log Out</a>
+
+
                     </div>
                 </div>
             </div>
