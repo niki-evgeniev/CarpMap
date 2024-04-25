@@ -56,17 +56,10 @@ public class ReservoirsServiceImpl implements ReservoirsService {
             Optional<User> findUser = userRepository.findByUsername(userDetails.getUsername());
 
             if (findUser.isPresent()) {
-                List<Fish> fish = new ArrayList<>();
-                for (String fishName : reservoirsAddDTO.getFishName()) {
-                    Optional<Fish> findFishName = fishRepository.findByFishName(fishName);
-                    findFishName.ifPresent(fish::add);
-                    System.out.printf(SUCCESSFUL_ADD_FISH_TYPE_TO_RESERVOIR,
-                            fishName, reservoirsAddDTO.getName());
-                }
+                List<Fish> fish = getFish(reservoirsAddDTO);
 
                 addNewReservoirs.setFish(fish);
                 addNewReservoirs.setUser(findUser.get());
-                System.out.println();
                 reservoirRepository.save(addNewReservoirs);
                 System.out.printf(SUCCESSFUL_ADD_RESERVOIR,
                         reservoirsAddDTO.getName(), reservoirsAddDTO.getCountry());
@@ -80,6 +73,17 @@ public class ReservoirsServiceImpl implements ReservoirsService {
         }
         System.out.printf(COUNTRY_NOT_FOUND, reservoirsAddDTO.getCountry());
         return false;
+    }
+
+    private List<Fish> getFish(ReservoirsAddDTO reservoirsAddDTO) {
+        List<Fish> fish = new ArrayList<>();
+        for (String fishName : reservoirsAddDTO.getFishName()) {
+            Optional<Fish> findFishName = fishRepository.findByFishName(fishName);
+            findFishName.ifPresent(fish::add);
+            System.out.printf(SUCCESSFUL_ADD_FISH_TYPE_TO_RESERVOIR,
+                    fishName, reservoirsAddDTO.getName());
+        }
+        return fish;
     }
 
     @Override

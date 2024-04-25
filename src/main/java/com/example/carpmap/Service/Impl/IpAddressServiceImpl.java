@@ -52,11 +52,12 @@ public class IpAddressServiceImpl implements IpAddressService {
             newAddress.setAddress(ipAddress);
             newAddress.setTimeToAdd(LocalDateTime.now());
             newAddress.setCountVisits(1L);
-            newAddress.setUser(findUser.get());
+            findUser.ifPresent(newAddress::setUser);
+//            newAddress.setUser(findUser.get());
             ipAddressRepository.save(newAddress);
         } else if (findExistingIpAddress.get().getUser() == null) {
             Optional<User> findUser = userRepository.findByUsername(username);
-            findExistingIpAddress.get().setUser(findUser.get());
+            findUser.ifPresent(user -> findExistingIpAddress.get().setUser(user));
             addView(findExistingIpAddress);
             ipAddressRepository.save(findExistingIpAddress.get());
         } else {
@@ -66,8 +67,10 @@ public class IpAddressServiceImpl implements IpAddressService {
     }
 
     private static void addView(Optional<IpAddress> findExistingIpAddress) {
-        findExistingIpAddress.get().setCountVisits(findExistingIpAddress.get().getCountVisits() + 1L);
-        findExistingIpAddress.get().setLastSeen(LocalDateTime.now());
+        if (findExistingIpAddress.isPresent()) {
+            findExistingIpAddress.get().setCountVisits(findExistingIpAddress.get().getCountVisits() + 1L);
+            findExistingIpAddress.get().setLastSeen(LocalDateTime.now());
+        }
     }
 
     @Override

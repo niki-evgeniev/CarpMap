@@ -105,9 +105,7 @@ public class UsersServiceImpl implements UsersService {
 
     private void mapFirstAdmin(User firstAdmnUser) {
         Optional<Country> bg = countryRepository.findById(1L);
-        if (bg.isPresent()) {
-            firstAdmnUser.setCountry(bg.get().getCountry());
-        }
+        bg.ifPresent(country -> firstAdmnUser.setCountry(country.getCountry()));
         firstAdmnUser.setFirstName("Nikolay");
         firstAdmnUser.setLastName("Ivanov");
         firstAdmnUser.setCreateOn(LocalDate.now());

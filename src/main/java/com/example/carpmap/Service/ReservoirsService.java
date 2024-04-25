@@ -14,14 +14,16 @@ public interface ReservoirsService {
 
     boolean checkNameExisting(String name);
 
+    ReservoirsEditDTO findReservoirToEdit(Long id);
+
+    Long editReservoir(ReservoirsEditDTO reservoirsEditDTO, UserDetails userDetails);
+
     Page<ReservoirAllDTO> getAllReservoirs(Pageable pageable);
 
     ReservoirsDetailsDTO getDetails(Long id);
 
     void deleteReservoir(Long id);
 
-    ReservoirsEditDTO findReservoirToEdit(Long id);
 
 
-    Long editReservoir(ReservoirsEditDTO reservoirsEditDTO, UserDetails userDetails);
 }
