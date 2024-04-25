@@ -64,6 +64,11 @@ public class SecurityConfiguration {
                             .rememberMeParameter("remember-me")
                             .rememberMeCookieName("remember-me");
                 }
+        ).portMapper(
+                httpSecurityHTTPS -> {
+                    httpSecurityHTTPS
+                            .http(8080).mapsTo(443);
+                }
         );
         return httpSecurity.build();
 
