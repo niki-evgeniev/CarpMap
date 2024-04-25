@@ -3,13 +3,14 @@ package com.example.carpmap.Service;
 import com.example.carpmap.Models.DTO.Reservoirs.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetails;
 
 
 import java.util.Optional;
 
 public interface ReservoirsService {
 
-    boolean addReservoirs(ReservoirsAddDTO reservoirsAddDTO);
+    boolean addReservoirs(ReservoirsAddDTO reservoirsAddDTO, UserDetails userDetails);
 
     boolean checkNameExisting(String name);
 
@@ -21,5 +22,6 @@ public interface ReservoirsService {
 
     ReservoirsEditDTO findReservoirToEdit(Long id);
 
-    Long editReservoir(ReservoirsEditDTO reservoirsEditDTO);
+
+    Long editReservoir(ReservoirsEditDTO reservoirsEditDTO, UserDetails userDetails);
 }

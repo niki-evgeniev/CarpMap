@@ -9,6 +9,7 @@ import com.example.carpmap.Service.ReservoirsService;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 
@@ -44,7 +45,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     }
 
     @Override
-    public boolean addReservoirs(ReservoirsAddDTO reservoirsAddDTO) {
+    public boolean addReservoirs(ReservoirsAddDTO reservoirsAddDTO, UserDetails userDetails) {
         Reservoir addNewReservoirs = modelMapper.map(reservoirsAddDTO, Reservoir.class);
         Optional<Country> country = countryRepository.findByCountry(reservoirsAddDTO.getCountry());
         List<String> pictureLink = List.of(reservoirsAddDTO.getUrlImage2(),
@@ -52,7 +53,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
 
         if (country.isPresent()) {
             addNewReservoirs.setCountry(country.get());
-            Optional<User> findUser = userRepository.findById(1L);
+            Optional<User> findUser = userRepository.findByUsername(userDetails.getUsername());
 
             if (findUser.isPresent()) {
                 List<Fish> fish = new ArrayList<>();
@@ -65,6 +66,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
 
                 addNewReservoirs.setFish(fish);
                 addNewReservoirs.setUser(findUser.get());
+                System.out.println();
                 reservoirRepository.save(addNewReservoirs);
                 System.out.printf(SUCCESSFUL_ADD_RESERVOIR,
                         reservoirsAddDTO.getName(), reservoirsAddDTO.getCountry());
@@ -117,10 +119,10 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     @Override
     public void deleteReservoir(Long id) {
         Optional<Reservoir> toDelete = reservoirRepository.findById(id);
-//        pictureService.deleteAllListOfPicture(id);
+        pictureService.deleteAllListOfPicture(id);
 
         if (toDelete.isPresent()) {
-//            reservoirRepository.deleteById(id);
+            reservoirRepository.deleteById(id);
             System.out.printf(SUCCESSFUL_DELETE_RESERVOIR, toDelete.get().getName());
         } else {
             System.out.print(NOT_FOUND_TO_DELETE_RESERVOIR);
@@ -131,7 +133,8 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     public ReservoirsEditDTO findReservoirToEdit(Long id) {
         Optional<Reservoir> editReservoirDetails = reservoirRepository.findById(id);
         ReservoirsEditDTO returnInfoForEdit = modelMapper.map(editReservoirDetails, ReservoirsEditDTO.class);
-        editReservoirDetails.ifPresent(reservoir -> returnInfoForEdit.setCountry(reservoir.getCountry().getCountry()));
+        editReservoirDetails.ifPresent(reservoir -> returnInfoForEdit.setCountry(reservoir.getCountry()
+                                                                        .getCountry()));
         List<String> fishToAdd = new ArrayList<>();
         if (editReservoirDetails.isPresent()) {
             List<Fish> fishReservoirToEdit = editReservoirDetails.get().getFish();
@@ -141,56 +144,60 @@ public class ReservoirsServiceImpl implements ReservoirsService {
         }
         returnInfoForEdit.setFishName(fishToAdd);
         System.out.printf(SUCCESSFUL_LOAD_RESERVOIR_TO_EDIT, returnInfoForEdit.getName(),
-                returnInfoForEdit.getCountry(),
-                returnInfoForEdit.getCity(),
-                returnInfoForEdit.getReservoirType(),
-                returnInfoForEdit.getLatitude(),
+                returnInfoForEdit.getCountry(), returnInfoForEdit.getCity(),
+                returnInfoForEdit.getReservoirType(), returnInfoForEdit.getLatitude(),
                 returnInfoForEdit.getLongitude());
 
         return returnInfoForEdit;
     }
 
     @Override
-    public Long editReservoir(ReservoirsEditDTO reservoirsEditDTO) {
-        Optional<Reservoir> editReservoir = reservoirRepository.findById(reservoirsEditDTO.getId());
+    public Long editReservoir(ReservoirsEditDTO reservoirsEditDTO, UserDetails userDetails) {
+        Optional<Reservoir> findReservoir = reservoirRepository.findById(reservoirsEditDTO.getId());
 
-        if (editReservoir.isPresent()) {
+        if (findReservoir.isPresent()) {
 
-            //map
-            if (!editReservoir.get().getCountry().getCountry().equals(reservoirsEditDTO.getCountry())) {
-                Optional<Country> setNewCountry = countryRepository.findByCountry(reservoirsEditDTO.getCountry());
-                editReservoir.get().setCountry(setNewCountry.get());
-            }
-            editReservoir.get().setCity(reservoirsEditDTO.getCity());
-            editReservoir.get().setName(reservoirsEditDTO.getName());
-            editReservoir.get().setLatitude(reservoirsEditDTO.getLatitude());
-            editReservoir.get().setLongitude(reservoirsEditDTO.getLongitude());
-            editReservoir.get().setMainUrlImage(reservoirsEditDTO.getMainUrlImage());
-            editReservoir.get().setInformation(reservoirsEditDTO.getInformation());
-            editReservoir.get().setDescription(reservoirsEditDTO.getDescription());
-            editReservoir.get().setiFrameMap(reservoirsEditDTO.getiFrameMap());
+            Reservoir editReservoir = editingReservoir(reservoirsEditDTO, userDetails, findReservoir);
 
-            if (editReservoir.get().getFish().size() != (reservoirsEditDTO.getFishName().size())) {
-                List<Fish> listAllFish = new ArrayList<>();
-                for (String fishName : reservoirsEditDTO.getFishName()) {
-                    Optional<Fish> byFishName = fishRepository.findByFishName(fishName);
-                    byFishName.ifPresent(listAllFish::add);
-                }
-                editReservoir.get().setFish(listAllFish);
-            }
-            editReservoir.get().setModifiedDate(LocalDateTime.now());
-            editReservoir.get().setReservoirType(reservoirsEditDTO.getReservoirType());
-            reservoirRepository.save(editReservoir.get());
+            reservoirRepository.save(editReservoir);
 
-            System.out.printf(SUCCESSFUL_EDIT_RESERVOIR, editReservoir.get().getName(),
-                    editReservoir.get().getCountry().getCountry(),
-                    editReservoir.get().getCity(),
-                    editReservoir.get().getReservoirType(),
-                    editReservoir.get().getLatitude(),
-                    editReservoir.get().getLongitude());
+            System.out.printf(SUCCESSFUL_EDIT_RESERVOIR, editReservoir.getName(),
+                    editReservoir.getCountry().getCountry(), editReservoir.getCity(),
+                    editReservoir.getReservoirType(), editReservoir.getLatitude(),
+                    editReservoir.getLongitude());
             return reservoirsEditDTO.getId();
         }
         return 0L;
+    }
+
+    private Reservoir editingReservoir(ReservoirsEditDTO reservoirsEditDTO, UserDetails userDetails, Optional<Reservoir> findReservoir) {
+        Reservoir editReservoir = modelMapper.map(reservoirsEditDTO, Reservoir.class);
+
+        if (findReservoir.isPresent()){
+            editReservoir.setCountry(findReservoir.get().getCountry());
+            editReservoir.setFish(findReservoir.get().getFish());
+            LocalDateTime createDate = findReservoir.get().getCreateDate();
+            editReservoir.setCreateDate(createDate);
+        }
+
+        Optional<User> user = userRepository.findByUsername(userDetails.getUsername());
+        user.ifPresent(editReservoir::setUser);
+        editReservoir.setModifiedDate(LocalDateTime.now());
+
+        if (!editReservoir.getCountry().getCountry().equals(reservoirsEditDTO.getCountry())) {
+            Optional<Country> setNewCountry = countryRepository.findByCountry(reservoirsEditDTO.getCountry());
+            setNewCountry.ifPresent(editReservoir::setCountry);
+        }
+
+        if (editReservoir.getFish().size() != (reservoirsEditDTO.getFishName().size())) {
+            List<Fish> listAllFish = new ArrayList<>();
+            for (String fishName : reservoirsEditDTO.getFishName()) {
+                Optional<Fish> byFishName = fishRepository.findByFishName(fishName);
+                byFishName.ifPresent(listAllFish::add);
+            }
+            editReservoir.setFish(listAllFish);
+        }
+        return editReservoir;
     }
 
 }

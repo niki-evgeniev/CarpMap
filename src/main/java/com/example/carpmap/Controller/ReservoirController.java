@@ -61,9 +61,10 @@ public class ReservoirController {
     }
 
     @PostMapping("reservoirsEdit/{id}")
-    public ModelAndView reservoirsEdit(@Valid ReservoirsEditDTO reservoirsEditDTO, BindingResult bindingResult) {
+    public ModelAndView reservoirsEdit(@Valid ReservoirsEditDTO reservoirsEditDTO, BindingResult bindingResult,
+                                       @AuthenticationPrincipal UserDetails userDetails) {
         if (!bindingResult.hasErrors()) {
-            Long idReservoir = reservoirsService.editReservoir(reservoirsEditDTO);
+            Long idReservoir = reservoirsService.editReservoir(reservoirsEditDTO,userDetails);
             if (idReservoir == 0L) {
                 return new ModelAndView("index");
             }

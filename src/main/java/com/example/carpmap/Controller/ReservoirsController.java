@@ -9,6 +9,8 @@ import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -56,10 +58,11 @@ public class ReservoirsController {
 
     @PostMapping("reservoirsAdd")
     public ModelAndView reservoirsAdd(@Valid ReservoirsAddDTO reservoirsAddDTO,
-                                      BindingResult bindingResult) {
+                                      BindingResult bindingResult,
+                                      @AuthenticationPrincipal UserDetails userDetails) {
         boolean isExistNameOfReservoir = reservoirsService.checkNameExisting(reservoirsAddDTO.getName());
         if (!bindingResult.hasErrors() && !isExistNameOfReservoir) {
-            boolean isAddedReservoirs = reservoirsService.addReservoirs(reservoirsAddDTO);
+            boolean isAddedReservoirs = reservoirsService.addReservoirs(reservoirsAddDTO, userDetails);
             if (isAddedReservoirs) {
                 return new ModelAndView("redirect:/");
             }
@@ -81,7 +84,6 @@ public class ReservoirsController {
         ReservoirsDetailsDTO reservoirsDetailsDTO = reservoirsService.getDetails(id);
         List<ReservoirPicturesDTO> reservoirPicturesList = pictureService.getAllReservoirPicture(id);
         modelAndView.addObject("details",reservoirsDetailsDTO);
-//        modelAndView.addObject("details", reservoirsDetailsDTO);
         modelAndView.addObject("pictures", reservoirPicturesList);
         return modelAndView;
     }
