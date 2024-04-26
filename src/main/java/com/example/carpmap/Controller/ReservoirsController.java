@@ -60,7 +60,9 @@ public class ReservoirsController {
     public ModelAndView reservoirsAdd(@Valid ReservoirsAddDTO reservoirsAddDTO,
                                       BindingResult bindingResult,
                                       @AuthenticationPrincipal UserDetails userDetails) {
+
         boolean isExistNameOfReservoir = reservoirsService.checkNameExisting(reservoirsAddDTO.getName());
+
         if (!bindingResult.hasErrors() && !isExistNameOfReservoir) {
             boolean isAddedReservoirs = reservoirsService.addReservoirs(reservoirsAddDTO, userDetails);
             if (isAddedReservoirs) {
@@ -71,6 +73,7 @@ public class ReservoirsController {
                 System.out.println(allError.getDefaultMessage());
             }
         }
+
         ModelAndView modelAndView = getAllCountry();
         modelAndView.addObject("isExistNameOfReservoir", isExistNameOfReservoir);
         List<FishNameDTO> fishNamesDTOS = fishService.getAllFishName();
