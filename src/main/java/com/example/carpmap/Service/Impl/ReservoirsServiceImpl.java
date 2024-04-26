@@ -95,7 +95,8 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     @Override
     public Page<ReservoirAllDTO> getAllReservoirs(Pageable pageable) {
         Page<Reservoir> findAllReservoir = reservoirRepository.findAll(pageable);
-        Page<ReservoirAllDTO> allReservoirs = findAllReservoir.map(reservoir -> {
+        Page<ReservoirAllDTO> allReservoirs = findAllReservoir
+                .map(reservoir -> {
             return modelMapper.map(reservoir, ReservoirAllDTO.class);
         });
 

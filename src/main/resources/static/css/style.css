@@ -1328,8 +1328,8 @@ body > div.container-fluid.about.py-5 {
 }
 
 .profile {
-    margin-top: 15%;
-    margin-bottom: 15%;
+    margin-top: 10%;
+    margin-bottom: 10%;
 }
 .explore {
     margin-top: 3%;
@@ -1395,7 +1395,7 @@ body > div.container-fluid.about.py-5 {
     max-width: 90%;
 }
 .table-users {
-    margin: 15% auto;
+    margin: 10% auto;
     max-width: 90%;
 }
 .button-details {

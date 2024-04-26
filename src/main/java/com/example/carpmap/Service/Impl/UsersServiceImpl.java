@@ -1,5 +1,6 @@
 package com.example.carpmap.Service.Impl;
 
+import com.example.carpmap.Models.DTO.Profile.ProfileAllDTO;
 import com.example.carpmap.Models.DTO.Users.ErrorRegister;
 import com.example.carpmap.Models.DTO.Users.RegisterDTO;
 import com.example.carpmap.Models.Entity.Country;
@@ -12,6 +13,8 @@ import com.example.carpmap.Repository.UserRepository;
 import com.example.carpmap.Repository.UserRoleRepository;
 import com.example.carpmap.Service.UsersService;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -101,7 +104,6 @@ public class UsersServiceImpl implements UsersService {
 
         return errors;
     }
-
 
     private void mapFirstAdmin(User firstAdmnUser) {
         Optional<Country> bg = countryRepository.findById(1L);

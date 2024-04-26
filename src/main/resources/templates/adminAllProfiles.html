@@ -12,81 +12,41 @@
 
 <th:block th:replace="~{fragments/navbar}"></th:block>
 
-<!--<section class="top-area">-->
-<!--    <th:block th:replace="~{fragments/navbar}"></th:block>-->
-<!--</section>&lt;!&ndash; /.top-area&ndash;&gt;-->
 <main>
 
     <section class="section table-users">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6 text-center mb-5">
-                    <h2 class="heading-section">Table #03</h2>
+                    <h2 class="heading-section">All users</h2>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" >
                 <div class="col-md-12">
-                    <h4 class="text-center mb-4">Create Your Domain Name</h4>
+                    <h4 class="text-center mb-4">Information about users</h4>
                     <div class="table-wrap">
                         <table class="table">
                             <thead class="thead-primary">
                             <tr>
-                                <th>TLD</th>
-                                <th>Duration</th>
-                                <th>Registration</th>
-                                <th>Renewal</th>
-                                <th>Transfer</th>
-                                <th>Register</th>
+                                <th>ID</th>
+                                <th>First name</th>
+                                <th>Last Name</th>
+                                <th>@Username</th>
+                                <th>Role</th>
+                                <th>Added</th>
+                                <th>Details</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row" class="scope" >.com</th>
-                                <td>1 Year</td>
-                                <td>$70.00</td>
-                                <td>$5.00</td>
-                                <td>$5.00</td>
-                                <td><a href="#" class="btn btn-primary">Sign Up</a></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="scope" >.net</th>
-                                <td>1 Year</td>
-                                <td>$75.00</td>
-                                <td>$5.00</td>
-                                <td>$5.00</td>
-                                <td><a href="#" class="btn btn-primary">Sign Up</a></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="scope" >.org</th>
-                                <td>1 Year</td>
-                                <td>$65.00</td>
-                                <td>$5.00</td>
-                                <td>$5.00</td>
-                                <td><a href="#" class="btn btn-primary">Sign Up</a></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="scope" >.biz</th>
-                                <td>1 Year</td>
-                                <td>$60.00</td>
-                                <td>$5.00</td>
-                                <td>$5.00</td>
-                                <td><a href="#" class="btn btn-primary">Sign Up</a></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="scope" >.info</th>
-                                <td>1 Year</td>
-                                <td>$50.00</td>
-                                <td>$5.00</td>
-                                <td>$5.00</td>
-                                <td><a href="#" class="btn btn-primary">Sign Up</a></td>
-                            </tr>
-                            <tr>
-                                <th scope="row" class="scope border-bottom-0">.me</th>
-                                <td class="border-bottom-0">1 Year</td>
-                                <td class="border-bottom-0">$45.00</td>
-                                <td class="border-bottom-0">$5.00</td>
-                                <td class="border-bottom-0">$5.00</td>
-                                <td class="border-bottom-0"><a href="#" class="btn btn-primary">Sign Up</a></td>
+                            <tr th:each=" profile : ${allProfiles.getContent()}"
+                               th:object="${profile}" >
+                                <th scope="row" class="scope" th:text="${profile.id}" >.com</th>
+                                <td th:text="*{firstName}">1 Year</td>
+                                <td th:text="*{lastName}">$70000000.00</td>
+                                <td th:text="*{username}">$5.00</td>
+                                <td th:text="*{role}">Role</td>
+                                <td th:text="*{createOn}">$5.00</td>
+                                <td><a href="#" class="btn btn-primary">Details</a></td>
                             </tr>
                             </tbody>
                         </table>
@@ -94,8 +54,26 @@
                 </div>
             </div>
         </div>
-
     </section>
+    <nav aria-label="Page navigation" class="d-flex justify-content-center">
+        <ul th:fragment="ALL" class="pagination text-center">
+            <li th:class="${!allProfiles.hasPrevious()} ? 'page-item disabled' : 'page-item'">
+                <a class="page-link" th:if="${allProfiles.hasPrevious()}"
+                   th:href="@{/profile/profiles(page=${allProfiles.previousPageable().pageNumber})}">Previous</a>
+            </li>
+
+            <li th:each="i : ${#numbers.sequence(0, allProfiles.totalPages - 1)}"
+                th:class="${i == allProfiles.number} ? 'page-item active' : 'page-item'">
+                <a class="page-link" th:href="@{/profile/profiles(page=${i})}" th:text="${i + 1}"></a>
+            </li>
+
+            <li th:class="${!allProfiles.hasNext()} ? 'page-item disabled' : 'page-item'">
+                <a class="page-link" th:if="${allProfiles.hasNext()}"
+                   th:href="@{/profile/profiles(page=${allProfiles.nextPageable().pageNumber})}">Next</a>
+            </li>
+        </ul>
+    </nav>
+    <br>
     <th:block th:replace="~{fragments/footer}"></th:block>
     <th:block th:replace="~{fragments/js}"></th:block>
 
