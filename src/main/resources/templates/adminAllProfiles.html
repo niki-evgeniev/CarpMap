@@ -46,7 +46,8 @@
                                 <td th:text="*{username}">$5.00</td>
                                 <td th:text="*{role}">Role</td>
                                 <td th:text="*{createOn}">$5.00</td>
-                                <td><a href="#" class="btn btn-primary">Details</a></td>
+                                <td><a href="#" class="btn btn-primary"
+                                       th:href="@{/admin/details/byId/{id}(id = *{id})}">Details</a></td>
                             </tr>
                             </tbody>
                         </table>

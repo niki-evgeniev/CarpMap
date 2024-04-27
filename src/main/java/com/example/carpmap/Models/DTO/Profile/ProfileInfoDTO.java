@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 
 public class ProfileInfoDTO {
 
+    private Long id;
+
     private String firstName;
 
     private String lastName;
@@ -26,6 +28,14 @@ public class ProfileInfoDTO {
     private LocalDateTime modified;
 
     public ProfileInfoDTO() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFirstName() {

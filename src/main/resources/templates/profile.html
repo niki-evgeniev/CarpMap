@@ -18,13 +18,13 @@
             <h2 class="text-center">Profile manager</h2>
         </div><!--/.section-header-->
         <div class="row profile-view">
-            <div class="col-xl-12">
+            <div class="col-xl-12" th:object="${profileInfoDTO}">
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                         <img src="/images/277348542_5331251560231792_5412271903652794342_n.jpg" alt="Profile"
                              class="rounded-circle">
-                        <h2>Kevin Anderson</h2>
-                        <h3>Web Designer</h3>
+                        <h2 th:text="*{firstName} + ' ' + ' ' + *{lastName}">Kevin Anderson</h2>
+                        <h3 th:text="*{team}">Web Designer</h3>
                         <div class="social-links mt-2">
                             <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                 </div>
-
+                <br>
                 <div class="card">
                     <div class="card-body pt-3">
                         <!-- Bordered Tabs -->
@@ -77,47 +77,65 @@
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">First Name</div>
-                                    <div class="col-lg-9 col-md-8">Kevin Anderson</div>
+                                    <div class="col-lg-9 col-md-8"
+                                         th:text="*{firstName}">Kevin Anderson
+                                    </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Last Name</div>
-                                    <div class="col-lg-9 col-md-8">Lueilwitz, Wisoky and Leuschke</div>
+                                    <div class="col-lg-9 col-md-8"
+                                         th:text="*{lastName}">Lueilwitz, Wisoky and Leuschke
+                                    </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Team</div>
-                                    <div class="col-lg-9 col-md-8">Web Designer</div>
+                                    <div class="col-lg-9 col-md-8"
+                                         th:text="*{team}">Carpoholics
+                                    </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Country</div>
-                                    <div class="col-lg-9 col-md-8">USA</div>
+                                    <div class="col-lg-9 col-md-8"
+                                         th:text="*{country}">BG
+                                    </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">City</div>
-                                    <div class="col-lg-9 col-md-8">A108 Adam Street, New York, NY 535022</div>
+                                    <div class="col-lg-9 col-md-8"
+                                         th:text="*{city}">Gorna
+                                    </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Phone</div>
-                                    <div class="col-lg-9 col-md-8">(436) 486-3538 x29071</div>
+                                    <div class="col-lg-9 col-md-8"
+                                         th:text="*{phone}">x29071
+                                    </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Email</div>
-                                    <div class="col-lg-9 col-md-8">k.anderson@example.com</div>
+                                    <div class="col-lg-9 col-md-8"
+                                         th:text="*{email}">day_wallker
+                                    </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Create On</div>
-                                    <div class="col-lg-9 col-md-8">date</div>
+                                    <div class="col-lg-9 col-md-8"
+                                         th:text="*{createOn}">date
+                                    </div>
                                 </div>
 
-                                <div class="row">
+                                <div class="row" th:if="*{modified} != null">
                                     <div class="col-lg-3 col-md-4 label">Modified on</div>
-                                    <div class="col-lg-9 col-md-8">date</div>
+                                    <div class="col-lg-9 col-md-8"
+                                         th:text="*{modified}">date
+                                    </div>
                                 </div>
 
                             </div>

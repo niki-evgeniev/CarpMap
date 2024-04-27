@@ -39,6 +39,9 @@ public class SecurityConfiguration {
                         .requestMatchers("/about", "/blog", "/contact").permitAll()
                         .requestMatchers("/gallery").permitAll()
                         .requestMatchers("/reservoirs/reservoirsEdit/{id}").hasAnyRole(RoleType.MODERATOR.name())
+                        .requestMatchers("/reservoirs/delete/{id}").hasAnyRole(RoleType.ADMIN.name())
+                        .requestMatchers("/reservoirs/reservoirsAdd").hasAnyRole(RoleType.MODERATOR.name())
+                        .requestMatchers("/profile/profiles").hasAnyRole(RoleType.ADMIN.name())
 
                         .anyRequest().authenticated()
         ).formLogin(
