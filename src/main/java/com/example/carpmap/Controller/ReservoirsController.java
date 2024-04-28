@@ -86,7 +86,7 @@ public class ReservoirsController {
         ReservoirsDetailsDTO reservoirsDetailsDTO = reservoirsService.getDetails(id);
 
         if (reservoirsDetailsDTO == null) {
-            return new ModelAndView("redirect:/");
+            return new ModelAndView("errors/errorFindPage");
         }
         List<ReservoirPicturesDTO> reservoirPicturesList = pictureService.getAllReservoirPicture(id);
         modelAndView.addObject("details", reservoirsDetailsDTO);

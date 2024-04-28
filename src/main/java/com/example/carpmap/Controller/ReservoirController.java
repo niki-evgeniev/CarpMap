@@ -49,7 +49,7 @@ public class ReservoirController {
         if (hasRoleAdmin) {
             ReservoirsEditDTO reservoirsEditDTO = reservoirsService.findReservoirToEdit(id);
             if (reservoirsEditDTO == null) {
-                return new ModelAndView("redirect:/");
+                return new ModelAndView("errors/errorFindPage");
             }
 
             List<FishNameDTO> allFishName = fishService.getAllFishName();
@@ -70,7 +70,7 @@ public class ReservoirController {
         if (!bindingResult.hasErrors()) {
             Long idReservoir = reservoirsService.editReservoir(reservoirsEditDTO, userDetails);
             if (idReservoir == 0L) {
-                return new ModelAndView("index");
+                return new ModelAndView("errors/errorFindPage");
             }
             return new ModelAndView("redirect:/reservoirs/" + idReservoir);
         }
