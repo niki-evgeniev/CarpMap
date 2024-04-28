@@ -7,6 +7,8 @@ import com.example.carpmap.Service.PictureService;
 import com.example.carpmap.Service.ReservoirsService;
 
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,6 +26,7 @@ import static com.example.carpmap.Cammon.SuccessfulMessages.*;
 @Service
 public class ReservoirsServiceImpl implements ReservoirsService {
 
+    private final Logger LOGGER = LoggerFactory.getLogger(ReservoirsServiceImpl.class);
     private final ModelMapper modelMapper;
     private final ReservoirRepository reservoirRepository;
     private final CountryRepository countryRepository;
@@ -97,8 +100,8 @@ public class ReservoirsServiceImpl implements ReservoirsService {
         Page<Reservoir> findAllReservoir = reservoirRepository.findAll(pageable);
         Page<ReservoirAllDTO> allReservoirs = findAllReservoir
                 .map(reservoir -> {
-            return modelMapper.map(reservoir, ReservoirAllDTO.class);
-        });
+                    return modelMapper.map(reservoir, ReservoirAllDTO.class);
+                });
 
         return allReservoirs;
     }
@@ -116,8 +119,14 @@ public class ReservoirsServiceImpl implements ReservoirsService {
                 mapDBFishType.setFishName(fish.getFishName());
                 fihsNameList.add(mapDBFishType);
             }
+            reservoirsDetailsDTO.setFishNameDTO(fihsNameList);
         }
-        reservoirsDetailsDTO.setFishNameDTO(fihsNameList);
+
+        if (reservoirsDetailsDTO == null) {
+            String errMsg = String.format(RESERVOIR_WITH_ID_NOT_FOUND_REDIRECT_TO_INDEX, id);
+            LOGGER.error(errMsg);
+        }
+
         return reservoirsDetailsDTO;
     }
 
@@ -136,24 +145,31 @@ public class ReservoirsServiceImpl implements ReservoirsService {
 
     @Override
     public ReservoirsEditDTO findReservoirToEdit(Long id) {
-        Optional<Reservoir> editReservoirDetails = reservoirRepository.findById(id);
-        ReservoirsEditDTO returnInfoForEdit = modelMapper.map(editReservoirDetails, ReservoirsEditDTO.class);
-        editReservoirDetails.ifPresent(reservoir -> returnInfoForEdit.setCountry(reservoir.getCountry()
-                                                                        .getCountry()));
-        List<String> fishToAdd = new ArrayList<>();
-        if (editReservoirDetails.isPresent()) {
-            List<Fish> fishReservoirToEdit = editReservoirDetails.get().getFish();
-            for (Fish f : fishReservoirToEdit) {
-                fishToAdd.add(f.getFishName());
-            }
-        }
-        returnInfoForEdit.setFishName(fishToAdd);
-        System.out.printf(SUCCESSFUL_LOAD_RESERVOIR_TO_EDIT, returnInfoForEdit.getName(),
-                returnInfoForEdit.getCountry(), returnInfoForEdit.getCity(),
-                returnInfoForEdit.getReservoirType(), returnInfoForEdit.getLatitude(),
-                returnInfoForEdit.getLongitude());
+        Optional<Reservoir> reservoirDetails = reservoirRepository.findById(id);
+        ReservoirsEditDTO editingReservoir = modelMapper.map(reservoirDetails, ReservoirsEditDTO.class);
 
-        return returnInfoForEdit;
+        if (reservoirDetails.isEmpty()) {
+            String errMsg = String.format(RESERVOIR_WITH_ID_NOT_FOUND, id);
+            LOGGER.error(errMsg);
+            return null;
+        }
+
+        reservoirDetails.ifPresent(reservoir -> editingReservoir.setCountry(reservoir.getCountry()
+                .getCountry()));
+
+        List<Fish> fishReservoirToEdit = reservoirDetails.get().getFish();
+        List<String> fishToAdd = fishReservoirToEdit
+                .stream()
+                .map(Fish::getFishName)
+                .toList();
+        editingReservoir.setFishName(fishToAdd);
+
+        System.out.printf(SUCCESSFUL_LOAD_RESERVOIR_TO_EDIT, editingReservoir.getName(),
+                editingReservoir.getCountry(), editingReservoir.getCity(),
+                editingReservoir.getReservoirType(), editingReservoir.getLatitude(),
+                editingReservoir.getLongitude());
+
+        return editingReservoir;
     }
 
     @Override
@@ -178,7 +194,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     private Reservoir editingReservoir(ReservoirsEditDTO reservoirsEditDTO, UserDetails userDetails, Optional<Reservoir> findReservoir) {
         Reservoir editReservoir = modelMapper.map(reservoirsEditDTO, Reservoir.class);
 
-        if (findReservoir.isPresent()){
+        if (findReservoir.isPresent()) {
             editReservoir.setCountry(findReservoir.get().getCountry());
             editReservoir.setFish(findReservoir.get().getFish());
             LocalDateTime createDate = findReservoir.get().getCreateDate();

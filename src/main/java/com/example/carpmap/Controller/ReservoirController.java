@@ -48,6 +48,10 @@ public class ReservoirController {
 
         if (hasRoleAdmin) {
             ReservoirsEditDTO reservoirsEditDTO = reservoirsService.findReservoirToEdit(id);
+            if (reservoirsEditDTO == null) {
+                return new ModelAndView("redirect:/");
+            }
+
             List<FishNameDTO> allFishName = fishService.getAllFishName();
             List<CountryDTO> allCountry = countryService.getAllCountry();
 
@@ -64,7 +68,7 @@ public class ReservoirController {
     public ModelAndView reservoirsEdit(@Valid ReservoirsEditDTO reservoirsEditDTO, BindingResult bindingResult,
                                        @AuthenticationPrincipal UserDetails userDetails) {
         if (!bindingResult.hasErrors()) {
-            Long idReservoir = reservoirsService.editReservoir(reservoirsEditDTO,userDetails);
+            Long idReservoir = reservoirsService.editReservoir(reservoirsEditDTO, userDetails);
             if (idReservoir == 0L) {
                 return new ModelAndView("index");
             }

@@ -84,8 +84,12 @@ public class ReservoirsController {
     public ModelAndView details(@PathVariable("id") Long id) {
         ModelAndView modelAndView = new ModelAndView("reservoirsDetails");
         ReservoirsDetailsDTO reservoirsDetailsDTO = reservoirsService.getDetails(id);
+
+        if (reservoirsDetailsDTO == null) {
+            return new ModelAndView("redirect:/");
+        }
         List<ReservoirPicturesDTO> reservoirPicturesList = pictureService.getAllReservoirPicture(id);
-        modelAndView.addObject("details",reservoirsDetailsDTO);
+        modelAndView.addObject("details", reservoirsDetailsDTO);
         modelAndView.addObject("pictures", reservoirPicturesList);
         return modelAndView;
     }
