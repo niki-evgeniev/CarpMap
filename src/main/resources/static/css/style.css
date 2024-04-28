@@ -1331,6 +1331,7 @@ body > div.container-fluid.about.py-5 {
     margin-top: 10%;
     margin-bottom: 10%;
 }
+
 .explore {
     margin-top: 3%;
 }
@@ -1394,16 +1395,21 @@ body > div.container-fluid.about.py-5 {
     margin-right: auto;
     max-width: 90%;
 }
+
 .table-users {
     margin: 10% auto;
     max-width: 90%;
 }
+
 .button-details {
     margin-left: 1px;
 }
+
 /* TABLE*/
 .table-wrap {
-    overflow-x: scroll; }
+    overflow-x: scroll;
+}
+
 /* NOT SURE*/
 .table {
     min-width: 1000px !important;
@@ -1412,29 +1418,43 @@ body > div.container-fluid.about.py-5 {
     -webkit-box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
     -moz-box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
     box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
-    text-align: center; }
+    text-align: center;
+}
+
 .table thead.thead-primary {
-    background: #13357b; }
+    background: #13357b;
+}
+
 .table thead th {
     border: none;
     padding: 30px;
     font-size: 14px;
-    color: #fff; }
+    color: #fff;
+}
+
 .table tbody tr {
-    margin-bottom: 10px; }
+    margin-bottom: 10px;
+}
+
 .table tbody th, .table tbody td {
     border: none;
     padding: 30px;
     font-size: 14px;
     background: #fff;
     vertical-align: middle;
-    border-bottom: 2px solid #f8f9fd; }
+    border-bottom: 2px solid #f8f9fd;
+}
+
 .table tbody th.scope {
     background: #e8ebf8;
-    border-bottom: 2px solid #e0e5f6; }
+    border-bottom: 2px solid #e0e5f6;
+}
+
 /*NOT SURE END*/
 
 @media (min-width: 768px) {
     .table tbody td:nth-child(odd) {
         background: #f4f6fc;
-        border-bottom: 2px solid #eceffa; } }
+        border-bottom: 2px solid #eceffa;
+    }
+}
