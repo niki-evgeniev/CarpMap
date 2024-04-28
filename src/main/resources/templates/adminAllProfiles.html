@@ -9,11 +9,8 @@
 
 <body>
 <th:block th:replace="~{fragments/topbar}"></th:block>
-
 <th:block th:replace="~{fragments/navbar}"></th:block>
-
 <main>
-
     <section class="section table-users">
         <div class="container">
             <div class="row justify-content-center">
@@ -21,7 +18,7 @@
                     <h2 class="heading-section">All users</h2>
                 </div>
             </div>
-            <div class="row" >
+            <div class="row">
                 <div class="col-md-12">
                     <h4 class="text-center mb-4">Information about users</h4>
                     <div class="table-wrap">
@@ -39,8 +36,8 @@
                             </thead>
                             <tbody>
                             <tr th:each=" profile : ${allProfiles.getContent()}"
-                               th:object="${profile}" >
-                                <th scope="row" class="scope" th:text="${profile.id}" >.com</th>
+                                th:object="${profile}">
+                                <th scope="row" class="scope" th:text="${profile.id}">.com</th>
                                 <td th:text="*{firstName}">1 Year</td>
                                 <td th:text="*{lastName}">$70000000.00</td>
                                 <td th:text="*{username}">$5.00</td>
@@ -77,13 +74,8 @@
     <br>
     <th:block th:replace="~{fragments/footer}"></th:block>
     <th:block th:replace="~{fragments/js}"></th:block>
-
 </main><!-- End #main -->
-
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
-
-
 </body>
-
 </html>

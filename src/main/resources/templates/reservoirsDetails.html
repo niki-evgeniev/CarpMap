@@ -8,11 +8,8 @@
     <title>Carp Details</title>
 </head>
 <body>
-
 <th:block th:replace="~{fragments/topbar}"></th:block>
-
 <th:block th:replace="~{fragments/navbar}"></th:block>
-
 <header class="cd__intro">
     <h1 class="text-center"
         th:text="*{details.name}"> Bootstrap 5 Product Details #3 Example </h1>
@@ -25,7 +22,6 @@
 </header>
 <!--$%adsense%$-->
 <main class="cd__main">
-    <!-- Start DEMO HTML (Use the following code into your project)-->
     <div class="container my-5">
         <div class="row" th:object="${details}">
             <div class="col-md-6">
@@ -50,7 +46,6 @@
                                     <h3 class="modal-title w-100 text-center"
                                         id="exampleModalLabel"
                                         th:text="*{name}">
-                                        GeeksForGeeks
                                     </h3>
                                 </div>
                                 <!--Modal body with image-->
@@ -70,42 +65,39 @@
             </div>
             <div class="col-md-6">
                 <div class="main-description px-2">
-                    <div class="category text-bold text-center"
+                    <div class="category text-bold text-start"
                          th:text="'Име на водоема : ' + *{name}">
-                        Category: Women
                     </div>
-                    <div class="category text-bold text-center"
+                    <br>
+                    <div class="category text-bold text-start"
                          th:text="'Намира се : ' + *{country} + ' - ' + *{city}">
-                        Black dress for Women
                     </div>
-                    <div class="category text-bold text-center"
+                    <br>
+                    <div class="category text-bold text-start"
                          th:text="'Тип : ' + *{reservoirType}">
-                        Black dress for Women
                     </div>
-                    <div class="product-title text-bold my-3 text-center"
+                    <div class="product-title text-bold my-3 text-start"
                          th:text="'Kординати - Latitude: ' + *{latitude}">
-                        Black dress for Women
                     </div>
-                    <div class="product-title text-bold my-3 text-center"
+                    <div class="product-title text-bold my-3 text-start"
                          th:text="'Kординати - Longitude: ' + *{longitude}">
-                        Black dress for Women
                     </div>
-                    <div class="product-title text-bold my-3 text-center"
+
+                    <div class="product-title text-bold my-3 text-start"
                          th:text="'Добавен на : ' + *{createDate.toLocalDate()}">
-                        Black dress for Women
                     </div>
-                </div>
-                <div class="product-details my-4">
-                    <p class="details-title text-color mb-1 text-center">Видове риба</p>
-                    <p th:each="fishi : *{fishNameDTO}"
-                       class="description text-center">
-                        <span th:text="${fishi.fishName}"></span>
-                    </p>
                 </div>
             </div>
         </div>
     </div>
     <div class="container my-5" th:object="${details}">
+        <div class="product-details my-4">
+            <p class="details-title text-color mb-1 text-start">Видове риба</p>
+            <p th:each="fishi : *{fishNameDTO}"
+               class="description text-start">
+                <span th:text="${fishi.fishName}"></span>
+            </p>
+        </div>
         <div class="row">
             <div class="product-details my-4 col-md-12">
                 <p class="details-title text-color mb-1">More Information</p>
@@ -145,10 +137,7 @@
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
             <h5 class="section-title px-3">Gallery</h5>
             <h1 class="mb-4">Галерия</h1>
-            <p class="mb-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum tempore nam, architecto
-                doloremque velit explicabo? Voluptate sunt eveniet fuga eligendi! Expedita laudantium fugiat corrupti
-                eum cum repellat a laborum quasi.
-            </p>
+            <p class="mb-0">Галерия от най-популярните снимки</p>
         </div>
         <div class="tab-class text-center">
             <div class="tab-content">
@@ -210,8 +199,6 @@
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i
             class="fa fa-arrow-up"></i></a>
-    <!-- END EDMO HTML (Happy Coding!)-->
 </main>
-
 </body>
 </html>

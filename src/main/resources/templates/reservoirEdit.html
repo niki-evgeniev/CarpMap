@@ -8,11 +8,8 @@
 </head>
 
 <body>
-
 <th:block th:replace="~{fragments/topbar}"></th:block>
-
 <th:block th:replace="~{fragments/navbar}"></th:block>
-
 <div class="addRes">
     <section class="section">
         <div class="row justify-content-center">
@@ -44,7 +41,6 @@
                                     <div class="text-primary text-center"
                                          th:if="${#fields.hasErrors('country')}"
                                          th:errors="*{country}">Please, enter your name!
-
                                     </div>
                                 </div>
                             </div>
@@ -64,7 +60,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row mb-3">
                                 <label for="inputText"
                                        class="col-sm-2 col-form-label">Name</label>
@@ -86,7 +81,6 @@
                                 </div>
                             </div>
                             <h6 class="card-title text-center">Add GPS Coordinates</h6>
-
                             <div class="row mb-3">
                                 <label for="Latitude"
                                        class="col-sm-2 col-form-label">Latitude</label>
@@ -218,8 +212,6 @@
                                             Example checkbox
                                         </label>
                                     </div>
-
-
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -275,16 +267,12 @@
         </div>
     </section>
 </div>
-
 <!-- Footer Start -->
 <th:block th:replace="~{fragments/footer}"></th:block>
 <!-- Footer End -->
-
 <!-- JavaScript Libraries -->
 <th:block th:replace="~{fragments/js}"></th:block>
-
 <!-- Back to Top -->
 <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>
 </body>
-
 </html>

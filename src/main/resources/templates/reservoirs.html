@@ -6,16 +6,11 @@
     <th:block th:replace="~{fragments/head}"></th:block>
     <title>Carp Map - Reservoirs</title>
 
-    <!--style.css-->
-    <!--    <link rel="stylesheet" href="/css/style2.css">-->
-
 </head>
 
 <body>
 <th:block th:replace="~{fragments/topbar}"></th:block>
-
 <th:block th:replace="~{fragments/navbar}"></th:block>
-
 <section id="explore" class="explore">
     <div class="container">
         <link rel="stylesheet" href="/css/style2.css">
@@ -57,10 +52,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-10">
-                                        <p th:text="*{information}">
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                            tempor incid ut labore et dolore magna aliqua....
-                                        </p>
+                                        <p th:text="*{information}"></p>
                                     </div>
                                 </div>
                             </div>
@@ -70,7 +62,6 @@
                                         <a class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2"
                                            data-abc="true"
                                            th:href="@{/reservoirs/{id}(id = *{id})}">Details</a>
-                                        <!--                                        <a class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2"> TT </a>-->
                                     </div>
                                     <div class="col-sm-7">
                                         <div class="explore-map-icon">
@@ -84,11 +75,9 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div><!--/.container-->
-
 </section><!--/.explore-->
 <nav aria-label="Page navigation" class="d-flex justify-content-center">
     <ul th:fragment="ALL" class="pagination text-center">
@@ -96,12 +85,10 @@
             <a class="page-link" th:if="${allReservoir.hasPrevious()}"
                th:href="@{/reservoirs/reservoirsAll(page=${allReservoir.previousPageable().pageNumber})}">Previous</a>
         </li>
-
         <li th:each="i : ${#numbers.sequence(0, allReservoir.totalPages - 1)}"
             th:class="${i == allReservoir.number} ? 'page-item active' : 'page-item'">
             <a class="page-link" th:href="@{/reservoirs/reservoirsAll(page=${i})}" th:text="${i + 1}"></a>
         </li>
-
         <li th:class="${!allReservoir.hasNext()} ? 'page-item disabled' : 'page-item'">
             <a class="page-link" th:if="${allReservoir.hasNext()}"
                th:href="@{/reservoirs/reservoirsAll(page=${allReservoir.nextPageable().pageNumber})}">Next</a>
@@ -109,15 +96,11 @@
     </ul>
 </nav>
 <br>
-
 <th:block th:replace="~{fragments/footer}"></th:block>
-
 <th:block th:replace="~{fragments/js}"></th:block>
-
 <!-- Back to Top -->
 <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i
         class="fa fa-arrow-up"></i></a>
-
 </body>
 
 </html>

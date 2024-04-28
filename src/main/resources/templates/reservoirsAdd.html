@@ -8,16 +8,12 @@
 </head>
 
 <body>
-
 <th:block th:replace="~{fragments/topbar}"></th:block>
-
 <th:block th:replace="~{fragments/navbar}"></th:block>
-
 <div class="addRes">
     <section class="section">
         <div class="row justify-content-center">
             <div class="col-lg-6">
-
                 <div class="card">
                     <div class="card-body">
                         <h2 class="card-title text-center">Add reservoirs</h2>
@@ -34,7 +30,6 @@
                                             name="country"
                                             id="country"
                                             class="form-select" aria-label="Default select example">
-
                                         <option th:each="country : ${allCountry}"
                                                 th:text="${country.getCountry()}"
                                                 th:value="${country.getCountry()}"
@@ -43,8 +38,7 @@
                                     </select>
                                     <div class="text-primary text-center"
                                          th:if="${#fields.hasErrors('country')}"
-                                         th:errors="*{country}">Please, enter your name!
-
+                                         th:errors="*{country}">Please, enter country name!
                                     </div>
                                 </div>
                             </div>
@@ -60,11 +54,10 @@
                                            class="form-control">
                                     <div class="text-primary text-center"
                                          th:if="${#fields.hasErrors('city')}"
-                                         th:errors="*{city}">Please, enter your name!
+                                         th:errors="*{city}">Please, enter your city name!
                                     </div>
                                 </div>
                             </div>
-
                             <div class="row mb-3">
                                 <label for="inputText"
                                        class="col-sm-2 col-form-label">Name</label>
@@ -86,7 +79,6 @@
                                 </div>
                             </div>
                             <h6 class="card-title text-center">Add GPS Coordinates</h6>
-
                             <div class="row mb-3">
                                 <label for="Latitude"
                                        class="col-sm-2 col-form-label">Latitude</label>
@@ -99,7 +91,7 @@
                                            class="form-control">
                                     <div class="text-primary text-center"
                                          th:if="${#fields.hasErrors('latitude')}"
-                                         th:errors="*{latitude}">Please, enter your name!
+                                         th:errors="*{latitude}">Please, enter your latitude!
                                     </div>
                                 </div>
                             </div>
@@ -115,7 +107,7 @@
                                            class="form-control">
                                     <div class="text-primary text-center"
                                          th:if="${#fields.hasErrors('longitude')}"
-                                         th:errors="*{longitude}">Please, enter your name!
+                                         th:errors="*{longitude}">Please, enter your longitude!
                                     </div>
                                 </div>
                             </div>
@@ -131,7 +123,7 @@
                                            class="form-control">
                                     <div class="text-primary text-center"
                                          th:if="${#fields.hasErrors('iFrameMap')}"
-                                         th:errors="*{iFrameMap}">Please, enter your name!
+                                         th:errors="*{iFrameMap}">Please, enter your iFrameMap!
                                     </div>
                                 </div>
                             </div>
@@ -148,7 +140,7 @@
                                            class="form-control">
                                     <div class="text-primary text-center"
                                          th:if="${#fields.hasErrors('mainUrlImage')}"
-                                         th:errors="*{mainUrlImage}">Please, enter your name!
+                                         th:errors="*{mainUrlImage}">Please, enter your mainUrlImage!
                                     </div>
                                 </div>
                             </div>
@@ -164,7 +156,7 @@
                                            class="form-control">
                                     <div class="text-primary text-center"
                                          th:if="${#fields.hasErrors('urlImage2')}"
-                                         th:errors="*{urlImage2}">Please, enter your name!
+                                         th:errors="*{urlImage2}">Please, enter your urlImage!
                                     </div>
                                 </div>
                             </div>
@@ -180,7 +172,7 @@
                                            class="form-control">
                                     <div class="text-primary text-center"
                                          th:if="${#fields.hasErrors('urlImage3')}"
-                                         th:errors="*{urlImage3}">Please, enter your name!
+                                         th:errors="*{urlImage3}">Please, enter your urlImage!
                                     </div>
                                 </div>
                             </div>
@@ -196,13 +188,11 @@
                                            class="form-control">
                                     <div class="text-primary text-center"
                                          th:if="${#fields.hasErrors('urlImage4')}"
-                                         th:errors="*{urlImage4}">Please, enter your name!
+                                         th:errors="*{urlImage4}">Please, enter your urlImage!
                                     </div>
                                 </div>
                             </div>
                             <!--                            END-->
-
-
                             <div class="row mb-3">
                                 <label for="formFile"
                                        class="col-sm-2 col-form-label">File Upload</label>
@@ -229,12 +219,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--                            <div class="row mb-3">-->
-                            <!--                                <label for="inputTime" class="col-sm-2 col-form-label">Time</label>-->
-                            <!--                                <div class="col-sm-10">-->
-                            <!--                                    <input type="time" class="form-control">-->
-                            <!--                                </div>-->
-                            <!--                            </div>-->
                             <div class="row mb-3">
                                 <label for="information"
                                        class="col-sm-2 col-form-label">Information</label>
@@ -249,7 +233,7 @@
                                             maxlength="240"></textarea>
                                     <div class="text-primary text-center"
                                          th:if="${#fields.hasErrors('information')}"
-                                         th:errors="*{information}">Please, enter your name!
+                                         th:errors="*{information}">Please, enter your information!
                                     </div>
                                 </div>
                             </div>
@@ -267,7 +251,7 @@
                                             maxlength="5000"></textarea>
                                     <div class="text-primary text-center"
                                          th:if="${#fields.hasErrors('description')}"
-                                         th:errors="*{description}">Please, enter your name!
+                                         th:errors="*{description}">Please, enter your description!
                                     </div>
                                 </div>
                             </div>
@@ -292,8 +276,6 @@
                                             Example checkbox
                                         </label>
                                     </div>
-
-
                                 </div>
                             </div>
                             <div class="row mb-3">
@@ -310,7 +292,6 @@
                                                 th:value="${type}"
                                                 value="1">One
                                         </option>
-
                                     </select>
                                 </div>
                             </div>
@@ -325,23 +306,16 @@
 
                     </div>
                 </div>
-
             </div>
-
-
         </div>
     </section>
 </div>
-
 <!-- Footer Start -->
 <th:block th:replace="~{fragments/footer}"></th:block>
 <!-- Footer End -->
-
 <!-- JavaScript Libraries -->
 <th:block th:replace="~{fragments/js}"></th:block>
-
 <!-- Back to Top -->
 <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>
 </body>
-
 </html>
