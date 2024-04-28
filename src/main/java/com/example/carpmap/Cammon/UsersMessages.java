@@ -1,6 +1,6 @@
 package com.example.carpmap.Cammon;
 
-public class Users {
+public class UsersMessages {
 
     public static final String SUCCESSFUL_REGISTER_USER =
             "Successful register user with %n first name: %s, %n last name: %s %n username: %s, %n email: %s %n";

@@ -43,4 +43,8 @@ public class SuccessfulMessages {
                     " type: %s %n" +
                     " latitude: %s %n" +
                     " longitude: %s %n";
+
+    public static final String SUCCESSFUL_FIND_PROFILE =
+            "SUCCESSFUL find user Profile %n" +
+                    "PRofile test";
 }

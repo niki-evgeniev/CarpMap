@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-import static com.example.carpmap.Cammon.Users.ERROR_LOGIN;
+import static com.example.carpmap.Cammon.UsersMessages.ERROR_LOGIN;
 
 @Controller
 @RequestMapping("/users/")

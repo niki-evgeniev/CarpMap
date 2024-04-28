@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 public class BlogDetailsDTO {
 
+    private Long id;
+
     private String titleBlog;
 
     private String authorName;
@@ -19,6 +21,14 @@ public class BlogDetailsDTO {
     private String description;
 
     public BlogDetailsDTO() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitleBlog() {

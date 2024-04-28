@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
     <th:block th:replace="~{fragments/head}"></th:block>
@@ -69,6 +70,13 @@
                         <a th:href="*{urlVideo}"
                            target="_blank"
                            class="btn btn-primary rounded-pill py-2 px-4">See video</a>
+                        <form sec:authorize="hasRole('ADMIN')"
+                              th:method="DELETE"
+                              th:action="@{/reservoirs/delete/{id}(id = *{id})}"
+                              class="deleteReservoir text-end"
+                              onsubmit="return confirmDeletion()">
+                            <input type="submit" value="DELETE" class="btn btn-danger rounded-pill py-2 px-4 ms-lg-2"/>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -76,6 +84,9 @@
     </div>
 </div>
 <!-- Blog End -->
+<!-- Subscribe Start -->
+<th:block th:replace="~{fragments/subscribe}"></th:block>
+<!-- Subscribe End -->
 <!-- Footer Start -->
 <th:block th:replace="~{fragments/footer}"></th:block>
 <!-- Footer End -->

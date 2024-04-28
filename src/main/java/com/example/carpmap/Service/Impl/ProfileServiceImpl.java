@@ -7,16 +7,23 @@ import com.example.carpmap.Models.Entity.UserRole;
 import com.example.carpmap.Repository.UserRepository;
 import com.example.carpmap.Service.ProfileService;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+import static com.example.carpmap.Cammon.SuccessfulMessages.SUCCESSFUL_FIND_PROFILE;
+
 @Service
 public class ProfileServiceImpl implements ProfileService {
+
+    private final Logger LOGGER = LoggerFactory.getLogger(ProfileServiceImpl.class);
 
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
@@ -30,7 +37,6 @@ public class ProfileServiceImpl implements ProfileService {
     public Page<ProfileAllDTO> findAllUsers(Pageable pageable) {
 
         Page<User> all = userRepository.findAll(pageable);
-        System.out.println();
         Page<ProfileAllDTO> allProfiles = all
                 .map(profile -> {
                     ProfileAllDTO map = modelMapper.map(profile, ProfileAllDTO.class);
@@ -44,24 +50,35 @@ public class ProfileServiceImpl implements ProfileService {
                     }
                     return map;
                 });
-
+        System.out.println("SUCCESSFUL load Information about users");
         return allProfiles;
     }
 
     @Override
     public ProfileInfoDTO findProfile(UserDetails userDetails) {
         Optional<User> profile = userRepository.findByUsername(userDetails.getUsername());
+
+        if (profile.isEmpty()){
+            String errorMessage = String.format("User not found: %s", userDetails.getUsername());
+            LOGGER.error(errorMessage);
+            throw new UsernameNotFoundException(errorMessage);
+        }
         ProfileInfoDTO profileDTO = modelMapper.map(profile, ProfileInfoDTO.class);
+        String format = String.format(SUCCESSFUL_FIND_PROFILE);
+        LOGGER.info(format);
         return profileDTO;
     }
 
     @Override
     public ProfileInfoDTO findProfileById(Long id) {
         Optional<User> profile = userRepository.findById(id);
+        if (profile.isEmpty()){
+            String errorMessage = String.format("User not found with id %s", id);
+            LOGGER.error(errorMessage);
+        }
         ProfileInfoDTO profileDTO = modelMapper.map(profile, ProfileInfoDTO.class);
-        System.out.println();
+        System.out.println("SUCCESSFUL find user Profile ID");
         return profileDTO;
-
     }
 
 

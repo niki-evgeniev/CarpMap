@@ -1,5 +1,6 @@
 package com.example.carpmap.Models.DTO.Profile;
 
+import jakarta.persistence.Column;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
@@ -26,6 +27,14 @@ public class ProfileInfoDTO {
     private LocalDate createOn;
 
     private LocalDateTime modified;
+
+    private String facebook;
+
+    private String instagram;
+
+    private String linkedIn;
+
+    private String twitter;
 
     public ProfileInfoDTO() {
     }
@@ -108,5 +117,37 @@ public class ProfileInfoDTO {
 
     public void setModified(LocalDateTime modified) {
         this.modified = modified;
+    }
+
+    public String getFacebook() {
+        return facebook;
+    }
+
+    public void setFacebook(String facebook) {
+        this.facebook = facebook;
+    }
+
+    public String getInstagram() {
+        return instagram;
+    }
+
+    public void setInstagram(String instagram) {
+        this.instagram = instagram;
+    }
+
+    public String getLinkedIn() {
+        return linkedIn;
+    }
+
+    public void setLinkedIn(String linkedIn) {
+        this.linkedIn = linkedIn;
+    }
+
+    public String getTwitter() {
+        return twitter;
+    }
+
+    public void setTwitter(String twitter) {
+        this.twitter = twitter;
     }
 }

@@ -1,30 +1,24 @@
 package com.example.carpmap.Service.Impl;
 
-import com.example.carpmap.Models.DTO.Profile.ProfileAllDTO;
 import com.example.carpmap.Models.DTO.Users.ErrorRegister;
 import com.example.carpmap.Models.DTO.Users.RegisterDTO;
 import com.example.carpmap.Models.Entity.Country;
-import com.example.carpmap.Models.Entity.IpAddress;
 import com.example.carpmap.Models.Entity.User;
 import com.example.carpmap.Models.Entity.UserRole;
 import com.example.carpmap.Repository.CountryRepository;
-import com.example.carpmap.Repository.IpAddressRepository;
 import com.example.carpmap.Repository.UserRepository;
 import com.example.carpmap.Repository.UserRoleRepository;
 import com.example.carpmap.Service.UsersService;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.example.carpmap.Cammon.Users.*;
+import static com.example.carpmap.Cammon.UsersMessages.*;
 
 @Service
 public class UsersServiceImpl implements UsersService {

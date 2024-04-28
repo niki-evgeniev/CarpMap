@@ -105,6 +105,7 @@ public class BlogServiceImpl implements BlogService {
         List<BlogDetailsDTO> allBlogsDTO = allBlogs.stream()
                 .map(this::convertToDTO)
                 .toList();
+        System.out.println("SUCCESSFUL load details BLOG");
         return allBlogsDTO;
     }
 
