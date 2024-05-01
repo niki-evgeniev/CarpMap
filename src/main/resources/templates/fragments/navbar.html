@@ -27,7 +27,7 @@
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Admin Panel</a>
                     <div class="dropdown-menu m-0">
                         <a sec:authorize="isAuthenticated() and hasRole('ADMIN')"
-                           th:href="@{/reservoirs/add/reservoirAdd}" class="dropdown-item">add res</a>
+                           th:href="@{/reservoirs/add/reservoirAdd}" class="dropdown-item">Add Reservoir</a>
                         <a href="tour.html" class="dropdown-item">Add blog</a>
                         <a sec:authorize="isAuthenticated() and hasRole('ADMIN')"
                            th:href="@{/profile/profiles}" class="dropdown-item">Manage users</a>
