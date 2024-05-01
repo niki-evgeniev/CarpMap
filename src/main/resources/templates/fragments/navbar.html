@@ -22,11 +22,12 @@
                 <a th:href="@{/reservoirs/reservoirsAll}" class="nav-item nav-link">Водоеми</a>
                 <a th:href="@{/blog}" class="nav-item nav-link">Блог</a>
                 <a th:href="@{/about}" class="nav-item nav-link">За нас</a>
-                <div sec:authorize="isAuthenticated() and hasRole('ADMIN') or hasRole('MODERATOR')" class="nav-item dropdown">
+                <div sec:authorize="isAuthenticated() and hasRole('ADMIN') or hasRole('MODERATOR')"
+                     class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Admin Panel</a>
                     <div class="dropdown-menu m-0">
-                        <a sec:authorize="isAuthenticated() and hasRole('ADMIN') or hasRole('MODERATOR')"
-                           th:href="@{/reservoirs/reservoirsAdd}" class="dropdown-item">Add Reservoir</a>
+                        <a sec:authorize="isAuthenticated() and hasRole('ADMIN')"
+                           th:href="@{/reservoirs/add/reservoirAdd}" class="dropdown-item">add res</a>
                         <a href="tour.html" class="dropdown-item">Add blog</a>
                         <a sec:authorize="isAuthenticated() and hasRole('ADMIN')"
                            th:href="@{/profile/profiles}" class="dropdown-item">Manage users</a>

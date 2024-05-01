@@ -47,7 +47,7 @@ public class ReservoirsController {
         return modelAndView;
     }
 
-    @GetMapping("reservoirsAdd")
+    @GetMapping("add/reservoirAdd")
     public ModelAndView reservoirsAdd() {
         ModelAndView modelAndView = getAllCountry();
         List<FishNameDTO> fishNamesDTOS = fishService.getAllFishName();
@@ -55,7 +55,7 @@ public class ReservoirsController {
         return modelAndView;
     }
 
-    @PostMapping("reservoirsAdd")
+    @PostMapping("add/reservoirAdd")
     public ModelAndView reservoirsAdd(@Valid ReservoirsAddDTO reservoirsAddDTO,
                                       BindingResult bindingResult,
                                       @AuthenticationPrincipal UserDetails userDetails) {
