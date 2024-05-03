@@ -1,6 +1,8 @@
 package com.example.carpmap.Models.DTO.Profile;
 
 import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
@@ -10,8 +12,12 @@ public class ProfileInfoDTO {
 
     private Long id;
 
+    @NotEmpty(message = "first name information must not be empty")
+    @Size(min = 3, max = 240, message = "first name length must be between 3 and 20 character!")
     private String firstName;
 
+    @NotEmpty(message = "Last name information must not be empty")
+    @Size(min = 3, max = 240, message = "Last name length must be between 3 and 20 character!")
     private String lastName;
 
     private String team;

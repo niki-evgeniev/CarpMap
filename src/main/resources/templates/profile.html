@@ -145,10 +145,12 @@
 
                             </div>
 
-                            <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-
+                            <div class="tab-pane fade profile-edit pt-3"
+                                 id="profile-edit">
                                 <!-- Profile Edit Form -->
-                                <form>
+                                <form th:method="POST"
+                                      th:action="@{/profile/details}"
+                                      th:object="${profileEditDTO}">
                                     <div class="row mb-3">
                                         <label for="profileImage" class="col-md-4 col-lg-3 col-form-label">Profile
                                             Image</label>
@@ -165,10 +167,37 @@
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
+                                        <label for="firstName"
+                                               class="col-md-4 col-lg-3 col-form-label">First Name</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="fullName" type="text" class="form-control" id="fullName"
+                                            <input th:field="*{firstName}"
+                                                   th:errorclass="is-invalid"
+                                                   name="fullName"
+                                                   type="text"
+                                                   class="form-control"
+                                                   id="firstName"
                                                    value="Kevin Anderson">
+                                        </div>
+                                        <div class="text-primary text-center"
+                                             th:if="${#fields.hasErrors('firstName')}"
+                                             th:errors="*{firstName}">Please, enter your name!
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="lastName"
+                                               class="col-md-4 col-lg-3 col-form-label">last Name</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input th:field="*{lastName}"
+                                                   th:errorclass="is-invalid"
+                                                    name="lastName"
+                                                   type="text"
+                                                   class="form-control"
+                                                   id="lastName"
+                                                   value="Kevin Anderson">
+                                        </div>
+                                        <div class="text-primary text-center"
+                                             th:if="${#fields.hasErrors('lastName')}"
+                                             th:errors="*{lastName}">Please, enter your name!
                                         </div>
                                     </div>
 

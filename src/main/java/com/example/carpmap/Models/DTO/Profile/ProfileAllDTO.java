@@ -1,12 +1,17 @@
 package com.example.carpmap.Models.DTO.Profile;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
 import java.time.LocalDate;
 
 public class ProfileAllDTO {
 
     private Long id;
 
+
     private String firstName;
+
 
     private String lastName;
 

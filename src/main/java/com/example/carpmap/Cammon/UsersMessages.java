@@ -15,7 +15,7 @@ public class UsersMessages {
             "Email address is register %n";
 
     public static final String USERNAME_EXIST =
-            "Username is register %n";
+            "Username is register ";
 
     public static final String ERROR_REGISTER_USER =
             "Error register user with  %n first name: %s,%n last name: %s %n username: %s, %n email: %s %n";

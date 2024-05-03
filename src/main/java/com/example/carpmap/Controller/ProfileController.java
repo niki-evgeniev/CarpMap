@@ -1,18 +1,19 @@
 package com.example.carpmap.Controller;
 
 import com.example.carpmap.Models.DTO.Profile.ProfileAllDTO;
+import com.example.carpmap.Models.DTO.Profile.ProfileEditDTO;
 import com.example.carpmap.Models.DTO.Profile.ProfileInfoDTO;
+import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsAddDTO;
 import com.example.carpmap.Service.ProfileService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -33,6 +34,26 @@ public class ProfileController {
         ModelAndView modelAndView = new ModelAndView("profile");
         modelAndView.addObject("profileInfoDTO", profileInfoDTO);
         return modelAndView;
+    }
+
+    @PostMapping("details")
+    public ModelAndView details(@Valid ProfileEditDTO profileEditDTO,
+                                BindingResult bindingResult) {
+//        String testId = id;
+
+        if (bindingResult.hasErrors()) {
+//            ModelAndView modelAndView = new ModelAndView("redirect:/profile#profile-edit");
+            ModelAndView modelAndView = new ModelAndView("profile");
+            modelAndView.addObject("profileEditDTO", profileEditDTO);
+//            modelAndView.addObject("profileAllDTO", profileAllDTO);
+            return modelAndView;
+        }
+        return null;
+    }
+
+    @ModelAttribute
+    ProfileEditDTO profileEditDTO() {
+        return new ProfileEditDTO();
     }
 
 
