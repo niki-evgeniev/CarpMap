@@ -16,36 +16,7 @@
         </div><!--/.section-header-->
         <div class="row profile-view">
             <div class="col-xl-12" th:object="${profileInfoDTO}">
-                <div class="card">
-                    <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
-                        <img src="/images/277348542_5331251560231792_5412271903652794342_n.jpg" alt="Profile"
-                             class="rounded-circle">
-                        <h2 th:text="*{firstName} + ' ' + ' ' + *{lastName}">Kevin Anderson</h2>
-                        <h3 th:text="*{team}">Web Designer</h3>
-                        <div class="social-links mt-2">
-                            <a th:if="*{twitter} != null"
-                               th:href="*{twitter}"
-                               target="_blank"
-                               class="twitter"><i
-                                    class="bi bi-twitter"></i></a>
-                            <a th:if="*{facebook} != null"
-                               th:href="*{facebook}"
-                               target="_blank"
-                               class="facebook"><i
-                                    class="bi bi-facebook"></i></a>
-                            <a th:if="*{instagram} != null"
-                               th:href="*{instagram}"
-                               target="_blank"
-                               class="instagram"><i
-                                    class="bi bi-instagram"></i></a>
-                            <a th:if="*{linkedIn} != null"
-                               th:href="*{linkedIn}"
-                               target="_blank"
-                               class="linkedin"><i
-                                    class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                </div>
+                <th:block th:replace="~{fragments/headProfile}"></th:block>
                 <br>
                 <div class="card">
                     <div class="card-body pt-3">
@@ -189,7 +160,7 @@
                                         <div class="col-md-8 col-lg-9">
                                             <input th:field="*{lastName}"
                                                    th:errorclass="is-invalid"
-                                                    name="lastName"
+                                                   name="lastName"
                                                    type="text"
                                                    class="form-control"
                                                    id="lastName"
