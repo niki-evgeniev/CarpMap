@@ -32,10 +32,9 @@ public class ProfileController {
 
     }
 
-
     @GetMapping("details")
     public ModelAndView details(@RequestParam(value = "activeTab", required = false)
-                                    String activeTab,
+                                String activeTab,
                                 @AuthenticationPrincipal UserDetails userDetails) {
 //        PROFILE USER
         ProfileInfoDTO profileInfoDTO = profileService.findProfile(userDetails);

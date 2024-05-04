@@ -40,12 +40,10 @@ public class SecurityConfiguration {
                         .requestMatchers("/gallery").permitAll()
                         .requestMatchers("/reservoirs/reservoirsEdit/{id}")
                         .hasAnyRole(RoleType.MODERATOR.name())
-                        .requestMatchers( "/reservoirs/add/reservoirAdd")
+                        .requestMatchers("/reservoirs/add/reservoirAdd")
                         .hasAnyRole(RoleType.MODERATOR.name())
                         .requestMatchers("/reservoirs/delete/{id}", "/profile/profiles")
                         .hasAnyRole(RoleType.ADMIN.name())
-
-
                         .anyRequest().authenticated()
         ).formLogin(
                 formLogin -> {
