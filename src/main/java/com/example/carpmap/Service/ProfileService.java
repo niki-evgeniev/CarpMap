@@ -1,6 +1,7 @@
 package com.example.carpmap.Service;
 
 import com.example.carpmap.Models.DTO.Profile.ProfileAllDTO;
+import com.example.carpmap.Models.DTO.Profile.ProfileEditDTO;
 import com.example.carpmap.Models.DTO.Profile.ProfileInfoDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,4 +15,6 @@ public interface ProfileService {
     ProfileInfoDTO findProfile(UserDetails userDetails);
 
     ProfileInfoDTO findProfileById(Long id);
+
+    ProfileEditDTO mapInfoDtoToEditDTO(ProfileInfoDTO profileInfoDTO);
 }

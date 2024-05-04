@@ -17,7 +17,6 @@ public class HomeController {
 
     private final IpAddressService ipAddressService;
 
-    private Long counter = 0L;
 
     public HomeController(IpAddressService ipAddressService) {
         this.ipAddressService = ipAddressService;
@@ -26,12 +25,10 @@ public class HomeController {
     @GetMapping("/")
     public ModelAndView index(@AuthenticationPrincipal UserDetails userDetails) {
 
-        if (counter == 0) {
-            counter = ipAddressService.findAllVisits();
-            if (counter == null) {
-                counter = 1L;
-            }
+        Long counter = ipAddressService.findAllVisits();
 
+        if (counter == null) {
+            counter = 1L;
         } else {
             counter = counter + 1L;
 

@@ -6,6 +6,7 @@ import com.example.carpmap.Models.DTO.Profile.ProfileInfoDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsAddDTO;
 import com.example.carpmap.Service.ProfileService;
 import jakarta.validation.Valid;
+import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -19,36 +20,47 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("/profile/")
 public class ProfileController {
+
+    private final String OVERVIEW = "profile-overview";
+    private final String EDIT = "profile-edit";
+    private final String SETTINGS = "profile-settings";
+    private final String CHANGE_PASSWORD = "profile-change-password";
     private final ProfileService profileService;
 
     public ProfileController(ProfileService profileService) {
         this.profileService = profileService;
+
     }
 
 
     @GetMapping("details")
-    public ModelAndView details(
-            @AuthenticationPrincipal UserDetails userDetails) {
+    public ModelAndView details(@RequestParam(value = "activeTab", required = false)
+                                    String activeTab,
+                                @AuthenticationPrincipal UserDetails userDetails) {
 //        PROFILE USER
         ProfileInfoDTO profileInfoDTO = profileService.findProfile(userDetails);
+        ProfileEditDTO map = profileService.mapInfoDtoToEditDTO(profileInfoDTO);
         ModelAndView modelAndView = new ModelAndView("profile");
         modelAndView.addObject("profileInfoDTO", profileInfoDTO);
+        modelAndView.addObject("profileEditDTO", map);
+        modelAndView.addObject("activeTab", OVERVIEW);
         return modelAndView;
     }
 
-    @PostMapping("details")
-    public ModelAndView details(@Valid ProfileEditDTO profileEditDTO,
+    @PostMapping("details/{id}")
+    public ModelAndView details(@PathVariable("id") Long id,
+                                @Valid ProfileEditDTO profileEditDTO,
                                 BindingResult bindingResult) {
-//        String testId = id;
-
+        ModelAndView modelAndView = new ModelAndView("profile");
         if (bindingResult.hasErrors()) {
-//            ModelAndView modelAndView = new ModelAndView("redirect:/profile#profile-edit");
-            ModelAndView modelAndView = new ModelAndView("profile");
-            modelAndView.addObject("profileEditDTO", profileEditDTO);
-//            modelAndView.addObject("profileAllDTO", profileAllDTO);
+            ProfileInfoDTO profileInfoDTO = profileService.findProfileById(id);
+            ProfileEditDTO map = profileService.mapInfoDtoToEditDTO(profileInfoDTO);
+            modelAndView.addObject("profileInfoDTO", profileInfoDTO);
+            modelAndView.addObject("activeTab", EDIT);
             return modelAndView;
         }
-        return null;
+        modelAndView.addObject("activeTab", OVERVIEW);
+        return modelAndView;
     }
 
     @ModelAttribute
@@ -59,7 +71,7 @@ public class ProfileController {
 
     @GetMapping("profiles")
     public ModelAndView profiles(
-            @PageableDefault(size = 9, sort = "firstName") Pageable pageable) {
+            @PageableDefault(size = 9, sort = "id") Pageable pageable) {
         ModelAndView modelAndView = new ModelAndView("adminAllProfiles");
         Page<ProfileAllDTO> allProfiles = profileService.findAllUsers(pageable);
         modelAndView.addObject("allProfiles", allProfiles);

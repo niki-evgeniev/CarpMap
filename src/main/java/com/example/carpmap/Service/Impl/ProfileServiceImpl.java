@@ -1,6 +1,7 @@
 package com.example.carpmap.Service.Impl;
 
 import com.example.carpmap.Models.DTO.Profile.ProfileAllDTO;
+import com.example.carpmap.Models.DTO.Profile.ProfileEditDTO;
 import com.example.carpmap.Models.DTO.Profile.ProfileInfoDTO;
 import com.example.carpmap.Models.Entity.User;
 import com.example.carpmap.Models.Entity.UserRole;
@@ -79,6 +80,12 @@ public class ProfileServiceImpl implements ProfileService {
         ProfileInfoDTO profileDTO = modelMapper.map(profile, ProfileInfoDTO.class);
         System.out.println("SUCCESSFUL find user Profile ID");
         return profileDTO;
+    }
+
+    @Override
+    public ProfileEditDTO mapInfoDtoToEditDTO(ProfileInfoDTO profileInfoDTO) {
+        ProfileEditDTO map = modelMapper.map(profileInfoDTO, ProfileEditDTO.class);
+        return map;
     }
 
 
