@@ -44,6 +44,9 @@ public class User extends BaseEntity {
     @Column(name = "modified")
     private LocalDateTime modified;
 
+    @Column(name = "job")
+    private String job;
+
     @Column(name = "facebook")
     private String facebook;
 
@@ -152,6 +155,14 @@ public class User extends BaseEntity {
 
     public void setModified(LocalDateTime modified) {
         this.modified = modified;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
     }
 
     public String getFacebook() {

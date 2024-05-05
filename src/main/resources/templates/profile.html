@@ -57,6 +57,12 @@
                                     unde.</p>
                                 <h5 class="card-title">Profile Details</h5>
                                 <div class="row">
+                                    <div class="col-lg-3 col-md-4 label ">Username</div>
+                                    <div class="col-lg-9 col-md-8"
+                                         th:text="*{username}">Kevin Anderson
+                                    </div>
+                                </div>
+                                <div class="row">
                                     <div class="col-lg-3 col-md-4 label ">First Name</div>
                                     <div class="col-lg-9 col-md-8"
                                          th:text="*{firstName}">Kevin Anderson
@@ -74,6 +80,13 @@
                                     <div class="col-lg-3 col-md-4 label">Team</div>
                                     <div class="col-lg-9 col-md-8"
                                          th:text="*{team}">Carpoholics
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-4 label">Job</div>
+                                    <div class="col-lg-9 col-md-8"
+                                         th:text="*{job}">fisherman
                                     </div>
                                 </div>
 
@@ -142,7 +155,6 @@
                                             </div>
                                         </div>
                                     </div>
-
                                     <div class="row mb-3">
                                         <label for="firstName"
                                                class="col-md-4 col-lg-3 col-form-label">First Name</label>
@@ -179,101 +191,196 @@
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
+                                        <label for="about"
+                                               class="col-md-4 col-lg-3 col-form-label">About</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <textarea name="about" class="form-control" id="about"
+                                            <textarea name="about"
+                                                      class="form-control"
+                                                      id="about"
                                                       style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="company" class="col-md-4 col-lg-3 col-form-label">Company</label>
+                                        <label for="Job"
+                                               class="col-md-4 col-lg-3 col-form-label">Job</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="company" type="text" class="form-control" id="company"
-                                                   value="Lueilwitz, Wisoky and Leuschke">
+                                            <input th:field="*{job}"
+                                                   th:errorclass="is-invalid"
+                                                   name="job"
+                                                   type="text"
+                                                   class="form-control"
+                                                   id="Job"
+                                                   value="fisher">
+                                        </div>
+                                        <div class="text-primary text-center"
+                                             th:if="${#fields.hasErrors('job')}"
+                                             th:errors="*{job}">Please, enter job!
                                         </div>
                                     </div>
-
                                     <div class="row mb-3">
-                                        <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
+                                        <label for="team"
+                                               class="col-md-4 col-lg-3 col-form-label">Team</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="job" type="text" class="form-control" id="Job"
-                                                   value="Web Designer">
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="team" class="col-md-4 col-lg-3 col-form-label">Team</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="team" type="text" class="form-control" id="team"
+                                            <input th:field="*{team}"
+                                                   th:errorclass="is-invalid"
+                                                   name="team"
+                                                   type="text"
+                                                   class="form-control"
+                                                   id="team"
                                                    value="Carpoholics">
                                         </div>
+                                        <div class="text-primary text-center"
+                                             th:if="${#fields.hasErrors('team')}"
+                                             th:errors="*{team}">Please, enter job!
+                                        </div>
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
+                                        <label for="Country"
+                                               class="col-md-4 col-lg-3 col-form-label">Country</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="country" type="text" class="form-control" id="Country"
+                                            <input th:field="*{country}"
+                                                   th:errorclass="is-invalid"
+                                                   name="country"
+                                                   type="text"
+                                                   class="form-control"
+                                                   id="Country"
                                                    value="USA">
                                         </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="Address" class="col-md-4 col-lg-3 col-form-label">Address</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="address" type="text" class="form-control" id="Address"
-                                                   value="A108 Adam Street, New York, NY 535022">
+                                        <div class="text-primary text-center"
+                                             th:if="${#fields.hasErrors('country')}"
+                                             th:errors="*{country}">Please, enter job!
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
+                                        <label for="city"
+                                               class="col-md-4 col-lg-3 col-form-label">City</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="phone" type="text" class="form-control" id="Phone"
+                                            <input th:field="*{city}"
+                                                   th:errorclass="is-invalid"
+                                                   name="city"
+                                                   type="text"
+                                                   class="form-control"
+                                                   id="city"
+                                                   value="Gorna Oryahovitsa">
+                                        </div>
+                                        <div class="text-primary text-center"
+                                             th:if="${#fields.hasErrors('city')}"
+                                             th:errors="*{city}">Please, enter job!
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="Phone"
+                                               class="col-md-4 col-lg-3 col-form-label">Phone</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input th:field="*{phone}"
+                                                   th:errorclass="is-invalid"
+                                                   name="phone"
+                                                   type="text"
+                                                   class="form-control"
+                                                   id="Phone"
                                                    value="(436) 486-3538 x29071">
                                         </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="email" type="email" class="form-control" id="Email"
-                                                   value="k.anderson@example.com">
+                                        <div class="text-primary text-center"
+                                             th:if="${#fields.hasErrors('phone')}"
+                                             th:errors="*{phone}">Please, enter job!
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter
+                                        <label for="Email"
+                                               class="col-md-4 col-lg-3 col-form-label">Email</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input th:field="*{email}"
+                                                   th:errorclass="is-invalid"
+                                                    name="email"
+                                                   type="email"
+                                                   class="form-control"
+                                                   id="Email"
+                                                   value="admin@carpmap.online">
+                                        </div>
+                                        <div class="text-primary text-center"
+                                             th:if="${#fields.hasErrors('email')}"
+                                             th:errors="*{email}">Please, enter job!
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="Twitter"
+                                               class="col-md-4 col-lg-3 col-form-label">Twitter
                                             Profile</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="twitter" type="text" class="form-control" id="Twitter"
+                                            <input th:field="*{twitter}"
+                                                   th:errorclass="is-invalid"
+                                                   name="twitter"
+                                                   type="text"
+                                                   class="form-control"
+                                                   id="Twitter"
                                                    value="https://twitter.com/#">
                                         </div>
+                                        <div class="text-primary text-center"
+                                             th:if="${#fields.hasErrors('twitter')}"
+                                             th:errors="*{twitter}">Please, enter job!
+                                        </div>
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook
+                                        <label for="Facebook"
+                                               class="col-md-4 col-lg-3 col-form-label">Facebook
                                             Profile</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="facebook" type="text" class="form-control" id="Facebook"
+                                            <input th:field="*{facebook}"
+                                                   th:errorclass="is-invalid"
+                                                   name="facebook"
+                                                   type="text"
+                                                   class="form-control"
+                                                   id="Facebook"
                                                    value="https://facebook.com/#">
                                         </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram
-                                            Profile</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="instagram" type="text" class="form-control" id="Instagram"
-                                                   value="https://instagram.com/#">
+                                        <div class="text-primary text-center"
+                                             th:if="${#fields.hasErrors('facebook')}"
+                                             th:errors="*{facebook}">Please, enter job!
                                         </div>
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin
+                                        <label for="Instagram"
+                                               class="col-md-4 col-lg-3 col-form-label">Instagram
                                             Profile</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="linkedin" type="text" class="form-control" id="Linkedin"
+                                            <input th:field="*{instagram}"
+                                                   th:errorclass="is-invalid"
+                                                   name="instagram"
+                                                   type="text"
+                                                   class="form-control"
+                                                   id="Instagram"
+                                                   value="https://instagram.com/#">
+                                        </div>
+                                        <div class="text-primary text-center"
+                                             th:if="${#fields.hasErrors('instagram')}"
+                                             th:errors="*{instagram}">Please, enter job!
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="Linkedin"
+                                               class="col-md-4 col-lg-3 col-form-label">Linkedin
+                                            Profile</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input th:field="*{linkedIn}"
+                                                   th:errorclass="is-invalid"
+                                                   name="linkedin"
+                                                   type="text"
+                                                   class="form-control"
+                                                   id="Linkedin"
                                                    value="https://linkedin.com/#">
+                                        </div>
+                                        <div class="text-primary text-center"
+                                             th:if="${#fields.hasErrors('linkedIn')}"
+                                             th:errors="*{linkedIn}">Please, enter job!
                                         </div>
                                     </div>
 
@@ -285,7 +392,7 @@
                             </div>
 
                             <div th:classappend="${activeTab == 'profile-settings'} ? 'show active' : ''"
-                                    class="tab-pane fade pt-3" id="profile-settings">
+                                 class="tab-pane fade pt-3" id="profile-settings">
 
                                 <!-- Settings Form -->
                                 <form>
@@ -332,7 +439,7 @@
                             </div>
 
                             <div th:classappend="${activeTab == 'profile-change-password'} ? 'show active' : ''"
-                                    class="tab-pane fade pt-3" id="profile-change-password">
+                                 class="tab-pane fade pt-3" id="profile-change-password">
                                 <!-- Change Password Form -->
                                 <form>
 

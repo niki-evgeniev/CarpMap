@@ -112,6 +112,9 @@ public class UsersServiceImpl implements UsersService {
         firstAdmnUser.setTeam("Carpoholics");
         firstAdmnUser.setCity("Gorna Oryahovitsa");
         firstAdmnUser.setPhoneNumber("0899524251");
+        firstAdmnUser.setFacebook("https://www.facebook.com/Psyhopath/");
+        firstAdmnUser.setInstagram("https://www.instagram.com/maddeniggaz/");
+        firstAdmnUser.setJob("CNC Operator");
         List<UserRole> all = getAllUserRoles();
         firstAdmnUser.setRoles(all);
     }

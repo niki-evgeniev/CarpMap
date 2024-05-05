@@ -12,6 +12,8 @@ public class ProfileInfoDTO {
 
     private Long id;
 
+    private String username;
+
     private String firstName;
 
     private String lastName;
@@ -25,6 +27,8 @@ public class ProfileInfoDTO {
     private String phone;
 
     private String email;
+
+    private String job;
 
     private LocalDate createOn;
 
@@ -47,6 +51,14 @@ public class ProfileInfoDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getFirstName() {
@@ -103,6 +115,14 @@ public class ProfileInfoDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
     }
 
     public LocalDate getCreateOn() {
