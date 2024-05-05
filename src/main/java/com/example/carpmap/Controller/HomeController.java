@@ -23,7 +23,7 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public ModelAndView index(@AuthenticationPrincipal UserDetails userDetails) {
+    public ModelAndView index(@AuthenticationPrincipal UserDetails userDetails) throws InterruptedException {
 
         Long counter = ipAddressService.findAllVisits();
 
@@ -41,6 +41,7 @@ public class HomeController {
             ipAddressService.checkIpAddressLogin(userDetails.getUsername(), ipAddress);
         } else {
             ipAddressService.getIpVisitor(ipAddress);
+            Thread.sleep(500);
         }
 
         ModelAndView modelAndView = new ModelAndView("index");
