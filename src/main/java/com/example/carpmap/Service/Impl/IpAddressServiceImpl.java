@@ -46,6 +46,7 @@ public class IpAddressServiceImpl implements IpAddressService {
     @Override
     public void checkIpAddressLogin(String username, String ipAddress) {
         Optional<IpAddress> findExistingIpAddress = ipAddressRepository.findByAddress(ipAddress);
+
         if (findExistingIpAddress.isEmpty()) {
             IpAddress newAddress = new IpAddress();
             Optional<User> findUser = userRepository.findByUsername(username);
@@ -83,11 +84,12 @@ public class IpAddressServiceImpl implements IpAddressService {
             addNewIpVisitor.setCountVisits(1L);
             ipAddressRepository.save(addNewIpVisitor);
         } else {
-            byAddress.get().setCountVisits(byAddress.get().getCountVisits() + 1);
-            byAddress.get().setLastSeen(LocalDateTime.now());
+            IpAddress newIpAdd = byAddress.get();
+            newIpAdd.setCountVisits(newIpAdd.getCountVisits() + 1L);
+            newIpAdd.setLastSeen(LocalDateTime.now());
+//            byAddress.get().setCountVisits(byAddress.get().getCountVisits() + 1);
+//            byAddress.get().setLastSeen(LocalDateTime.now());
             ipAddressRepository.save(byAddress.get());
         }
-
-
     }
 }

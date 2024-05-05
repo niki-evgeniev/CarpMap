@@ -51,10 +51,10 @@ public class ProfileController {
                                 @Valid ProfileEditDTO profileEditDTO,
                                 BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView("profile");
+        ProfileInfoDTO profileInfoDTO = profileService.findProfileById(id);
+        ProfileEditDTO map = profileService.mapInfoDtoToEditDTO(profileInfoDTO);
+        modelAndView.addObject("profileInfoDTO", profileInfoDTO);
         if (bindingResult.hasErrors()) {
-            ProfileInfoDTO profileInfoDTO = profileService.findProfileById(id);
-            ProfileEditDTO map = profileService.mapInfoDtoToEditDTO(profileInfoDTO);
-            modelAndView.addObject("profileInfoDTO", profileInfoDTO);
             modelAndView.addObject("activeTab", EDIT);
             return modelAndView;
         }

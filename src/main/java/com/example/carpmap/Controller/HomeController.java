@@ -34,7 +34,7 @@ public class HomeController {
 
         }
         System.out.println("Total visitors in app " + counter);
-        String ipAddress = ipAddressService.getIp();
+        String ipAddress = ipAddressService.getIp().trim();
         System.out.println(LocalDateTime.now() + " Visitor address : " + ipAddress);
 
         if (userDetails != null) {
