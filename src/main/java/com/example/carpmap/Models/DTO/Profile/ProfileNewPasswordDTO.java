@@ -1,13 +1,22 @@
 package com.example.carpmap.Models.DTO.Profile;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+
 public class ProfileNewPasswordDTO {
 
     private Long id;
 
+    @NotEmpty(message = "old Password name field information must not be empty")
+    @Size(min = 1, max = 10)
     private String currentPassword;
 
+    @NotEmpty(message = "Password name field information must not be empty")
+    @Size(min = 1, max = 10)
     private String newPassword;
 
+    @NotEmpty(message = "Password name field information must not be empty")
+    @Size(min = 1, max = 10)
     private String confirmNewPassword;
 
     public ProfileNewPasswordDTO() {

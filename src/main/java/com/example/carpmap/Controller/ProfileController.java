@@ -38,14 +38,8 @@ public class ProfileController {
                                 String activeTab,
                                 @AuthenticationPrincipal UserDetails userDetails) {
 //        PROFILE USER
-        ProfileInfoDTO profileInfoDTO = profileService.findProfile(userDetails);
-        ProfileEditDTO map = profileService.mapInfoDtoToEditDTO(profileInfoDTO);
-        ProfileNewPasswordDTO profileNewPasswordDTO = new ProfileNewPasswordDTO();
-        profileNewPasswordDTO.setId(profileInfoDTO.getId());
-        ModelAndView modelAndView = new ModelAndView("profile");
-        modelAndView.addObject("profileInfoDTO", profileInfoDTO);
-        modelAndView.addObject("profileEditDTO", map);
-        modelAndView.addObject("profileNewPasswordDTO", profileNewPasswordDTO);
+
+        ModelAndView modelAndView = getAllView(userDetails);
         modelAndView.addObject("activeTab", OVERVIEW);
         return modelAndView;
     }
@@ -62,26 +56,28 @@ public class ProfileController {
             return modelAndView;
         }
         profileService.editUser(profileEditDTO);
-        modelAndView.addObject("profileInfoDTO", profileService.findProfileById(id));
-        ProfileNewPasswordDTO profileNewPasswordDTO = new ProfileNewPasswordDTO();
-        profileNewPasswordDTO.setId(profileEditDTO.getId());
-        modelAndView.addObject("profileNewPasswordDTO", profileNewPasswordDTO);
+        getEditDTOAndNewPasswordDTO(modelAndView, profileService.findProfileById(id), profileEditDTO.getId());
         modelAndView.addObject("activeTab", OVERVIEW);
         return modelAndView;
     }
 
     @PostMapping("details/newPassword/{id}")
     public ModelAndView newPassword(@PathVariable("id") Long id,
-                                    @Valid ProfileNewPasswordDTO profileNewPasswordDTO) {
-
+                                    @Valid ProfileNewPasswordDTO profileNewPasswordDTO,
+                                    BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView("profile");
         modelAndView.addObject("profileInfoDTO", profileService.findProfileById(id));
+        if (bindingResult.hasErrors()) {
+            modelAndView.addObject("activeTab", CHANGE_PASSWORD);
+            return modelAndView;
+        }
+
         modelAndView.addObject("activeTab", OVERVIEW);
         return modelAndView;
     }
 
     @ModelAttribute
-    ProfileNewPasswordDTO profileNewPasswordDTO(){
+    ProfileNewPasswordDTO profileNewPasswordDTO() {
         return new ProfileNewPasswordDTO();
     }
 
@@ -90,13 +86,28 @@ public class ProfileController {
         return new ProfileEditDTO();
     }
 
-
     @GetMapping("profiles")
     public ModelAndView profiles(
             @PageableDefault(size = 9, sort = "id") Pageable pageable) {
         ModelAndView modelAndView = new ModelAndView("adminAllProfiles");
         Page<ProfileAllDTO> allProfiles = profileService.findAllUsers(pageable);
         modelAndView.addObject("allProfiles", allProfiles);
+        return modelAndView;
+    }
+
+    private void getEditDTOAndNewPasswordDTO(ModelAndView modelAndView, ProfileInfoDTO profileService, Long profileEditDTO) {
+        modelAndView.addObject("profileInfoDTO", profileService);
+        ProfileNewPasswordDTO profileNewPasswordDTO = new ProfileNewPasswordDTO();
+        profileNewPasswordDTO.setId(profileEditDTO);
+        modelAndView.addObject("profileNewPasswordDTO", profileNewPasswordDTO);
+    }
+
+    private ModelAndView getAllView(UserDetails userDetails) {
+        ModelAndView modelAndView = new ModelAndView("profile");
+        ProfileInfoDTO profileInfoDTO = profileService.findProfile(userDetails);
+        getEditDTOAndNewPasswordDTO(modelAndView, profileInfoDTO, profileInfoDTO.getId());
+        ProfileEditDTO map = profileService.mapInfoDtoToEditDTO(profileInfoDTO);
+        modelAndView.addObject("profileEditDTO", map);
         return modelAndView;
     }
 
