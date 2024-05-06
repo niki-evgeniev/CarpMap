@@ -66,12 +66,15 @@ public class ProfileController {
                                     @Valid ProfileNewPasswordDTO profileNewPasswordDTO,
                                     BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView("profile");
-        modelAndView.addObject("profileInfoDTO", profileService.findProfileById(id));
+
         if (bindingResult.hasErrors()) {
+            modelAndView.addObject("profileInfoDTO", profileService.findProfileById(id));
             modelAndView.addObject("activeTab", CHANGE_PASSWORD);
             return modelAndView;
         }
 
+        profileService.changePassword(profileNewPasswordDTO);
+        modelAndView.addObject("profileInfoDTO", profileService.findProfileById(id));
         modelAndView.addObject("activeTab", OVERVIEW);
         return modelAndView;
     }
@@ -95,13 +98,6 @@ public class ProfileController {
         return modelAndView;
     }
 
-    private void getEditDTOAndNewPasswordDTO(ModelAndView modelAndView, ProfileInfoDTO profileService, Long profileEditDTO) {
-        modelAndView.addObject("profileInfoDTO", profileService);
-        ProfileNewPasswordDTO profileNewPasswordDTO = new ProfileNewPasswordDTO();
-        profileNewPasswordDTO.setId(profileEditDTO);
-        modelAndView.addObject("profileNewPasswordDTO", profileNewPasswordDTO);
-    }
-
     private ModelAndView getAllView(UserDetails userDetails) {
         ModelAndView modelAndView = new ModelAndView("profile");
         ProfileInfoDTO profileInfoDTO = profileService.findProfile(userDetails);
@@ -109,6 +105,13 @@ public class ProfileController {
         ProfileEditDTO map = profileService.mapInfoDtoToEditDTO(profileInfoDTO);
         modelAndView.addObject("profileEditDTO", map);
         return modelAndView;
+    }
+
+    private void getEditDTOAndNewPasswordDTO(ModelAndView modelAndView, ProfileInfoDTO profileService, Long profileEditDTO) {
+        modelAndView.addObject("profileInfoDTO", profileService);
+        ProfileNewPasswordDTO profileNewPasswordDTO = new ProfileNewPasswordDTO();
+        profileNewPasswordDTO.setId(profileEditDTO);
+        modelAndView.addObject("profileNewPasswordDTO", profileNewPasswordDTO);
     }
 
 }
