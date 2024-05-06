@@ -2,6 +2,7 @@ package com.example.carpmap.Controller;
 
 import com.example.carpmap.Models.DTO.Profile.ProfileEditDTO;
 import com.example.carpmap.Models.DTO.Profile.ProfileInfoDTO;
+import com.example.carpmap.Models.DTO.Profile.ProfileNewPasswordDTO;
 import com.example.carpmap.Service.ProfileService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Controller;
@@ -29,10 +30,13 @@ public class AdminController {
         String activeTab = "profile-overview";
         ProfileInfoDTO profileInfoDTO = profileService.findProfileById(id);
         ProfileEditDTO map = profileService.mapInfoDtoToEditDTO(profileInfoDTO);
+        ProfileNewPasswordDTO profileNewPasswordDTO = new ProfileNewPasswordDTO();
+        profileNewPasswordDTO.setId(profileInfoDTO.getId());
 
         ModelAndView modelAndView = new ModelAndView("profile");
         modelAndView.addObject("profileInfoDTO", profileInfoDTO);
         modelAndView.addObject("profileEditDTO", map);
+        modelAndView.addObject("profileNewPasswordDTO", profileNewPasswordDTO);
         modelAndView.addObject("activeTab", activeTab);
         return modelAndView;
     }

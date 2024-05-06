@@ -3,6 +3,7 @@ package com.example.carpmap.Controller;
 import com.example.carpmap.Models.DTO.Profile.ProfileAllDTO;
 import com.example.carpmap.Models.DTO.Profile.ProfileEditDTO;
 import com.example.carpmap.Models.DTO.Profile.ProfileInfoDTO;
+import com.example.carpmap.Models.DTO.Profile.ProfileNewPasswordDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsAddDTO;
 import com.example.carpmap.Service.ProfileService;
 import jakarta.validation.Valid;
@@ -39,9 +40,12 @@ public class ProfileController {
 //        PROFILE USER
         ProfileInfoDTO profileInfoDTO = profileService.findProfile(userDetails);
         ProfileEditDTO map = profileService.mapInfoDtoToEditDTO(profileInfoDTO);
+        ProfileNewPasswordDTO profileNewPasswordDTO = new ProfileNewPasswordDTO();
+        profileNewPasswordDTO.setId(profileInfoDTO.getId());
         ModelAndView modelAndView = new ModelAndView("profile");
         modelAndView.addObject("profileInfoDTO", profileInfoDTO);
         modelAndView.addObject("profileEditDTO", map);
+        modelAndView.addObject("profileNewPasswordDTO", profileNewPasswordDTO);
         modelAndView.addObject("activeTab", OVERVIEW);
         return modelAndView;
     }
@@ -51,15 +55,34 @@ public class ProfileController {
                                 @Valid ProfileEditDTO profileEditDTO,
                                 BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView("profile");
-        ProfileInfoDTO profileInfoDTO = profileService.findProfileById(id);
-        ProfileEditDTO map = profileService.mapInfoDtoToEditDTO(profileInfoDTO);
-        modelAndView.addObject("profileInfoDTO", profileInfoDTO);
+//        ProfileEditDTO map = profileService.mapInfoDtoToEditDTO(profileInfoDTO);
         if (bindingResult.hasErrors()) {
+            modelAndView.addObject("profileInfoDTO", profileService.findProfileById(id));
             modelAndView.addObject("activeTab", EDIT);
             return modelAndView;
         }
+        profileService.editUser(profileEditDTO);
+        modelAndView.addObject("profileInfoDTO", profileService.findProfileById(id));
+        ProfileNewPasswordDTO profileNewPasswordDTO = new ProfileNewPasswordDTO();
+        profileNewPasswordDTO.setId(profileEditDTO.getId());
+        modelAndView.addObject("profileNewPasswordDTO", profileNewPasswordDTO);
         modelAndView.addObject("activeTab", OVERVIEW);
         return modelAndView;
+    }
+
+    @PostMapping("details/newPassword/{id}")
+    public ModelAndView newPassword(@PathVariable("id") Long id,
+                                    @Valid ProfileNewPasswordDTO profileNewPasswordDTO) {
+
+        ModelAndView modelAndView = new ModelAndView("profile");
+        modelAndView.addObject("profileInfoDTO", profileService.findProfileById(id));
+        modelAndView.addObject("activeTab", OVERVIEW);
+        return modelAndView;
+    }
+
+    @ModelAttribute
+    ProfileNewPasswordDTO profileNewPasswordDTO(){
+        return new ProfileNewPasswordDTO();
     }
 
     @ModelAttribute

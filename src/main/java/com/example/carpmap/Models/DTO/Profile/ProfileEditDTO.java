@@ -38,7 +38,7 @@ public class ProfileEditDTO {
 
     @NotEmpty(message = "Phone name field information must not be empty")
     @Size(min = 3, max = 20, message = "Phone name field length must be between 3 and 20 character!")
-    private String phone;
+    private String phoneNumber;
 
     @NotEmpty(message = "Email name field  information must not be empty")
     @Size(min = 3, max = 20, message = "Email name field length must be between 3 and 20 character!")
@@ -124,12 +124,12 @@ public class ProfileEditDTO {
         this.city = city;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {

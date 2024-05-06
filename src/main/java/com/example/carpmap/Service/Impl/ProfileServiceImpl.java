@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -59,7 +60,7 @@ public class ProfileServiceImpl implements ProfileService {
     public ProfileInfoDTO findProfile(UserDetails userDetails) {
         Optional<User> profile = userRepository.findByUsername(userDetails.getUsername());
 
-        if (profile.isEmpty()){
+        if (profile.isEmpty()) {
             String errorMessage = String.format("User not found: %s", userDetails.getUsername());
             LOGGER.error(errorMessage);
             throw new UsernameNotFoundException(errorMessage);
@@ -73,7 +74,7 @@ public class ProfileServiceImpl implements ProfileService {
     @Override
     public ProfileInfoDTO findProfileById(Long id) {
         Optional<User> profile = userRepository.findById(id);
-        if (profile.isEmpty()){
+        if (profile.isEmpty()) {
             String errorMessage = String.format("User not found with id %s", id);
             LOGGER.error(errorMessage);
         }
@@ -85,7 +86,26 @@ public class ProfileServiceImpl implements ProfileService {
     @Override
     public ProfileEditDTO mapInfoDtoToEditDTO(ProfileInfoDTO profileInfoDTO) {
         ProfileEditDTO map = modelMapper.map(profileInfoDTO, ProfileEditDTO.class);
+        map.setPhoneNumber(profileInfoDTO.getPhone());
         return map;
+    }
+
+    @Override
+    public void editUser(ProfileEditDTO profileEditDTO) {
+        Optional<User> user = userRepository.findById(profileEditDTO.getId());
+        if (user.isPresent()) {
+            User editUser = modelMapper.map(profileEditDTO, User.class);
+            editUser.setUsername(user.get().getUsername());
+            editUser.setPassword(user.get().getPassword());
+            editUser.setCreateOn(user.get().getCreateOn());
+            editUser.setModified(LocalDateTime.now());
+            editUser.setRoles(user.get().getRoles());
+            editUser.setModified(LocalDateTime.now());
+            userRepository.save(editUser);
+            System.out.println("SUCCESSFUL edit username: " + editUser.getUsername());
+        }else {
+            System.out.println("USERNAME to edit is not found");
+        }
     }
 
 

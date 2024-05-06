@@ -17,4 +17,6 @@ public interface ProfileService {
     ProfileInfoDTO findProfileById(Long id);
 
     ProfileEditDTO mapInfoDtoToEditDTO(ProfileInfoDTO profileInfoDTO);
+
+    void editUser(ProfileEditDTO profileEditDTO);
 }

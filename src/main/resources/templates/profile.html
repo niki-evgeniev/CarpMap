@@ -273,20 +273,20 @@
                                     </div>
 
                                     <div class="row mb-3">
-                                        <label for="Phone"
+                                        <label for="phoneNumber"
                                                class="col-md-4 col-lg-3 col-form-label">Phone</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input th:field="*{phone}"
+                                            <input th:field="*{phoneNumber}"
                                                    th:errorclass="is-invalid"
-                                                   name="phone"
+                                                   name="phoneNumber"
                                                    type="text"
                                                    class="form-control"
-                                                   id="Phone"
+                                                   id="phoneNumber"
                                                    value="(436) 486-3538 x29071">
                                         </div>
                                         <div class="text-primary text-center"
-                                             th:if="${#fields.hasErrors('phone')}"
-                                             th:errors="*{phone}">Please, enter job!
+                                             th:if="${#fields.hasErrors('phoneNumber')}"
+                                             th:errors="*{phoneNumber}">Please, enter job!
                                         </div>
                                     </div>
 
@@ -296,7 +296,7 @@
                                         <div class="col-md-8 col-lg-9">
                                             <input th:field="*{email}"
                                                    th:errorclass="is-invalid"
-                                                    name="email"
+                                                   name="email"
                                                    type="email"
                                                    class="form-control"
                                                    id="Email"
@@ -441,35 +441,60 @@
                             <div th:classappend="${activeTab == 'profile-change-password'} ? 'show active' : ''"
                                  class="tab-pane fade pt-3" id="profile-change-password">
                                 <!-- Change Password Form -->
-                                <form>
-
+                                <form th:method="POST"
+                                      th:action="@{/profile/details/newPassword/{id}(id = *{id})}"
+                                      th:object="${profileNewPasswordDTO}">
                                     <div class="row mb-3">
-                                        <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current
+                                        <label for="currentPassword"
+                                               class="col-md-4 col-lg-3 col-form-label">Current
                                             Password</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="password" type="password" class="form-control"
+                                            <input th:field="*{currentPassword}"
+                                                   th:errorclass="is-invalid"
+                                                   name="currentPassword"
+                                                   type="password"
+                                                   class="form-control"
                                                    id="currentPassword">
                                         </div>
+                                        <div class="text-primary text-center"
+                                             th:if="${#fields.hasErrors('currentPassword')}"
+                                             th:errors="*{currentPassword}">Please, enter your pass!
+                                        </div>
                                     </div>
-
                                     <div class="row mb-3">
-                                        <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New
+                                        <label for="newPassword"
+                                               class="col-md-4 col-lg-3 col-form-label">New
                                             Password</label>
                                         <div class="col-md-8 col-lg-9">
-                                            <input name="newpassword" type="password" class="form-control"
+                                            <input th:field="*{newPassword}"
+                                                   th:errorclass="is-invalid"
+                                                   name="newPassword"
+                                                   type="password"
+                                                   class="form-control"
                                                    id="newPassword">
                                         </div>
-                                    </div>
-
-                                    <div class="row mb-3">
-                                        <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New
-                                            Password</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <input name="renewpassword" type="password" class="form-control"
-                                                   id="renewPassword">
+                                        <div class="text-primary text-center"
+                                             th:if="${#fields.hasErrors('newPassword')}"
+                                             th:errors="*{newPassword}">Please, enter your pass!
                                         </div>
                                     </div>
-
+                                    <div class="row mb-3">
+                                        <label for="confirmNewPassword"
+                                               class="col-md-4 col-lg-3 col-form-label">Re-enter New
+                                            Password</label>
+                                        <div class="col-md-8 col-lg-9">
+                                            <input th:field="*{confirmNewPassword}"
+                                                   th:errorclass="is-invalid"
+                                                   name="confirmNewPassword"
+                                                   type="password"
+                                                   class="form-control"
+                                                   id="confirmNewPassword">
+                                        </div>
+                                        <div class="text-primary text-center"
+                                             th:if="${#fields.hasErrors('confirmNewPassword')}"
+                                             th:errors="*{confirmNewPassword}">Please, enter your pass!
+                                        </div>
+                                    </div>
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary">Change Password</button>
                                     </div>

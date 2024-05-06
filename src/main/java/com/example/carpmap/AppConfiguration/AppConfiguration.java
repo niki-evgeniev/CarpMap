@@ -1,5 +1,6 @@
 package com.example.carpmap.AppConfiguration;
 
+import com.example.carpmap.Models.DTO.Profile.ProfileEditDTO;
 import com.example.carpmap.Models.DTO.Profile.ProfileInfoDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsEditDTO;
 import com.example.carpmap.Models.Entity.Reservoir;
@@ -36,7 +37,17 @@ public class AppConfiguration {
                     mapper.using(nullToNoneString).map(User::getCountry, ProfileInfoDTO::setCountry);
                     mapper.using(nullToNoneString).map(User::getTeam, ProfileInfoDTO::setTeam);
                     mapper.using(nullToNoneString).map(User::getPhoneNumber, ProfileInfoDTO::setPhone);
+
+
                 });
+//        modelMapper
+//                .createTypeMap(User.class, ProfileEditDTO.class)
+//                .addMappings(mapper -> {
+//                    mapper.using(nullToNoneString).map(User::getUsername, ProfileEditDTO::set);
+//                    mapper.using(nullToNoneString).map(User::getPassword, ProfileEditDTO::set);
+//                    mapper.using(nullToNoneString).map(User::getCreateOn, ProfileEditDTO::set);
+//                    mapper.using(nullToNoneString).map(User::getPhoneNumber, ProfileEditDTO::setPhone);
+//                });
 
 
         return modelMapper;
