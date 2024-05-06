@@ -16,4 +16,13 @@ public class ErrorMessages {
 
     public static final String RESERVOIR_WITH_ID_NOT_FOUND_REDIRECT_TO_INDEX =
             "Reservoir with id %s not found !!! Redirect to index ";
+
+    public static final String USERNAME_NOT_FOUND =
+            "USERNAME to edit is not found %n";
+
+    public static final String NEW_PASSWORD_NOT_MATCH =
+            "NEW PASSWORDS NOT MATCH %n";
+
+    public static final String OLD_PASSWORD_NOT_MATCH =
+            "OLD PASSWORD NOT MATCH %n";
 }

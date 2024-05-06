@@ -24,6 +24,4 @@ public interface ReservoirsService {
 
     void deleteReservoir(Long id);
 
-
-
 }

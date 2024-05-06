@@ -55,4 +55,16 @@ public class SuccessfulMessages {
     public static final String SUCCESSFUL_FIND_PROFILE =
             "SUCCESSFUL find user Profile %n" +
                     "PRofile test";
+
+    public static final String SUCCESSFUL_EDIT_USER =
+            "SUCCESSFUL edit username: %s %n";
+
+    public static final String SUCCESSFUL_CHANGE_PASSWORD =
+            "SUCCESSFUL change password to username %s %n";
+
+    public static final String SUCCESSFUL_LOAD_INFORMATION_ABOUT_USERS =
+            "SUCCESSFUL load Information about users %n";
+
+
+
 }

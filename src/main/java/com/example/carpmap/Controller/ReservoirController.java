@@ -51,7 +51,6 @@ public class ReservoirController {
             if (reservoirsEditDTO == null) {
                 return new ModelAndView("errors/errorFindPage");
             }
-
             List<FishNameDTO> allFishName = fishService.getAllFishName();
             List<CountryDTO> allCountry = countryService.getAllCountry();
 
@@ -85,11 +84,8 @@ public class ReservoirController {
 
     @ModelAttribute
     ReservoirsAddDTO reservoirsAddDTO() {
-
         return new ReservoirsAddDTO();
-
     }
-
     private static boolean checkForAdminRole(UserDetails userDetails) {
         String roleAdmin = "ROLE_" + RoleType.ADMIN;
         boolean hasRoleAdmin = userDetails.getAuthorities().stream()

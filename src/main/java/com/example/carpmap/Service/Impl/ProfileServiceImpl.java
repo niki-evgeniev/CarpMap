@@ -4,6 +4,7 @@ import com.example.carpmap.Models.DTO.Profile.ProfileAllDTO;
 import com.example.carpmap.Models.DTO.Profile.ProfileEditDTO;
 import com.example.carpmap.Models.DTO.Profile.ProfileInfoDTO;
 import com.example.carpmap.Models.DTO.Profile.ProfileNewPasswordDTO;
+import com.example.carpmap.Models.DTO.Users.ErrorRegister;
 import com.example.carpmap.Models.Entity.User;
 import com.example.carpmap.Models.Entity.UserRole;
 import com.example.carpmap.Repository.UserRepository;
@@ -20,10 +21,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static com.example.carpmap.Cammon.SuccessfulMessages.SUCCESSFUL_FIND_PROFILE;
+import static com.example.carpmap.Cammon.ErrorMessages.*;
+import static com.example.carpmap.Cammon.SuccessfulMessages.*;
 
 @Service
 public class ProfileServiceImpl implements ProfileService {
@@ -34,7 +37,8 @@ public class ProfileServiceImpl implements ProfileService {
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
 
-    public ProfileServiceImpl(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
+    public ProfileServiceImpl(UserRepository userRepository, ModelMapper modelMapper,
+                              PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
@@ -57,7 +61,7 @@ public class ProfileServiceImpl implements ProfileService {
                     }
                     return map;
                 });
-        System.out.println("SUCCESSFUL load Information about users");
+        System.out.printf(SUCCESSFUL_LOAD_INFORMATION_ABOUT_USERS);
         return allProfiles;
     }
 
@@ -107,25 +111,42 @@ public class ProfileServiceImpl implements ProfileService {
             editUser.setRoles(user.get().getRoles());
             editUser.setModified(LocalDateTime.now());
             userRepository.save(editUser);
-            System.out.println("SUCCESSFUL edit username: " + editUser.getUsername());
+            System.out.printf(SUCCESSFUL_EDIT_USER , editUser.getUsername());
         } else {
-            System.out.println("USERNAME to edit is not found");
+            System.out.printf(USERNAME_NOT_FOUND);
         }
     }
 
     @Override
-    public void changePassword(ProfileNewPasswordDTO profileNewPasswordDTO) {
+    public List<ErrorRegister> changePassword(ProfileNewPasswordDTO profileNewPasswordDTO) {
         Optional<User> findUser = userRepository.findById(profileNewPasswordDTO.getId());
+        List<ErrorRegister> err = new ArrayList<>();
         if (findUser.isPresent()) {
-            String password = findUser.get().getPassword();
+            String oldPassword = findUser.get().getPassword();
             String currentPassword = profileNewPasswordDTO.getCurrentPassword();
-            boolean matches = passwordEncoder.matches(currentPassword, password );
-            if (matches & profileNewPasswordDTO.getNewPassword().equals(profileNewPasswordDTO.getConfirmNewPassword())) {
-                User map = modelMapper.map(findUser, User.class);
-                map.setPassword(passwordEncoder.encode(profileNewPasswordDTO.getNewPassword()));
-                System.out.println();
+            boolean matches = passwordEncoder.matches(currentPassword, oldPassword);
+
+            if (matches) {
+                if (profileNewPasswordDTO.getNewPassword().equals(profileNewPasswordDTO.getConfirmNewPassword())) {
+                    User changeUserPassword = findUser.get();
+                    changeUserPassword.setPassword(passwordEncoder.encode(profileNewPasswordDTO.getNewPassword()));
+                    userRepository.save(changeUserPassword);
+                    System.out.printf(SUCCESSFUL_CHANGE_PASSWORD,changeUserPassword.getUsername());
+
+                } else {
+                    ErrorRegister errorRegister = new ErrorRegister();
+                    errorRegister.setError(NEW_PASSWORD_NOT_MATCH);
+                    System.out.printf(NEW_PASSWORD_NOT_MATCH);
+                    err.add(errorRegister);
+                }
+            } else {
+                ErrorRegister errorRegister = new ErrorRegister();
+                errorRegister.setError(OLD_PASSWORD_NOT_MATCH);
+                System.out.printf(OLD_PASSWORD_NOT_MATCH);
+                err.add(errorRegister);
             }
         }
+        return err;
     }
 
 }

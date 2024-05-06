@@ -41,7 +41,7 @@ public class ProfileEditDTO {
     private String phoneNumber;
 
     @NotEmpty(message = "Email name field  information must not be empty")
-    @Size(min = 3, max = 20, message = "Email name field length must be between 3 and 20 character!")
+    @Size(min = 3, max = 100, message = "Email name field length must be between 3 and 20 character!")
     @Email
     private String email;
 

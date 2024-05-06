@@ -4,10 +4,9 @@ import com.example.carpmap.Models.DTO.Profile.ProfileAllDTO;
 import com.example.carpmap.Models.DTO.Profile.ProfileEditDTO;
 import com.example.carpmap.Models.DTO.Profile.ProfileInfoDTO;
 import com.example.carpmap.Models.DTO.Profile.ProfileNewPasswordDTO;
-import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsAddDTO;
+import com.example.carpmap.Models.DTO.Users.ErrorRegister;
 import com.example.carpmap.Service.ProfileService;
 import jakarta.validation.Valid;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -17,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/profile/")
@@ -66,16 +67,22 @@ public class ProfileController {
                                     @Valid ProfileNewPasswordDTO profileNewPasswordDTO,
                                     BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView("profile");
+        modelAndView.addObject("profileInfoDTO", profileService.findProfileById(id));
 
         if (bindingResult.hasErrors()) {
-            modelAndView.addObject("profileInfoDTO", profileService.findProfileById(id));
             modelAndView.addObject("activeTab", CHANGE_PASSWORD);
             return modelAndView;
         }
 
-        profileService.changePassword(profileNewPasswordDTO);
-        modelAndView.addObject("profileInfoDTO", profileService.findProfileById(id));
-        modelAndView.addObject("activeTab", OVERVIEW);
+        List<ErrorRegister> err = profileService.changePassword(profileNewPasswordDTO);
+        if (err.isEmpty()){
+            modelAndView.addObject("activeTab", OVERVIEW);
+            modelAndView.addObject("profileInfoDTO", profileService.findProfileById(id));
+            return modelAndView;
+        }
+        modelAndView.addObject("activeTab", CHANGE_PASSWORD);
+        modelAndView.addObject("errors", err);
+
         return modelAndView;
     }
 
