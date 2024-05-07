@@ -75,6 +75,7 @@ public class ProfileController {
         }
 
         List<ErrorRegister> err = profileService.changePassword(profileNewPasswordDTO);
+
         if (err.isEmpty()){
             modelAndView.addObject("activeTab", OVERVIEW);
             modelAndView.addObject("profileInfoDTO", profileService.findProfileById(id));
