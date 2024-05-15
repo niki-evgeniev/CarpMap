@@ -27,7 +27,7 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity ) throws Exception {
 
         httpSecurity.authorizeHttpRequests(
                 authorizeRequest -> authorizeRequest
@@ -71,11 +71,11 @@ public class SecurityConfiguration {
         ).portMapper(
                 httpSecurityHTTPS -> {
                     httpSecurityHTTPS
+                            .http(80).mapsTo(443)
                             .http(8080).mapsTo(443);
                 }
         );
         return httpSecurity.build();
-
     }
 
     @Bean
