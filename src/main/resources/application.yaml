@@ -49,6 +49,8 @@ logging:
     #    org.hibernate.SQL: DEBUG
     org.hibernate.orm.jdbc.bind: DEBUG
     org.springframework.security: ERROR
+    org.apache.coyote.http11.Http11Processor: DEBUG
+    org.apache.tomcat.util.net: DEBUG
 
 
 
