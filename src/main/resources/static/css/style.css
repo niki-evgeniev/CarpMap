@@ -1449,6 +1449,13 @@ body > div.container-fluid.about.py-5 {
     background: #e8ebf8;
     border-bottom: 2px solid #e0e5f6;
 }
+#explore > div {
+    max-width: 1550px;
+}
+
+.donate {
+    margin-top: 50px;
+}
 
 /*NOT SURE END*/
 
@@ -1458,3 +1465,4 @@ body > div.container-fluid.about.py-5 {
         border-bottom: 2px solid #eceffa;
     }
 }
+

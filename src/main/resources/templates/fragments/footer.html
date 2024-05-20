@@ -30,24 +30,22 @@
             </div>
             <div class="col-md-6 col-lg-6 col-xl-3">
                 <div class="footer-item d-flex flex-column">
-                    <h4 class="mb-4 text-white">Company</h4>
+                    <h4 class="mb-4 text-white">За сайта</h4>
                     <a th:href="@{/about}"><i class="fas fa-angle-right me-2"></i> За нас</a>
+                    <a th:href="@{/reservoirs/reservoirsAll}"><i class="fas fa-angle-right me-2"></i> Водоеми</a>
                     <a href=""><i class="fas fa-angle-right me-2"></i> Кариера</a>
                     <a th:href="@{/blog}"><i class="fas fa-angle-right me-2"></i> Блог</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Press</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Gift Cards</a>
                     <a href=""><i class="fas fa-angle-right me-2"></i> Магазин</a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-3">
                 <div class="footer-item d-flex flex-column">
-                    <h4 class="mb-4 text-white">Support</h4>
-                    <a th:href="@{/contact}"><i class="fas fa-angle-right me-2"></i> Contact</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Legal Notice</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Privacy Policy</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Terms and Conditions</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Sitemap</a>
-                    <a href=""><i class="fas fa-angle-right me-2"></i> Cookie policy</a>
+                    <h4 class="mb-4 text-white">Подръжка</h4>
+                    <a th:href="@{/contact}"><i class="fas fa-angle-right me-2"></i> Контакти </a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Политика за поверителност </a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Правила и условия </a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Карта на сайта </a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Политика за бисквитки </a>
                 </div>
             </div>
             <div class="col-md-6 col-lg-6 col-xl-3">
@@ -57,12 +55,9 @@
                             <form>
                                 <div class="form-floating">
                                     <select class="form-select bg-dark border" id="select1">
-                                        <option value="1">Arabic</option>
-                                        <option value="2">German</option>
-                                        <option value="3">Greek</option>
-                                        <option value="3">New York</option>
+                                        <option value="1">Български</option>
                                     </select>
-                                    <label for="select1">English</label>
+                                    <label for="select1">ЕЗИК</label>
                                 </div>
                             </form>
                         </div>
@@ -70,24 +65,24 @@
                             <form>
                                 <div class="form-floating">
                                     <select class="form-select bg-dark border" id="select1">
-                                        <option value="1">USD</option>
+                                        <option value="1">BGN</option>
                                         <option value="2">EUR</option>
-                                        <option value="3">INR</option>
-                                        <option value="3">GBP</option>
                                     </select>
-                                    <label for="select1">$</label>
+                                    <label for="select1">ВАЛУТИ</label>
                                 </div>
                             </form>
                         </div>
                     </div>
-                    <h4 class="text-white mb-3">Payments</h4>
+                    <h4 class="text-white mb-3">Ако искате да подкрепите проекта</h4>
                     <div class="footer-bank-card">
-                        <a href="#" class="text-white me-2"><i class="fab fa-cc-amex fa-2x"></i></a>
-                        <a href="#" class="text-white me-2"><i class="fab fa-cc-visa fa-2x"></i></a>
-                        <a href="#" class="text-white me-2"><i class="fas fa-credit-card fa-2x"></i></a>
-                        <a href="#" class="text-white me-2"><i class="fab fa-cc-mastercard fa-2x"></i></a>
-                        <a href="#" class="text-white me-2"><i class="fab fa-cc-paypal fa-2x"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-cc-discover fa-2x"></i></a>
+                        <!--                        <a href="#" class="text-white me-2"><i class="fab fa-cc-amex fa-2x"></i></a>-->
+                        <a th:href="@{/donate}" class="text-white me-2"><i class="fab fa-bitcoin fa-2x"></i></a>
+                        <a th:href="@{/donate}" class="text-white me-2"><i class="fab fa-ethereum fa-2x"></i></a>
+                        <!--                        <a href="#" class="text-white me-2"><i class="fab fa-cc-visa fa-2x"></i></a>-->
+                        <!--                        <a href="#" class="text-white me-2"><i class="fas fa-credit-card fa-2x"></i></a>-->
+                        <!--                        <a href="#" class="text-white me-2"><i class="fab fa-cc-mastercard fa-2x"></i></a>-->
+                        <!--                        <a href="#" class="text-white me-2"><i class="fab fa-cc-paypal fa-2x"></i></a>-->
+                        <!--                        <a href="#" class="text-white"><i class="fab fa-cc-discover fa-2x"></i></a>-->
                     </div>
                 </div>
             </div>
@@ -98,16 +93,13 @@
 <!-- Copyright Start -->
 <div class="container-fluid copyright text-body py-4">
     <div class="container">
-        <div class="row g-4 align-items-center">
+        <div class="row g-6 align-items-center">
             <div class="col-md-6 text-center text-md-end mb-md-0">
                 <i class="fas fa-copyright me-2"></i><a class="text-white" href="#">Carp-Map</a>, All right
                 reserved.
             </div>
             <div class="col-md-6 text-center text-md-start">
-                <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
-                <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
-                <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
-                Designed By <a class="text-white" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a
+                Created by: <a class="text-white" href="https://github.com/niki-evgeniev">Nikolay Ivanov</a> Distributed By <a
                     href="https://themewagon.com">ThemeWagon</a>
             </div>
         </div>
