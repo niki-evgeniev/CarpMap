@@ -1,11 +1,8 @@
 package com.example.carpmap.Service.Impl;
 
 import com.example.carpmap.Models.DTO.Blog.BlogDetailsDTO;
-import com.example.carpmap.Models.DTO.Blog.BlogFirstDTO;
 import com.example.carpmap.Models.DTO.Blog.BlogPackagesDTO;
-import com.example.carpmap.Models.DTO.Reservoirs.ReservoirPicturesDTO;
 import com.example.carpmap.Models.Entity.Blog;
-import com.example.carpmap.Models.Entity.Picture;
 import com.example.carpmap.Models.Entity.User;
 import com.example.carpmap.Repository.BlogRepository;
 import com.example.carpmap.Repository.UserRepository;
@@ -14,10 +11,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 
 import static com.example.carpmap.Cammon.SuccessfulMessages.SUCCESSFUL_ADD_BLOG;
@@ -113,18 +108,6 @@ public class BlogServiceImpl implements BlogService {
                 .toList();
         System.out.println("SUCCESSFUL load details BLOG");
         return allBlogsDTO;
-    }
-
-    @Override
-    public BlogFirstDTO getBlogFirst() {
-        Optional<Blog> findFirst = blogRepository.findById(1L);
-
-        if (findFirst.isPresent()) {
-            Blog blog = findFirst.get();
-            BlogFirstDTO firstBlogDTO = modelMapper.map(blog, BlogFirstDTO.class);
-            return firstBlogDTO;
-        }
-        return null;
     }
 
     @Override

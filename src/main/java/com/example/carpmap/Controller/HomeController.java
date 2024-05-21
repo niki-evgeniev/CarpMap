@@ -50,11 +50,9 @@ public class HomeController {
             Thread.sleep(500);
         }
 
-        BlogFirstDTO blogFirstDTO = blogService.getBlogFirst();
         List<BlogPackagesDTO> blogPackagesDTO = blogService.getBlogPackages();
 
         ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("firstBlogImage", blogFirstDTO);
         modelAndView.addObject("blogPackages", blogPackagesDTO);
         modelAndView.addObject("counter", counter);
         return modelAndView;
@@ -72,6 +70,6 @@ public class HomeController {
 
     @GetMapping("/gallery")
     public ModelAndView gallery() {
-        return new ModelAndView("gallery");
+        return new ModelAndView("errorFindPage");
     }
 }

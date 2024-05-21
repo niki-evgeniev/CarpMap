@@ -111,7 +111,7 @@ public class ProfileServiceImpl implements ProfileService {
             editUser.setRoles(user.get().getRoles());
             editUser.setModified(LocalDateTime.now());
             userRepository.save(editUser);
-            System.out.printf(SUCCESSFUL_EDIT_USER , editUser.getUsername());
+            System.out.printf(SUCCESSFUL_EDIT_USER, editUser.getUsername());
         } else {
             System.out.printf(USERNAME_NOT_FOUND);
         }
@@ -131,7 +131,7 @@ public class ProfileServiceImpl implements ProfileService {
                     User changeUserPassword = findUser.get();
                     changeUserPassword.setPassword(passwordEncoder.encode(profileNewPasswordDTO.getNewPassword()));
                     userRepository.save(changeUserPassword);
-                    System.out.printf(SUCCESSFUL_CHANGE_PASSWORD,changeUserPassword.getUsername());
+                    System.out.printf(SUCCESSFUL_CHANGE_PASSWORD, changeUserPassword.getUsername());
 
                 } else {
                     ErrorRegister errorRegister = new ErrorRegister();

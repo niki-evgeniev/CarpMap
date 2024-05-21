@@ -1,8 +1,6 @@
 package com.example.carpmap.Service.Impl;
 
-import com.example.carpmap.Models.DTO.Blog.BlogDetailsDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirPicturesDTO;
-import com.example.carpmap.Models.Entity.Blog;
 import com.example.carpmap.Models.Entity.Picture;
 import com.example.carpmap.Models.Entity.Reservoir;
 import com.example.carpmap.Repository.PictureRepository;

@@ -1,18 +1,14 @@
 package com.example.carpmap.Service.Impl;
 
-import com.example.carpmap.Models.Entity.IpAddress;
 import com.example.carpmap.Models.Entity.User;
 import com.example.carpmap.Models.Entity.UserRole;
-import com.example.carpmap.Repository.IpAddressRepository;
 import com.example.carpmap.Repository.UserRepository;
-import com.example.carpmap.Service.IpAddressService;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-import java.util.Optional;
 
 import static com.example.carpmap.Cammon.SuccessfulMessages.SUCCESSFUL_LOGIN;
 
