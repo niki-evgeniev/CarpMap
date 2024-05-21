@@ -1,18 +1,14 @@
 package com.example.carpmap.Controller;
 
-import com.example.carpmap.Models.DTO.Blog.BlogFirstDTO;
 import com.example.carpmap.Models.DTO.Blog.BlogPackagesDTO;
-import com.example.carpmap.Repository.IpAddressRepository;
 import com.example.carpmap.Service.BlogService;
 import com.example.carpmap.Service.IpAddressService;
-import com.example.carpmap.Service.UsersService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
