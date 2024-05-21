@@ -1449,13 +1449,26 @@ body > div.container-fluid.about.py-5 {
     background: #e8ebf8;
     border-bottom: 2px solid #e0e5f6;
 }
+
 #explore > div {
-    max-width: 1550px;
+    max-width: 1450px;
 }
 
 .donate {
     margin-top: 50px;
 }
+
+body > main > div.container-fluid.packages.py-5 {
+    padding-top: 0.5rem;
+}
+.packages {
+    padding-top: 0.5rem;
+    padding-bottom: 3rem;
+}
+.package {
+    padding-bottom: 4rem;
+}
+
 
 /*NOT SURE END*/
 

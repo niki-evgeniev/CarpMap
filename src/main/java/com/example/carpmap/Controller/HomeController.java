@@ -1,6 +1,9 @@
 package com.example.carpmap.Controller;
 
+import com.example.carpmap.Models.DTO.Blog.BlogFirstDTO;
+import com.example.carpmap.Models.DTO.Blog.BlogPackagesDTO;
 import com.example.carpmap.Repository.IpAddressRepository;
+import com.example.carpmap.Service.BlogService;
 import com.example.carpmap.Service.IpAddressService;
 import com.example.carpmap.Service.UsersService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -11,15 +14,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Controller
 public class HomeController {
 
     private final IpAddressService ipAddressService;
+    private final BlogService blogService;
 
 
-    public HomeController(IpAddressService ipAddressService) {
+    public HomeController(IpAddressService ipAddressService, BlogService blogService) {
         this.ipAddressService = ipAddressService;
+        this.blogService = blogService;
     }
 
     @GetMapping("/")
@@ -44,7 +50,12 @@ public class HomeController {
             Thread.sleep(500);
         }
 
+        BlogFirstDTO blogFirstDTO = blogService.getBlogFirst();
+        List<BlogPackagesDTO> blogPackagesDTO = blogService.getBlogPackages();
+
         ModelAndView modelAndView = new ModelAndView("index");
+        modelAndView.addObject("firstBlogImage", blogFirstDTO);
+        modelAndView.addObject("blogPackages", blogPackagesDTO);
         modelAndView.addObject("counter", counter);
         return modelAndView;
     }
