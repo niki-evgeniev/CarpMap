@@ -1332,20 +1332,3 @@ VALUES (1, '0:0:0:0:0:0:0:1', 187, _binary '\0', '2024-05-04 03:14:00.001647', '
        (1615, '172.71.10.26', 1, _binary '\0', NULL, '2024-05-21 22:33:37.844488', NULL),
        (1616, '172.71.94.209', 1, _binary '\0', NULL, '2024-05-21 23:02:10.606109', NULL),
        (1617, '172.69.33.98', 1, _binary '\0', NULL, '2024-05-21 23:02:56.465357', NULL);
-
-INSERT INTO blog
-VALUES (1, 'admin', '2023-07-25', NULL, 'ЗЕЛКА 2 testing blog descriptions ',
-        'Бесните шарани на яз. Зелево перо - Second challenge!',
-        'https://res.cloudinary.com/dsy8h2u3x/image/upload/v1716243887/Carp/blog/evljtyhn9fd62jke97jn.jpg',
-        'https://www.youtube.com/watch?v=MltB12hCHIo', 1),
-       (2, 'admin', '2022-05-23', NULL, 'ЗЕЛКА 1 testing blog descriptions ', 'Лудите шарани на Зелево перо!',
-        'https://res.cloudinary.com/dsy8h2u3x/image/upload/v1716243979/Carp/blog/tcx4akpkuqczfsbrxuzn.jpg',
-        'https://www.youtube.com/watch?v=58aBokf-BiQ', 1),
-       (3, 'admin', '2022-06-12', NULL, 'КУЛЕК testing blog descriptions ', 'В търсене на шарани 20+ на Кулеков лейк!',
-        'https://res.cloudinary.com/dsy8h2u3x/image/upload/v1716244034/Carp/blog/rhdts3etaevtkfwiffwk.jpg',
-        'https://www.youtube.com/watch?v=mdzotPA6kuU&t=5s', 1),
-       (4, 'admin', '2021-06-20', NULL, 'КУЛЕК2 descriptions ', 'Кулеков Лейк 2020',
-        'https://res.cloudinary.com/dsy8h2u3x/image/upload/v1716244072/Carp/blog/y7pmzeutndysreamffh0.jpg',
-        'https://www.youtube.com/watch?v=YTclNGqMAK4', 1),
-       (5, 'admin', '2021-09-28', NULL, ' Кулеков лейк descriptions ', 'Кулеков лейк',
-        'https://res.cloudinary.com/dsy8h2u3x/image/upload/v1716244110/Carp/blog/apflstxyrmvayqmm3d4d.jpg',
