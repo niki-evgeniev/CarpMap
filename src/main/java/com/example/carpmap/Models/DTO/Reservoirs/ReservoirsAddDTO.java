@@ -23,7 +23,7 @@ public class ReservoirsAddDTO {
 
 
     @NotEmpty(message = "Reservoirs name must not be empty")
-    @Size(min = 3, max = 20, message = "Name for Reservoirs length must be between 3 and 20 character!")
+    @Size(min = 3, max = 40, message = "Name for Reservoirs length must be between 3 and 40 character!")
     private String name;
 
 
@@ -66,6 +66,7 @@ public class ReservoirsAddDTO {
 
     @PastOrPresent
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+    @NotNull(message = "Date must not be empty")
     private LocalDateTime createDate;
 
 
