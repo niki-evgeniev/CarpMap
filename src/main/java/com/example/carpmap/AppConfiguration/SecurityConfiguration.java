@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
@@ -27,7 +29,7 @@ public class SecurityConfiguration {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity ) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 
         httpSecurity.authorizeHttpRequests(
                 authorizeRequest -> authorizeRequest
@@ -38,6 +40,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/reservoirs/reservoirsAll", "/reservoirs/{id}").permitAll()
                         .requestMatchers("/donate").permitAll()
                         .requestMatchers("/about", "/blog", "/contact").permitAll()
+                        .requestMatchers("/subscribe/send").permitAll()
                         .requestMatchers("/gallery").permitAll()
                         .requestMatchers("/reservoirs/reservoirsEdit/{id}")
                         .hasAnyRole(RoleType.MODERATOR.name())
@@ -46,6 +49,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/reservoirs/delete/{id}", "/profile/profiles")
                         .hasAnyRole(RoleType.ADMIN.name())
                         .anyRequest().authenticated()
+
         ).formLogin(
                 formLogin -> {
                     formLogin
@@ -76,6 +80,7 @@ public class SecurityConfiguration {
                             .http(8080).mapsTo(443);
                 }
         );
+
         return httpSecurity.build();
     }
 

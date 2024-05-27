@@ -25,7 +25,7 @@
                         <h4 class="text-primary">
                             <Address></Address>
                         </h4>
-                        <p class="mb-0">Горна Оряховица, <br>  България </p>
+                        <p class="mb-0">Горна Оряховица, <br> България </p>
                     </div>
                     <div class="text-center mb-4">
                         <i class="fa fa-phone-alt fa-3x text-primary mb-3"></i>
@@ -43,11 +43,16 @@
             <div class="col-lg-8">
                 <h3 class="mb-2">Изпрати ни съобщение</h3>
                 <p class="mb-4">Изпрати ни събощение с пълна информация за да можем да помогнем !НЕРАБОТИ ЗА СЕГА!!!</p>
-                <form>
+                <form th:method="POST"
+                      th:action="@{/contact}"
+                      th:object="${contactDTO}">
                     <div class="row g-3">
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control border-0" id="name" placeholder="Your Name">
+                                <input th:field="*{name}"
+                                       type="text"
+                                       class="form-control border-0"
+                                       id="name" placeholder="Your Name">
                                 <label for="name">Your Name</label>
                             </div>
                         </div>
