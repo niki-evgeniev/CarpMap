@@ -18,7 +18,7 @@ public class ReservoirsAddDTO {
 
 
     @NotEmpty(message = "Reservoirs city must not be empty")
-    @Size(min = 3, max = 20, message = "City for Reservoirs length must be between 3 and 20 character!")
+    @Size(min = 3, max = 40, message = "City for Reservoirs length must be between 3 and 20 character!")
     private String city;
 
 
