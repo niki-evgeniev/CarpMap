@@ -41,7 +41,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/donate").permitAll()
                         .requestMatchers("/about", "/blog", "/contact").permitAll()
                         .requestMatchers("/subscribe/send").permitAll()
-                        .requestMatchers("/gallery").permitAll()
+                        .requestMatchers("/gallery", "/search").permitAll()
                         .requestMatchers("/reservoirs/reservoirsEdit/{id}")
                         .hasAnyRole(RoleType.MODERATOR.name())
                         .requestMatchers("/reservoirs/add/reservoirAdd")

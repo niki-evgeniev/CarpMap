@@ -43,7 +43,7 @@ public class HomeController {
             ipAddressService.checkIpAddressLogin(userDetails.getUsername(), ipAddress);
         } else {
             ipAddressService.getIpVisitor(ipAddress);
-            Thread.sleep(500);
+//            Thread.sleep(500);
         }
 
         List<BlogPackagesDTO> blogPackagesDTO = blogService.getBlogPackages();
