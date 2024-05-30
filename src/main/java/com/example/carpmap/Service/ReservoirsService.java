@@ -20,8 +20,11 @@ public interface ReservoirsService {
 
     Page<ReservoirAllDTO> getAllReservoirs(Pageable pageable);
 
+    Page<ReservoirAllDTO> findReservoirByName(String reservoir, Pageable pageable);
+
     ReservoirsDetailsDTO getDetails(Long id);
 
     void deleteReservoir(Long id);
+
 
 }

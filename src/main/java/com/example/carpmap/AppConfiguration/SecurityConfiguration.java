@@ -16,6 +16,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableMethodSecurity
@@ -72,6 +74,10 @@ public class SecurityConfiguration {
                             .key(rememberMeKey)
                             .rememberMeParameter("remember-me")
                             .rememberMeCookieName("remember-me");
+                }
+        ).csrf(
+                csfr -> {
+                    csfr.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
                 }
         ).portMapper(
                 httpSecurityHTTPS -> {

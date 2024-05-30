@@ -106,6 +106,16 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     }
 
     @Override
+    public Page<ReservoirAllDTO> findReservoirByName(String reservoir, Pageable pageable) {
+        Page<Reservoir> allByName = reservoirRepository.findAllByName(reservoir, pageable);
+        Page<ReservoirAllDTO> allReservoirByName = allByName
+                .map(reservoirByName -> {
+                    return modelMapper.map(reservoirByName, ReservoirAllDTO.class);
+                });
+        return allReservoirByName;
+    }
+
+    @Override
     public ReservoirsDetailsDTO getDetails(Long id) {
         Optional<Reservoir> findReservoir = reservoirRepository.findById(id);
         ReservoirsDetailsDTO reservoirsDetailsDTO = modelMapper.map(findReservoir, ReservoirsDetailsDTO.class);
