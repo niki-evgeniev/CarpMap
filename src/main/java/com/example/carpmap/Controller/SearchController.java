@@ -27,7 +27,7 @@ public class SearchController {
     @PostMapping("/search")
     public ModelAndView search(@Valid SearchDTO searchDTO, BindingResult bindingResult,
                                @PageableDefault(size = 6, sort = "name") Pageable pageable) {
-
+//        System.out.println(searchDTO.getReservoir() + "SEARCH STRING");
         if (!bindingResult.hasErrors()) {
             Page<ReservoirAllDTO> reservoirByName = reservoirsService.findReservoirByName(searchDTO.getReservoir(), pageable);
             ModelAndView modelAndView = new ModelAndView("reservoirs");
@@ -36,7 +36,7 @@ public class SearchController {
 
         }
 
-        return new ModelAndView("about");
+        return new ModelAndView("invite");
     }
 
     @ModelAttribute
