@@ -85,9 +85,7 @@ public class IpAddressServiceImpl implements IpAddressService {
             IpAddress newIpAdd = byAddress.get();
             newIpAdd.setCountVisits(newIpAdd.getCountVisits() + 1L);
             newIpAdd.setLastSeen(LocalDateTime.now());
-//            byAddress.get().setCountVisits(byAddress.get().getCountVisits() + 1);
-//            byAddress.get().setLastSeen(LocalDateTime.now());
-            ipAddressRepository.save(byAddress.get());
+            ipAddressRepository.save(newIpAdd);
         }
     }
 }
