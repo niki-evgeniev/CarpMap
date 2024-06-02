@@ -24,7 +24,7 @@ public class SearchController {
     }
 
 
-    @PostMapping("/search")
+    @PostMapping("/")
     public ModelAndView search(@Valid SearchDTO searchDTO, BindingResult bindingResult,
                                @PageableDefault(size = 6, sort = "name") Pageable pageable) {
 //        System.out.println(searchDTO.getReservoir() + "SEARCH STRING");
