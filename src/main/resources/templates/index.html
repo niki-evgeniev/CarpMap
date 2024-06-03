@@ -92,11 +92,11 @@
 
     <div class="container-fluid search-bar position-relative" style="top: -50%; transform: translateY(-50%);">
         <div class="container info-server">
-            <div class="position-relative rounded-pill w-100 mx-auto p-4"
-                 style="background: rgba(19, 53, 123, 0.8)">
-                <form th:method="GET"
-                      th:action="@{/search}"
-                      th:object="${searchDTO}">
+            <form th:method="GET"
+                  th:action="@{/search}"
+                  th:object="${searchDTO}">
+                <div class="position-relative rounded-pill w-100 mx-auto p-4"
+                     style="background: rgba(19, 53, 123, 0.8)">
                     <input th:field="*{reservoir}"
                            class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5"
                            name="reservoir"
@@ -106,12 +106,13 @@
                     <button type="submit" class="btn btn-primary rounded-pill py-2 px-4 position-absolute me-2"
                             style="top: 50%; right: 46px; transform: translateY(-50%)">Търси
                     </button>
-                    <div class="text-white text-center"
-                         th:if="${#fields.hasErrors('reservoir')}"
-                         th:errors="*{reservoir}">Please, enter your name!
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="text-primary text-center"
+                     th:if="${#fields.hasErrors('reservoir')}"
+                     th:errors="*{reservoir}">Please, enter your name!
+                </div>
+                <br>
+            </form>
             <h1 class="text-capitalize text-center mb-4 "
                 th:object="${counter}"
                 th:text="'Total visitors ' + ${counter}">You Like To Go?</h1>
@@ -132,17 +133,20 @@
         <div class="tab-class text-center">
             <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
                 <li class="nav-item">
-                    <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill active" data-bs-toggle="pill" href="#GalleryTab-1">
+                    <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill active" data-bs-toggle="pill"
+                       href="#GalleryTab-1">
                         <span class="text-dark" style="width: 150px;">Всички</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="d-flex py-2 mx-3 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#GalleryTab-2">
+                    <a class="d-flex py-2 mx-3 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
+                       href="#GalleryTab-2">
                         <span class="text-dark" style="width: 150px;">Частни</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill" href="#GalleryTab-3">
+                    <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
+                       href="#GalleryTab-3">
                         <span class="text-dark" style="width: 150px;">Държавни</span>
                     </a>
                 </li>
@@ -152,43 +156,52 @@
                     <div class="row g-2">
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-2">
                             <div class="gallery-item h-100">
-                                <img src="/images/gallery/beglika.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                <img src="/images/gallery/beglika.jpg" class="img-fluid w-100 h-100 rounded"
+                                     alt="Image">
                                 <div class="gallery-content">
                                     <div class="gallery-info">
                                         <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        <a href="#" class="btn-hover text-white">View All Place <i
+                                                class="fa fa-arrow-right ms-2"></i></a>
                                     </div>
                                 </div>
                                 <div class="gallery-plus-icon">
-                                    <a href="/images/gallery/beglika.jpg" data-lightbox="gallery-1" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    <a href="/images/gallery/beglika.jpg" data-lightbox="gallery-1" class="my-auto"><i
+                                            class="fas fa-plus fa-2x text-white"></i></a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
                             <div class="gallery-item h-100">
-                                <img src="/images/gallery/beli-iskur.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                <img src="/images/gallery/beli-iskur.jpg" class="img-fluid w-100 h-100 rounded"
+                                     alt="Image">
                                 <div class="gallery-content">
                                     <div class="gallery-info">
                                         <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        <a href="#" class="btn-hover text-white">View All Place <i
+                                                class="fa fa-arrow-right ms-2"></i></a>
                                     </div>
                                 </div>
                                 <div class="gallery-plus-icon">
-                                    <a href="/images/gallery/beli-iskur.jpg" data-lightbox="gallery-2" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    <a href="/images/gallery/beli-iskur.jpg" data-lightbox="gallery-2"
+                                       class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-2">
                             <div class="gallery-item h-100">
-                                <img src="/images/gallery/belmeken.png" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                <img src="/images/gallery/belmeken.png" class="img-fluid w-100 h-100 rounded"
+                                     alt="Image">
                                 <div class="gallery-content">
                                     <div class="gallery-info">
                                         <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        <a href="#" class="btn-hover text-white">View All Place <i
+                                                class="fa fa-arrow-right ms-2"></i></a>
                                     </div>
                                 </div>
                                 <div class="gallery-plus-icon">
-                                    <a href="/images/gallery/belmeken.png" data-lightbox="gallery-3" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    <a href="/images/gallery/belmeken.png" data-lightbox="gallery-3" class="my-auto"><i
+                                            class="fas fa-plus fa-2x text-white"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -198,39 +211,47 @@
                                 <div class="gallery-content">
                                     <div class="gallery-info">
                                         <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        <a href="#" class="btn-hover text-white">View All Place <i
+                                                class="fa fa-arrow-right ms-2"></i></a>
                                     </div>
                                 </div>
                                 <div class="gallery-plus-icon">
-                                    <a href="/images/gallery/dospat.jpg" data-lightbox="gallery-4" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    <a href="/images/gallery/dospat.jpg" data-lightbox="gallery-4" class="my-auto"><i
+                                            class="fas fa-plus fa-2x text-white"></i></a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-2">
                             <div class="gallery-item h-100">
-                                <img src="/images/gallery/goliam-beglik.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                <img src="/images/gallery/goliam-beglik.jpg" class="img-fluid w-100 h-100 rounded"
+                                     alt="Image">
                                 <div class="gallery-content">
                                     <div class="gallery-info">
                                         <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        <a href="#" class="btn-hover text-white">View All Place <i
+                                                class="fa fa-arrow-right ms-2"></i></a>
                                     </div>
                                 </div>
                                 <div class="gallery-plus-icon">
-                                    <a href="/images/gallery/goliam-beglik.jpg" data-lightbox="gallery-5" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    <a href="/images/gallery/goliam-beglik.jpg" data-lightbox="gallery-5"
+                                       class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-2">
                             <div class="gallery-item h-100">
-                                <img src="/images/gallery/iovkovci.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                <img src="/images/gallery/iovkovci.jpg" class="img-fluid w-100 h-100 rounded"
+                                     alt="Image">
                                 <div class="gallery-content">
                                     <div class="gallery-info">
                                         <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        <a href="#" class="btn-hover text-white">View All Place <i
+                                                class="fa fa-arrow-right ms-2"></i></a>
                                     </div>
                                 </div>
                                 <div class="gallery-plus-icon">
-                                    <a href="/images/gallery/iovkovci.jpg" data-lightbox="gallery-6" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    <a href="/images/gallery/iovkovci.jpg" data-lightbox="gallery-6" class="my-auto"><i
+                                            class="fas fa-plus fa-2x text-white"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -240,25 +261,30 @@
                                 <div class="gallery-content">
                                     <div class="gallery-info">
                                         <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        <a href="#" class="btn-hover text-white">View All Place <i
+                                                class="fa fa-arrow-right ms-2"></i></a>
                                     </div>
                                 </div>
                                 <div class="gallery-plus-icon">
-                                    <a href="/images/gallery/iskur.jpg" data-lightbox="gallery-7" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    <a href="/images/gallery/iskur.jpg" data-lightbox="gallery-7" class="my-auto"><i
+                                            class="fas fa-plus fa-2x text-white"></i></a>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-6 col-lg-3 col-xl-2">
                             <div class="gallery-item h-100">
-                                <img src="/images/gallery/jrebchevo.jpg" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                <img src="/images/gallery/jrebchevo.jpg" class="img-fluid w-100 h-100 rounded"
+                                     alt="Image">
                                 <div class="gallery-content">
                                     <div class="gallery-info">
                                         <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        <a href="#" class="btn-hover text-white">View All Place <i
+                                                class="fa fa-arrow-right ms-2"></i></a>
                                     </div>
                                 </div>
                                 <div class="gallery-plus-icon">
-                                    <a href="/images/gallery/jrebchevo.jpg" data-lightbox="gallery-8" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    <a href="/images/gallery/jrebchevo.jpg" data-lightbox="gallery-8" class="my-auto"><i
+                                            class="fas fa-plus fa-2x text-white"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -268,11 +294,13 @@
                                 <div class="gallery-content">
                                     <div class="gallery-info">
                                         <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        <a href="#" class="btn-hover text-white">View All Place <i
+                                                class="fa fa-arrow-right ms-2"></i></a>
                                     </div>
                                 </div>
                                 <div class="gallery-plus-icon">
-                                    <a href="/images/gallery/vucha.jpg" data-lightbox="gallery-9" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    <a href="/images/gallery/vucha.jpg" data-lightbox="gallery-9" class="my-auto"><i
+                                            class="fas fa-plus fa-2x text-white"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -282,11 +310,13 @@
                                 <div class="gallery-content">
                                     <div class="gallery-info">
                                         <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        <a href="#" class="btn-hover text-white">View All Place <i
+                                                class="fa fa-arrow-right ms-2"></i></a>
                                     </div>
                                 </div>
                                 <div class="gallery-plus-icon">
-                                    <a href="/images/gallery/ogosta.jpg" data-lightbox="gallery-10" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    <a href="/images/gallery/ogosta.jpg" data-lightbox="gallery-10" class="my-auto"><i
+                                            class="fas fa-plus fa-2x text-white"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -300,11 +330,13 @@
                                 <div class="gallery-content">
                                     <div class="gallery-info">
                                         <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        <a href="#" class="btn-hover text-white">View All Place <i
+                                                class="fa fa-arrow-right ms-2"></i></a>
                                     </div>
                                 </div>
                                 <div class="gallery-plus-icon">
-                                    <a href="img/gallery-2.jpg" data-lightbox="gallery-2" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    <a href="img/gallery-2.jpg" data-lightbox="gallery-2" class="my-auto"><i
+                                            class="fas fa-plus fa-2x text-white"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -314,11 +346,13 @@
                                 <div class="gallery-content">
                                     <div class="gallery-info">
                                         <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        <a href="#" class="btn-hover text-white">View All Place <i
+                                                class="fa fa-arrow-right ms-2"></i></a>
                                     </div>
                                 </div>
                                 <div class="gallery-plus-icon">
-                                    <a href="img/gallery-3.jpg" data-lightbox="gallery-3" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    <a href="img/gallery-3.jpg" data-lightbox="gallery-3" class="my-auto"><i
+                                            class="fas fa-plus fa-2x text-white"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -332,11 +366,13 @@
                                 <div class="gallery-content">
                                     <div class="gallery-info">
                                         <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        <a href="#" class="btn-hover text-white">View All Place <i
+                                                class="fa fa-arrow-right ms-2"></i></a>
                                     </div>
                                 </div>
                                 <div class="gallery-plus-icon">
-                                    <a href="img/gallery-2.jpg" data-lightbox="gallery-2" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    <a href="img/gallery-2.jpg" data-lightbox="gallery-2" class="my-auto"><i
+                                            class="fas fa-plus fa-2x text-white"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -346,11 +382,13 @@
                                 <div class="gallery-content">
                                     <div class="gallery-info">
                                         <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        <a href="#" class="btn-hover text-white">View All Place <i
+                                                class="fa fa-arrow-right ms-2"></i></a>
                                     </div>
                                 </div>
                                 <div class="gallery-plus-icon">
-                                    <a href="img/gallery-3.jpg" data-lightbox="gallery-3" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    <a href="img/gallery-3.jpg" data-lightbox="gallery-3" class="my-auto"><i
+                                            class="fas fa-plus fa-2x text-white"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -364,11 +402,13 @@
                                 <div class="gallery-content">
                                     <div class="gallery-info">
                                         <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        <a href="#" class="btn-hover text-white">View All Place <i
+                                                class="fa fa-arrow-right ms-2"></i></a>
                                     </div>
                                 </div>
                                 <div class="gallery-plus-icon">
-                                    <a href="img/gallery-2.jpg" data-lightbox="gallery-2" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    <a href="img/gallery-2.jpg" data-lightbox="gallery-2" class="my-auto"><i
+                                            class="fas fa-plus fa-2x text-white"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -378,11 +418,13 @@
                                 <div class="gallery-content">
                                     <div class="gallery-info">
                                         <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        <a href="#" class="btn-hover text-white">View All Place <i
+                                                class="fa fa-arrow-right ms-2"></i></a>
                                     </div>
                                 </div>
                                 <div class="gallery-plus-icon">
-                                    <a href="img/gallery-3.jpg" data-lightbox="gallery-3" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    <a href="img/gallery-3.jpg" data-lightbox="gallery-3" class="my-auto"><i
+                                            class="fas fa-plus fa-2x text-white"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -396,11 +438,13 @@
                                 <div class="gallery-content">
                                     <div class="gallery-info">
                                         <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        <a href="#" class="btn-hover text-white">View All Place <i
+                                                class="fa fa-arrow-right ms-2"></i></a>
                                     </div>
                                 </div>
                                 <div class="gallery-plus-icon">
-                                    <a href="img/gallery-2.jpg" data-lightbox="gallery-2" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    <a href="img/gallery-2.jpg" data-lightbox="gallery-2" class="my-auto"><i
+                                            class="fas fa-plus fa-2x text-white"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -410,11 +454,13 @@
                                 <div class="gallery-content">
                                     <div class="gallery-info">
                                         <h5 class="text-white text-uppercase mb-2">World Tour</h5>
-                                        <a href="#" class="btn-hover text-white">View All Place <i class="fa fa-arrow-right ms-2"></i></a>
+                                        <a href="#" class="btn-hover text-white">View All Place <i
+                                                class="fa fa-arrow-right ms-2"></i></a>
                                     </div>
                                 </div>
                                 <div class="gallery-plus-icon">
-                                    <a href="img/gallery-3.jpg" data-lightbox="gallery-3" class="my-auto"><i class="fas fa-plus fa-2x text-white"></i></a>
+                                    <a href="img/gallery-3.jpg" data-lightbox="gallery-3" class="my-auto"><i
+                                            class="fas fa-plus fa-2x text-white"></i></a>
                                 </div>
                             </div>
                         </div>
