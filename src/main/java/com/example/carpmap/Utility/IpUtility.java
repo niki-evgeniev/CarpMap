@@ -39,7 +39,6 @@ public class IpUtility {
             ipAddressService.checkIpAddressLogin(userDetails.getUsername(), ipAddress);
         } else {
             ipAddressService.getIpVisitor(ipAddress);
-            Thread.sleep(500);
         }
         List<BlogPackagesDTO> blogPackagesDTO = blogService.getBlogPackages();
 

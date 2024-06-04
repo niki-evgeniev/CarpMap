@@ -42,7 +42,7 @@
             </div>
             <div class="col-lg-8">
                 <h3 class="mb-2">Изпрати ни съобщение</h3>
-                <p class="mb-4">Изпрати ни събощение с пълна информация за да можем да помогнем !НЕРАБОТИ ЗА СЕГА!!!</p>
+                <p class="mb-4">Изпрати ни събощение с пълна информация за да можем да помогнем !</p>
                 <form th:method="POST"
                       th:action="@{/contact}"
                       th:object="${contactDTO}">
@@ -53,26 +53,37 @@
                                        type="text"
                                        class="form-control border-0"
                                        id="name" placeholder="Your Name">
-                                <label for="name">Your Name</label>
+                                <label for="name">Вашето име</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-floating">
-                                <input type="email" class="form-control border-0" id="email" placeholder="Your Email">
-                                <label for="email">Your Email</label>
+                                <input th:field="*{email}"
+                                       type="email"
+                                       class="form-control border-0"
+                                       id="email"
+                                       placeholder="Your Email">
+                                <label for="email">Емайл</label>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-floating">
-                                <input type="text" class="form-control border-0" id="subject" placeholder="Subject">
-                                <label for="subject">Subject</label>
+                                <input th:field="*{subject}"
+                                       type="text"
+                                       class="form-control border-0"
+                                       id="subject"
+                                       placeholder="Subject">
+                                <label for="subject">Тема</label>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-floating">
-                                <textarea class="form-control border-0" placeholder="Leave a message here" id="message"
+                                <textarea th:field="*{message}"
+                                          class="form-control border-0"
+                                          placeholder="Leave a message here"
+                                          id="message"
                                           style="height: 160px"></textarea>
-                                <label for="message">Message</label>
+                                <label for="message">Съобщение</label>
                             </div>
                         </div>
                         <div class="col-12">

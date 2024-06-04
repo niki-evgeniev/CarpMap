@@ -65,6 +65,9 @@ public class SuccessfulMessages {
     public static final String SUCCESSFUL_LOAD_INFORMATION_ABOUT_USERS =
             "SUCCESSFUL load Information about users %n";
 
+    public static final String SUCCESSFUL_ADD_CONTACT =
+            "Successful added new CONTACT";
+
 
 
 }

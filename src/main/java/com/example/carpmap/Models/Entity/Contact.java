@@ -1,20 +1,31 @@
-package com.example.carpmap.Models.DTO;
+package com.example.carpmap.Models.Entity;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
 
-public class ContactDTO {
+@Entity
+@Table(name = "contact")
+public class Contact extends BaseEntity{
 
+    @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "email", nullable = false)
     private String email;
 
+    @Column(name = "subject", nullable = false)
     private String subject;
 
+    @Column(name = "message", nullable = false)
     private String message;
 
+    @Column(name = "addedDate", nullable = false)
     private LocalDateTime addedDate;
 
-    public ContactDTO() {
+    public Contact() {
     }
 
     public String getName() {

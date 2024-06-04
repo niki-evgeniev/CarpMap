@@ -41,9 +41,8 @@ public class SearchController {
     public ModelAndView search(@AuthenticationPrincipal UserDetails userDetails,
                                @Valid SearchDTO searchDTO, BindingResult bindingResult,
                                @PageableDefault(size = 6, sort = "name") Pageable pageable) throws InterruptedException {
-//        System.out.println(searchDTO.getReservoir() + "SEARCH STRING");
         System.out.println();
-        if (!bindingResult.hasErrors()){
+        if (!bindingResult.hasErrors()) {
             Page<ReservoirAllDTO> reservoirByName = reservoirsService.findReservoirByName(searchDTO.getReservoir(), pageable);
             ModelAndView modelAndView = new ModelAndView("reservoirs");
             modelAndView.addObject("allReservoir", reservoirByName);
@@ -51,7 +50,6 @@ public class SearchController {
         }
 
         ModelAndView modelAndView = ipUtility.getIpAndBlog(userDetails);
-
         return modelAndView;
     }
 

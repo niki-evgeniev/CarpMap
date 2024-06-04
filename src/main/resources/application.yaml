@@ -46,8 +46,8 @@ carpmap:
 logging:
   level:
 #    org.hibernate.SQL: DEBUG
-    org.hibernate.orm.jdbc.bind: DEBUG
-    org.springframework.security: DEBUG
+    org.hibernate.orm.jdbc.bind: INFO
+    org.springframework.security: INFO
 #    org.apache.coyote.http11.Http11Processor: DEBUG
 #    org.apache.tomcat.util.net: DEBUG
 server:

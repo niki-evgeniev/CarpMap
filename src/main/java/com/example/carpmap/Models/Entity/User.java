@@ -66,6 +66,9 @@ public class User extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<UserRole> roles = new ArrayList<>();
 
+    @ManyToOne
+    private Contact contact;
+
     public User() {
     }
 
@@ -203,5 +206,13 @@ public class User extends BaseEntity {
 
     public void setRoles(List<UserRole> roles) {
         this.roles = roles;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 }

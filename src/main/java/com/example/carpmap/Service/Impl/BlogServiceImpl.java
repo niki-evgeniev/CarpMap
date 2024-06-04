@@ -42,7 +42,7 @@ public class BlogServiceImpl implements BlogService {
             LocalDate now = LocalDate.now();
             blog.setDateAdded(LocalDate.parse("2023-07-25"));
             blog.setDescription("ЗЕЛКА 2 testing blog descriptions ");
-            blog.setUrlImage("https://res.cloudinary.com/dsy8h2u3x/image/upload/v1712864990/Carp/blog/p5be54ttivtetpmtvgfe.jpg");
+            blog.setUrlImage("https://res.cloudinary.com/dsy8h2u3x/image/upload/v1716244110/Carp/blog/apflstxyrmvayqmm3d4d.jpg");
             blog.setTitleBlog("Бесните шарани на яз. Зелево перо - Second challenge!");
             blog.setUrlVideo("https://www.youtube.com/watch?v=MltB12hCHIo");
             blog.setUser(byId.get());
@@ -54,7 +54,7 @@ public class BlogServiceImpl implements BlogService {
             blog.setAuthorName(byId.get().getUsername());
             blog.setDateAdded(LocalDate.parse("2022-05-23"));
             blog.setDescription("ЗЕЛКА 1 testing blog descriptions ");
-            blog.setUrlImage("https://res.cloudinary.com/dsy8h2u3x/image/upload/v1712864990/Carp/blog/ckkcw9ldtq9lzimwduur.jpg");
+            blog.setUrlImage("https://res.cloudinary.com/dsy8h2u3x/image/upload/v1716243979/Carp/blog/tcx4akpkuqczfsbrxuzn.jpg");
             blog.setTitleBlog("Лудите шарани на Зелево перо!");
             blog.setUrlVideo("https://www.youtube.com/watch?v=58aBokf-BiQ");
             blog.setUser(byId.get());
@@ -66,7 +66,7 @@ public class BlogServiceImpl implements BlogService {
             blog.setAuthorName(byId.get().getUsername());
             blog.setDateAdded(LocalDate.parse("2022-06-12"));
             blog.setDescription("КУЛЕК testing blog descriptions ");
-            blog.setUrlImage("https://res.cloudinary.com/dsy8h2u3x/image/upload/v1712864990/Carp/blog/e7xzidfsp0evulxuhyqr.jpg");
+            blog.setUrlImage("https://res.cloudinary.com/dsy8h2u3x/image/upload/v1716243887/Carp/blog/evljtyhn9fd62jke97jn.jpg");
             blog.setTitleBlog("В търсене на шарани 20+ на Кулеков лейк!");
             blog.setUrlVideo("https://www.youtube.com/watch?v=mdzotPA6kuU&t=5s");
             blog.setUser(byId.get());
@@ -78,7 +78,7 @@ public class BlogServiceImpl implements BlogService {
             blog.setAuthorName(byId.get().getUsername());
             blog.setDateAdded(LocalDate.parse("2021-06-20"));
             blog.setDescription("КУЛЕК2 descriptions ");
-            blog.setUrlImage("https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713050555/Carp/blog/atfsslez1uc7pvjtigop.jpg");
+            blog.setUrlImage("https://res.cloudinary.com/dsy8h2u3x/image/upload/v1716244034/Carp/blog/rhdts3etaevtkfwiffwk.jpg");
             blog.setTitleBlog("Кулеков Лейк 2020");
             blog.setUrlVideo("https://www.youtube.com/watch?v=YTclNGqMAK4");
             blog.setUser(byId.get());
@@ -90,7 +90,7 @@ public class BlogServiceImpl implements BlogService {
             blog.setAuthorName(byId.get().getUsername());
             blog.setDateAdded(LocalDate.parse("2021-09-28"));
             blog.setDescription(" Кулеков лейк descriptions ");
-            blog.setUrlImage("https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713051215/Carp/blog/jt9lf01x1jzfckacuknh.jpg");
+            blog.setUrlImage("https://res.cloudinary.com/dsy8h2u3x/image/upload/v1716244072/Carp/blog/y7pmzeutndysreamffh0.jpg");
             blog.setTitleBlog("Кулеков лейк");
             blog.setUrlVideo("https://www.youtube.com/watch?v=I639Da08teA");
             blog.setUser(byId.get());
