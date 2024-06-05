@@ -7,6 +7,7 @@ import com.example.carpmap.Service.BlogService;
 import com.example.carpmap.Service.IpAddressService;
 import com.example.carpmap.Service.ReservoirsService;
 import com.example.carpmap.Utility.IpUtility;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,7 +41,8 @@ public class SearchController {
     @GetMapping("/search")
     public ModelAndView search(@AuthenticationPrincipal UserDetails userDetails,
                                @Valid SearchDTO searchDTO, BindingResult bindingResult,
-                               @PageableDefault(size = 6, sort = "name") Pageable pageable) throws InterruptedException {
+                               @PageableDefault(size = 6, sort = "name") Pageable pageable,
+                               HttpServletRequest request) throws InterruptedException {
         System.out.println();
         if (!bindingResult.hasErrors()) {
             Page<ReservoirAllDTO> reservoirByName = reservoirsService.findReservoirByName(searchDTO.getReservoir(), pageable);
@@ -48,8 +50,8 @@ public class SearchController {
             modelAndView.addObject("allReservoir", reservoirByName);
             return modelAndView;
         }
-
-        ModelAndView modelAndView = ipUtility.getIpAndBlog(userDetails);
+        String cloudflareIp = request.getRemoteAddr();
+        ModelAndView modelAndView = ipUtility.getIpAndBlog(userDetails, cloudflareIp);
         return modelAndView;
     }
 

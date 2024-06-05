@@ -26,7 +26,8 @@ public class ReservoirController {
     private final FishService fishService;
     private final CountryService countryService;
 
-    public ReservoirController(ReservoirsService reservoirsService, FishService fishService, CountryService countryService) {
+    public ReservoirController(ReservoirsService reservoirsService, FishService fishService,
+                               CountryService countryService) {
         this.reservoirsService = reservoirsService;
         this.fishService = fishService;
         this.countryService = countryService;
@@ -86,6 +87,7 @@ public class ReservoirController {
     ReservoirsAddDTO reservoirsAddDTO() {
         return new ReservoirsAddDTO();
     }
+
     private static boolean checkForAdminRole(UserDetails userDetails) {
         String roleAdmin = "ROLE_" + RoleType.ADMIN;
         boolean hasRoleAdmin = userDetails.getAuthorities().stream()

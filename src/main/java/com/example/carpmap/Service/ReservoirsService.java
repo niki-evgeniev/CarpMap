@@ -5,9 +5,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 
-
-import java.util.Optional;
-
 public interface ReservoirsService {
 
     boolean addReservoirs(ReservoirsAddDTO reservoirsAddDTO, UserDetails userDetails);
@@ -19,6 +16,8 @@ public interface ReservoirsService {
     Long editReservoir(ReservoirsEditDTO reservoirsEditDTO, UserDetails userDetails);
 
     Page<ReservoirAllDTO> getAllReservoirs(Pageable pageable);
+
+    Page<ReservoirAllDTO> getReservoirsByType(String type, Pageable pageable);
 
     Page<ReservoirAllDTO> findReservoirByName(String reservoir, Pageable pageable);
 

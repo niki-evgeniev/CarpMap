@@ -24,7 +24,7 @@ public class IpUtility {
 
     }
 
-    public ModelAndView getIpAndBlog(UserDetails userDetails) throws InterruptedException {
+    public ModelAndView getIpAndBlog(UserDetails userDetails, String cloudflareIp) throws InterruptedException {
         Long counter = ipAddressService.findAllVisits();
         if (counter == null) {
             counter = 1L;
@@ -34,11 +34,12 @@ public class IpUtility {
         System.out.println("Total visitors in app " + counter);
         String ipAddress = ipAddressService.getIp().trim();
         System.out.println(LocalDateTime.now() + " Visitor address : " + ipAddress);
+        System.out.println(LocalDateTime.now() + " Visitor cloudflare address : " + cloudflareIp);
 
         if (userDetails != null) {
-            ipAddressService.checkIpAddressLogin(userDetails.getUsername(), ipAddress);
+            ipAddressService.checkIpAddressLogin(userDetails.getUsername(), cloudflareIp);
         } else {
-            ipAddressService.getIpVisitor(ipAddress);
+            ipAddressService.getIpVisitor(cloudflareIp);
         }
         List<BlogPackagesDTO> blogPackagesDTO = blogService.getBlogPackages();
 

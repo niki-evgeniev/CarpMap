@@ -2,6 +2,7 @@ package com.example.carpmap.Service.Impl;
 
 import com.example.carpmap.Models.DTO.Reservoirs.*;
 import com.example.carpmap.Models.Entity.*;
+import com.example.carpmap.Models.Enums.ReservoirType;
 import com.example.carpmap.Repository.*;
 import com.example.carpmap.Service.PictureService;
 import com.example.carpmap.Service.ReservoirsService;
@@ -103,6 +104,30 @@ public class ReservoirsServiceImpl implements ReservoirsService {
                 });
 
         return allReservoirs;
+    }
+
+    @Override
+    public Page<ReservoirAllDTO> getReservoirsByType(String type, Pageable pageable) {
+
+        ReservoirType reservoirType = null;
+        switch (type) {
+            case "СВОБОДЕН":
+                reservoirType = ReservoirType.СВОБОДЕН;
+                break;
+            case "ЧАСТЕН":
+                reservoirType = ReservoirType.ЧАСТЕН;
+                break;
+        }
+        if (reservoirType != null) {
+            Page<Reservoir> allByReservoirType = reservoirRepository.findAllByReservoirType(reservoirType, pageable);
+            Page<ReservoirAllDTO> reservoirByType = allByReservoirType
+                    .map(reservoir -> {
+                        return modelMapper.map(reservoir, ReservoirAllDTO.class);
+                    });
+
+            return reservoirByType;
+        }
+        return null;
     }
 
     @Override

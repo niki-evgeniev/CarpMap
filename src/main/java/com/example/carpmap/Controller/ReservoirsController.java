@@ -47,6 +47,19 @@ public class ReservoirsController {
         return modelAndView;
     }
 
+    @GetMapping("reservoirsByType/{type}")
+    public ModelAndView reservoirsByType(
+            @PageableDefault(size = 9, sort = "name") Pageable pageable, @PathVariable String type) {
+
+        ModelAndView modelAndView = new ModelAndView("reservoirs");
+        Page<ReservoirAllDTO> allReservoirByType = reservoirsService.getReservoirsByType(type, pageable);
+        if (allReservoirByType == null) {
+            return new ModelAndView("errors/errorFindPage");
+        }
+        modelAndView.addObject("allReservoir", allReservoirByType);
+        return modelAndView;
+    }
+
     @GetMapping("add/reservoirAdd")
     public ModelAndView reservoirsAdd() {
         ModelAndView modelAndView = getAllCountry();

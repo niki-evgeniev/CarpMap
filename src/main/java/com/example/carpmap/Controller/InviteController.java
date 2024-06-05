@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class InviteController {
 
     @GetMapping("/invite")
-    public ModelAndView invite(){
+    public ModelAndView invite() {
         return new ModelAndView("invite");
     }
 }

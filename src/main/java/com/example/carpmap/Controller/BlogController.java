@@ -17,7 +17,6 @@ public class BlogController {
         this.blogService = blogService;
     }
 
-
     @GetMapping("/blog")
     public ModelAndView blog() {
         ModelAndView modelAndView = new ModelAndView("blog");
