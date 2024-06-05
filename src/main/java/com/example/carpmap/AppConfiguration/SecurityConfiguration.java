@@ -37,7 +37,8 @@ public class SecurityConfiguration {
                         .requestMatchers("/js/**", "/lib/**").permitAll()
                         .requestMatchers("/", "/users/login", "/users/profile",
                                 "/users/login-error").permitAll()
-                        .requestMatchers("/reservoirs/reservoirsAll", "/reservoirs/{id}").permitAll()
+                        .requestMatchers("/reservoirs/reservoirsAll", "/reservoirs/{id}",
+                                "/reservoirs/reservoirsByType/{type}").permitAll()
                         .requestMatchers("/donate").permitAll()
                         .requestMatchers("/home").permitAll()
                         .requestMatchers("/about", "/blog", "/contact", "/invite").permitAll()

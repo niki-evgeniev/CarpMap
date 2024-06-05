@@ -5,6 +5,7 @@ import com.example.carpmap.Models.DTO.SearchDTO;
 import com.example.carpmap.Service.BlogService;
 import com.example.carpmap.Service.IpAddressService;
 import com.example.carpmap.Utility.IpUtility;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -18,45 +19,21 @@ import java.util.List;
 @Controller
 public class HomeController {
 
-    private final IpAddressService ipAddressService;
-    private final BlogService blogService;
     private final IpUtility ipUtility;
 
 
-    public HomeController(IpAddressService ipAddressService, BlogService blogService, IpUtility ipUtility) {
-        this.ipAddressService = ipAddressService;
-        this.blogService = blogService;
+    public HomeController(IpUtility ipUtility) {
+
         this.ipUtility = ipUtility;
     }
 
     @GetMapping("/")
-    public ModelAndView index(@AuthenticationPrincipal UserDetails userDetails) throws InterruptedException {
+    public ModelAndView index(@AuthenticationPrincipal UserDetails userDetails,
+                              HttpServletRequest request)
+            throws InterruptedException {
 
-//        Long counter = ipAddressService.findAllVisits();
-//
-//        if (counter == null) {
-//            counter = 1L;
-//        } else {
-//            counter = counter + 1L;
-//
-//        }
-//        System.out.println("Total visitors in app " + counter);
-//        String ipAddress = ipAddressService.getIp().trim();
-//        System.out.println(LocalDateTime.now() + " Visitor address : " + ipAddress);
-//
-//        if (userDetails != null) {
-//            ipAddressService.checkIpAddressLogin(userDetails.getUsername(), ipAddress);
-//        } else {
-//            ipAddressService.getIpVisitor(ipAddress);
-//            Thread.sleep(500);
-//        }
-//
-//        List<BlogPackagesDTO> blogPackagesDTO = blogService.getBlogPackages();
-//
-//        ModelAndView modelAndView = new ModelAndView("index");
-//        modelAndView.addObject("blogPackages", blogPackagesDTO);
-//        modelAndView.addObject("counter", counter);
-        return ipUtility.getIpAndBlog(userDetails);
+        String cloudflareIp = request.getRemoteAddr();
+        return ipUtility.getIpAndBlog(userDetails, cloudflareIp);
     }
 
     @ModelAttribute
