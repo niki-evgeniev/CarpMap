@@ -19,30 +19,30 @@
             <p class="text-center">Тук ще намерите всички добавени водоеми в CARP MAP</p>
         </div><!--/.section-header-->
         <div class="tab-class text-center">
-        <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
-            <li class="nav-item">
-                <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill active" data-bs-toggle="pill"
-                   th:href="@{/reservoirs/reservoirsAll}">
-                    <span class="text-dark" style="width: 150px;">Всички</span>
-                </a>
-                <br>
-            </li>
+            <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
+                <li class="nav-item px-1 my-3">
+                    <a class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5"
+                       th:href="@{/reservoirs/reservoirsAll}">
+                        <span class="text-white" style="width: 150px;">Всички</span>
+                    </a>
+                    <br>
+                </li>
 
-            <li class="nav-item">
-                <a class="d-flex py-2 mx-3 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
-                   th:href="@{/reservoirs/reservoirsAll}">
-                    <span class="text-dark" style="width: 150px;">Частни</span>
-                </a>
-                <br>
-            </li>
-            <li class="nav-item">
-                <a class="d-flex mx-3 py-2 border border-primary bg-light rounded-pill" data-bs-toggle="pill"
-                   th:href="@{/reservoirs/reservoirsAll}">
-                    <span class="text-dark" style="width: 150px;">Държавни</span>
-                </a>
-                <br>
-            </li>
-        </ul>
+                <li class="nav-item px-1 my-3">
+                    <a class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5"
+                       th:href="@{/reservoirs/reservoirsByType/{id}(id = ЧАСТЕН)}">
+                        <span class="text-white" style="width: 150px;">Частни</span>
+                    </a>
+                    <br>
+                </li>
+                <li class="nav-item px-1 my-3">
+                    <a class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5"
+                       th:href="@{/reservoirs/reservoirsByType/{id}(id = СВОБОДЕН)}">
+                        <span class="text-white" style="width: 150px;">Държавни</span>
+                    </a>
+                    <br>
+                </li>
+            </ul>
         </div>
         <div class="explore-content">
             <div class="row">

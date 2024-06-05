@@ -142,10 +142,12 @@
                     <div class="packages-content bg-light">
                         <div class="p-2 pb-0">
                             <br>
-                            <h5 class="mb-0 text-center"
-                                th:text="*{blog.getTitleBlog()}"
-                            >The New California</h5>
-                            <br>
+                            <a th:href="@{/blog}">
+                                <h5 class="mb-0 text-center"
+                                    th:text="*{blog.getTitleBlog()}"
+                                >The New California</h5>
+                                <br>
+                            </a>
                             <!--                            <p class="mb-4 text-center"-->
                             <!--                               th:text="*{blog.getDescription()}">Lorem ipsum dolor, </p>-->
                             <!--                            <p th:text="'Added: ' + *{blog.getAuthorName()}"-->
