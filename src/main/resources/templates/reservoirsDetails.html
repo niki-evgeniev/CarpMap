@@ -116,21 +116,7 @@
             </div>
             <br>
         </div>
-        <div class="col-sm-12 text-end" sec:authorize="hasRole('ADMIN') or hasRole('MODERATOR')">
-            <p class="details-title text-color mb-1">Admin Panel</p>
-            <br>
-            <a class="btn btn-warning rounded-pill py-2 px-4 ms-lg-2 "
-               data-abc="true"
-               th:href="@{/reservoirs/reservoirsEdit/{id}(id = *{id})}">EDIT</a>
-            <br>
-            <form sec:authorize="hasRole('ADMIN')"
-                  th:method="DELETE"
-                  th:action="@{/reservoirs/delete/{id}(id = *{id})}"
-                  class="deleteReservoir text-end"
-                  onsubmit="return confirmDeletion()">
-                <input type="submit" value="DELETE" class="btn btn-danger rounded-pill py-2 px-4 ms-lg-2"/>
-            </form>
-        </div>
+
     </div>
     <!-- Gallery Start -->
     <div class="container-fluid gallery py-5 my-5">
@@ -165,6 +151,26 @@
         </div>
     </div>
     <!-- Gallery End -->
+    <div class="col-sm-12 text-center" sec:authorize="hasRole('ADMIN') or hasRole('MODERATOR')">
+        <p class="details-title text-color mb-1">Admin Panel</p>
+        <br>
+        <a class="btn btn-warning rounded-pill py-2 px-4 ms-lg-2 "
+           data-abc="true"
+           th:href="@{/reservoirs/reservoirsEdit/{id}(id = *{id})}">EDIT</a>
+        <br>
+        <br>
+        <a class="btn btn-warning rounded-pill py-2 px-4 ms-lg-2 "
+           data-abc="true"
+           th:href="@{/reservoirs/gallery/{id}(id = *{id})}">EDIT GALLERY</a>
+        <br>
+        <form sec:authorize="hasRole('ADMIN')"
+              th:method="DELETE"
+              th:action="@{/reservoirs/delete/{id}(id = *{id})}"
+              class="deleteReservoir text-end px-5 py-4"
+              onsubmit="return confirmDeletion()">
+            <input type="submit" value="DELETE" class="btn btn-danger rounded-pill py-2 px-4 ms-lg-2"/>
+        </form>
+    </div>
     <!-- Footer Start -->
     <th:block th:replace="~{fragments/footer}"></th:block>
     <!-- Footer End -->

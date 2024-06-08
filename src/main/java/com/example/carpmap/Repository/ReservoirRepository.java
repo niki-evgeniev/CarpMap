@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -18,6 +19,7 @@ public interface ReservoirRepository extends JpaRepository<Reservoir, Long> {
     Page<Reservoir> findAllByName(String name, Pageable pageable);
 
     Page<Reservoir> findAllByReservoirType(ReservoirType reservoirType, Pageable pageable);
+
 
 }
 

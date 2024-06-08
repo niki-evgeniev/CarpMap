@@ -5,6 +5,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.List;
+
 public interface ReservoirsService {
 
     boolean addReservoirs(ReservoirsAddDTO reservoirsAddDTO, UserDetails userDetails);
@@ -25,5 +27,5 @@ public interface ReservoirsService {
 
     void deleteReservoir(Long id);
 
-
+    List<ReservoirEditGalleryDTO> getAllGalleryImage(Long id);
 }

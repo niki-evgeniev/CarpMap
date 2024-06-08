@@ -1,9 +1,6 @@
 package com.example.carpmap.Controller;
 
-import com.example.carpmap.Models.DTO.Reservoirs.CountryDTO;
-import com.example.carpmap.Models.DTO.Reservoirs.FishNameDTO;
-import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsAddDTO;
-import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsEditDTO;
+import com.example.carpmap.Models.DTO.Reservoirs.*;
 import com.example.carpmap.Models.Enums.RoleType;
 import com.example.carpmap.Service.CountryService;
 import com.example.carpmap.Service.FishService;
@@ -83,9 +80,44 @@ public class ReservoirController {
         return modelAndView;
     }
 
+    @GetMapping("gallery/{id}")
+    public ModelAndView editGallery(@PathVariable("id") Long id,
+                                    @AuthenticationPrincipal UserDetails userDetails) {
+
+        boolean hasRoleAdmin = checkForAdminRole(userDetails);
+        if (hasRoleAdmin) {
+            List<ReservoirEditGalleryDTO> ReservoirEditGalleryDTO = reservoirsService.getAllGalleryImage(id);
+            ModelAndView modelAndView = new ModelAndView("reservoirEditGallery");
+            modelAndView.addObject("id", id);
+            modelAndView.addObject("reservoirEditGalleryDTO", ReservoirEditGalleryDTO);
+
+            return modelAndView;
+        }
+        ModelAndView modelAndView = new ModelAndView("reservoirEditGallery");
+        return modelAndView;
+    }
+
+    @PostMapping("gallery/{id}")
+    public ModelAndView reservoirsEdit(@Valid ReservoirEditGalleryDTO ReservoirEditGalleryDTO, BindingResult bindingResult,
+                                       @AuthenticationPrincipal UserDetails userDetails) {
+
+        ModelAndView modelAndView = new ModelAndView("reservoirEdit");
+        return modelAndView;
+    }
+
     @ModelAttribute
     ReservoirsAddDTO reservoirsAddDTO() {
         return new ReservoirsAddDTO();
+    }
+
+    @ModelAttribute
+    ReservoirEditGalleryDTO reservoirEditGalleryDTO() {
+        return new ReservoirEditGalleryDTO();
+    }
+
+    @ModelAttribute
+    ReservoirPostGalleryDTO reservoirPostGalleryDTO() {
+        return new ReservoirPostGalleryDTO();
     }
 
     private static boolean checkForAdminRole(UserDetails userDetails) {

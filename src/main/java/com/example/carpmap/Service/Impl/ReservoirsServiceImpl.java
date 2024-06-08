@@ -178,6 +178,13 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     }
 
     @Override
+    public List<ReservoirEditGalleryDTO> getAllGalleryImage(Long id) {
+       List<ReservoirEditGalleryDTO> allPicture = pictureService.findAllPicture(id);
+
+        return allPicture;
+    }
+
+    @Override
     public ReservoirsEditDTO findReservoirToEdit(Long id) {
         Optional<Reservoir> reservoirDetails = reservoirRepository.findById(id);
         ReservoirsEditDTO editingReservoir = modelMapper.map(reservoirDetails, ReservoirsEditDTO.class);

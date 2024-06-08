@@ -50,6 +50,8 @@ public class SecurityConfiguration {
                         .hasAnyRole(RoleType.MODERATOR.name())
                         .requestMatchers("/reservoirs/delete/{id}", "/profile/profiles")
                         .hasAnyRole(RoleType.ADMIN.name())
+                        .requestMatchers("/reservoirs/gallery/{id}")
+                        .hasAnyRole(RoleType.ADMIN.name())
                         .anyRequest().authenticated()
 
         ).formLogin(
