@@ -97,9 +97,11 @@ public class ReservoirController {
         return modelAndView;
     }
 
-    @PostMapping("gallery/{id}")
-    public ModelAndView reservoirsEdit(@Valid ReservoirEditGalleryDTO ReservoirEditGalleryDTO, BindingResult bindingResult,
+    @PostMapping("gallery/edit/{id}")
+    public ModelAndView reservoirsEdit(@PathVariable("id") Long id,
+                                       @Valid ReservoirEditGalleryDTO ReservoirEditGalleryDTO, BindingResult bindingResult,
                                        @AuthenticationPrincipal UserDetails userDetails) {
+        System.out.println();
 
         ModelAndView modelAndView = new ModelAndView("reservoirEdit");
         return modelAndView;

@@ -61,8 +61,10 @@ public class PictureServiceImpl implements PictureService {
                 res -> {
                     ReservoirEditGalleryDTO galleryDTO = new ReservoirEditGalleryDTO();
                     galleryDTO.setImageUrl(res.getImageURL());
+                    galleryDTO.setId(res.getId());
                     return galleryDTO;
                 }).toList();
+        System.out.println();
         return galleryDTOS;
     }
 

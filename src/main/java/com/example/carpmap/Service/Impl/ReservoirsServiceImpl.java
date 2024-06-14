@@ -180,7 +180,6 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     @Override
     public List<ReservoirEditGalleryDTO> getAllGalleryImage(Long id) {
        List<ReservoirEditGalleryDTO> allPicture = pictureService.findAllPicture(id);
-
         return allPicture;
     }
 
