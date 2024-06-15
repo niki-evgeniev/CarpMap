@@ -56,12 +56,14 @@ public class PictureServiceImpl implements PictureService {
 
     @Override
     public List<ReservoirEditGalleryDTO> findAllPicture(Long id) {
-        List<Picture> allByReservoirId = pictureRepository.findAllByReservoirId(id);
+        Long reservoirId  = id;
+        List<Picture> allByReservoirId = pictureRepository.findAllByReservoirId(reservoirId);
         List<ReservoirEditGalleryDTO> galleryDTOS = allByReservoirId.stream().map(
                 res -> {
                     ReservoirEditGalleryDTO galleryDTO = new ReservoirEditGalleryDTO();
+                    galleryDTO.setId(reservoirId);
                     galleryDTO.setImageUrl(res.getImageURL());
-                    galleryDTO.setId(res.getId());
+                    galleryDTO.setIdPic(res.getId());
                     return galleryDTO;
                 }).toList();
         System.out.println();

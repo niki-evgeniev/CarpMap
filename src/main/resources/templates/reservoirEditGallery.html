@@ -15,17 +15,17 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <form th:method="POST"
-                      th:action="@{/reservoirs/gallery/edit/{id}(id = *{id})}"
-                      th:object="${reservoirPostGalleryDTO}">
+                      th:action="@{/reservoirs/gallery/edit/{id}(id = ${idRes})}"
+                      th:object="${editGalleryDTO}">
                     <div class="card">
                         <div class="card-body">
                             <h2 class="card-title text-center">Edit Gallery</h2>
                             <!-- General Form Elements -->
-                            <div class="row mb-3" th:each="imas : ${reservoirEditGalleryDTO}">
+                            <div class="row mb-3" th:each="imas, iterStat : ${reservoirEditGalleryDTO}">
                                 <label for="imageUrl"
                                        class="col-sm-2 col-form-label">Change Main Image</label>
                                 <div class="col-sm-10">
-                                    <input th:field="*{imageUrl}"
+                                    <input th:field="*{imageUrl[__${iterStat.index}__].imageUrl}"
                                            th:errorclass="bg-danger"
                                            th:value="${imas.getImageUrl()}"
                                            th:text="${imas.getImageUrl()}"
@@ -33,13 +33,21 @@
                                            name="imageUrl"
                                            id="imageUrl"
                                            class="form-control">
+                                    <input type="hidden"
+                                           th:field="*{imageUrl[__${iterStat.index}__].idPic}"
+                                           th:value="${imas.idPic}"
+                                           name="idPic"
+                                           id="idPic">
                                     <div class="text-primary text-center"
                                          th:if="${#fields.hasErrors('imageUrl')}"
-                                         th:errors="*{imageUrl}">Please, enter your name!
+                                         th:errors="*{imageUrl[__${iterStat.index}__].imageUrl}">Please, enter your name!
                                     </div>
                                 </div>
                                 <div class="col-sm-10">
-                                    <th:block th:text="${imas.id}"></th:block>
+                                    <th:block th:text="${imas.idPic}"></th:block>
+                                    <br>
+                                    <th:block th:text="${idRes}"></th:block>
+                                    <br>
                                     <img th:src="${imas.getImageUrl()}" class="img-fluid rounded" alt="Image">
                                 </div>
                             </div>

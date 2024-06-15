@@ -4,6 +4,8 @@ public class ReservoirPostGalleryDTO {
 
     private String id;
 
+    private Long idPic;
+
     private String imageUrl;
 
     public ReservoirPostGalleryDTO() {
@@ -15,6 +17,14 @@ public class ReservoirPostGalleryDTO {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Long getIdPic() {
+        return idPic;
+    }
+
+    public void setIdPic(Long idPic) {
+        this.idPic = idPic;
     }
 
     public String getImageUrl() {

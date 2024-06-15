@@ -88,7 +88,7 @@ public class ReservoirController {
         if (hasRoleAdmin) {
             List<ReservoirEditGalleryDTO> ReservoirEditGalleryDTO = reservoirsService.getAllGalleryImage(id);
             ModelAndView modelAndView = new ModelAndView("reservoirEditGallery");
-            modelAndView.addObject("id", id);
+            modelAndView.addObject("idRes", id);
             modelAndView.addObject("reservoirEditGalleryDTO", ReservoirEditGalleryDTO);
 
             return modelAndView;
@@ -99,11 +99,11 @@ public class ReservoirController {
 
     @PostMapping("gallery/edit/{id}")
     public ModelAndView reservoirsEdit(@PathVariable("id") Long id,
-                                       @Valid ReservoirEditGalleryDTO ReservoirEditGalleryDTO, BindingResult bindingResult,
+                                       @Valid EditGalleryDTO editGalleryDTO, BindingResult bindingResult,
                                        @AuthenticationPrincipal UserDetails userDetails) {
         System.out.println();
 
-        ModelAndView modelAndView = new ModelAndView("reservoirEdit");
+        ModelAndView modelAndView = new ModelAndView("about");
         return modelAndView;
     }
 
@@ -120,6 +120,11 @@ public class ReservoirController {
     @ModelAttribute
     ReservoirPostGalleryDTO reservoirPostGalleryDTO() {
         return new ReservoirPostGalleryDTO();
+    }
+
+    @ModelAttribute
+    EditGalleryDTO galleryDTO() {
+        return new EditGalleryDTO();
     }
 
     private static boolean checkForAdminRole(UserDetails userDetails) {
