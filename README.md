@@ -22,4 +22,4 @@ To access the home page, open a : https://carpmap.online
 - Thymeleaf
 - MySQL
 - Bootstrap 5
-- JavaScript
+- JS
