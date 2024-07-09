@@ -46,4 +46,9 @@ public class HomeController {
         return new ModelAndView("about");
     }
 
+    @GetMapping("/cookiePolicy")
+    public ModelAndView cookiePolicy() {
+        return new ModelAndView("cookiePolicy");
+    }
+
 }

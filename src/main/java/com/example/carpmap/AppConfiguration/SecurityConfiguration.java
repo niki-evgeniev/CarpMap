@@ -39,7 +39,7 @@ public class SecurityConfiguration {
                                 "/users/login-error").permitAll()
                         .requestMatchers("/reservoirs/reservoirsAll", "/reservoirs/{id}",
                                 "/reservoirs/reservoirsByType/{type}").permitAll()
-                        .requestMatchers("/donate").permitAll()
+                        .requestMatchers("/donate", "/cookiePolicy").permitAll()
                         .requestMatchers("/home").permitAll()
                         .requestMatchers("/about", "/blog", "/contact", "/invite").permitAll()
                         .requestMatchers("/subscribe/send").permitAll()
