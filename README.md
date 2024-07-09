@@ -1,7 +1,7 @@
 CarpMap is a water reservoir management application designed for anglers and fishing enthusiasts.
 The project is implemented using Spring Boot + Thymeleaf and includes functionalities such as reservoir search, reservoir details, blog and others.
 
-To access the home page, open a : https://carpmap.online
+To access the home page, open a -> https://carpmap.online
 
 ## Features
 
