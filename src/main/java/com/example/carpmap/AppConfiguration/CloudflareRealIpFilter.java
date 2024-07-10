@@ -22,7 +22,6 @@ public class CloudflareRealIpFilter extends OncePerRequestFilter {
                 @Override
                 public String getRemoteAddr() {
                     return realIp;
-
                 }
             };
         }
