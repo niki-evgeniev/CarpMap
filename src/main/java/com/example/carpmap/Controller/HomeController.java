@@ -23,7 +23,6 @@ public class HomeController {
 
 
     public HomeController(IpUtility ipUtility) {
-
         this.ipUtility = ipUtility;
     }
 

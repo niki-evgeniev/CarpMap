@@ -11,6 +11,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -38,6 +39,11 @@ public class IpAddressServiceImpl implements IpAddressService {
     @Override
     public Long findAllVisits() {
         Long countAllVisitors = ipAddressRepository.sumAllCounts();
+        List<IpAddress> all = ipAddressRepository.findAll();
+       IpAddress ipAddress = all.get(all.size() -1);
+
+        Long lastId = (long) all.size();
+        System.out.println();
         return countAllVisitors;
     }
 
