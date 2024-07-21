@@ -2,7 +2,8 @@
 <html
       xmlns:th="http://www.thymeleaf.org">
 <body>
-<div class="container-fluid gallery py-5 my-5">
+<div class="container-fluid gallery">
+<!--    container-fluid gallery py-5 my-5-->
     <div class="mx-auto text-center mb-5" style="max-width: 900px;">
         <h5 class="section-title px-3">Галерия</h5>
         <h1 class="mb-4">Част от държавните язовири в българия</h1>
@@ -12,7 +13,7 @@
     <div class="tab-class text-center">
         <div class="d-flex align-items-center justify-content-center">
             <a class="btn-hover-bg btn btn-primary rounded-pill text-white border-white py-3 px-5 my-3"
-               th:href="@{/reservoirs/reservoirsAll}">Водоеми</a>
+               th:href="@{/reservoirs/reservoirsAll}">Язовири</a>
         </div>
         <div class="tab-content">
             <div id="GalleryTab-1" class="tab-pane fade show p-0 active">

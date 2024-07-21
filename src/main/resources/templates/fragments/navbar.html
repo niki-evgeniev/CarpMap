@@ -19,7 +19,7 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
                 <a href="/" class="nav-item nav-link active">Начало</a>
-                <a th:href="@{/reservoirs/reservoirsAll}" class="nav-item nav-link">Водоеми</a>
+                <a th:href="@{/reservoirs/reservoirsAll}" class="nav-item nav-link">Язовири</a>
                 <a th:href="@{/blog}" class="nav-item nav-link">Блог</a>
                 <a th:href="@{/about}" class="nav-item nav-link">За нас</a>
                 <div sec:authorize="isAuthenticated() and hasRole('ADMIN') or hasRole('MODERATOR')"

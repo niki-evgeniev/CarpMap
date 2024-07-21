@@ -3,18 +3,17 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <th:block th:replace="~{fragments/head}"></th:block>
-    <title>Водоеми - CarpMap</title>
+    <title>Язовири - CarpMap</title>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="keywords" content="website" >
     <meta name="title" content="Язовири">
-    <meta name="description" content="Всички язовири в българия. Намерете информация за различните водоеми" >
+    <meta name="description" content="Всички язовири в българия. Намерете информация за различните язовири" >
     <meta name="author" content="Nikolay" >
     <meta name="robots" content="index, follow" >
     <!-- Open Graph тагове за социални мрежи -->
     <meta property="og:title" content="Язовири">
-    <meta property="og:description" content="Всички язовири в българия. Намерете информация за различните водоеми">
+    <meta property="og:description" content="Всички язовири в българия. Намерете информация за различните язовири">
     <meta property="og:url" content="https://carpmap.online/reservoirs/reservoirsAll">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://carpmap.online/path-to-your-image.jpg">
@@ -22,10 +21,10 @@
     <!-- Twitter Card тагове -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Язовири">
-    <meta name="twitter:description" content="Всички язовири в българия. Намерете информация за различните водоеми">
+    <meta name="twitter:description" content="Всички язовири в българия. Намерете информация за различните язовири">
     <meta name="twitter:url" content="https://carpmap.online/reservoirs/reservoirsAll">
     <meta name="twitter:image" content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
-
+    <th:block th:replace="~{fragments/head}"></th:block>
 </head>
 
 <body>
@@ -35,8 +34,8 @@
     <div class="container">
         <link rel="stylesheet" href="/css/style2.css">
         <div class="section-header">
-            <h2 class="text-center">Водоеми</h2>
-            <p class="text-center">Тук ще намерите всички добавени водоеми в CARP MAP</p>
+            <h2 class="text-center">Язовири</h2>
+            <p class="text-center">Тук ще намерите всички добавени язовири в CARP MAP</p>
         </div><!--/.section-header-->
         <div class="tab-class text-center">
             <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
@@ -75,17 +74,21 @@
                                 <img th:src="*{urlImage}" alt="explore image"></a>
                         </div>
                         <div class="single-explore-txt bg-theme-1">
-                            <h2><a th:href="@{/reservoirs/{id}(id = *{id})}"
-                                   th:text="'яз. ' + *{name}">tommy helfinger bar</a></h2>
+                            <h3><a th:href="@{/reservoirs/{id}(id = *{id})}"
+                                   th:text="'Язовир ' + *{name}">tommy helfinger bar</a></h3>
                             <p class="explore-rating-price">
                                 <span class="explore-rating">5.0</span>
                                 <a href="#"> 10 ratings</a>
-                                <span class="explore-price-box">
-											Country
-											<span th:text="*{countryCode}" class="explore-price">5$-300$</span>
+                                <span th:if="*{countryCode == 'BG'}" class="explore-price-box">
+											Държава:
+											<span th:text=" България" class="explore-price">5$-300$</span>
 										</span>
-                                <a th:text="*{reservoirType}"
-                                   href="#">resturent</a>
+                                <span  class="explore-type-box">
+											Тип:
+											<span th:text=" *{reservoirType}" class="explore-price">5$-300$</span>
+										</span>
+<!--                                <a th:text="'Тип: ' + *{reservoirType}"-->
+<!--                                   href="#"></a>-->
                             </p>
                             <div class="explore-person">
                                 <div class="row">
@@ -107,7 +110,7 @@
                                     <div class="col-sm-12 text-end">
                                         <a class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2"
                                            data-abc="true"
-                                           th:href="@{/reservoirs/{id}(id = *{id})}">Details</a>
+                                           th:href="@{/reservoirs/{id}(id = *{id})}">Информация</a>
                                     </div>
                                 </div>
                             </div>

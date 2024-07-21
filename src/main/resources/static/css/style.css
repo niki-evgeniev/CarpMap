@@ -1336,7 +1336,7 @@ body > div.container-fluid.about.py-5 {
     margin-top: 3%;
 }
 
-.sendInfo{
+.sendInfo {
     border-color: white;
 }
 
@@ -1465,12 +1465,19 @@ body > div.container-fluid.about.py-5 {
 body > main > div.container-fluid.packages.py-5 {
     padding-top: 0.5rem;
 }
+
 .packages {
     padding-top: 0.5rem;
     padding-bottom: 3rem;
 }
+
 .package {
     padding-bottom: 4rem;
+}
+
+.gallery {
+    padding-bottom: 3rem;
+    margin-bottom: 3rem;
 }
 
 

@@ -206,7 +206,7 @@ html,body{height: 100%;}
     font-weight: 500;
     margin-right: 10px;
 }
-.explore-price {color: #f63138;}
+.explore-price {color: #899abd;}
 .explore-price-box {
     display: inline-block;
     padding: 0 10px;
@@ -247,4 +247,8 @@ html,body{height: 100%;}
 
 #explore > div > div.explore-content > div > div > div > div.single-explore-img > img {
     max-width: 500px;
+}
+
+.explore-type-box{
+
 }

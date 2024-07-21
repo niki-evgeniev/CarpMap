@@ -32,6 +32,10 @@ public class ContactController {
         if (bindingResult.hasErrors()) {
             return new ModelAndView("contact");
         }
+        //TODO
+        if (contactDTO.getEmail().equals("amandaEvarma3@gmail.com")) {
+            return new ModelAndView("redirect:/");
+        }
         boolean isSavedContact = contactService.saveContact(contactDTO);
         return new ModelAndView("redirect:/");
     }
