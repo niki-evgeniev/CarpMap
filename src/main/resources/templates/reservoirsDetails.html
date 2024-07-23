@@ -32,12 +32,13 @@
 <th:block th:replace="~{fragments/navbar}"></th:block>
 <header class="cd__intro">
     <h1 class="text-center"
-        th:text="*{details.name}"> Bootstrap 5 Product Details #3 Example </h1>
+        th:text="'Язовир ' + *{details.name}">Язовир</h1>
     <h6 th:text="*{details.city}"
-        class="text-center"> Bootstrap 5 Product Details #3 </h6>
+        class="text-center">Град</h6>
     <div class="cd__action text-center">
         <a th:href="@{/reservoirs/reservoirsAll}"
-           title="Back to download and tutorial page" class="cd__btn back">BACK</a>
+           title="Back to download and tutorial page"
+           class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5">BACK</a>
     </div>
 </header>
 <!--$%adsense%$-->
@@ -120,14 +121,14 @@
         </div>
         <div class="row">
             <div class="product-details my-4 col-md-12">
-                <p class="details-title text-color mb-1">More Information</p>
+                <p class="details-title text-color mb-1"th:text="'Информация за яз. ' + ${details.name}"></p>
                 <p class="description" th:text="*{description}"></p>
             </div>
         </div>
         <div th:unless="*{iFrameMap} == null or *{iFrameMap.isEmpty()}"
              class="col-12">
             <div class="rounded">
-                <p class="details-title text-color mb-1">Guidance</p>
+                <p class="details-title text-color mb-1">Карта</p>
                 <br>
                 <iframe class="rounded w-100"
                         th:src="*{iFrameMap}"
@@ -143,7 +144,7 @@
         <div class="mx-auto text-center mb-5" style="max-width: 900px;">
             <h5 class="section-title px-3">Gallery</h5>
             <h1 class="mb-4">Галерия</h1>
-            <p class="mb-0">Галерия от най-популярните снимки</p>
+            <p class="mb-0" th:text="'Галерия от най-популярните снимки на язовир ' + ${details.name}"></p>
         </div>
         <div class="tab-class text-center">
             <div class="tab-content">

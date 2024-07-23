@@ -75,17 +75,16 @@
                         </div>
                     </div>
                     <div class="blog-content border border-top-0 rounded-bottom p-4">
-                        <p th:text="'Posted By: ' + *{authorName}"
-                           class="mb-3"> Royal Hamblin </p>
+                        <p th:text="'Публикувано от : ' + *{authorName}"
+                           class="mb-3"></p>
                         <a th:text="*{titleBlog}"
                            th:href="*{urlVideo}"
-                           class="h4">Adventures Trip</a>
+                           class="h4"></a>
                         <p th:text="*{description}"
-                           class="my-3">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam
-                            eos</p>
+                           class="my-3"></p>
                         <a th:href="*{urlVideo}"
                            target="_blank"
-                           class="btn btn-primary rounded-pill py-2 px-4">See video</a>
+                           class="btn btn-primary rounded-pill py-2 px-4">Виж Видео</a>
                         <form sec:authorize="hasRole('ADMIN')"
                               th:method="DELETE"
                               th:action="@{/reservoirs/delete/{id}(id = *{id})}"
