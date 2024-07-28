@@ -106,9 +106,7 @@
             </button>
         </div>
     </div>
-
     <!-- Carousel End -->
-
     <div class="container-fluid search-bar position-relative" style="top: -50%; transform: translateY(-50%);">
         <div class="container info-server">
             <form th:method="GET"
@@ -142,11 +140,9 @@
         </div>
     </div>
     <!-- Navbar & Hero End -->
-
     <!-- Gallery Start -->
     <th:block th:replace="~{fragments/gallery}"></th:block>
     <!-- Gallery End -->
-
     <!-- Packages Start -->
     <div class="container-fluid packages">
         <div class="container package">
@@ -169,14 +165,12 @@
                                 >The New California</h5>
                                 <br>
                             </a>
-                            <!--                            <p class="mb-4 text-center"-->
-                            <!--                               th:text="*{blog.getDescription()}">Lorem ipsum dolor, </p>-->
-                            <!--                            <p th:text="'Added: ' + *{blog.getAuthorName()}"-->
-                            <!--                               class="mb-3 text-end"> Nikolay </p>-->
                         </div>
                         <div class="row bg-primary rounded-bottom mx-0">
                             <div class="col-12 text-center px-0">
-                                <a th:href="@{/blog}" class="btn-hover btn text-white py-2 px-4">Блог</a>
+                                <a th:href="@{/blog}"
+                                   class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5"
+                                >Виж в нашия Блог</a>
                             </div>
                         </div>
                     </div>
@@ -185,11 +179,9 @@
         </div>
     </div>
     <!-- Packages End -->
-
     <!-- Subscribe Start -->
     <th:block th:replace="~{fragments/subscribe}"></th:block>
     <!-- Subscribe End -->
-
     <!-- Footer Start -->
     <th:block th:replace="~{fragments/footer}"></th:block>
     <!-- Footer End -->

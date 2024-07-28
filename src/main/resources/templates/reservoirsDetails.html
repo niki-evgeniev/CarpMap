@@ -7,11 +7,11 @@
     <title>Детайли- CarpMap</title>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta name="keywords" content="website" >
+    <meta name="keywords" content="website">
     <meta name="title" th:content="' Язовир ' + ${details.name}">
-    <meta name="description" th:content="' Информация за ' + ${details.name} " >
-    <meta name="author" content="Nikolay" >
-    <meta name="robots" content="index, follow" >
+    <meta name="description" th:content="' Информация за ' + ${details.name} ">
+    <meta name="author" content="Nikolay">
+    <meta name="robots" content="index, follow">
     <!-- Open Graph тагове за социални мрежи -->
     <meta property="og:title" th:content="' Язовир ' + ${details.name}">
     <meta property="og:description" th:content="' Информация за ' + ${details.name}">
@@ -24,7 +24,8 @@
     <meta name="twitter:title" th:content="' Язовир ' + ${details.name}">
     <meta name="twitter:description" th:content="' Информация за ' + ${details.name}">
     <meta name="twitter:url" th:content="@{https://carpmap.online/yazovir/{id}(id = *{details.id})}">
-    <meta name="twitter:image" content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
+    <meta name="twitter:image"
+          content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
     <th:block th:replace="~{fragments/head}"></th:block>
 </head>
 <body>
@@ -62,8 +63,6 @@
                              role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <!-- w-100 class so that header
-                                div covers 100% width of parent div -->
                                     <h3 class="modal-title w-100 text-center"
                                         id="exampleModalLabel"
                                         th:text="*{name}">
@@ -121,7 +120,7 @@
         </div>
         <div class="row">
             <div class="product-details my-4 col-md-12">
-                <p class="details-title text-color mb-1"th:text="'Информация за яз. ' + ${details.name}"></p>
+                <p class="details-title text-color mb-1" th:text="'Информация за яз. ' + ${details.name}"></p>
                 <p class="description" th:text="*{description}"></p>
             </div>
         </div>
@@ -214,8 +213,6 @@
             return confirm("Are you sure you want to delete this item?");
         }
     </script>
-
-
     <!-- Back to Top -->
     <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i
             class="fa fa-arrow-up"></i></a>

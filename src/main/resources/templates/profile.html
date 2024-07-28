@@ -5,7 +5,6 @@
     <th:block th:replace="~{fragments/head}"></th:block>
     <title>Profile - CarpMap</title>
 </head>
-
 <body>
 <th:block th:replace="~{fragments/topbar}"></th:block>
 <th:block th:replace="~{fragments/navbar}"></th:block>
@@ -82,7 +81,6 @@
                                          th:text="*{team}">Carpoholics
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Job</div>
                                     <div class="col-lg-9 col-md-8"
@@ -96,44 +94,37 @@
                                          th:text="*{country}">BG
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">City</div>
                                     <div class="col-lg-9 col-md-8"
                                          th:text="*{city}">Gorna
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Phone</div>
                                     <div class="col-lg-9 col-md-8"
                                          th:text="*{phone}">x29071
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Email</div>
                                     <div class="col-lg-9 col-md-8"
                                          th:text="*{email}">day_wallker
                                     </div>
                                 </div>
-
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Create On</div>
                                     <div class="col-lg-9 col-md-8"
                                          th:text="*{createOn}">date
                                     </div>
                                 </div>
-
                                 <div class="row" th:if="*{modified} != null">
                                     <div class="col-lg-3 col-md-4 label">Modified on</div>
                                     <div class="col-lg-9 col-md-8"
                                          th:text="*{modified}">date
                                     </div>
                                 </div>
-
                             </div>
-
                             <div th:classappend="${activeTab == 'profile-edit'} ? 'show active' : ''"
                                  class="tab-pane fade  profile-edit pt-3"
                                  id="profile-edit">
@@ -189,7 +180,6 @@
                                              th:errors="*{lastName}">Please, enter your name!
                                         </div>
                                     </div>
-
                                     <div class="row mb-3">
                                         <label for="about"
                                                class="col-md-4 col-lg-3 col-form-label">About</label>
@@ -200,7 +190,6 @@
                                                       style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
                                         </div>
                                     </div>
-
                                     <div class="row mb-3">
                                         <label for="Job"
                                                class="col-md-4 col-lg-3 col-form-label">Job</label>
@@ -235,7 +224,6 @@
                                              th:errors="*{team}">Please, enter job!
                                         </div>
                                     </div>
-
                                     <div class="row mb-3">
                                         <label for="Country"
                                                class="col-md-4 col-lg-3 col-form-label">Country</label>
@@ -253,7 +241,6 @@
                                              th:errors="*{country}">Please, enter job!
                                         </div>
                                     </div>
-
                                     <div class="row mb-3">
                                         <label for="city"
                                                class="col-md-4 col-lg-3 col-form-label">City</label>
@@ -271,7 +258,6 @@
                                              th:errors="*{city}">Please, enter job!
                                         </div>
                                     </div>
-
                                     <div class="row mb-3">
                                         <label for="phoneNumber"
                                                class="col-md-4 col-lg-3 col-form-label">Phone</label>
@@ -289,7 +275,6 @@
                                              th:errors="*{phoneNumber}">Please, enter job!
                                         </div>
                                     </div>
-
                                     <div class="row mb-3">
                                         <label for="Email"
                                                class="col-md-4 col-lg-3 col-form-label">Email</label>
@@ -307,7 +292,6 @@
                                              th:errors="*{email}">Please, enter job!
                                         </div>
                                     </div>
-
                                     <div class="row mb-3">
                                         <label for="Twitter"
                                                class="col-md-4 col-lg-3 col-form-label">Twitter
@@ -326,7 +310,6 @@
                                              th:errors="*{twitter}">Please, enter job!
                                         </div>
                                     </div>
-
                                     <div class="row mb-3">
                                         <label for="Facebook"
                                                class="col-md-4 col-lg-3 col-form-label">Facebook
@@ -345,7 +328,6 @@
                                              th:errors="*{facebook}">Please, enter job!
                                         </div>
                                     </div>
-
                                     <div class="row mb-3">
                                         <label for="Instagram"
                                                class="col-md-4 col-lg-3 col-form-label">Instagram
@@ -364,7 +346,6 @@
                                              th:errors="*{instagram}">Please, enter job!
                                         </div>
                                     </div>
-
                                     <div class="row mb-3">
                                         <label for="Linkedin"
                                                class="col-md-4 col-lg-3 col-form-label">Linkedin
@@ -383,17 +364,14 @@
                                              th:errors="*{linkedIn}">Please, enter job!
                                         </div>
                                     </div>
-
                                     <div class="text-center">
                                         <button type="submit" class="btn btn-primary">Save Changes</button>
                                     </div>
-                                </form><!-- End Profile Edit Form -->
-
+                                </form>
+                                <!-- End Profile Edit Form -->
                             </div>
-
                             <div th:classappend="${activeTab == 'profile-settings'} ? 'show active' : ''"
                                  class="tab-pane fade pt-3" id="profile-settings">
-
                                 <!-- Settings Form -->
                                 <form>
                                     <div class="row mb-3">
@@ -434,9 +412,7 @@
                                         <button type="submit" class="btn btn-primary">Save Changes</button>
                                     </div>
                                 </form><!-- End settings Form -->
-
                             </div>
-
                             <div th:classappend="${activeTab == 'profile-change-password'} ? 'show active' : ''"
                                  class="tab-pane fade pt-3" id="profile-change-password">
                                 <!-- Change Password Form -->
@@ -505,20 +481,15 @@
                                     </div>
                                 </form><!-- End Change Password Form -->
                             </div>
-
                         </div><!-- End Bordered Tabs -->
 
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
-
-
     <th:block th:replace="~{fragments/footer}"></th:block>
     <th:block th:replace="~{fragments/js}"></th:block>
 </main>
-
 </body>
 </html>

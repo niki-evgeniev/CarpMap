@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <title>За нас - CarpMap</title>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta name="keywords" content="website" >
-    <meta name="description" content="Информация за нас carpmap" >
-    <meta name="author" content="Nikolay" >
-    <meta name="robots" content="index, follow" >
+    <meta name="keywords" content="website">
+    <meta name="description" content="Информация за нас carpmap">
+    <meta name="author" content="Nikolay">
+    <meta name="robots" content="index, follow">
     <!-- Open Graph тагове за социални мрежи -->
     <meta property="og:title" content="Информация за нас carpmap">
     <meta property="og:description" content="Информация за нас carpmap">
@@ -22,10 +21,10 @@
     <meta name="twitter:title" content="Язовирите в България - CarpMap">
     <meta name="twitter:description" content="Всички язовири в България">
     <meta name="twitter:url" content="https://carpmap.online/about">
-    <meta name="twitter:image" content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
+    <meta name="twitter:image"
+          content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
     <th:block th:replace="~{fragments/head}"></th:block>
 </head>
-
 <body>
 <th:block th:replace="~{fragments/topbar}"></th:block>
 <th:block th:replace="~{fragments/navbar}"></th:block>
@@ -35,8 +34,6 @@
         <div class="row g-5 align-items-center">
             <div class="col-lg-5">
                 <div class="h-100" style=" border-color: transparent #13357B transparent #13357B;">
-                    <!--                    <img src="/images/about-img.jpg" class="img-fluid w-100 h-100" alt="">-->
-                    <!--                    <img src="/images/channels4_profile.jpg" class="img-fluid w-100 h-100" alt="">-->
                     <img src="https://res.cloudinary.com/dsy8h2u3x/image/upload/c_crop,g_auto,h_1200,w_1200/Carp/about/vg3rri1sgcscizpy1wia.jpg"
                          class="img-fluid w-100 h-100" alt="">
                 </div>
@@ -75,7 +72,6 @@
     </div>
 </div>
 <!-- About End -->
-
 <!-- Travel Guide Start -->
 <div class="container-fluid guide py-5">
     <div class="container py-5">
@@ -144,26 +140,19 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 </div>
 <!-- Travel Guide End -->
-
 <!-- Subscribe Start -->
 <th:block th:replace="~{fragments/subscribe}"></th:block>
 <!-- Subscribe End -->
-
 <!-- Footer Start -->
 <th:block th:replace="~{fragments/footer}"></th:block>
 <!-- Footer End -->
-
 <!-- JavaScript Libraries -->
 <th:block th:replace="~{fragments/js}"></th:block>
-
 <!-- Back to Top -->
 <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>
 </body>
-
 </html>

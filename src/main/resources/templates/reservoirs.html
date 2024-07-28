@@ -6,11 +6,11 @@
     <title>Язовири - CarpMap</title>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta name="keywords" content="website" >
+    <meta name="keywords" content="website">
     <meta name="title" content="Язовири">
-    <meta name="description" content="Всички язовири в българия. Намерете информация за различните язовири" >
-    <meta name="author" content="Nikolay" >
-    <meta name="robots" content="index, follow" >
+    <meta name="description" content="Всички язовири в българия. Намерете информация за различните язовири">
+    <meta name="author" content="Nikolay">
+    <meta name="robots" content="index, follow">
     <!-- Open Graph тагове за социални мрежи -->
     <meta property="og:title" content="Язовири">
     <meta property="og:description" content="Всички язовири в българия. Намерете информация за различните язовири">
@@ -23,7 +23,8 @@
     <meta name="twitter:title" content="Язовири">
     <meta name="twitter:description" content="Всички язовири в българия. Намерете информация за различните язовири">
     <meta name="twitter:url" content="https://carpmap.online/reservoirs/reservoirsAll">
-    <meta name="twitter:image" content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
+    <meta name="twitter:image"
+          content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
     <th:block th:replace="~{fragments/head}"></th:block>
 </head>
 
@@ -40,24 +41,25 @@
         <div class="tab-class text-center">
             <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
                 <li class="nav-item px-1 my-3">
-                    <a class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5"
-                       th:href="@{/reservoirs/reservoirsAll}">
-                        <span class="text-white" style="width: 150px;">Всички</span>
-                    </a>
-                    <br>
+                    <div class="col-sm-12 text-end">
+                        <a class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5"
+                           th:href="@{/reservoirs/reservoirsAll}">
+                            <span style="width: 150px;">Всички</span>
+                        </a>
+                        <br>
+                    </div>
                 </li>
-
                 <li class="nav-item px-1 my-3">
                     <a class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5"
                        th:href="@{/reservoirs/reservoirsByType/{id}(id = ЧАСТЕН)}">
-                        <span class="text-white" style="width: 150px;">Частни</span>
+                        <span style="width: 150px;">Частни</span>
                     </a>
                     <br>
                 </li>
                 <li class="nav-item px-1 my-3">
                     <a class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5"
                        th:href="@{/reservoirs/reservoirsByType/{id}(id = СВОБОДЕН)}">
-                        <span class="text-white" style="width: 150px;">Държавни</span>
+                        <span style="width: 150px;">Държавни</span>
                     </a>
                     <br>
                 </li>
@@ -83,12 +85,10 @@
 											Държава:
 											<span th:text=" България" class="explore-price">5$-300$</span>
 										</span>
-                                <span  class="explore-type-box">
+                                <span class="explore-type-box">
 											Тип:
 											<span th:text=" *{reservoirType}" class="explore-price">5$-300$</span>
 										</span>
-<!--                                <a th:text="'Тип: ' + *{reservoirType}"-->
-<!--                                   href="#"></a>-->
                             </p>
                             <div class="explore-person">
                                 <div class="row">
