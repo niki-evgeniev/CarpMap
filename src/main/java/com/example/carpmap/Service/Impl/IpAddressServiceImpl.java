@@ -58,7 +58,6 @@ public class IpAddressServiceImpl implements IpAddressService {
             newAddress.setTimeToAdd(LocalDateTime.now());
             newAddress.setCountVisits(1L);
             findUser.ifPresent(newAddress::setUser);
-//            newAddress.setUser(findUser.get());
             ipAddressRepository.save(newAddress);
         } else if (findExistingIpAddress.get().getUser() == null) {
             Optional<User> findUser = userRepository.findByUsername(username);
