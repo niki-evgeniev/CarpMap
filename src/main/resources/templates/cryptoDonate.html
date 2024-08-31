@@ -2,51 +2,56 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="~{fragments/head}"></th:block>
     <title>Donate - CarpMap</title>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="keywords" content="website">
+    <th:block th:replace="~{fragments/head}"></th:block>
+    <style>
+        .responsive-text {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+    </style>
 </head>
-<style>
-    .responsive-text {
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-    }
-</style>
+
 <body>
 <th:block th:replace="~{fragments/topbar}"></th:block>
 <th:block th:replace="~{fragments/navbar}"></th:block>
-
-<main>
-    <!-- Donate -->
-    <div class="container-fluid py-5"
-         style="background: linear-gradient(rgba(19, 53, 123, 0.3), rgba(19, 53, 153, 0.3)); object-fit: cover;">
-        <div class="container py-5 text-center">
-            <div class="row justify-content-center donate">
-                <div class="col-lg-6">
-                    <i class="fas fa-donate fa-2x text-primary"></i>
-                    <h1 class="display-4">Donate</h1>
-                    <h3 class="mb-4 text-dark text-start">BitCoin - Bitcoin</h3>
-                    <p class="mb-4 text-dark responsive-text text-start">bc1q0fhj55jfma6h2h4cluvg0awc9qdlqvutzyy89y</p>
-                    <h3 class="mb-4 text-dark text-start">BitCoin - BEP20</h3>
-                    <p class="mb-4 text-dark responsive-text text-start">0xe046068c29628ef2daa6e350ad583496e517b816</p>
-                    <h3 class="mb-4 text-dark text-start">Ethereum - BEP20</h3>
-                    <p class="mb-4 text-dark responsive-text text-start">0xe046068c29628ef2daa6e350ad583496e517b816</p>
-                    <h3 class="mb-4 text-dark text-start">Ethereum - ERC20</h3>
-                    <p class="mb-4 text-dark responsive-text text-start">0xe046068c29628ef2daa6e350ad583496e517b816</p>
-                    <h3 class="mb-4 text-dark text-start">USDT Tether - TRC20</h3>
-                    <p class="mb-4 text-dark responsive-text text-start">TKnFCcZvZDzAb63AuWPLRGExWdEDaJaqA7</p>
-                    <h4 class="mb-4 text-dark text-start">PLEASE contact before donate: niki.evgeniev@gmail.com</h4>
-                    <h4 class="mb-4 text-dark text-start">Thank you !!!</h4>
-                    <a class="btn btn-primary rounded-pill py-3 px-5" href="/">Go Back To Home</a>
-                </div>
+<!-- Donate Start -->
+<div class="container-fluid py-5"
+     style="background: linear-gradient(rgba(19, 53, 123, 0.3), rgba(19, 53, 153, 0.3)); object-fit: cover;">
+    <div class="container py-5 text-center">
+        <div class="row justify-content-center donate">
+            <div class="col-lg-6 ">
+                <i class="fas fa-donate fa-2x text-primary"></i>
+                <h1 class="display-4">Donate</h1>
+                <h3 class="mb-4 text-dark text-start">BitCoin - Bitcoin</h3>
+                <p class="mb-4 text-dark responsive-text text-start">bc1q0fhj55jfma6h2h4cluvg0awc9qdlqvutzyy89y</p>
+                <h3 class="mb-4 text-dark text-start">BitCoin - BEP20</h3>
+                <p class="mb-4 text-dark responsive-text text-start">0xe046068c29628ef2daa6e350ad583496e517b816</p>
+                <h3 class="mb-4 text-dark text-start">Ethereum - BEP20</h3>
+                <p class="mb-4 text-dark responsive-text text-start">0xe046068c29628ef2daa6e350ad583496e517b816</p>
+                <h3 class="mb-4 text-dark text-start">Ethereum - ERC20</h3>
+                <p class="mb-4 text-dark responsive-text text-start">0xe046068c29628ef2daa6e350ad583496e517b816</p>
+                <h3 class="mb-4 text-dark text-start">USDT Tether - TRC20</h3>
+                <p class="mb-4 text-dark responsive-text text-start">TKnFCcZvZDzAb63AuWPLRGExWdEDaJaqA7</p>
+                <h4 class="mb-4 text-dark text-start">PLEASE contact before donate: niki.evgeniev@gmail.com</h4>
+                <h4 class="mb-4 text-dark text-start">Thank you !!!</h4>
+                <a class="btn btn-primary rounded-pill py-3 px-5" href="/">Go Back To Home</a>
             </div>
         </div>
     </div>
-    <!-- Donate -->
-    <th:block th:replace="~{fragments/footer}"></th:block>
-    <th:block th:replace="~{fragments/js}"></th:block>
-</main><!-- End #main -->
+</div>
+
+<!-- Donate End -->
+<!-- Footer Start -->
+<th:block th:replace="~{fragments/footer}"></th:block>
+<!-- Footer End -->
 <!-- Back to Top -->
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
-        class="bi bi-arrow-up-short"></i></a>
+<a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>
+<!-- JavaScript Libraries -->
+<th:block th:replace="~{fragments/js}"></th:block>
 </body>
+
 </html>
