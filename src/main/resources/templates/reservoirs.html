@@ -39,7 +39,7 @@
             <p class="text-center">Тук ще намерите всички добавени язовири в CARP MAP</p>
         </div><!--/.section-header-->
         <div class="tab-class text-center">
-            <ul class="nav nav-pills d-inline-flex justify-content-center mb-5">
+            <ul class="nav nav-pills d-inline-flex justify-content-center mb-1">
                 <li class="nav-item px-1 my-3">
                     <div class="col-sm-12 text-end">
                         <a class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5"
@@ -121,7 +121,7 @@
         </div>
     </div><!--/.container-->
 </section><!--/.explore-->
-<nav aria-label="Page navigation" class="d-flex justify-content-center">
+<nav aria-label="Page navigation" class="d-flex justify-content-center py-2">
     <ul th:fragment="ALL" class="pagination text-center">
         <li th:class="${!allReservoir.hasPrevious()} ? 'page-item disabled' : 'page-item'">
             <a class="page-link" th:if="${allReservoir.hasPrevious()}"

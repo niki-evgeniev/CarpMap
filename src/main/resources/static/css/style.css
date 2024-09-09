@@ -1290,9 +1290,9 @@ body > div.container-fluid.position-relative.p-0 > nav {
     margin-top: 8%;
 }
 
-body > div.container-fluid.contact.bg-light.py-5 {
-    margin-top: 5%;
-}
+/*body > div.container-fluid.contact.bg-light.py-5 {*/
+/*    margin-top: 5%;*/
+/*}*/
 
 body > div.container-fluid.about.py-5 {
     margin-top: 6%;
@@ -1467,8 +1467,8 @@ body > main > div.container-fluid.packages.py-5 {
 }
 
 .packages {
-    padding-top: 0.5rem;
-    padding-bottom: 3rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
 }
 
 .package {
@@ -1476,8 +1476,9 @@ body > main > div.container-fluid.packages.py-5 {
 }
 
 .gallery {
-    padding-bottom: 3rem;
-    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    margin-top: -3rem;
 }
 
 
@@ -1489,5 +1490,6 @@ body > main > div.container-fluid.packages.py-5 {
         border-bottom: 2px solid #eceffa;
     }
 }
+
 /* for login page responsive*/
 

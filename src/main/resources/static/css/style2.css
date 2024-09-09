@@ -102,10 +102,12 @@ html,body{height: 100%;}
         7. Explore
 --------------------------------------*/
 .explore{
-    padding:117px 0 95px;
+    padding:90px 0 15px;
     background: #f8fafb;
 }
-.explore-content{margin-top: 78px;}
+.explore-content{
+    margin-top: 35px;
+}
 
 .single-explore-item {
     background: #fff;
