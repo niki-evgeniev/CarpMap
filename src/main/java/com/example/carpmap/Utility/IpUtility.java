@@ -4,6 +4,7 @@ package com.example.carpmap.Utility;
 import com.example.carpmap.Models.DTO.Blog.BlogPackagesDTO;
 import com.example.carpmap.Service.BlogService;
 import com.example.carpmap.Service.IpAddressService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.hibernate.annotations.Comment;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -24,7 +25,8 @@ public class IpUtility {
 
     }
 
-    public ModelAndView getIpAndBlog(UserDetails userDetails, String cloudflareIp) throws InterruptedException {
+    public ModelAndView getIpAndBlog(UserDetails userDetails, String cloudflareIp, HttpServletRequest request)
+            throws InterruptedException {
         Long counter = ipAddressService.findAllVisits();
         if (counter == null) {
             counter = 1L;
@@ -46,6 +48,7 @@ public class IpUtility {
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("blogPackages", blogPackagesDTO);
         modelAndView.addObject("counter", counter);
+        modelAndView.addObject("currentUrl", request.getRequestURI());
         return modelAndView;
     }
 }

@@ -30,9 +30,8 @@ public class HomeController {
     public ModelAndView index(@AuthenticationPrincipal UserDetails userDetails,
                               HttpServletRequest request)
             throws InterruptedException {
-
         String cloudflareIp = request.getRemoteAddr();
-        return ipUtility.getIpAndBlog(userDetails, cloudflareIp);
+        return ipUtility.getIpAndBlog(userDetails, cloudflareIp, request);
     }
 
     @ModelAttribute
@@ -41,8 +40,10 @@ public class HomeController {
     }
 
     @GetMapping("/about")
-    public ModelAndView about() {
-        return new ModelAndView("about");
+    public ModelAndView about(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView("about");
+        modelAndView.addObject("currentUrl", request.getRequestURI());
+        return modelAndView;
     }
 
     @GetMapping("/cookiePolicy")

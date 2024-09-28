@@ -14,10 +14,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto py-0">
-                <a href="/" class="nav-item nav-link active">Начало</a>
-                <a th:href="@{/reservoirs/reservoirsAll}" class="nav-item nav-link">Язовири</a>
-                <a th:href="@{/blog}" class="nav-item nav-link">Блог</a>
-                <a th:href="@{/about}" class="nav-item nav-link">За нас</a>
+                <a  th:href="@{/}"
+                    th:classappend="${currentUrl  == '/'} ? 'active'"
+                   class="nav-item nav-link">Начало</a>
+                <a th:href="@{/reservoirs/reservoirsAll}"
+                   th:classappend="${currentUrl != null and currentUrl.startsWith('/reservoirs/reservoirsAll')} ? ' active'"
+                   class="nav-item nav-link">Язовири</a>
+                <a th:href="@{/blog}"
+                   th:classappend="${currentUrl != null and currentUrl.startsWith('/blog')} ? ' active'"
+                   class="nav-item nav-link">Блог</a>
+                <a th:href="@{/about}"
+                   th:classappend="${currentUrl != null and currentUrl.startsWith('about')} ? ' active'"
+                   class="nav-item nav-link">За нас</a>
                 <div sec:authorize="isAuthenticated() and hasRole('ADMIN') or hasRole('MODERATOR')"
                      class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Admin Panel</a>
@@ -32,7 +40,9 @@
                         <a href="404.html" class="dropdown-item">404 Page</a>
                     </div>
                 </div>
-                <a th:href="@{/contact}" class="nav-item nav-link">Контакти</a>
+                <a th:href="@{/contact}"
+                   th:classappend="${currentUrl != null and currentUrl.startsWith('/contact')} ? ' active'"
+                   class="nav-item nav-link">Контакти</a>
             </div>
             <a sec:authorize="isAuthenticated()"
                href=""
