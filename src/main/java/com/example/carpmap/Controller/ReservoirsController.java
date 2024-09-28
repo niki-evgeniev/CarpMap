@@ -5,6 +5,7 @@ import com.example.carpmap.Service.CountryService;
 import com.example.carpmap.Service.FishService;
 import com.example.carpmap.Service.PictureService;
 import com.example.carpmap.Service.ReservoirsService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,10 +41,12 @@ public class ReservoirsController {
 
     @GetMapping("reservoirsAll")
     public ModelAndView reservoirsAll(
-            @PageableDefault(size = 9, sort = "name") Pageable pageable) {
+            @PageableDefault(size = 9, sort = "name") Pageable pageable, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView("reservoirs");
         Page<ReservoirAllDTO> allReservoir = reservoirsService.getAllReservoirs(pageable);
         modelAndView.addObject("allReservoir", allReservoir);
+        modelAndView.addObject("currentUrl", request.getRequestURI());
+
         return modelAndView;
     }
 

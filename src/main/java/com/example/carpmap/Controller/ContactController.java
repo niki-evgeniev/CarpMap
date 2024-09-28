@@ -3,6 +3,7 @@ package com.example.carpmap.Controller;
 
 import com.example.carpmap.Models.DTO.ContactDTO;
 import com.example.carpmap.Service.ContactService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -22,8 +23,10 @@ public class ContactController {
 
 
     @GetMapping("/contact")
-    public ModelAndView contact() {
-        return new ModelAndView("contact");
+    public ModelAndView contact(HttpServletRequest request) {
+        ModelAndView modelAndView = new ModelAndView("contact");
+        modelAndView.addObject("currentUrl", request.getRequestURI());
+        return modelAndView;
     }
 
     @PostMapping("/contact")

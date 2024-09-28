@@ -51,7 +51,7 @@ public class SearchController {
             return modelAndView;
         }
         String cloudflareIp = request.getRemoteAddr();
-        ModelAndView modelAndView = ipUtility.getIpAndBlog(userDetails, cloudflareIp);
+        ModelAndView modelAndView = ipUtility.getIpAndBlog(userDetails, cloudflareIp, request);
         return modelAndView;
     }
 
