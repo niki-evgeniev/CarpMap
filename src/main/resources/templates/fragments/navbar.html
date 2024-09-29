@@ -18,13 +18,13 @@
                     th:classappend="${currentUrl  == '/'} ? 'active'"
                    class="nav-item nav-link">Начало</a>
                 <a th:href="@{/reservoirs/reservoirsAll}"
-                   th:classappend="${currentUrl != null and currentUrl.startsWith('/reservoirs/reservoirsAll')} ? ' active'"
+                   th:classappend="${currentUrl != null and currentUrl.startsWith('/reservoirs/reservoirsAll')} ? 'active'"
                    class="nav-item nav-link">Язовири</a>
                 <a th:href="@{/blog}"
-                   th:classappend="${currentUrl != null and currentUrl.startsWith('/blog')} ? ' active'"
+                   th:classappend="${currentUrl != null and currentUrl.startsWith('/blog')} ? 'active'"
                    class="nav-item nav-link">Блог</a>
                 <a th:href="@{/about}"
-                   th:classappend="${currentUrl != null and currentUrl.startsWith('about')} ? ' active'"
+                   th:classappend="${currentUrl != null and currentUrl.startsWith('/about')} ? 'active'"
                    class="nav-item nav-link">За нас</a>
                 <div sec:authorize="isAuthenticated() and hasRole('ADMIN') or hasRole('MODERATOR')"
                      class="nav-item dropdown">

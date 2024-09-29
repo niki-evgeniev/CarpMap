@@ -40,8 +40,8 @@
 }
 
 .btn-sm-square {
-    width: 34px;
-    height: 34px;
+    width: 28px;
+    height: 28px;
 }
 
 .btn-md-square {
@@ -157,7 +157,7 @@
 .navbar-light .navbar-nav .nav-link {
     font-family: 'Roboto', sans-serif;
     position: relative;
-    padding: 35px 15px;
+    padding: 25px 15px;
     color: var(--bs-white) !important;
     font-size: 17px;
     font-weight: 400;
@@ -1490,6 +1490,130 @@ body > main > div.container-fluid.packages.py-5 {
         border-bottom: 2px solid #eceffa;
     }
 }
+#carouselId > div {
+    max-height: 700px;
+}
 
-/* for login page responsive*/
+/* 3D effect - 1 */
+/*.carousel-inner {*/
+/*    perspective: 1200px; !* Добавяне на 3D перспектива *!*/
+/*}*/
 
+/*.carousel-item {*/
+/*    transform-style: preserve-3d; !* Запазване на 3D ефекта за децата на елемента *!*/
+/*    animation: carousel3D 5s infinite ease-in-out; !* Добавяне на анимация за 3D движение *!*/
+/*    transition: transform 0.8s ease-in-out;*/
+/*}*/
+
+/*@keyframes carousel3D {*/
+/*    0% {*/
+/*        transform: rotateY(0deg); !* Начално състояние *!*/
+/*    }*/
+/*    25% {*/
+/*        transform: rotateY(25deg) scale(1.05); !* Завъртане на 15 градуса и леко увеличение *!*/
+/*    }*/
+/*    50% {*/
+/*        transform: rotateY(0deg); !* Връщане в нормално състояние *!*/
+/*    }*/
+/*    100% {*/
+/*        transform: rotateY(0deg); !* Запазване на началното състояние *!*/
+/*    }*/
+/*}*/
+
+/*.carousel-item img {*/
+/*    width: 100%;*/
+/*    height: auto;*/
+/*    object-fit: cover;*/
+/*    backface-visibility: hidden; !* Скриване на задната страна на елемента при завъртане *!*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); !* Добавяне на сянка за повече дълбочина *!*/
+/*}*/
+
+/*.carousel-caption {*/
+/*    background-color: rgba(0, 0, 0, 0.5); !* Полупрозрачен фон за текста *!*/
+/*    padding: 20px;*/
+/*    border-radius: 10px;*/
+/*    max-width: 80%;*/
+/*    margin: auto;*/
+/*    transform: translateZ(30px); !* Избутване на текста напред в 3D пространството *!*/
+/*}*/
+
+/*.carousel-control-prev-icon, .carousel-control-next-icon {*/
+/*    width: 40px;*/
+/*    height: 40px;*/
+/*    background-color: rgba(0, 0, 0, 0.5); !* Фон на бутоните *!*/
+/*    border-radius: 50%;*/
+/*}*/
+
+/*.carousel-control-prev:hover .carousel-control-prev-icon,*/
+/*.carousel-control-next:hover .carousel-control-next-icon {*/
+/*    background-color: rgba(0, 0, 0, 0.8); !* Промяна на цвета при hover *!*/
+/*}*/
+
+/* 3D effect - 1 END */
+
+/* 3D effect - 2 */
+/* Настройка за карусела */
+.carousel-inner {
+    perspective: 1200px;
+    position: relative;
+    overflow: hidden; /* Скриване на изображенията извън рамката */
+}
+
+.carousel-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out, box-shadow 0.8s ease-in-out; /* Плавни преходи за трансформация и сенки */
+    opacity: 0;
+    z-index: 1;
+}
+
+.carousel-item.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Запълване на контейнера, без изрязване на съдържанието */
+    transition: transform 1s ease-in-out, box-shadow 1s ease-in-out, filter 1s ease-in-out; /* Плавни преходи за анимации */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3); /* Начална сянка за всяко изображение */
+}
+
+.carousel-item.active img {
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5); /* По-дълбока сянка за активните изображения */
+    filter: brightness(1.2); /* Лек светещ ефект при активно изображение */
+}
+
+/*.carousel-item:hover img {*/
+/*    box-shadow: 0px 15px 50px rgba(255, 255, 255, 0.5); !* Светещ ефект при задържане с мишката *!*/
+/*    filter: brightness(1.4); !* Още по-силно осветяване при задържане *!*/
+/*}*/
+
+/* 3D анимация при смяна на слайдовете */
+@keyframes carousel3D {
+    0%, 100% {
+        transform: translateX(0) rotateY(0deg);
+    }
+    25% {
+        transform: translateX(-10%) rotateY(22deg) scale(1.05);
+    }
+    50% {
+        transform: translateX(-20%) rotateY(0deg);
+    }
+}
+
+/* Анимация за активното изображение с 3D ефект */
+.carousel-item.active {
+    animation: carousel3D 5s infinite;
+}
+
+/* Плавно преминаване между слайдовете */
+.carousel-item-next, .carousel-item-prev {
+    transform: translateX(-20%) rotateY(-15deg) scale(1.05);
+}
+
+/* 3D effect - 2 END */
