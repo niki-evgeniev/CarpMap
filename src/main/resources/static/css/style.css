@@ -1617,3 +1617,49 @@ body > main > div.container-fluid.packages.py-5 {
 }
 
 /* 3D effect - 2 END */
+
+/* Cookie Consent Popup */
+.cookie-consent {
+    position: fixed;
+    top: 50%;   /* Центриране вертикално */
+    left: 50%;  /* Центриране хоризонтално */
+    transform: translate(-50%, -50%);  /* Промяна на местоположението към центъра */
+    background-color: rgba(0, 0, 0, 0.7); /* По-тъмен за контраст */
+    color: white;
+    padding: 30px;
+    z-index: 1000; /* Висок z-index за да е над всичко останало */
+    display: none; /* Скрито по подразбиране */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Сянка за ефект на pop-up */
+    border-radius: 8px; /* Закръглени ъгли */
+    max-width: 400px; /* Максимална ширина за текста */
+    text-align: center;
+}
+
+.cookie-consent .cookie-message {
+    display: inline-block;
+}
+
+.cookie-consent button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.cookie-consent button:hover {
+    background-color: #45a049;
+}
+/* Допълнителен тъмен фон зад pop-up прозореца */
+.cookie-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачен фон за затъмняване на задния план */
+    z-index: 999; /* Под pop-up прозореца */
+    display: none; /* Скрито по подразбиране */
+}
+/* Cookie Consent Popup END */

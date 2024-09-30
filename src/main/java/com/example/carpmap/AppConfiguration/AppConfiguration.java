@@ -1,6 +1,6 @@
 package com.example.carpmap.AppConfiguration;
 
-import com.example.carpmap.Models.DTO.Profile.ProfileEditDTO;
+
 import com.example.carpmap.Models.DTO.Profile.ProfileInfoDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirsEditDTO;
 import com.example.carpmap.Models.Entity.Reservoir;
@@ -10,8 +10,6 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.spi.MappingContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 
 @Configuration
 public class AppConfiguration {
@@ -42,16 +40,6 @@ public class AppConfiguration {
 
 
                 });
-//        modelMapper
-//                .createTypeMap(User.class, ProfileEditDTO.class)
-//                .addMappings(mapper -> {
-//                    mapper.using(nullToNoneString).map(User::getUsername, ProfileEditDTO::set);
-//                    mapper.using(nullToNoneString).map(User::getPassword, ProfileEditDTO::set);
-//                    mapper.using(nullToNoneString).map(User::getCreateOn, ProfileEditDTO::set);
-//                    mapper.using(nullToNoneString).map(User::getPhoneNumber, ProfileEditDTO::setPhone);
-//                });
-
-
         return modelMapper;
     }
 }

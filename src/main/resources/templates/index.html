@@ -187,6 +187,20 @@
     <th:block th:replace="~{fragments/footer}"></th:block>
     <!-- Footer End -->
     <th:block th:replace="~{fragments/js}"></th:block>
+
+    <div id="cookieBackdrop" class="cookie-backdrop"></div>
+
+    <!-- Cookie Consent Popup -->
+    <div id="cookieConsent" class="cookie-consent">
+        <div class="cookie-message">
+            <p>Този сайт използва "бисквитки" за подобряване на потребителското изживяване. Прочетете нашата
+                <a th:href="@{/cookiePolicy}" target="_blank">политика за бисквитките</a>.
+            </p>
+            <button id="acceptCookies">Приемам</button>
+        </div>
+    </div>
+
+    <script th:src="@{/js/cookie.js}"></script>
 </main>
 <!-- Back to Top -->
 <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i

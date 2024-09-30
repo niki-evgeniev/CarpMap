@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Пример за Cookie Политика</title>
+    <link rel="stylesheet" th:href="@{/css/Cockie.css}">
+</head>
+<body>
+<!-- Останалото съдържание на страницата ти -->
+
+<!-- Cookie Consent Popup -->
+<div id="cookieConsent" class="cookie-consent">
+    <div class="cookie-message">
+        <p>Този сайт използва "бисквитки" за подобряване на потребителското изживяване. Прочетете нашата
+            <a th:href="@{/cookie-policy}" target="_blank">политика за бисквитките</a>.
+        </p>
+        <button id="acceptCookies">Приемам</button>
+    </div>
+</div>
+
+<script th:src="@{/js/cookie-consent.js}"></script>
+</body>
+</html>
