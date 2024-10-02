@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/reservoirs/")
@@ -101,11 +102,15 @@ public class ReservoirsController {
         ModelAndView modelAndView = new ModelAndView("reservoirsDetails");
         ReservoirsDetailsDTO reservoirsDetailsDTO = reservoirsService.getDetails(id);
 
+
         if (reservoirsDetailsDTO == null) {
             return new ModelAndView("errors/errorFindPage");
         }
+
+
         List<ReservoirPicturesDTO> reservoirPicturesList = pictureService.getAllReservoirPicture(id);
         modelAndView.addObject("details", reservoirsDetailsDTO);
+//        modelAndView.addObject("fishNames", fishNames);
         modelAndView.addObject("pictures", reservoirPicturesList);
         return modelAndView;
     }

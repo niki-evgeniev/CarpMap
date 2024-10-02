@@ -106,21 +106,29 @@
                     <div class="product-title text-bold my-3 text-start"
                          th:text="'Добавен на : ' + *{createDate.toLocalDate()}">
                     </div>
+                    <div class="product-details my-4">
+                        <p class="details-title text-color mb-1 text-start">Видове риба</p>
+                        <p
+                                class="description text-start">
+                            <span th:text="*{fishNames}"></span>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="container my-5" th:object="${details}">
-        <div class="product-details my-4">
-            <p class="details-title text-color mb-1 text-start">Видове риба</p>
-            <p th:each="fishi : *{fishNameDTO}"
-               class="description text-start">
-                <span th:text="${fishi.fishName}"></span>
-            </p>
-        </div>
+<!--        TESTING FISHING TYPE-->
+<!--        <div class="product-details my-4">-->
+<!--            <p class="details-title text-color mb-1 text-start">Видове риба</p>-->
+<!--            <p-->
+<!--               class="description text-start">-->
+<!--                <span th:text="*{fishNames}"></span>-->
+<!--            </p>-->
+<!--        </div>-->
         <div class="row">
             <div class="product-details my-4 col-md-12">
-                <p class="details-title text-color mb-1" th:text="'Информация за яз. ' + ${details.name}"></p>
+                <p class="details-title text-color mb-1" th:text="'Информация за яз. ' + *{name}"></p>
                 <p class="description" th:text="*{description}"></p>
             </div>
         </div>

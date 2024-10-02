@@ -1,9 +1,15 @@
 package com.example.carpmap.Service.Impl;
 
 import com.example.carpmap.Models.DTO.Reservoirs.*;
-import com.example.carpmap.Models.Entity.*;
+import com.example.carpmap.Models.Entity.Country;
+import com.example.carpmap.Models.Entity.Fish;
+import com.example.carpmap.Models.Entity.Reservoir;
+import com.example.carpmap.Models.Entity.User;
 import com.example.carpmap.Models.Enums.ReservoirType;
-import com.example.carpmap.Repository.*;
+import com.example.carpmap.Repository.CountryRepository;
+import com.example.carpmap.Repository.FishRepository;
+import com.example.carpmap.Repository.ReservoirRepository;
+import com.example.carpmap.Repository.UserRepository;
 import com.example.carpmap.Service.PictureService;
 import com.example.carpmap.Service.ReservoirsService;
 import org.modelmapper.ModelMapper;
@@ -14,11 +20,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static com.example.carpmap.Cammon.ErrorMessages.*;
 import static com.example.carpmap.Cammon.SuccessfulMessages.*;
@@ -147,20 +153,38 @@ public class ReservoirsServiceImpl implements ReservoirsService {
         List<FishNameDTO> fihsNameList = new ArrayList<>();
 
         if (findReservoir.isPresent()) {
+
+            Reservoir reservoirCount = findReservoir.get();
+            if (reservoirCount.getCountVisitors() == null) {
+                reservoirCount.setCountVisitors(Integer.parseInt(String.valueOf(1)));
+                reservoirRepository.save(reservoirCount);
+            } else {
+                Integer countVisitors = reservoirCount.getCountVisitors();
+                countVisitors++;
+                reservoirCount.setCountVisitors(countVisitors);
+                reservoirRepository.save(findReservoir.get());
+            }
+            System.out.printf(COUNT_RESERVOIR_OPENING,
+                    reservoirCount.getName(), reservoirCount.getCountVisitors());
+
             List<Fish> allDetailsFishTypes = findReservoir.get().getFish();
             for (Fish fish : allDetailsFishTypes) {
                 FishNameDTO mapDBFishType = new FishNameDTO();
                 mapDBFishType.setFishName(fish.getFishName());
                 fihsNameList.add(mapDBFishType);
             }
-            reservoirsDetailsDTO.setFishNameDTO(fihsNameList);
+
+            String fishNames = fihsNameList.stream()
+                    .map(FishNameDTO::getFishName)
+                    .collect(Collectors.joining(", "));
+            reservoirsDetailsDTO.setFishNames(fishNames);
+//            reservoirsDetailsDTO.setFishNameDTO(fihsNameList);
         }
 
         if (reservoirsDetailsDTO == null) {
             String errMsg = String.format(RESERVOIR_WITH_ID_NOT_FOUND_REDIRECT_TO_INDEX, id);
             LOGGER.error(errMsg);
         }
-
         return reservoirsDetailsDTO;
     }
 
@@ -179,7 +203,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
 
     @Override
     public List<ReservoirEditGalleryDTO> getAllGalleryImage(Long id) {
-       List<ReservoirEditGalleryDTO> allPicture = pictureService.findAllPicture(id);
+        List<ReservoirEditGalleryDTO> allPicture = pictureService.findAllPicture(id);
         return allPicture;
     }
 

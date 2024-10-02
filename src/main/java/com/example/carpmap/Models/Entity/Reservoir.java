@@ -44,7 +44,11 @@ public class Reservoir extends BaseEntity {
     private String information;
 
     @Column(name = "description", columnDefinition = "TEXT")
+
     private String description;
+
+    @Column(name = "countVisitors")
+    private Integer countVisitors;
 
     @ManyToOne
     private User user;
@@ -149,6 +153,14 @@ public class Reservoir extends BaseEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Integer getCountVisitors() {
+        return countVisitors;
+    }
+
+    public void setCountVisitors(Integer countVisitors) {
+        this.countVisitors = countVisitors;
     }
 
     public User getUser() {

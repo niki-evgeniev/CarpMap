@@ -30,7 +30,11 @@ public class ReservoirsDetailsDTO {
 
     private String country;
 
+    private Integer countVisitors;
+
     private ReservoirType reservoirType;
+
+    private String fishNames;
 
     private List<FishNameDTO> fishNameDTO;
 
@@ -125,12 +129,28 @@ public class ReservoirsDetailsDTO {
         this.country = country;
     }
 
+    public Integer getCountVisitors() {
+        return countVisitors;
+    }
+
+    public void setCountVisitors(Integer countVisitors) {
+        this.countVisitors = countVisitors;
+    }
+
     public ReservoirType getReservoirType() {
         return reservoirType;
     }
 
     public void setReservoirType(ReservoirType reservoirType) {
         this.reservoirType = reservoirType;
+    }
+
+    public String getFishNames() {
+        return fishNames;
+    }
+
+    public void setFishNames(String fishNames) {
+        this.fishNames = fishNames;
     }
 
     public List<FishNameDTO> getFishNameDTO() {
