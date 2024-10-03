@@ -1599,7 +1599,7 @@ body > main > div.container-fluid.packages.py-5 {
         transform: translateX(0) rotateY(0deg);
     }
     25% {
-        transform: translateX(-10%) rotateY(22deg) scale(1.05);
+        transform: translateX(-10%) rotateY(15deg) scale(1.05);
     }
     50% {
         transform: translateX(-20%) rotateY(0deg);

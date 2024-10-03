@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -42,7 +43,8 @@ public class ReservoirsController {
 
     @GetMapping("reservoirsAll")
     public ModelAndView reservoirsAll(
-            @PageableDefault(size = 9, sort = "name") Pageable pageable, HttpServletRequest request) {
+            @PageableDefault(size = 9, sort = "countVisitors", direction = Sort.Direction.DESC)
+            Pageable pageable, HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView("reservoirs");
         Page<ReservoirAllDTO> allReservoir = reservoirsService.getAllReservoirs(pageable);
         modelAndView.addObject("allReservoir", allReservoir);

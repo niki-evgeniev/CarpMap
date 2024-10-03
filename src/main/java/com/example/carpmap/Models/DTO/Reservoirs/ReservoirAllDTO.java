@@ -18,6 +18,8 @@ public class ReservoirAllDTO {
 
     private String countryCode;
 
+    private String countVisitors;
+
     private ReservoirType reservoirType;
 
     public ReservoirAllDTO() {
@@ -77,6 +79,14 @@ public class ReservoirAllDTO {
 
     public void setCountryCode(String countryCode) {
         this.countryCode = countryCode;
+    }
+
+    public String getCountVisitors() {
+        return countVisitors;
+    }
+
+    public void setCountVisitors(String countVisitors) {
+        this.countVisitors = countVisitors;
     }
 
     public ReservoirType getReservoirType() {
