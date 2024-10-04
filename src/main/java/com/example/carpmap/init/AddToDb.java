@@ -41,24 +41,6 @@ public class AddToDb implements CommandLineRunner {
         usersService.addAdminIfNotExist();
         fishService.addFishType();
         blogService.addBlog();
-//        checkForDuplicateIP();
 
-    }
-
-    private void checkForDuplicateIP() {
-//        List<IpAddress> allIpAddressInDB = ipAddressRepository.findAll();
-//        List<IpAddress> allNewIpAddressInDB = new ArrayList<>();
-//
-//        for (IpAddress ipAddress : allIpAddressInDB) {
-//            if (!allNewIpAddressInDB.contains(ipAddress)) {
-//                allNewIpAddressInDB.add(ipAddress);
-//            }
-//        }
-//        if (allIpAddressInDB.size() != allNewIpAddressInDB.size()) {
-//            LOGGER.error("ERROR : DUPLICATE IP ADDRESS IN DB - DELETED DUPLICATE");
-//            ipAddressRepository.saveAll(allNewIpAddressInDB);
-//        } else {
-//            LOGGER.info("Successful check for duplicate - none duplicate ipAddress found");
-//        }
     }
 }

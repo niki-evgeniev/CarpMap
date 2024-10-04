@@ -20,7 +20,8 @@ public class CleanDateBaseIPScheduler {
         this.ipAddressRepository = ipAddressRepository;
     }
 
-    @Scheduled(cron = "*/10 * * * * *")
+    @Scheduled(cron = "0 0 * * * *")    // executing every 1h
+//    @Scheduled(cron = "0 0 */2 * * *")    // executing every 2h
     public void cleanDbIp(){
         List<IpAddress> allIpAddressInDB = ipAddressRepository.findAll();
         List<IpAddress> allNewIpAddressInDB = new ArrayList<>();
@@ -36,6 +37,5 @@ public class CleanDateBaseIPScheduler {
         } else {
             LOGGER.info("Successful check for duplicate - none duplicate ipAddress found");
         }
-        System.out.println("CLEAR DATABASE FROM DUPLICATE IP ADDRESS");
     }
 }
