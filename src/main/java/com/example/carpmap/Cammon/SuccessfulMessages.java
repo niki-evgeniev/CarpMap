@@ -17,7 +17,7 @@ public class SuccessfulMessages {
             "Success added Fish type: %s in DB %n";
 
     public static final String COUNT_RESERVOIR_OPENING =
-            "Total visitors for Reservoir %s : %d";
+            "Total visitors for Reservoir %s : %d %n";
 
     public static final String SUCCESSFUL_ADD_FISH_TYPE_TO_RESERVOIR =
             "Successful added type fish : %s for reservoir %s %n";
