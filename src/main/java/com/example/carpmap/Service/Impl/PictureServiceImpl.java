@@ -66,7 +66,7 @@ public class PictureServiceImpl implements PictureService {
                     galleryDTO.setIdPic(res.getId());
                     return galleryDTO;
                 }).toList();
-        System.out.println();
+
         return galleryDTOS;
     }
 

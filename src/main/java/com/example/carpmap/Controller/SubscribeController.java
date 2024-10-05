@@ -16,7 +16,6 @@ public class SubscribeController {
     @PostMapping("/send")
     public ModelAndView subscribe(@RequestParam("email") String email) {
 
-        System.out.println();
         return new ModelAndView("index");
     }
 

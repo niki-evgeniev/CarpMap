@@ -101,7 +101,6 @@ public class ReservoirController {
     public ModelAndView reservoirsEdit(@PathVariable("id") Long id,
                                        @Valid EditGalleryDTO editGalleryDTO, BindingResult bindingResult,
                                        @AuthenticationPrincipal UserDetails userDetails) {
-        System.out.println();
 
         ModelAndView modelAndView = new ModelAndView("about");
         return modelAndView;

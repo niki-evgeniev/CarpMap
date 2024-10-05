@@ -43,7 +43,7 @@ public class SearchController {
                                @Valid SearchDTO searchDTO, BindingResult bindingResult,
                                @PageableDefault(size = 6, sort = "name") Pageable pageable,
                                HttpServletRequest request) throws InterruptedException {
-        System.out.println();
+
         if (!bindingResult.hasErrors()) {
             Page<ReservoirAllDTO> reservoirByName = reservoirsService.findReservoirByName(searchDTO.getReservoir(), pageable);
             ModelAndView modelAndView = new ModelAndView("reservoirs");

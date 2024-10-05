@@ -26,7 +26,7 @@ public class CarpUserService implements UserDetailsService {
         UserDetails userDetails = userRepository.findByUsername(username)
                 .map(CarpUserService::map)
                 .orElseThrow(() -> new UsernameNotFoundException("User " + username + " not found"));
-        System.out.println();
+
         System.out.printf(SUCCESSFUL_LOGIN, userDetails.getUsername());
         return userDetails;
     }

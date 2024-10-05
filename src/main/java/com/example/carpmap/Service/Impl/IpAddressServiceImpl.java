@@ -43,7 +43,7 @@ public class IpAddressServiceImpl implements IpAddressService {
        IpAddress ipAddress = all.get(all.size() -1);
 
         Long lastId = (long) all.size();
-        System.out.println();
+
         return countAllVisitors;
     }
 

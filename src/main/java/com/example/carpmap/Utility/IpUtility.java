@@ -5,7 +5,6 @@ import com.example.carpmap.Models.DTO.Blog.BlogPackagesDTO;
 import com.example.carpmap.Service.BlogService;
 import com.example.carpmap.Service.IpAddressService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.hibernate.annotations.Comment;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
@@ -33,6 +32,7 @@ public class IpUtility {
         } else {
             counter = counter + 1L;
         }
+
         System.out.println("Total visitors in app " + counter);
         String ipAddress = ipAddressService.getIp().trim();
         System.out.println(LocalDateTime.now() + " Visitor address : " + ipAddress);
