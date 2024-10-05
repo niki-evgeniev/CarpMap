@@ -1,6 +1,5 @@
-package com.example.carpmap.init;
+package com.example.carpmap.Init;
 
-import com.example.carpmap.Models.Entity.IpAddress;
 import com.example.carpmap.Repository.IpAddressRepository;
 import com.example.carpmap.Service.*;
 
@@ -8,9 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class AddToDb implements CommandLineRunner {

@@ -25,4 +25,8 @@ public class ErrorMessages {
 
     public static final String OLD_PASSWORD_NOT_MATCH =
             "OLD PASSWORD NOT MATCH %n";
+
+    public static final String ERROR_DUPLICATE_IP_LOGGER =
+            "ERROR : DUPLICATE IP ADDRESS IN DB - DELETED DUPLICATE";
+
 }

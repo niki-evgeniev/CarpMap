@@ -71,6 +71,10 @@ public class SuccessfulMessages {
     public static final String SUCCESSFUL_ADD_CONTACT =
             "Successful added new CONTACT";
 
+    public static final String SUCCESSFUL_SAVE_NEW_IP_LOGGER =
+            "SUCCESSFUL SAVE NEW IP ADDRESS IN DATABASE";
 
+    public static final String SUCCESSFUL_CHECK_FOR_DUPLICATE_IP_LOGGER =
+            "Successful check for duplicate - none duplicate ipAddress found";
 
 }
