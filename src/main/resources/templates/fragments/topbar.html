@@ -41,12 +41,12 @@
                 <div sec:authorize="isAuthenticated()"
                      class="dropdown">
                     <a href="#" class="dropdown-toggle text-light" data-bs-toggle="dropdown"><small><i
-                            class="fa fa-home me-2"></i> My Dashboard</small></a>
+                            class="fa fa-home me-2"></i> Меню</small></a>
                     <div class="dropdown-menu rounded">
-                        <a href="#" class="dropdown-item text-center text-info">Welcome,
+                        <a href="#" class="dropdown-item text-center text-info">Добре дошъл,
                             <span sec:authentication="name"></span></a>
                         <th:block sec:authorize="hasRole('ADMIN')">
-                            <a href="#" class="dropdown-item text-center text-info"><b>ADMIN</b></a>
+                            <a href="#" class="dropdown-item text-center text-info">Ти си: <b>ADMIN</b></a>
                         </th:block>
                         <th:block sec:authorize="hasRole('MODERATOR') and !hasRole('ADMIN')">
                             <a href="#" class="dropdown-item text-center text-info"><b>MODERATOR</b></a>
@@ -55,10 +55,10 @@
                             <a href="#" class="dropdown-item text-center text-info"><b>USER</b></a>
                         </th:block>
 
-                        <a th:href="@{/profile/details}" class="dropdown-item"><i class="fas fa-user-alt me-2"></i> My
-                            Profile</a>
-                        <a th:href="@{/mail}" class="dropdown-item"><i class="fas fa-comment-alt me-2"></i> Inbox</a>
-                        <a href="#" class="dropdown-item"><i class="fas fa-bell me-2"></i> Notifications</a>
+                        <a th:href="@{/profile/details}" class="dropdown-item"><i class="fas fa-user-alt me-2"></i>
+                            Профил</a>
+                        <a th:href="@{/mail}" class="dropdown-item"><i class="fas fa-comment-alt me-2"></i> Поща</a>
+                        <a href="#" class="dropdown-item"><i class="fas fa-bell me-2"></i> Съобщения</a>
                         <!--                        <a href="#" class="dropdown-item"><i class="fas fa-cog me-2"></i> Account Settings</a>-->
                     </div>
                 </div>
