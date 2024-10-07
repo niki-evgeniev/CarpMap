@@ -9,6 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -78,6 +79,7 @@ public class IpAddressServiceImpl implements IpAddressService {
     }
 
     @Override
+    @Transactional
     public void getIpVisitor(String ipAddress) {
         Optional<IpAddress> byAddress = ipAddressRepository.findByAddress(ipAddress);
         if (byAddress.isEmpty()) {
