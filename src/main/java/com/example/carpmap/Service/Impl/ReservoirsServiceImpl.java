@@ -179,7 +179,6 @@ public class ReservoirsServiceImpl implements ReservoirsService {
                     .map(FishNameDTO::getFishName)
                     .collect(Collectors.joining(", "));
             reservoirsDetailsDTO.setFishNames(fishNames);
-//            reservoirsDetailsDTO.setFishNameDTO(fihsNameList);
         }
 
         if (reservoirsDetailsDTO == null) {

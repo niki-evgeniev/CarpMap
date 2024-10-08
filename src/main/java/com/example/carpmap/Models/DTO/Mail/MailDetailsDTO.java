@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 public class MailDetailsDTO {
 
-    private String id;
+    private Long id;
 
     private String name;
 
@@ -17,14 +17,16 @@ public class MailDetailsDTO {
 
     private LocalDateTime addedDate;
 
+    private boolean isRead;
+
     public MailDetailsDTO() {
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -66,5 +68,13 @@ public class MailDetailsDTO {
 
     public void setAddedDate(LocalDateTime addedDate) {
         this.addedDate = addedDate;
+    }
+
+    public boolean isRead() {
+        return isRead;
+    }
+
+    public void setRead(boolean read) {
+        isRead = read;
     }
 }

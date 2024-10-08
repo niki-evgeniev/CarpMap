@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>Контакти - CarpMap</title>
     <meta charset="UTF-8">
@@ -37,92 +38,89 @@
             <h1 class="mb-0">Свържи се с: Carpoholics</h1>
         </div>
         <div class="row g-5 align-items-center">
-            <div class="col-lg-4">
-                <div class="bg-white rounded p-4">
-                    <div class="text-center mb-4">
-                        <i class="fa fa-map-marker-alt fa-3x text-primary"></i>
-                        <h4 class="text-primary">
-                            <Address></Address>
-                        </h4>
-                        <p class="mb-0">Горна Оряховица, <br> България </p>
-                    </div>
-                    <div class="text-center mb-4">
-                        <i class="fa fa-phone-alt fa-3x text-primary mb-3"></i>
-                        <h4 class="text-primary">Mobile</h4>
-                        <p class="mb-0">+359 899 287 088</p>
-                        <p class="mb-0">+359 899 524 251</p>
-                    </div>
-                    <div class="text-center">
-                        <i class="fa fa-envelope-open fa-3x text-primary mb-3"></i>
-                        <h4 class="text-primary">Email</h4>
-                        <p class="mb-0">admin@carpmap.online</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-8">
+            <div class="col-lg-10">
                 <h3 class="mb-2">Изпрати ни съобщение</h3>
                 <p class="mb-4">Изпрати ни събощение с пълна информация за да можем да ви помогнем !</p>
-                <form th:method="POST"
-                      th:action="@{/contact}"
-                      th:object="${contactDTO}">
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input th:field="*{name}"
-                                       type="text"
-                                       class="form-control border-0"
-                                       id="name" placeholder="Your Name"
-                                       maxlength="50">
-                                <label for="name">Вашето име</label>
-                            </div>
+                <div class="row g-3"
+                     th:object="${mailDetail}">
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input th:field="*{name}"
+                                   type="text"
+                                   class="form-control border-0"
+                                   id="name"
+                                   placeholder="Your Name"
+                                   maxlength="50"
+                                   disabled>
+                            <label for="name">Вашето име</label>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-floating">
-                                <input th:field="*{email}"
-                                       type="email"
-                                       class="form-control border-0"
-                                       id="email"
-                                       placeholder="Your Email">
-                                <label for="email">Емайл</label>
-                            </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating">
+                            <input th:field="*{email}"
+                                   type="email"
+                                   class="form-control border-0"
+                                   id="email"
+                                   placeholder="Your Email"
+                                   disabled>
+                            <label for="email">Емайл</label>
                         </div>
-                        <div class="col-12">
-                            <div class="form-floating">
-                                <input th:field="*{subject}"
-                                       type="text"
-                                       class="form-control border-0"
-                                       id="subject"
-                                       placeholder="Subject">
-                                <label for="subject">Тема</label>
-                            </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <input th:field="*{subject}"
+                                   type="text"
+                                   class="form-control border-0"
+                                   id="subject"
+                                   placeholder="Subject"
+                                   disabled>
+                            <label for="subject">Тема</label>
                         </div>
-                        <div class="col-12">
-                            <div class="form-floating">
+                    </div>
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <input th:field="*{addedDate}"
+                                   type="text"
+                                   class="form-control border-0"
+                                   id="subject"
+                                   placeholder="Subject"
+                                   disabled>
+                            <label for="subject">Изпратено</label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-floating">
                                 <textarea th:field="*{message}"
                                           class="form-control border-0"
                                           placeholder="Leave a message here"
                                           id="message"
                                           style="height: 160px"
-                                          maxlength="250"></textarea>
-                                <label for="message">Съобщение</label>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                                          maxlength="250"
+                                          disabled></textarea>
+                            <label for="message">Съобщение</label>
                         </div>
                     </div>
-                </form>
-            </div>
-            <div class="col-12">
-                <div class="rounded">
-                    <iframe class="rounded w-100"
-                            style="height: 450px;"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31796.64728304209!2d25.693556298630067!3d43.11752549887163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aae7c31d8a36bb%3A0xfda82f47d32497d2!2sGorna%20Oryahovitsa%2C%20Bulgaria!5e0!3m2!1sen!2sbg!4v1694259649153!5m2!1sen!2sbg"
-                            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="col-8">
+                        <button class="btn btn-primary w-100 py-3"
+                                type="submit">Back
+                        </button>
+                    </div>
+                    <form
+                            sec:authorize="hasRole('ADMIN')"
+                            th:method="DELETE"
+                            th:action="@{/contact/delete/{id}(id = *{id})}">
+                        <div class="col-10">
+                            <button class="btn btn-danger w-100 py-3"
+                                    type="submit">Delete
+                            </button>
+                        </div>
+                    </form>
                 </div>
+
             </div>
         </div>
     </div>
+</div>
 </div>
 <!-- Contact End -->
 <!-- Footer Start -->

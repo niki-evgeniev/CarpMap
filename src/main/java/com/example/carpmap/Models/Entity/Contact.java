@@ -25,6 +25,9 @@ public class Contact extends BaseEntity{
     @Column(name = "addedDate", nullable = false)
     private LocalDateTime addedDate;
 
+    @Column(name = "is_read")
+    private boolean isRead = false;
+
     public Contact() {
     }
 
@@ -66,5 +69,13 @@ public class Contact extends BaseEntity{
 
     public void setAddedDate(LocalDateTime addedDate) {
         this.addedDate = addedDate;
+    }
+
+    public boolean isRead() {
+        return isRead;
+    }
+
+    public void setRead(boolean read) {
+        isRead = read;
     }
 }
