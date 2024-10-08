@@ -43,6 +43,9 @@ public class MailServiceImpl implements MailService {
         Optional<Contact> findContactMail = contactRepository.findById(id);
 
         if (findContactMail.isPresent()) {
+            Contact readedContact = findContactMail.get();
+            readedContact.setRead(true);
+            contactRepository.save(readedContact);
             MailDetailsDTO mailDetailsDTO = modelMapper.map(findContactMail, MailDetailsDTO.class);
             return mailDetailsDTO;
         }
