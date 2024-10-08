@@ -34,7 +34,7 @@
                            th:href="@{/reservoirs/add/reservoirAdd}" class="dropdown-item">Add Reservoir</a>
                         <a href="tour.html" class="dropdown-item">Add blog</a>
                         <a sec:authorize="isAuthenticated() and hasRole('ADMIN')"
-                           th:href="@{/profile/profiles}" class="dropdown-item">Manage users</a>
+                           th:href="@{/admin/profiles}" class="dropdown-item">Manage users</a>
                         <a sec:authorize="isAuthenticated() and hasRole('ADMIN')"
                            href="gallery.html" class="dropdown-item">Ban IP</a>
                         <a href="404.html" class="dropdown-item">404 Page</a>
