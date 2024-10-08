@@ -1,10 +1,14 @@
 package com.example.carpmap.Controller;
 
+import com.example.carpmap.Models.DTO.Profile.ProfileAllDTO;
 import com.example.carpmap.Models.DTO.Profile.ProfileEditDTO;
 import com.example.carpmap.Models.DTO.Profile.ProfileInfoDTO;
 import com.example.carpmap.Models.DTO.Profile.ProfileNewPasswordDTO;
 import com.example.carpmap.Service.ProfileService;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +42,15 @@ public class AdminController {
         modelAndView.addObject("profileEditDTO", map);
         modelAndView.addObject("profileNewPasswordDTO", profileNewPasswordDTO);
         modelAndView.addObject("activeTab", activeTab);
+        return modelAndView;
+    }
+
+    @GetMapping("profiles")
+    public ModelAndView profiles(
+            @PageableDefault(size = 9, sort = "id") Pageable pageable) {
+        ModelAndView modelAndView = new ModelAndView("adminAllProfiles");
+        Page<ProfileAllDTO> allProfiles = profileService.findAllUsers(pageable);
+        modelAndView.addObject("allProfiles", allProfiles);
         return modelAndView;
     }
 

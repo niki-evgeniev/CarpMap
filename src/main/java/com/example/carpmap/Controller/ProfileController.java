@@ -97,14 +97,7 @@ public class ProfileController {
         return new ProfileEditDTO();
     }
 
-    @GetMapping("profiles")
-    public ModelAndView profiles(
-            @PageableDefault(size = 9, sort = "id") Pageable pageable) {
-        ModelAndView modelAndView = new ModelAndView("adminAllProfiles");
-        Page<ProfileAllDTO> allProfiles = profileService.findAllUsers(pageable);
-        modelAndView.addObject("allProfiles", allProfiles);
-        return modelAndView;
-    }
+
 
     private ModelAndView getAllView(UserDetails userDetails) {
         ModelAndView modelAndView = new ModelAndView("profile");
