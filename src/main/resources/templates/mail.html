@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <th:block th:replace="~{fragments/head}"></th:block>
     <title>Carp Map</title>
@@ -38,15 +39,24 @@
                             <tbody>
                             <tr th:each=" mail : ${allContact.getContent()}"
                                 th:object="${mail}">
-                                <th scope="row" class="scope" th:text="*{id}">.com</th>
+                                <th scope="row" class="scope"
+                                    th:text="*{isRead} ? *{id} : 'new'"></th>
                                 <td th:text="*{name}">1 Year</td>
                                 <td th:text="*{email}">$70000000.00</td>
                                 <td th:text="*{subject}">$5.00</td>
                                 <td th:text="*{message}">Role</td>
                                 <td><a href="#" class="btn btn-primary"
-                                       th:href="@{/admin/details/byId/{id}(id = *{id})}">Details</a></td>
-                                <td><a href="#" class="btn btn-danger"
-                                       th:href="@{/admin/details/byId/{id}(id = *{id})}">Delete</a></td>
+                                       th:href="@{/mail/details/{id}(id = *{id})}">Details</a></td>
+                                <td>
+                                    <form sec:authorize="hasRole('ADMIN')"
+                                          th:method="DELETE"
+                                          th:action="@{/contact/delete/{id}(id = *{id})}">
+
+                                        <button class="btn btn btn-danger"
+                                                type="submit">Delete
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                             </tbody>
                         </table>

@@ -7,4 +7,8 @@ import org.springframework.data.domain.Pageable;
 public interface MailService {
 
     Page<MailDetailsDTO> getAllContactMail(Pageable pageable);
+
+    MailDetailsDTO getDetailsMail(Long id);
+
+    boolean deleteMail(Long id);
 }

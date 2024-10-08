@@ -29,4 +29,7 @@ public class ErrorMessages {
     public static final String ERROR_DUPLICATE_IP_LOGGER =
             "ERROR : DUPLICATE IP ADDRESS IN DB - DELETED DUPLICATE";
 
+    public static final String ERROR_MAIL_WITH_ID_NOT_FOUND =
+            "Mail with id %s not found !!! Sending Error page";
+
 }
