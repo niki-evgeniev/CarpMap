@@ -101,9 +101,10 @@
                         </div>
                     </div>
                     <div class="col-8">
-                        <button class="btn btn-primary w-100 py-3"
-                                type="submit">Back
-                        </button>
+                        <a class="btn btn-primary w-100 py-3"
+                                type="submit"
+                       th:href="@{/mail}">Back
+                        </a>
                     </div>
                     <form
                             sec:authorize="hasRole('ADMIN')"

@@ -1,10 +1,14 @@
 package com.example.carpmap.Service.Impl;
 
+import com.example.carpmap.Models.DTO.Ip.AllIpDTO;
 import com.example.carpmap.Models.Entity.IpAddress;
 import com.example.carpmap.Models.Entity.User;
 import com.example.carpmap.Repository.IpAddressRepository;
 import com.example.carpmap.Repository.UserRepository;
 import com.example.carpmap.Service.IpAddressService;
+import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
@@ -20,10 +24,12 @@ public class IpAddressServiceImpl implements IpAddressService {
 
     private final IpAddressRepository ipAddressRepository;
     private final UserRepository userRepository;
+    private final ModelMapper modelMapper;
 
-    public IpAddressServiceImpl(IpAddressRepository ipAddressRepository, UserRepository userRepository) {
+    public IpAddressServiceImpl(IpAddressRepository ipAddressRepository, UserRepository userRepository, ModelMapper modelMapper) {
         this.ipAddressRepository = ipAddressRepository;
         this.userRepository = userRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -41,7 +47,7 @@ public class IpAddressServiceImpl implements IpAddressService {
     public Long findAllVisits() {
         Long countAllVisitors = ipAddressRepository.sumAllCounts();
         List<IpAddress> all = ipAddressRepository.findAll();
-       IpAddress ipAddress = all.get(all.size() -1);
+        IpAddress ipAddress = all.get(all.size() - 1);
 
         Long lastId = (long) all.size();
 
@@ -94,5 +100,21 @@ public class IpAddressServiceImpl implements IpAddressService {
             newIpAdd.setLastSeen(LocalDateTime.now());
             ipAddressRepository.save(newIpAdd);
         }
+    }
+
+    @Override
+    public Page<AllIpDTO> getAllIpsAddress(Pageable pageable) {
+        Page<IpAddress> all = ipAddressRepository.findAll(pageable);
+        Page<AllIpDTO> allIps = all.map(
+                ip -> {
+                    AllIpDTO map = modelMapper.map(ip, AllIpDTO.class);
+                    map.setIsBanned(ip.getBanned().toString());
+                    if (ip.getUser() != null){
+                        map.setUserId(ip.getUser().getUsername());
+                    }
+                    return map;
+                }
+        );
+        return allIps;
     }
 }
