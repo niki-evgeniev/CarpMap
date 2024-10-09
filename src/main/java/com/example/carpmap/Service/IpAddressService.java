@@ -16,4 +16,10 @@ public interface IpAddressService {
     void getIpVisitor(String ipAddress);
 
     Page<AllIpDTO> getAllIpsAddress(Pageable pageable);
+
+    boolean banIp(Long id);
+
+    boolean unbanIp(Long id);
+
+    Page<AllIpDTO> findOnlyUsedByUser(Pageable pageable, String type);
 }

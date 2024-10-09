@@ -105,16 +105,48 @@ public class IpAddressServiceImpl implements IpAddressService {
     @Override
     public Page<AllIpDTO> getAllIpsAddress(Pageable pageable) {
         Page<IpAddress> all = ipAddressRepository.findAll(pageable);
-        Page<AllIpDTO> allIps = all.map(
+        return getAllIpDTOS(all);
+    }
+
+    @Override
+    public boolean banIp(Long id) {
+        return banOrUnbanIp(id, true);
+    }
+
+    @Override
+    public boolean unbanIp(Long id) {
+        return banOrUnbanIp(id, false);
+    }
+
+    @Override
+    public Page<AllIpDTO> findOnlyUsedByUser(Pageable pageable, String type) {
+        Page<IpAddress> allByUserIsNotNull = ipAddressRepository.findAllByUserIsNotNull(pageable);
+
+        return getAllIpDTOS(allByUserIsNotNull);
+    }
+
+    private Page<AllIpDTO> getAllIpDTOS(Page<IpAddress> allByUserIsNotNull) {
+        Page<AllIpDTO> findUserIsNotNull = allByUserIsNotNull.map(
                 ip -> {
                     AllIpDTO map = modelMapper.map(ip, AllIpDTO.class);
                     map.setIsBanned(ip.getBanned().toString());
-                    if (ip.getUser() != null){
+                    if (ip.getUser() != null) {
                         map.setUserId(ip.getUser().getUsername());
                     }
                     return map;
                 }
         );
-        return allIps;
+        return findUserIsNotNull;
+    }
+
+    private boolean banOrUnbanIp(Long id, boolean banned) {
+        Optional<IpAddress> findIpToBan = ipAddressRepository.findById(id);
+        if (findIpToBan.isPresent()) {
+            IpAddress ipAddress = findIpToBan.get();
+            ipAddress.setBanned(banned);
+            ipAddressRepository.save(ipAddress);
+            return true;
+        }
+        return false;
     }
 }
