@@ -22,4 +22,9 @@ public interface IpAddressService {
     boolean unbanIp(Long id);
 
     Page<AllIpDTO> findOnlyUsedByUser(Pageable pageable, String type);
+
+    Page<AllIpDTO> findThirtyDaysAgo(Pageable pageable, String type);
+
+    Page<AllIpDTO> findLastDay(Pageable pageable, String type);
 }
+

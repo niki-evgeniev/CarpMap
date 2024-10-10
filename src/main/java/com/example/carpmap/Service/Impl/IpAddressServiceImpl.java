@@ -64,27 +64,28 @@ public class IpAddressServiceImpl implements IpAddressService {
     @Transactional
     public void checkIpAddressLogin(String username, String ipAddress) {
         Optional<IpAddress> findExistingIpAddress = ipAddressRepository.findByAddress(ipAddress);
+        Optional<User> findUser = userRepository.findByUsername(username);
 
         if (findExistingIpAddress.isEmpty()) {
             IpAddress newAddress = new IpAddress();
-            Optional<User> findUser = userRepository.findByUsername(username);
             newAddress.setAddress(ipAddress);
             newAddress.setTimeToAdd(LocalDateTime.now());
             newAddress.setCountVisits(1L);
             findUser.ifPresent(newAddress::setUser);
             ipAddressRepository.save(newAddress);
         } else if (findExistingIpAddress.get().getUser() == null) {
-            Optional<User> findUser = userRepository.findByUsername(username);
             findUser.ifPresent(user -> findExistingIpAddress.get().setUser(user));
             addView(findExistingIpAddress);
             ipAddressRepository.save(findExistingIpAddress.get());
         } else {
+            findUser.ifPresent(user -> findExistingIpAddress.get().setUser(user));
             addView(findExistingIpAddress);
             ipAddressRepository.save(findExistingIpAddress.get());
         }
     }
 
     private static void addView(Optional<IpAddress> findExistingIpAddress) {
+
         if (findExistingIpAddress.isPresent()) {
             findExistingIpAddress.get().setCountVisits(findExistingIpAddress.get().getCountVisits() + 1L);
             findExistingIpAddress.get().setLastSeen(LocalDateTime.now());
@@ -109,11 +110,6 @@ public class IpAddressServiceImpl implements IpAddressService {
         }
     }
 
-    @Override
-    public Page<AllIpDTO> getAllIpsAddress(Pageable pageable) {
-        Page<IpAddress> all = ipAddressRepository.findAll(pageable);
-        return getAllIpDTOS(all);
-    }
 
     @Override
     @Transactional
@@ -128,11 +124,34 @@ public class IpAddressServiceImpl implements IpAddressService {
     }
 
     @Override
+    public Page<AllIpDTO> getAllIpsAddress(Pageable pageable) {
+        Page<IpAddress> all = ipAddressRepository.findAll(pageable);
+        return getAllIpDTOS(all);
+    }
+
+    @Override
     public Page<AllIpDTO> findOnlyUsedByUser(Pageable pageable, String type) {
         Page<IpAddress> allByUserIsNotNull = ipAddressRepository.findAllByUserIsNotNull(pageable);
 
         return getAllIpDTOS(allByUserIsNotNull);
     }
+
+    @Override
+    public Page<AllIpDTO> findLastDay(Pageable pageable, String type) {
+        LocalDateTime lastDay = LocalDateTime.now().minusDays(1);
+        Page<IpAddress> findAllLastDay = ipAddressRepository.findAllIpAddressesFromLastDay(lastDay, pageable);
+
+        return getAllIpDTOS(findAllLastDay);
+    }
+
+    @Override
+    public Page<AllIpDTO> findThirtyDaysAgo(Pageable pageable, String type) {
+        LocalDateTime thirtyDaysAgo = LocalDateTime.now().minusDays(30);
+        Page<IpAddress> allUserJoin30DaysAgo = ipAddressRepository.findAllIpAddressesFromLast30Days(thirtyDaysAgo, pageable);
+
+        return getAllIpDTOS(allUserJoin30DaysAgo);
+    }
+
 
     private Page<AllIpDTO> getAllIpDTOS(Page<IpAddress> allByUserIsNotNull) {
         Page<AllIpDTO> findUserIsNotNull = allByUserIsNotNull.map(
@@ -154,7 +173,7 @@ public class IpAddressServiceImpl implements IpAddressService {
             IpAddress ipAddress = findIpToBan.get();
             ipAddress.setBanned(banned);
             ipAddressRepository.save(ipAddress);
-            String errMsg = String.format(SUCCESSFUL_CHANGE_IS_BANNED, banned ,ipAddress.getAddress());
+            String errMsg = String.format(SUCCESSFUL_CHANGE_IS_BANNED, banned, ipAddress.getAddress());
             LOGGER.error(errMsg);
             return true;
         }

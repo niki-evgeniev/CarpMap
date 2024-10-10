@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Objects;
-
 
 @Controller
 public class IpAddressController {
@@ -23,26 +21,16 @@ public class IpAddressController {
         this.ipAddressService = ipAddressService;
     }
 
-//    @GetMapping("/admin/ip")
-//    public ModelAndView showAllIp(@PageableDefault(size = 15, sort = {"id"}) Pageable pageable) {
-//        ModelAndView modelAndView = new ModelAndView("ipAddress");
-//
-//        Page<AllIpDTO> allIps = ipAddressService.getAllIpsAddress(pageable);
-//        modelAndView.addObject("allIps", allIps);
-//
-//        return modelAndView;
-//    }
-
     @GetMapping("/admin/ip/{type}")
     public ModelAndView showByType(@PageableDefault(size = 15, sort = {"id"}) Pageable pageable,
-                                  @PathVariable("type") String type) {
+                                   @PathVariable("type") String type) {
         ModelAndView modelAndView = new ModelAndView("ipAddress");
-        Page<AllIpDTO> allIps;
-        if (type.equals("findByUser")){
-            allIps = ipAddressService.findOnlyUsedByUser(pageable, type);
-        }else {
-            allIps = ipAddressService.getAllIpsAddress(pageable);
-        }
+        Page<AllIpDTO> allIps = switch (type) {
+            case "findByUser" -> ipAddressService.findOnlyUsedByUser(pageable, type);
+            case "thirtyDaysAgo" -> ipAddressService.findThirtyDaysAgo(pageable, type);
+            case "lastDay" -> ipAddressService.findLastDay(pageable, type);
+            default -> ipAddressService.getAllIpsAddress(pageable);
+        };
         modelAndView.addObject("allIps", allIps);
         modelAndView.addObject("type", type);
 
