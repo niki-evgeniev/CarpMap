@@ -77,4 +77,11 @@ public class SuccessfulMessages {
     public static final String SUCCESSFUL_CHECK_FOR_DUPLICATE_IP_LOGGER =
             "Successful check for duplicate - none duplicate ipAddress found";
 
+    public static final String SUCCESSFUL_DELETE_MAIL =
+            "SUCCESSFUL DELETE MAIL WITH ID %s";
+
+    public static final String SUCCESSFUL_CHANGE_IS_BANNED =
+            "Change options isBanned : %s for ip %s";
+
+
 }

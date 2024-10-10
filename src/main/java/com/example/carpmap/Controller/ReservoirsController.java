@@ -112,7 +112,6 @@ public class ReservoirsController {
 
         List<ReservoirPicturesDTO> reservoirPicturesList = pictureService.getAllReservoirPicture(id);
         modelAndView.addObject("details", reservoirsDetailsDTO);
-//        modelAndView.addObject("fishNames", fishNames);
         modelAndView.addObject("pictures", reservoirPicturesList);
         return modelAndView;
     }
