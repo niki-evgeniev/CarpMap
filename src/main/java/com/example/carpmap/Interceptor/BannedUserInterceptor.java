@@ -1,10 +1,10 @@
 package com.example.carpmap.Interceptor;
 
 
-import com.example.carpmap.Repository.IpAddressRepository;
 import com.example.carpmap.Service.BannedUserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.View;
@@ -19,14 +19,17 @@ public class BannedUserInterceptor implements HandlerInterceptor {
     private final ThymeleafViewResolver thymeleafViewResolver;
     private final BannedUserService bannedUserService;
 
-    public BannedUserInterceptor(ThymeleafViewResolver thymeleafViewResolver, BannedUserService bannedUserService) {
+    public BannedUserInterceptor(ThymeleafViewResolver thymeleafViewResolver,
+                                 BannedUserService bannedUserService) {
         this.thymeleafViewResolver = thymeleafViewResolver;
         this.bannedUserService = bannedUserService;
     }
 
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request,
+                             @NonNull HttpServletResponse response,
+                             @NonNull Object handler) throws Exception {
         String cloudflareIp = request.getRemoteAddr();
 
         boolean isBanned = bannedUserService.checkIfIpAddressIsBanned(cloudflareIp);
@@ -38,7 +41,6 @@ public class BannedUserInterceptor implements HandlerInterceptor {
             }
             return false;
         }
-
         return true;
     }
 }
