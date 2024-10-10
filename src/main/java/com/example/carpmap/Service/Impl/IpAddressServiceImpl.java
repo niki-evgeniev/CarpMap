@@ -18,9 +18,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
+import static com.example.carpmap.Cammon.ErrorMessages.ERROR_CHANGE_IS_BANNED_CANT_FIND;
 import static com.example.carpmap.Cammon.SuccessfulMessages.SUCCESSFUL_CHANGE_IS_BANNED;
 
 
@@ -43,7 +43,6 @@ public class IpAddressServiceImpl implements IpAddressService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication != null && authentication.getDetails() instanceof WebAuthenticationDetails details) {
-
             return details.getRemoteAddress();
         }
         return "Cant detect ip";
@@ -51,13 +50,7 @@ public class IpAddressServiceImpl implements IpAddressService {
 
     @Override
     public Long findAllVisits() {
-        Long countAllVisitors = ipAddressRepository.sumAllCounts();
-        List<IpAddress> all = ipAddressRepository.findAll();
-        IpAddress ipAddress = all.get(all.size() - 1);
-
-        Long lastId = (long) all.size();
-
-        return countAllVisitors;
+        return ipAddressRepository.sumAllCounts();
     }
 
     @Override
@@ -109,7 +102,6 @@ public class IpAddressServiceImpl implements IpAddressService {
             ipAddressRepository.save(newIpAdd);
         }
     }
-
 
     @Override
     @Transactional
@@ -169,6 +161,7 @@ public class IpAddressServiceImpl implements IpAddressService {
 
     private boolean banOrUnbanIp(Long id, boolean banned) {
         Optional<IpAddress> findIpToBan = ipAddressRepository.findById(id);
+
         if (findIpToBan.isPresent()) {
             IpAddress ipAddress = findIpToBan.get();
             ipAddress.setBanned(banned);
@@ -177,6 +170,8 @@ public class IpAddressServiceImpl implements IpAddressService {
             LOGGER.error(errMsg);
             return true;
         }
+        String errMsg = String.format(ERROR_CHANGE_IS_BANNED_CANT_FIND, id);
+        LOGGER.error(errMsg);
         return false;
     }
 }

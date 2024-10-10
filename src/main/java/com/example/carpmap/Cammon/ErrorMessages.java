@@ -32,4 +32,7 @@ public class ErrorMessages {
     public static final String ERROR_MAIL_WITH_ID_NOT_FOUND =
             "Mail with id %s not found !!! Sending Error page";
 
+    public static final String ERROR_CHANGE_IS_BANNED_CANT_FIND =
+            "ID %s not existing in DataBase to execute BAN";
+
 }

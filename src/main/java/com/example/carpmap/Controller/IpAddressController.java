@@ -40,12 +40,18 @@ public class IpAddressController {
     @PostMapping("/admin/ban-ip/{id}")
     public ModelAndView banIp(@PathVariable("id") Long id) {
         boolean isBanned = ipAddressService.banIp(id);
-        return new ModelAndView("redirect:/admin/ip/all");
+        if (isBanned) {
+            return new ModelAndView("redirect:/admin/ip/all");
+        }
+        return new ModelAndView("errors/errorFindPage");
     }
 
     @PostMapping("/admin/unban-ip/{id}")
     public ModelAndView unbanIp(@PathVariable("id") Long id) {
         boolean isBanned = ipAddressService.unbanIp(id);
-        return new ModelAndView("redirect:/admin/ip/all");
+        if (isBanned) {
+            return new ModelAndView("redirect:/admin/ip/all");
+        }
+        return new ModelAndView("errors/errorFindPage");
     }
 }
