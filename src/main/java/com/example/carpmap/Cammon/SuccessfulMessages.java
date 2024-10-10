@@ -80,4 +80,8 @@ public class SuccessfulMessages {
     public static final String SUCCESSFUL_DELETE_MAIL =
             "SUCCESSFUL DELETE MAIL WITH ID %s";
 
+    public static final String SUCCESSFUL_CHANGE_IS_BANNED =
+            "Change options isBanned : %s for ip %s";
+
+
 }

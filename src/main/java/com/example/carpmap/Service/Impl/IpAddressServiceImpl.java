@@ -7,6 +7,8 @@ import com.example.carpmap.Repository.IpAddressRepository;
 import com.example.carpmap.Repository.UserRepository;
 import com.example.carpmap.Service.IpAddressService;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
@@ -19,12 +21,16 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import static com.example.carpmap.Cammon.SuccessfulMessages.SUCCESSFUL_CHANGE_IS_BANNED;
+
+
 @Service
 public class IpAddressServiceImpl implements IpAddressService {
 
     private final IpAddressRepository ipAddressRepository;
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
+    private final Logger LOGGER = LoggerFactory.getLogger(IpAddressServiceImpl.class);
 
     public IpAddressServiceImpl(IpAddressRepository ipAddressRepository, UserRepository userRepository, ModelMapper modelMapper) {
         this.ipAddressRepository = ipAddressRepository;
@@ -55,6 +61,7 @@ public class IpAddressServiceImpl implements IpAddressService {
     }
 
     @Override
+    @Transactional
     public void checkIpAddressLogin(String username, String ipAddress) {
         Optional<IpAddress> findExistingIpAddress = ipAddressRepository.findByAddress(ipAddress);
 
@@ -109,11 +116,13 @@ public class IpAddressServiceImpl implements IpAddressService {
     }
 
     @Override
+    @Transactional
     public boolean banIp(Long id) {
         return banOrUnbanIp(id, true);
     }
 
     @Override
+    @Transactional
     public boolean unbanIp(Long id) {
         return banOrUnbanIp(id, false);
     }
@@ -145,6 +154,8 @@ public class IpAddressServiceImpl implements IpAddressService {
             IpAddress ipAddress = findIpToBan.get();
             ipAddress.setBanned(banned);
             ipAddressRepository.save(ipAddress);
+            String errMsg = String.format(SUCCESSFUL_CHANGE_IS_BANNED, banned ,ipAddress.getAddress());
+            LOGGER.error(errMsg);
             return true;
         }
         return false;
