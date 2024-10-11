@@ -88,19 +88,35 @@ public class IpAddressServiceImpl implements IpAddressService {
     @Override
     @Transactional
     public void getIpVisitor(String ipAddress) {
-        Optional<IpAddress> byAddress = ipAddressRepository.findByAddress(ipAddress);
-        if (byAddress.isEmpty()) {
-            IpAddress addNewIpVisitor = new IpAddress();
-            addNewIpVisitor.setAddress(ipAddress);
-            addNewIpVisitor.setTimeToAdd(LocalDateTime.now());
-            addNewIpVisitor.setCountVisits(1L);
-            ipAddressRepository.save(addNewIpVisitor);
-        } else {
-            IpAddress newIpAdd = byAddress.get();
-            newIpAdd.setCountVisits(newIpAdd.getCountVisits() + 1L);
-            newIpAdd.setLastSeen(LocalDateTime.now());
-            ipAddressRepository.save(newIpAdd);
+//        Optional<IpAddress> byAddress = ipAddressRepository.findByAddress(ipAddress);
+//        if (byAddress.isEmpty()) {
+//            IpAddress addNewIpVisitor = new IpAddress();
+//            addNewIpVisitor.setAddress(ipAddress);
+//            addNewIpVisitor.setTimeToAdd(LocalDateTime.now());
+//            addNewIpVisitor.setCountVisits(1L);
+//            ipAddressRepository.save(addNewIpVisitor);
+//        } else {
+//            IpAddress newIpAdd = byAddress.get();
+//            newIpAdd.setCountVisits(newIpAdd.getCountVisits() + 1L);
+//            newIpAdd.setLastSeen(LocalDateTime.now());
+//            ipAddressRepository.save(newIpAdd);
+//        }
+        //try another version for IP DB
+        IpAddress ipAddressEntity = ipAddressRepository.findByAddress(ipAddress)
+                .orElseGet(() -> {
+                    IpAddress newIp = new IpAddress();
+                    newIp.setAddress(ipAddress);
+                    newIp.setTimeToAdd(LocalDateTime.now());
+                    newIp.setCountVisits(1L);
+                    return newIp;
+                });
+
+        if (ipAddressEntity.getId() != null) {
+            ipAddressEntity.setCountVisits(ipAddressEntity.getCountVisits() + 1L);
+            ipAddressEntity.setLastSeen(LocalDateTime.now());
         }
+        ipAddressRepository.save(ipAddressEntity);
+
     }
 
     @Override

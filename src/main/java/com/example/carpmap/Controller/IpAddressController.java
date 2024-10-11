@@ -1,12 +1,16 @@
 package com.example.carpmap.Controller;
 
 import com.example.carpmap.Models.DTO.Ip.AllIpDTO;
+import com.example.carpmap.Models.DTO.Ip.SearchIpDTO;
 import com.example.carpmap.Service.IpAddressService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,18 +41,33 @@ public class IpAddressController {
         return modelAndView;
     }
 
+    @GetMapping("/admin/search-ip")
+    public ModelAndView searchIp(@Valid SearchIpDTO searchIpDTO, BindingResult bindingResult,
+                                 @PageableDefault(size = 9, sort = {"id"}) Pageable pageable) {
+
+        System.out.println();
+
+        return null;
+    }
+
+    @ModelAttribute
+    SearchIpDTO searchIpDTO(){
+        return new SearchIpDTO();
+    }
+
     @PostMapping("/admin/ban-ip/{id}")
     public ModelAndView banIp(@PathVariable("id") Long id) {
         boolean isBanned = ipAddressService.banIp(id);
-        if (isBanned) {
-            return new ModelAndView("redirect:/admin/ip/all");
-        }
-        return new ModelAndView("errors/errorFindPage");
+        return getModelAndView(isBanned);
     }
 
     @PostMapping("/admin/unban-ip/{id}")
     public ModelAndView unbanIp(@PathVariable("id") Long id) {
         boolean isBanned = ipAddressService.unbanIp(id);
+        return getModelAndView(isBanned);
+    }
+
+    private static ModelAndView getModelAndView(boolean isBanned) {
         if (isBanned) {
             return new ModelAndView("redirect:/admin/ip/all");
         }

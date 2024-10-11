@@ -1669,3 +1669,8 @@ body > main > div.container-fluid.packages.py-5 {
 .contactMail {
     max-width: 100%;
 }
+
+.searchIp {
+    background: rgb(19, 53, 123);
+    margin-top: 2%;
+}

@@ -23,10 +23,12 @@ public interface IpAddressRepository extends JpaRepository<IpAddress, Long> {
     Page<IpAddress> findAllByUserIsNotNull(Pageable pageable);
 
     @Query("SELECT ip FROM IpAddress ip WHERE (ip.lastSeen >= :thirtyDaysAgo OR ip.timeToAdd >= :thirtyDaysAgo)")
-    Page<IpAddress> findAllIpAddressesFromLast30Days(@Param("thirtyDaysAgo") LocalDateTime thirtyDaysAgo, Pageable pageable);
+    Page<IpAddress> findAllIpAddressesFromLast30Days
+            (@Param("thirtyDaysAgo") LocalDateTime thirtyDaysAgo, Pageable pageable);
 
 
     @Query("SELECT ip FROM IpAddress ip WHERE (ip.lastSeen >= :lastDay OR ip.timeToAdd >= :lastDay)")
-    Page<IpAddress> findAllIpAddressesFromLastDay(@Param("lastDay") LocalDateTime lastDay, Pageable pageable);
+    Page<IpAddress> findAllIpAddressesFromLastDay
+            (@Param("lastDay") LocalDateTime lastDay, Pageable pageable);
 
 }
