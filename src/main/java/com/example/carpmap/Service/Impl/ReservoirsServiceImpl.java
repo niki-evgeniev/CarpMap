@@ -115,26 +115,24 @@ public class ReservoirsServiceImpl implements ReservoirsService {
 
     @Override
     public Page<ReservoirAllDTO> getReservoirsByType(String type, Pageable pageable) {
+        ReservoirType reservoirType = switch (type) {
+            case "СВОБОДЕН" -> ReservoirType.СВОБОДЕН;
+            case "ЧАСТЕН" -> ReservoirType.ЧАСТЕН;
+            default -> null;
+        };
+        Page<Reservoir> allByReservoirType = null;
 
-        ReservoirType reservoirType = null;
-        switch (type) {
-            case "СВОБОДЕН":
-                reservoirType = ReservoirType.СВОБОДЕН;
-                break;
-            case "ЧАСТЕН":
-                reservoirType = ReservoirType.ЧАСТЕН;
-                break;
-        }
         if (reservoirType != null) {
-            Page<Reservoir> allByReservoirType = reservoirRepository.findAllByReservoirType(reservoirType, pageable);
-            Page<ReservoirAllDTO> reservoirByType = allByReservoirType
-                    .map(reservoir -> {
-                        return modelMapper.map(reservoir, ReservoirAllDTO.class);
-                    });
-
-            return reservoirByType;
+            allByReservoirType = reservoirRepository.findAllByReservoirType(reservoirType, pageable);
+        } else {
+            allByReservoirType = reservoirRepository.findAll(pageable);
         }
-        return null;
+
+        Page<ReservoirAllDTO> reservoirByType = allByReservoirType
+                .map(reservoir -> {
+                    return modelMapper.map(reservoir, ReservoirAllDTO.class);
+                });
+        return reservoirByType;
     }
 
     @Override
