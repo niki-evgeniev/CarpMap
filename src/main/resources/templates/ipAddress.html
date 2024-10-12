@@ -136,100 +136,95 @@
             </div>
         </div>
     </section>
-    <!--    <nav aria-label="Page navigation" class="d-flex justify-content-center">-->
-    <!--        <ul th:fragment="ALL" class="pagination text-center">-->
-    <!--            &lt;!&ndash; Previous Page Button &ndash;&gt;-->
-    <!--            <li th:class="${!allIps.hasPrevious()} ? 'page-item disabled' : 'page-item'">-->
-    <!--                <a class="page-link" th:if="${allIps.hasPrevious()}"-->
-    <!--                   th:href="@{/admin/ip(page=${allIps.previousPageable().pageNumber})}">Back</a>-->
-    <!--            </li>-->
+<!--        <nav aria-label="Page navigation" class="d-flex justify-content-center">-->
+<!--            <ul th:fragment="ALL" class="pagination text-center">-->
+<!--                &lt;!&ndash; Previous Page Button &ndash;&gt;-->
+<!--                <li th:class="${!allIps.hasPrevious()} ? 'page-item disabled' : 'page-item'">-->
+<!--                    <a class="page-link" th:if="${allIps.hasPrevious()}"-->
+<!--                       th:href="@{/admin/ip(page=${allIps.previousPageable().pageNumber})}">Back</a>-->
+<!--                </li>-->
 
-    <!--            &lt;!&ndash; First 3 Pages &ndash;&gt;-->
-    <!--            <li th:each="i : ${#numbers.sequence(0, 1)}"-->
-    <!--                th:if="${i < allIps.totalPages}"-->
-    <!--                th:class="${i == allIps.number} ? 'page-item active' : 'page-item'">-->
-    <!--                <a class="page-link" th:href="@{/admin/ip(page=${i})}" th:text="${i + 1}"></a>-->
-    <!--            </li>-->
+<!--                &lt;!&ndash; First 3 Pages &ndash;&gt;-->
+<!--                <li th:each="i : ${#numbers.sequence(0, 1)}"-->
+<!--                    th:if="${i < allIps.totalPages}"-->
+<!--                    th:class="${i == allIps.number} ? 'page-item active' : 'page-item'">-->
+<!--                    <a class="page-link" th:href="@{/admin/ip(page=${i})}" th:text="${i + 1}"></a>-->
+<!--                </li>-->
 
-    <!--            &lt;!&ndash; Dots if necessary &ndash;&gt;-->
-    <!--            <li th:if="${allIps.totalPages > 4 && allIps.number > 3 && allIps.number < allIps.totalPages - 3}">-->
-    <!--                <span class="page-link">...</span>-->
-    <!--            </li>-->
+<!--                &lt;!&ndash; Dots if necessary &ndash;&gt;-->
+<!--                <li th:if="${allIps.totalPages > 4 && allIps.number > 3 && allIps.number < allIps.totalPages - 3}">-->
+<!--                    <span class="page-link">...</span>-->
+<!--                </li>-->
 
-    <!--            &lt;!&ndash; Current Page in the middle &ndash;&gt;-->
-    <!--            <li th:if="${allIps.number > 2 && allIps.number < allIps.totalPages - 1}"-->
-    <!--                th:class="'page-item active'">-->
-    <!--                <a class="page-link" th:href="@{/admin/ip(page=${allIps.number})}" th:text="${allIps.number + 1}"></a>-->
-    <!--            </li>-->
+<!--                &lt;!&ndash; Current Page in the middle &ndash;&gt;-->
+<!--                <li th:if="${allIps.number > 2 && allIps.number < allIps.totalPages - 1}"-->
+<!--                    th:class="'page-item active'">-->
+<!--                    <a class="page-link" th:href="@{/admin/ip(page=${allIps.number})}" th:text="${allIps.number + 1}"></a>-->
+<!--                </li>-->
 
-    <!--            &lt;!&ndash; Dots after the middle page &ndash;&gt;-->
-    <!--            <li th:if="${allIps.totalPages > 4 && allIps.number < allIps.totalPages - 4}">-->
-    <!--                <span class="page-link">...</span>-->
-    <!--            </li>-->
+<!--                &lt;!&ndash; Dots after the middle page &ndash;&gt;-->
+<!--                <li th:if="${allIps.totalPages > 4 && allIps.number < allIps.totalPages - 4}">-->
+<!--                    <span class="page-link">...</span>-->
+<!--                </li>-->
 
-    <!--            &lt;!&ndash; Last Page &ndash;&gt;-->
-    <!--            <li th:if="${allIps.totalPages > 1}"-->
-    <!--                th:class="${allIps.totalPages - 1 == allIps.number} ? 'page-item active' : 'page-item'">-->
-    <!--                <a class="page-link" th:href="@{/admin/ip(page=${allIps.totalPages - 1})}" th:text="${allIps.totalPages}"></a>-->
-    <!--            </li>-->
+<!--                &lt;!&ndash; Last Page &ndash;&gt;-->
+<!--                <li th:if="${allIps.totalPages > 1}"-->
+<!--                    th:class="${allIps.totalPages - 1 == allIps.number} ? 'page-item active' : 'page-item'">-->
+<!--                    <a class="page-link" th:href="@{/admin/ip(page=${allIps.totalPages - 1})}" th:text="${allIps.totalPages}"></a>-->
+<!--                </li>-->
 
-    <!--            &lt;!&ndash; Next Page Button &ndash;&gt;-->
-    <!--            <li th:class="${!allIps.hasNext()} ? 'page-item disabled' : 'page-item'">-->
-    <!--                <a class="page-link" th:if="${allIps.hasNext()}"-->
-    <!--                   th:href="@{/admin/ip(page=${allIps.nextPageable().pageNumber})}">Next</a>-->
-    <!--            </li>-->
-    <!--        </ul>-->
-    <!--    </nav>-->
+<!--                &lt;!&ndash; Next Page Button &ndash;&gt;-->
+<!--                <li th:class="${!allIps.hasNext()} ? 'page-item disabled' : 'page-item'">-->
+<!--                    <a class="page-link" th:if="${allIps.hasNext()}"-->
+<!--                       th:href="@{/admin/ip(page=${allIps.nextPageable().pageNumber})}">Next</a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </nav>-->
+        <nav aria-label="Page navigation " class="d-flex justify-content-center">
+            <ul th:fragment="ALL" class="pagination text-center">
 
-    <nav aria-label="Page navigation" class="d-flex justify-content-center">
-        <ul th:fragment="ALL" class="pagination text-center">
+                <!-- Previous Page Button -->
+                <li th:class="${allIps.hasPrevious()} ? 'page-item' : 'page-item disabled'">
+                    <a class="page-link" th:if="${allIps.hasPrevious()}"
+                       th:href="@{/admin/reservoirsByType/{type}(type=${type},page=${allIps.previousPageable().pageNumber})}"><-</a>
+                </li>
 
-            <!-- Previous Page Button -->
-            <li th:class="${!allIps.hasPrevious()} ? 'page-item disabled' : 'page-item'">
-                <a class="page-link" th:if="${allIps.hasPrevious()}"
-                   th:href="@{/admin/ip/{type}(type=${type},page=${allIps.previousPageable().pageNumber})}">Back</a>
-            </li>
+                <!-- First Page -->
+                <li th:class="${allIps.number == 0} ? 'page-item active' : 'page-item'">
+                    <a class="page-link" th:href="@{/admin/ip/{type}(type=${type},page=0)}" th:text="1"></a>
+                </li>
 
-            <!-- First 3 Pages -->
-            <li th:each="i : ${#numbers.sequence(0, 1)}"
-                th:if="${i < allIps.totalPages}"
-                th:class="${i == allIps.number} ? 'page-item active' : 'page-item'">
-                <a class="page-link" th:href="@{/admin/ip/{type}(type=${type},page=${i})}" th:text="${i + 1}"></a>
-            </li>
+                <!-- Dots before the current page if needed -->
+                <li th:if="${allIps.number > 2}">
+                    <span class="page-link">...</span>
+                </li>
 
-            <!-- Dots if necessary -->
-            <li th:if="${allIps.totalPages > 4 && allIps.number > 3 && allIps.number < allIps.totalPages - 3}">
-                <span class="page-link">...</span>
-            </li>
+                <!-- Pages around the current page -->
+                <li th:each="i : ${#numbers.sequence(allIps.number - 1, allIps.number + 1)}"
+                    th:if="${i > 0 && i < allIps.totalPages - 1}"
+                    th:class="${i == allIps.number} ? 'page-item active' : 'page-item'">
+                    <a class="page-link" th:href="@{/admin/ip/{type}(type=${type},page=${i})}" th:text="${i + 1}"></a>
+                </li>
 
-            <!-- Current Page in the middle -->
-            <li th:if="${allIps.number > 2 && allIps.number < allIps.totalPages - 1}"
-                th:class="'page-item active'">
-                <a class="page-link" th:href="@{/admin/ip/{type}(type=${type},page=${allIps.number})}"
-                   th:text="${allIps.number + 1}"></a>
-            </li>
+                <!-- Dots after the current page if needed -->
+                <li th:if="${allIps.number < allIps.totalPages - 3}">
+                    <span class="page-link">...</span>
+                </li>
 
-            <!-- Dots after the middle page -->
-            <li th:if="${allIps.totalPages > 4 && allIps.number < allIps.totalPages - 4}">
-                <span class="page-link">...</span>
-            </li>
+                <!-- Last Page -->
+                <li th:if="${allIps.totalPages > 1}"
+                    th:class="${allIps.totalPages - 1 == allIps.number} ? 'page-item active' : 'page-item'">
+                    <a class="page-link" th:href="@{/admin/ip/{type}(type=${type},page=${allIps.totalPages - 1})}"
+                       th:text="${allIps.totalPages}"></a>
+                </li>
 
-            <!-- Last Page -->
-            <li th:if="${allIps.totalPages > 1}"
-                th:class="${allIps.totalPages - 1 == allIps.number} ? 'page-item active' : 'page-item'">
-                <a class="page-link" th:href="@{/admin/ip/{type}(type=${type},page=${allIps.totalPages - 1})}"
-                   th:text="${allIps.totalPages}"></a>
-            </li>
-
-            <!-- Next Page Button -->
-            <li th:class="${!allIps.hasNext()} ? 'page-item disabled' : 'page-item'">
-                <a class="page-link" th:if="${allIps.hasNext()}"
-                   th:href="@{/admin/ip/{type}(type=${type},page=${allIps.nextPageable().pageNumber})}">Next</a>
-            </li>
-        </ul>
-    </nav>
-
-
+                <!-- Next Page Button -->
+                <li th:class="${allIps.hasNext()} ? 'page-item' : 'page-item disabled'">
+                    <a class="page-link" th:if="${allIps.hasNext()}"
+                       th:href="@{/admin/ip/{type}(type=${type},page=${allIps.nextPageable().pageNumber})}">-></a>
+                </li>
+            </ul>
+        </nav>
     <br>
     <th:block th:replace="~{fragments/footer}"></th:block>
     <th:block th:replace="~{fragments/js}"></th:block>
