@@ -3,7 +3,6 @@ package com.example.carpmap.Controller;
 
 import com.example.carpmap.Models.DTO.Mail.MailDetailsDTO;
 import com.example.carpmap.Service.MailService;
-import com.example.carpmap.Service.ProfileService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
