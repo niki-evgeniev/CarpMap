@@ -48,6 +48,7 @@ public class MailServiceImpl implements MailService {
             contactRepository.save(readedContact);
             MailDetailsDTO mailDetailsDTO = modelMapper.map(findContactMail, MailDetailsDTO.class);
             return mailDetailsDTO;
+
         }
         String errorMassage = String.format(ERROR_MAIL_WITH_ID_NOT_FOUND, id);
         LOGGER.error(errorMassage);
