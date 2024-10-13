@@ -55,7 +55,8 @@ public class ReservoirsController {
 
     @GetMapping("reservoirsByType/{type}")
     public ModelAndView reservoirsByType(
-            @PageableDefault(size = 9, sort = "name") Pageable pageable, @PathVariable String type) {
+            @PageableDefault(size = 9, sort = "name") Pageable pageable, @PathVariable String type,
+            HttpServletRequest request) {
 
         ModelAndView modelAndView = new ModelAndView("reservoirs");
         Page<ReservoirAllDTO> allReservoirByType = reservoirsService.getReservoirsByType(type, pageable);
@@ -63,6 +64,8 @@ public class ReservoirsController {
             return new ModelAndView("errors/errorFindPage");
         }
         modelAndView.addObject("allReservoir", allReservoirByType);
+        modelAndView.addObject("type", type);
+        modelAndView.addObject("currentUrl", request.getRequestURI());
         return modelAndView;
     }
 

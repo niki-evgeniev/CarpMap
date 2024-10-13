@@ -43,7 +43,7 @@
                 <li class="nav-item px-1 my-3">
                     <div class="col-sm-12 text-end">
                         <a class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5"
-                           th:href="@{/reservoirs/reservoirsAll}">
+                           th:href="@{/reservoirs/reservoirsByType/{type}(type = ALL)}">
                             <span style="width: 150px;">Всички</span>
                         </a>
                         <br>
@@ -51,14 +51,14 @@
                 </li>
                 <li class="nav-item px-1 my-3">
                     <a class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5"
-                       th:href="@{/reservoirs/reservoirsByType/{id}(id = ЧАСТЕН)}">
+                       th:href="@{/reservoirs/reservoirsByType/{type}(type = ЧАСТЕН)}">
                         <span style="width: 150px;">Частни</span>
                     </a>
                     <br>
                 </li>
                 <li class="nav-item px-1 my-3">
                     <a class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5"
-                       th:href="@{/reservoirs/reservoirsByType/{id}(id = СВОБОДЕН)}">
+                       th:href="@{/reservoirs/reservoirsByType/{type}(type = СВОБОДЕН)}">
                         <span style="width: 150px;">Държавни</span>
                     </a>
                     <br>
@@ -122,22 +122,68 @@
         </div>
     </div><!--/.container-->
 </section><!--/.explore-->
-<nav aria-label="Page navigation" class="d-flex justify-content-center py-2">
+<!--<nav aria-label="Page navigation" class="d-flex justify-content-center py-2">-->
+<!--    <ul th:fragment="ALL" class="pagination text-center">-->
+<!--        <li th:class="${!allReservoir.hasPrevious()} ? 'page-item disabled' : 'page-item'">-->
+<!--            <a class="page-link" th:if="${allReservoir.hasPrevious()}"-->
+<!--               th:href="@{/reservoirs/reservoirsAll(page=${allReservoir.previousPageable().pageNumber})}">Previous</a>-->
+<!--        </li>-->
+<!--        <li th:each="i : ${#numbers.sequence(0, allReservoir.totalPages - 1)}"-->
+<!--            th:class="${i == allReservoir.number} ? 'page-item active' : 'page-item'">-->
+<!--            <a class="page-link" th:href="@{/reservoirs/reservoirsAll(page=${i})}" th:text="${i + 1}"></a>-->
+<!--        </li>-->
+<!--        <li th:class="${!allReservoir.hasNext()} ? 'page-item disabled' : 'page-item'">-->
+<!--            <a class="page-link" th:if="${allReservoir.hasNext()}"-->
+<!--               th:href="@{/reservoirs/reservoirsAll(page=${allReservoir.nextPageable().pageNumber})}">Next</a>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--</nav>-->
+<nav aria-label="Page navigation " class="d-flex justify-content-center">
     <ul th:fragment="ALL" class="pagination text-center">
-        <li th:class="${!allReservoir.hasPrevious()} ? 'page-item disabled' : 'page-item'">
+
+        <!-- Previous Page Button -->
+        <li th:class="${allReservoir.hasPrevious()} ? 'page-item' : 'page-item disabled'">
             <a class="page-link" th:if="${allReservoir.hasPrevious()}"
-               th:href="@{/reservoirs/reservoirsAll(page=${allReservoir.previousPageable().pageNumber})}">Previous</a>
+               th:href="@{/reservoirs/reservoirsByType/{type}(type=${type},page=${allReservoir.previousPageable().pageNumber})}"><-</a>
         </li>
-        <li th:each="i : ${#numbers.sequence(0, allReservoir.totalPages - 1)}"
+
+        <!-- First Page -->
+        <li th:class="${allReservoir.number == 0} ? 'page-item active' : 'page-item'">
+            <a class="page-link" th:href="@{/reservoirs/reservoirsByType/{type}(type=${type},page=0)}" th:text="1"></a>
+        </li>
+
+        <!-- Dots before the current page if needed -->
+        <li th:if="${allReservoir.number > 2}">
+            <span class="page-link">...</span>
+        </li>
+
+        <!-- Pages around the current page -->
+        <li th:each="i : ${#numbers.sequence(allReservoir.number - 1, allReservoir.number + 1)}"
+            th:if="${i > 0 && i < allReservoir.totalPages - 1}"
             th:class="${i == allReservoir.number} ? 'page-item active' : 'page-item'">
-            <a class="page-link" th:href="@{/reservoirs/reservoirsAll(page=${i})}" th:text="${i + 1}"></a>
+            <a class="page-link" th:href="@{/reservoirs/reservoirsByType/{type}(type=${type},page=${i})}" th:text="${i + 1}"></a>
         </li>
-        <li th:class="${!allReservoir.hasNext()} ? 'page-item disabled' : 'page-item'">
+
+        <!-- Dots after the current page if needed -->
+        <li th:if="${allReservoir.number < allReservoir.totalPages - 3}">
+            <span class="page-link">...</span>
+        </li>
+
+        <!-- Last Page -->
+        <li th:if="${allReservoir.totalPages > 1}"
+            th:class="${allReservoir.totalPages - 1 == allReservoir.number} ? 'page-item active' : 'page-item'">
+            <a class="page-link" th:href="@{/reservoirs/reservoirsByType/{type}(type=${type},page=${allReservoir.totalPages - 1})}"
+               th:text="${allReservoir.totalPages}"></a>
+        </li>
+
+        <!-- Next Page Button -->
+        <li th:class="${allReservoir.hasNext()} ? 'page-item' : 'page-item disabled'">
             <a class="page-link" th:if="${allReservoir.hasNext()}"
-               th:href="@{/reservoirs/reservoirsAll(page=${allReservoir.nextPageable().pageNumber})}">Next</a>
+               th:href="@{/reservoirs/reservoirsByType/{type}(type=${type},page=${allReservoir.nextPageable().pageNumber})}">-></a>
         </li>
     </ul>
 </nav>
+
 <br>
 <th:block th:replace="~{fragments/footer}"></th:block>
 <th:block th:replace="~{fragments/js}"></th:block>
