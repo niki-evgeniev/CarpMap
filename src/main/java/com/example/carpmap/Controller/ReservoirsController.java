@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 @Controller
 @RequestMapping("/reservoirs/")
@@ -31,7 +31,6 @@ public class ReservoirsController {
     private final FishService fishService;
     private final PictureService pictureService;
 
-
     public ReservoirsController(CountryService countryService, ReservoirsService reservoirsService,
                                 FishService fishService, PictureService pictureService) {
         this.countryService = countryService;
@@ -39,7 +38,6 @@ public class ReservoirsController {
         this.fishService = fishService;
         this.pictureService = pictureService;
     }
-
 
     @GetMapping("reservoirsAll")
     public ModelAndView reservoirsAll(

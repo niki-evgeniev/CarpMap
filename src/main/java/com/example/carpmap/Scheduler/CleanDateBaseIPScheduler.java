@@ -24,7 +24,7 @@ public class CleanDateBaseIPScheduler {
         this.ipAddressRepository = ipAddressRepository;
     }
 
-//    @Scheduled(cron = "0 */10 * * * *")    // executing every 10 min
+//    @Scheduled(cron = "0 */1 * * * *")    // executing every 10 min
     @Scheduled(cron = "0 0 * * * *")    // executing every 1 h
 //    @Scheduled(cron = "0 0 */2 * * *")    // executing every 2h
     public void cleanDbIp(){
