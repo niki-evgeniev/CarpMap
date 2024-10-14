@@ -14,6 +14,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,8 +68,14 @@ public class CarpUserServiceTest {
         UserDetails userDetails = carpUserService.loadUserByUsername(user.getUsername());
 
         Assertions.assertNotNull(userDetails);
-        Assertions.assertEquals(user.getUsername(), userDetails.getUsername(),
+        Assertions.assertEquals(user.getUsername(), userDetails.getUsername() ,
                 "Username name error");
+
+        Assertions.assertEquals(user.getPassword(), userDetails.getPassword(),
+                "Wrong password");
+
+        Assertions.assertEquals(3, userDetails.getAuthorities().size(),
+                "Error Authorities");
 
 
     }
@@ -85,8 +93,18 @@ public class CarpUserServiceTest {
         user.setLastName("map");
         user.setEmail("carpmap@online");
         user.setUsername("carpmap");
-        user.setFacebook("fb");
+        user.setFacebook("Facebook");
         user.setPassword("test");
+        user.setTwitter("Twitter");
+        user.setLinkedIn("LinkedIn");
+        user.setInstagram("Instagram");
+        user.setJob("Job");
+        user.setModified(LocalDateTime.now());
+        user.setCreateOn(LocalDate.from(LocalDateTime.of(2024, 2, 12, 12, 32)));
+        user.setPhoneNumber("0254");
+        user.setTeam("CarpMapTeam");
+        user.setCity("GO");
+        user.setCountry("BG");
         user.setRoles(List.of(adminRole,userRole,moderatorRole));
         return user;
     }
