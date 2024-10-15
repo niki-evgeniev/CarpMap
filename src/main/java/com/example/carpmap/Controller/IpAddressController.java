@@ -34,6 +34,7 @@ public class IpAddressController {
             case "findByUser" -> ipAddressService.findOnlyUsedByUser(pageable, type);
             case "thirtyDaysAgo" -> ipAddressService.findThirtyDaysAgo(pageable, type);
             case "lastDay" -> ipAddressService.findLastDay(pageable, type);
+            case "newForToday" -> ipAddressService.findNewForToday(pageable, type);
             default -> ipAddressService.getAllIpsAddress(pageable);
         };
 

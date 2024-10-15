@@ -26,5 +26,11 @@ public interface IpAddressService {
     Page<AllIpDTO> findThirtyDaysAgo(Pageable pageable, String type);
 
     Page<AllIpDTO> findLastDay(Pageable pageable, String type);
+
+    Long findLastDayVisitor();
+
+    Long findNewUsersForToday();
+
+    Page<AllIpDTO> findNewForToday(Pageable pageable, String type);
 }
 

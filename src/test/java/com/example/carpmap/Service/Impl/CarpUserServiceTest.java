@@ -47,10 +47,12 @@ public class CarpUserServiceTest {
 
         Optional<User> entity = mockUserRepository.findByEmail("carpmap@online");
 
-        Assertions.assertEquals("carp", entity.get().getFirstName());
-        Assertions.assertEquals("map", entity.get().getLastName());
-        Assertions.assertEquals("carpmap@online", entity.get().getEmail());
-        Assertions.assertEquals("carpmap", entity.get().getUsername());
+        User userEntity = entity.get();
+
+        Assertions.assertEquals("carp", userEntity.getFirstName());
+        Assertions.assertEquals("map", userEntity.getLastName());
+        Assertions.assertEquals("carpmap@online",userEntity.getEmail());
+        Assertions.assertEquals("carpmap", userEntity.getUsername());
     }
 
     @Test
@@ -76,8 +78,6 @@ public class CarpUserServiceTest {
 
         Assertions.assertEquals(3, userDetails.getAuthorities().size(),
                 "Error Authorities");
-
-
     }
 
     private static User createUser() {
@@ -100,7 +100,7 @@ public class CarpUserServiceTest {
         user.setInstagram("Instagram");
         user.setJob("Job");
         user.setModified(LocalDateTime.now());
-        user.setCreateOn(LocalDate.from(LocalDateTime.of(2024, 2, 12, 12, 32)));
+        user.setCreateOn(LocalDate.from(LocalDateTime.of(2024, 2, 12, 15, 32)));
         user.setPhoneNumber("0254");
         user.setTeam("CarpMapTeam");
         user.setCity("GO");
