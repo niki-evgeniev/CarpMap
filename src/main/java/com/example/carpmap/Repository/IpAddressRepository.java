@@ -31,19 +31,24 @@ public interface IpAddressRepository extends JpaRepository<IpAddress, Long> {
             (@Param("lastDay") LocalDateTime lastDay, Pageable pageable);
 
 
-    @Query("SELECT COUNT(i) FROM IpAddress i WHERE i.lastSeen >= :startOfDay AND i.lastSeen < :endOfDay")
+    @Query("SELECT COUNT(i) FROM IpAddress i WHERE i.lastSeen >= :startOfDay " +
+            "AND i.lastSeen < :endOfDay")
     long countByLastSeenDateTime(@Param("startOfDay") LocalDateTime startOfDay, @Param("endOfDay") LocalDateTime endOfDay);
 
-    @Query("SELECT COUNT(i) FROM IpAddress i WHERE (i.timeToAdd >= :startOfDay AND i.timeToAdd < :endOfDay) OR (i.lastSeen >= :startOfDay AND i.lastSeen < :endOfDay)")
+    @Query("SELECT COUNT(i) FROM IpAddress i WHERE (i.timeToAdd >= :startOfDay " +
+            "AND i.timeToAdd < :endOfDay) OR (i.lastSeen >= :startOfDay AND i.lastSeen < :endOfDay)")
     long countUserForToday(@Param("startOfDay") LocalDateTime startOfDay, @Param("endOfDay") LocalDateTime endOfDay);
 
-//    @Query("SELECT COUNT(ip) FROM IpAddress ip WHERE ip.timeToAdd BETWEEN :startOfDay AND :endOfDay")
+//    @Query("SELECT COUNT(ip) FROM IpAddress ip WHERE ip.timeToAdd BETWEEN :startOfDay " +
+//            "AND :endOfDay")
 //    long countNewUserForToday(@Param("startOfDay") LocalDateTime startOfDay, @Param("endOfDay") LocalDateTime endOfDay);
 
-    @Query("SELECT COUNT(ip) FROM IpAddress ip WHERE ip.timeToAdd BETWEEN :startOfDay AND :endOfDay AND ip.lastSeen IS NULL")
+    @Query("SELECT COUNT(ip) FROM IpAddress ip WHERE ip.timeToAdd BETWEEN :startOfDay " +
+            "AND :endOfDay AND ip.lastSeen IS NULL")
     long countNewUserForToday(@Param("startOfDay") LocalDateTime startOfDay, @Param("endOfDay") LocalDateTime endOfDay);
 
-    @Query("SELECT ip FROM IpAddress ip WHERE ip.timeToAdd BETWEEN :startOfDay AND :endOfDay AND ip.lastSeen IS NULL")
+    @Query("SELECT ip FROM IpAddress ip WHERE ip.timeToAdd BETWEEN :startOfDay " +
+            "AND :endOfDay AND ip.lastSeen IS NULL")
     Page<IpAddress> findNewUsersForToday(@Param("startOfDay") LocalDateTime startOfDay,
                                          @Param("endOfDay") LocalDateTime endOfDay,
                                          Pageable pageable);

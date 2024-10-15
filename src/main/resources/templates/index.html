@@ -13,7 +13,7 @@
     <meta name="robots" content="index, follow">
     <!-- Open Graph тагове за социални мрежи -->
     <meta property="og:title" content="Язовирите в България - CarpMap">
-    <meta property="og:description" content="Всички язовири в България">
+    <meta property="og:description" content="Информация за всички язовири и водоеми в България, видове риба в водоемите, локация, местоположение и снимки">
     <meta property="og:url" content="https://carpmap.online/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://carpmap.online/path-to-your-image.jpg">
@@ -21,7 +21,7 @@
     <!-- Twitter Card тагове -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Язовирите в България - CarpMap">
-    <meta name="twitter:description" content="Всички язовири в България">
+    <meta name="twitter:description" content="Информация за всички язовири и водоеми в България, видове риба в водоемите, локация, местоположение и снимки">
     <meta name="twitter:url" content="https://carpmap.online/">
     <meta name="twitter:image"
           content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
@@ -53,7 +53,7 @@
                             </p>
                             <div class="d-flex align-items-center justify-content-center">
                                 <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5"
-                                   th:href="@{/reservoirs/reservoirsAll}">Намери сега</a>
+                                   th:href="@{/reservoirs/reservoirsByType/{type}(type = ALL)}">Намери сега</a>
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                             </p>
                             <div class="d-flex align-items-center justify-content-center">
                                 <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5"
-                                   th:href="@{/reservoirs/reservoirsAll}">Намери сега</a>
+                                   th:href="@{/reservoirs/reservoirsByType/{type}(type = ALL)}">Намери сега</a>
                             </div>
                         </div>
                     </div>
@@ -89,7 +89,7 @@
                             </p>
                             <div class="d-flex align-items-center justify-content-center">
                                 <a class="btn-hover-bg btn btn-primary rounded-pill text-white py-3 px-5"
-                                   th:href="@{/reservoirs/reservoirsAll}">Намери сега</a>
+                                   th:href="@{/reservoirs/reservoirsByType/{type}(type = ALL)}">Намери сега</a>
                             </div>
                         </div>
                     </div>

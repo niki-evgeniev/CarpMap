@@ -5,7 +5,6 @@ import com.example.carpmap.Models.DTO.Ip.SearchIpDTO;
 import com.example.carpmap.Service.IpAddressService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;

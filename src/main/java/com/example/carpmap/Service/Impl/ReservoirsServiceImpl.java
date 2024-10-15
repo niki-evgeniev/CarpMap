@@ -16,13 +16,16 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -124,6 +127,13 @@ public class ReservoirsServiceImpl implements ReservoirsService {
 
         if (reservoirType != null) {
             allByReservoirType = reservoirRepository.findAllByReservoirType(reservoirType, pageable);
+
+        } else if (type.equals("countVisitors")) {
+            Pageable sortedByCountVisitors = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+                    Sort.by(Sort.Direction.DESC, "countVisitors"));
+
+            allByReservoirType = reservoirRepository.findAll(sortedByCountVisitors);
+
         } else {
             allByReservoirType = reservoirRepository.findAll(pageable);
         }

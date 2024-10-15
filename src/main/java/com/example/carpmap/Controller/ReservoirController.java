@@ -36,7 +36,7 @@ public class ReservoirController {
         if (checkForAdminRole(userDetails)) {
             reservoirsService.deleteReservoir(id);
         }
-        return new ModelAndView("redirect:/reservoirs/reservoirsAll");
+        return new ModelAndView("redirect:/reservoirs/reservoirsByType/{type}(type = ALL)}");
     }
 
     @GetMapping("reservoirsEdit/{id}")

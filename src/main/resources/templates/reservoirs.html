@@ -7,14 +7,14 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="keywords" content="website">
-    <meta name="title" content="Язовири">
-    <meta name="description" content="Всички язовири в българия. Намерете информация за различните язовири">
+    <meta name="title" content="Язовири и водоемите в българия">
+    <meta name="description" content="Всички язовири в българия и водоеми. Намерете информация,снимки, видове риба, локация, местоположение за различните язовири и водоеми">
     <meta name="author" content="Nikolay">
     <meta name="robots" content="index, follow">
     <!-- Open Graph тагове за социални мрежи -->
-    <meta property="og:title" content="Язовири">
-    <meta property="og:description" content="Всички язовири в българия. Намерете информация за различните язовири">
-    <meta property="og:url" content="https://carpmap.online/reservoirs/reservoirsAll">
+    <meta property="og:title" content="Язовири и водоемите в българия">
+    <meta property="og:description" content="Всички язовири в българия и водоеми. Намерете информация,снимки, видове риба, локация, местоположение за различните язовири и водоеми">
+    <meta property="og:url" content="https://carpmap.online/reservoirs/reservoirsByType/ALL">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://carpmap.online/path-to-your-image.jpg">
 
@@ -22,7 +22,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Язовири">
     <meta name="twitter:description" content="Всички язовири в българия. Намерете информация за различните язовири">
-    <meta name="twitter:url" content="https://carpmap.online/reservoirs/reservoirsAll">
+    <meta name="twitter:url" content="https://carpmap.online/reservoirs/reservoirsByType/ALL">
     <meta name="twitter:image"
           content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
     <th:block th:replace="~{fragments/head}"></th:block>
@@ -60,6 +60,13 @@
                     <a class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5"
                        th:href="@{/reservoirs/reservoirsByType/{type}(type = СВОБОДЕН)}">
                         <span style="width: 150px;">Държавни</span>
+                    </a>
+                    <br>
+                </li>
+                <li class="nav-item px-1 my-3">
+                    <a class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5"
+                       th:href="@{/reservoirs/reservoirsByType/{type}(type = countVisitors)}">
+                        <span style="width: 150px;">Най-посещавани</span>
                     </a>
                     <br>
                 </li>

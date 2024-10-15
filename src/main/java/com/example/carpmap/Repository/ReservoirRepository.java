@@ -20,6 +20,7 @@ public interface ReservoirRepository extends JpaRepository<Reservoir, Long> {
 
     Page<Reservoir> findAllByReservoirType(ReservoirType reservoirType, Pageable pageable);
 
+//    Page<Reservoir> findAllByCountVisitors(Pageable pageable);
 
 }
 
