@@ -29,9 +29,13 @@ public class MailController {
                              Pageable pageable) {
 
         Page<MailDetailsDTO> allContactMail = mailService.getAllContactMail(pageable);
+        long countAllMail = mailService.countAllMail();
+        long countNewMail = mailService.countAllNewMail();
 
         ModelAndView modelAndView = new ModelAndView("mail");
         modelAndView.addObject("allContact", allContactMail);
+        modelAndView.addObject("countAllMail", countAllMail);
+        modelAndView.addObject("countNewMail", countNewMail);
         return modelAndView;
     }
 

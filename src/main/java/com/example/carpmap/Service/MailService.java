@@ -11,4 +11,9 @@ public interface MailService {
     MailDetailsDTO getDetailsMail(Long id);
 
     boolean deleteMail(Long id);
+
+    long countAllMail();
+
+    long countAllNewMail();
+
 }

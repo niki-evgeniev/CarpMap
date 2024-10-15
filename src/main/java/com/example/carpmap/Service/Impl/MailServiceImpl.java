@@ -66,4 +66,15 @@ public class MailServiceImpl implements MailService {
         }
         return false;
     }
+
+    @Override
+    public long countAllMail() {
+        long l = contactRepository.countAllByIsReadFalse();
+        return contactRepository.count();
+    }
+
+    @Override
+    public long countAllNewMail() {
+        return contactRepository.countAllByIsReadFalse();
+    }
 }
