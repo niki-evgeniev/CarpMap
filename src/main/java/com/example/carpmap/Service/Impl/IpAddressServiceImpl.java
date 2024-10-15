@@ -17,7 +17,9 @@ import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Optional;
 
 import static com.example.carpmap.Cammon.ErrorMessages.ERROR_CHANGE_IS_BANNED_CANT_FIND;
@@ -88,20 +90,6 @@ public class IpAddressServiceImpl implements IpAddressService {
     @Override
     @Transactional
     public void getIpVisitor(String ipAddress) {
-//        Optional<IpAddress> byAddress = ipAddressRepository.findByAddress(ipAddress);
-//        if (byAddress.isEmpty()) {
-//            IpAddress addNewIpVisitor = new IpAddress();
-//            addNewIpVisitor.setAddress(ipAddress);
-//            addNewIpVisitor.setTimeToAdd(LocalDateTime.now());
-//            addNewIpVisitor.setCountVisits(1L);
-//            ipAddressRepository.save(addNewIpVisitor);
-//        } else {
-//            IpAddress newIpAdd = byAddress.get();
-//            newIpAdd.setCountVisits(newIpAdd.getCountVisits() + 1L);
-//            newIpAdd.setLastSeen(LocalDateTime.now());
-//            ipAddressRepository.save(newIpAdd);
-//        }
-        //try another version for IP DB
         IpAddress ipAddressEntity = ipAddressRepository.findByAddress(ipAddress)
                 .orElseGet(() -> {
                     IpAddress newIp = new IpAddress();
@@ -153,6 +141,40 @@ public class IpAddressServiceImpl implements IpAddressService {
     }
 
     @Override
+    public Long findLastDayVisitor() {
+        Result result = getResult();
+        long countAll = ipAddressRepository.countUserForToday(result.startOfDay(), result.endOfDay());
+        return countAll;
+    }
+
+    @Override
+    public Long findNewUsersForToday() {
+
+        Result result = getResult();
+        long newUsersToday = ipAddressRepository.countNewUserForToday(result.startOfDay(), result.endOfDay());
+        return newUsersToday;
+    }
+
+    @Override
+    public Page<AllIpDTO> findNewForToday(Pageable pageable, String type) {
+        Result result = getResult();
+        Page<IpAddress> newUsersForToday = ipAddressRepository.findNewUsersForToday(result.startOfDay(),
+                result.endOfDay(), pageable);
+        return getAllIpDTOS(newUsersForToday);
+    }
+
+    private static Result getResult() {
+        LocalDate today = LocalDate.now();
+        LocalDateTime startOfDay = today.atStartOfDay();
+        LocalDateTime endOfDay = today.atTime(LocalTime.MAX);
+        Result result = new Result(startOfDay, endOfDay);
+        return result;
+    }
+
+    private record Result(LocalDateTime startOfDay, LocalDateTime endOfDay) {
+    }
+
+    @Override
     public Page<AllIpDTO> findThirtyDaysAgo(Pageable pageable, String type) {
         LocalDateTime thirtyDaysAgo = LocalDateTime.now().minusDays(30);
         Page<IpAddress> allUserJoin30DaysAgo = ipAddressRepository.findAllIpAddressesFromLast30Days(thirtyDaysAgo, pageable);
@@ -161,8 +183,8 @@ public class IpAddressServiceImpl implements IpAddressService {
     }
 
 
-    private Page<AllIpDTO> getAllIpDTOS(Page<IpAddress> allByUserIsNotNull) {
-        Page<AllIpDTO> findUserIsNotNull = allByUserIsNotNull.map(
+    private Page<AllIpDTO> getAllIpDTOS(Page<IpAddress> entityToMap) {
+        Page<AllIpDTO> findUserIsNotNull = entityToMap.map(
                 ip -> {
                     AllIpDTO map = modelMapper.map(ip, AllIpDTO.class);
                     map.setIsBanned(ip.getBanned().toString());
