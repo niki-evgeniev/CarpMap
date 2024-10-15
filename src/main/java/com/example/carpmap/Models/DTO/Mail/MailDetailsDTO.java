@@ -19,6 +19,7 @@ public class MailDetailsDTO {
 
     private boolean isRead;
 
+
     public MailDetailsDTO() {
     }
 
@@ -77,4 +78,5 @@ public class MailDetailsDTO {
     public void setRead(boolean read) {
         isRead = read;
     }
+
 }
