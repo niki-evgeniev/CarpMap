@@ -163,16 +163,6 @@ public class IpAddressServiceImpl implements IpAddressService {
         return getAllIpDTOS(newUsersForToday);
     }
 
-    private static Result getResult() {
-        LocalDate today = LocalDate.now();
-        LocalDateTime startOfDay = today.atStartOfDay();
-        LocalDateTime endOfDay = today.atTime(LocalTime.MAX);
-        Result result = new Result(startOfDay, endOfDay);
-        return result;
-    }
-
-    private record Result(LocalDateTime startOfDay, LocalDateTime endOfDay) {
-    }
 
     @Override
     public Page<AllIpDTO> findThirtyDaysAgo(Pageable pageable, String type) {
@@ -211,5 +201,16 @@ public class IpAddressServiceImpl implements IpAddressService {
         String errMsg = String.format(ERROR_CHANGE_IS_BANNED_CANT_FIND, id);
         LOGGER.error(errMsg);
         return false;
+    }
+
+    private static Result getResult() {
+        LocalDate today = LocalDate.now();
+        LocalDateTime startOfDay = today.atStartOfDay();
+        LocalDateTime endOfDay = today.atTime(LocalTime.MAX);
+        Result result = new Result(startOfDay, endOfDay);
+        return result;
+    }
+
+    private record Result(LocalDateTime startOfDay, LocalDateTime endOfDay) {
     }
 }
