@@ -5,24 +5,29 @@ import com.example.carpmap.Models.DTO.Reservoirs.ReservoirPicturesDTO;
 import com.example.carpmap.Models.Entity.Picture;
 import com.example.carpmap.Models.Entity.Reservoir;
 import com.example.carpmap.Repository.PictureRepository;
+import com.example.carpmap.Repository.ReservoirRepository;
 import com.example.carpmap.Service.PictureService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.example.carpmap.Cammon.SuccessfulMessages.SUCCESSFUL_ADD_IMAGE_TO_RESERVOIR;
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Service
 public class PictureServiceImpl implements PictureService {
     private final PictureRepository pictureRepository;
     private final ModelMapper modelMapper;
+    private final ReservoirRepository reservoirRepository;
 
-    public PictureServiceImpl(PictureRepository pictureRepository, ModelMapper modelMapper) {
+    public PictureServiceImpl(PictureRepository pictureRepository, ModelMapper modelMapper, ReservoirRepository reservoirRepository) {
         this.pictureRepository = pictureRepository;
         this.modelMapper = modelMapper;
+        this.reservoirRepository = reservoirRepository;
     }
 
     @Override
@@ -56,7 +61,7 @@ public class PictureServiceImpl implements PictureService {
 
     @Override
     public List<ReservoirEditGalleryDTO> findAllPicture(Long id) {
-        Long reservoirId  = id;
+        Long reservoirId = id;
         List<Picture> allByReservoirId = pictureRepository.findAllByReservoirId(reservoirId);
         List<ReservoirEditGalleryDTO> galleryDTOS = allByReservoirId.stream().map(
                 res -> {
@@ -68,6 +73,19 @@ public class PictureServiceImpl implements PictureService {
                 }).toList();
 
         return galleryDTOS;
+    }
+
+    @Override
+    public List<ReservoirPicturesDTO> getAllReservoirPictureByName(String name) {
+        Optional<Reservoir> reservoirByName = reservoirRepository.findByName(name);
+        if (reservoirByName.isPresent()) {
+            List<Picture> allByReservoirId = pictureRepository.findAllByReservoirId(reservoirByName.get().getId());
+            List<ReservoirPicturesDTO> allPicture = allByReservoirId.stream()
+                    .map(this::reservoirPicturesDTO)
+                    .toList();
+            return allPicture;
+        }
+        return null;
     }
 
     private ReservoirPicturesDTO reservoirPicturesDTO(Picture picture) {

@@ -48,4 +48,82 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://carpmap.online/reservoirs/Искър</loc>
+    <lastmod>2024-10-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carpmap.online/reservoirs/Доспат</loc>
+    <lastmod>2024-10-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carpmap.online/reservoirs/Батак</loc>
+    <lastmod>2024-10-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carpmap.online/reservoirs/Кастел</loc>
+    <lastmod>2024-10-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carpmap.online/reservoirs/Борец</loc>
+    <lastmod>2024-10-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carpmap.online/reservoirs/Кърджали</loc>
+    <lastmod>2024-10-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carpmap.online/reservoirs/Жребчево</loc>
+    <lastmod>2024-10-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carpmap.online/reservoirs/Голям Беглик</loc>
+    <lastmod>2024-10-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carpmap.online/reservoirs/Йовковци</loc>
+    <lastmod>2024-10-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carpmap.online/reservoirs/Копринка</loc>
+    <lastmod>2024-10-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carpmap.online/reservoirs/Широка поляна</loc>
+    <lastmod>2024-10-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carpmap.online/reservoirs/Студен кладенец</loc>
+    <lastmod>2024-10-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://carpmap.online/reservoirs/Кулеков Лейк</loc>
+    <lastmod>2024-10-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>

@@ -217,6 +217,47 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     }
 
     @Override
+    public ReservoirsDetailsDTO getDetailsByName(String name) {
+        Optional<Reservoir> findReservoir = reservoirRepository.findByName(name);
+        ReservoirsDetailsDTO reservoirsDetailsDTO = modelMapper.map(findReservoir, ReservoirsDetailsDTO.class);
+        List<FishNameDTO> fihsNameList = new ArrayList<>();
+
+        if (findReservoir.isPresent()) {
+
+            Reservoir reservoirCount = findReservoir.get();
+            if (reservoirCount.getCountVisitors() == null) {
+                reservoirCount.setCountVisitors(Integer.parseInt(String.valueOf(1)));
+                reservoirRepository.save(reservoirCount);
+            } else {
+                Integer countVisitors = reservoirCount.getCountVisitors();
+                countVisitors++;
+                reservoirCount.setCountVisitors(countVisitors);
+                reservoirRepository.save(findReservoir.get());
+            }
+            System.out.printf(COUNT_RESERVOIR_OPENING,
+                    reservoirCount.getName(), reservoirCount.getCountVisitors());
+
+            List<Fish> allDetailsFishTypes = findReservoir.get().getFish();
+            for (Fish fish : allDetailsFishTypes) {
+                FishNameDTO mapDBFishType = new FishNameDTO();
+                mapDBFishType.setFishName(fish.getFishName());
+                fihsNameList.add(mapDBFishType);
+            }
+
+            String fishNames = fihsNameList.stream()
+                    .map(FishNameDTO::getFishName)
+                    .collect(Collectors.joining(", "));
+            reservoirsDetailsDTO.setFishNames(fishNames);
+        }
+
+        if (reservoirsDetailsDTO == null) {
+            String errMsg = String.format(RESERVOIR_WITH_ID_NOT_FOUND_REDIRECT_TO_INDEX, name);
+            LOGGER.error(errMsg);
+        }
+        return reservoirsDetailsDTO;
+    }
+
+    @Override
     public ReservoirsEditDTO findReservoirToEdit(Long id) {
         Optional<Reservoir> reservoirDetails = reservoirRepository.findById(id);
         ReservoirsEditDTO editingReservoir = modelMapper.map(reservoirDetails, ReservoirsEditDTO.class);

@@ -28,4 +28,6 @@ public interface ReservoirsService {
     void deleteReservoir(Long id);
 
     List<ReservoirEditGalleryDTO> getAllGalleryImage(Long id);
+
+    ReservoirsDetailsDTO getDetailsByName(String name);
 }

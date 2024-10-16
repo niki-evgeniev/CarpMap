@@ -15,4 +15,7 @@ public interface PictureService {
     void deleteAllListOfPicture(Long reservoirId);
 
     List<ReservoirEditGalleryDTO> findAllPicture(Long id);
+
+    List<ReservoirPicturesDTO> getAllReservoirPictureByName(String name);
+
 }

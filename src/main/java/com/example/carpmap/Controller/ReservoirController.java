@@ -13,6 +13,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Controller
@@ -63,13 +66,15 @@ public class ReservoirController {
 
     @PostMapping("reservoirsEdit/{id}")
     public ModelAndView reservoirsEdit(@Valid ReservoirsEditDTO reservoirsEditDTO, BindingResult bindingResult,
-                                       @AuthenticationPrincipal UserDetails userDetails) {
+                                       @AuthenticationPrincipal UserDetails userDetails) throws UnsupportedEncodingException {
         if (!bindingResult.hasErrors()) {
             Long idReservoir = reservoirsService.editReservoir(reservoirsEditDTO, userDetails);
             if (idReservoir == 0L) {
                 return new ModelAndView("errors/errorFindPage");
             }
-            return new ModelAndView("redirect:/reservoirs/" + idReservoir);
+            String name = reservoirsEditDTO.getName();
+            String encodedName = URLEncoder.encode(name, StandardCharsets.UTF_8);
+            return new ModelAndView("redirect:/reservoirs/" + encodedName);
         }
         List<FishNameDTO> allFishName = fishService.getAllFishName();
         List<CountryDTO> allCountry = countryService.getAllCountry();

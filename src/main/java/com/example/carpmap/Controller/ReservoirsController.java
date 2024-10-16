@@ -100,17 +100,18 @@ public class ReservoirsController {
         return modelAndView;
     }
 
-    @GetMapping("{id}")
-    public ModelAndView details(@PathVariable("id") Long id) {
+    @GetMapping("{name}")
+    public ModelAndView details(@PathVariable("name") String name) {
 
         ModelAndView modelAndView = new ModelAndView("reservoirsDetails");
-        ReservoirsDetailsDTO reservoirsDetailsDTO = reservoirsService.getDetails(id);
+        ReservoirsDetailsDTO reservoirsDetailsDTO = reservoirsService.getDetailsByName(name);
         if (reservoirsDetailsDTO == null) {
             return new ModelAndView("errors/errorFindPage");
         }
-
-
-        List<ReservoirPicturesDTO> reservoirPicturesList = pictureService.getAllReservoirPicture(id);
+        List<ReservoirPicturesDTO> reservoirPicturesList = pictureService.getAllReservoirPictureByName(name);
+        if (reservoirPicturesList == null) {
+            return new ModelAndView("errors/errorFindPage");
+        }
         modelAndView.addObject("details", reservoirsDetailsDTO);
         modelAndView.addObject("pictures", reservoirPicturesList);
         return modelAndView;
