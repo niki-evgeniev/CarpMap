@@ -100,6 +100,9 @@
                          th:text="'Kординати - Latitude: ' + *{latitude}">
                     </div>
                     <div class="product-title text-bold my-3 text-start"
+                         th:text="'ID: ' + *{id}">
+                    </div>
+                    <div class="product-title text-bold my-3 text-start"
                          th:text="'Kординати - Longitude: ' + *{longitude}">
                     </div>
 
@@ -118,14 +121,6 @@
         </div>
     </div>
     <div class="container my-5" th:object="${details}">
-        <!--        TESTING FISHING TYPE-->
-        <!--        <div class="product-details my-4">-->
-        <!--            <p class="details-title text-color mb-1 text-start">Видове риба</p>-->
-        <!--            <p-->
-        <!--               class="description text-start">-->
-        <!--                <span th:text="*{fishNames}"></span>-->
-        <!--            </p>-->
-        <!--        </div>-->
         <div class="row">
             <div class="product-details my-4 col-md-12">
                 <p class="details-title text-color mb-1" th:text="'Информация за яз. ' + *{name}"></p>
@@ -172,7 +167,9 @@
         </div>
     </div>
     <!-- Gallery End -->
-    <div class="col-sm-12 text-center" sec:authorize="hasRole('ADMIN') or hasRole('MODERATOR')">
+    <div class="col-sm-12 text-center"
+         sec:authorize="hasRole('ADMIN') or hasRole('MODERATOR')"
+         th:object="${details}">
         <p class="details-title text-color mb-1">Admin Panel</p>
         <br>
         <a class="btn btn-warning rounded-pill py-2 px-4 ms-lg-2 "

@@ -32,6 +32,11 @@
 <th:block th:replace="~{fragments/topbar}"></th:block>
 <th:block th:replace="~{fragments/navbar}"></th:block>
 <section id="explore" class="explore">
+    <div>
+        <h1 class="text-capitalize text-lg-end mb-4 fw-bold">APPLICATION NOW IS IN TEST SORRY FOR
+            INCONVENIENCE</h1>
+
+    </div>
     <div class="container">
         <link rel="stylesheet" href="/css/style2.css">
         <div class="section-header">
@@ -79,15 +84,15 @@
                      th:object="${res}">
                     <div class="single-explore-item">
                         <div class="single-explore-img">
-                            <a class="image-all-reservoir" th:href="@{/reservoirs/{id}(id = *{id})}">
+                            <a class="image-all-reservoir" th:href="@{/reservoirs/{name}(name = *{name})}">
                                 <img th:src="*{urlImage}" alt="explore image"></a>
                         </div>
                         <div class="single-explore-txt bg-theme-1">
-                            <h3><a th:href="@{/reservoirs/{id}(id = *{id})}"
+                            <h3><a th:href="@{/reservoirs/{name}(name = *{name})}"
                                    th:text="'Язовир ' + *{name}"></a></h3>
                             <p class="explore-rating-price">
                                 <span class="explore-rating" >5.0</span>
-                                <a th:href="@{/reservoirs/{id}(id = *{id})}"
+                                <a th:href="@{/reservoirs/{name}(name = *{name})}"
                                    th:text="*{countVisitors != null ? countVisitors + ' Посетен' : 0 + ' Посетен'}" > 10 ratings</a>
                                 <span th:if="*{countryCode == 'BG'}" class="explore-price-box">
 											Държава:
@@ -118,7 +123,7 @@
                                     <div class="col-sm-12 text-end">
                                         <a class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2"
                                            data-abc="true"
-                                           th:href="@{/reservoirs/{id}(id = *{id})}">Информация</a>
+                                           th:href="@{/reservoirs/{name}(name = *{name})}">Информация</a>
                                     </div>
                                 </div>
                             </div>

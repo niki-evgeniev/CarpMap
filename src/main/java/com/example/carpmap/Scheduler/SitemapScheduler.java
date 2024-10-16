@@ -88,16 +88,16 @@ public class SitemapScheduler {
                 .build();
         webSitemapGenerator.addUrl(webSitemapUrlFree);
 
-//        List<Reservoir> all = reservoirRepository.findAll();
-//
-//        for (Reservoir reservoir : all) {
-//            WebSitemapUrl webSitemapUrlReservoir = new WebSitemapUrl.Options("https://carpmap.online/reservoirs/" + reservoir.getId())
-//                    .lastMod(day)
-//                    .changeFreq(ChangeFreq.DAILY)
-//                    .priority(0.8)
-//                    .build();
-//            webSitemapGenerator.addUrl(webSitemapUrlReservoir);
-//        }
+        List<Reservoir> all = reservoirRepository.findAll();
+
+        for (Reservoir reservoir : all) {
+            WebSitemapUrl webSitemapUrlReservoir = new WebSitemapUrl.Options("https://carpmap.online/reservoirs/" + reservoir.getName())
+                    .lastMod(day)
+                    .changeFreq(ChangeFreq.DAILY)
+                    .priority(0.8)
+                    .build();
+            webSitemapGenerator.addUrl(webSitemapUrlReservoir);
+        }
 
         webSitemapGenerator.write();
 
