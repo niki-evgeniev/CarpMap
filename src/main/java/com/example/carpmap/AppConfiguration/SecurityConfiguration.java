@@ -36,10 +36,10 @@ public class SecurityConfiguration {
                         .requestMatchers("/js/**", "/lib/**").permitAll()
                         .requestMatchers("/", "/users/login", "/users/profile",
                                 "/users/login-error").permitAll()
-                        .requestMatchers( "/reservoirs/{id}",
+                        .requestMatchers("/reservoirs/reservoirsByType/ALL", "/reservoirs/{id}",
                                 "/reservoirs/reservoirsByType/{type}").permitAll()
                         .requestMatchers("/donate", "/cookiePolicy").permitAll()
-                        .requestMatchers("/home", "/robots.txt").permitAll()
+                        .requestMatchers("/home", "/robots.txt", "/sitemap.xml").permitAll()
                         .requestMatchers("/about", "/blog", "/contact").permitAll()
                         .requestMatchers("/subscribe/send").permitAll()
                         .requestMatchers("/gallery", "/search").permitAll()

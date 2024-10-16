@@ -39,17 +39,17 @@ public class ReservoirsController {
         this.pictureService = pictureService;
     }
 
-    @GetMapping("reservoirsAll")
-    public ModelAndView reservoirsAll(
-            @PageableDefault(size = 9, sort = "countVisitors", direction = Sort.Direction.DESC)
-            Pageable pageable, HttpServletRequest request) {
-        ModelAndView modelAndView = new ModelAndView("reservoirs");
-        Page<ReservoirAllDTO> allReservoir = reservoirsService.getAllReservoirs(pageable);
-        modelAndView.addObject("allReservoir", allReservoir);
-        modelAndView.addObject("currentUrl", request.getRequestURI());
-
-        return modelAndView;
-    }
+//    @GetMapping("reservoirsAll")
+//    public ModelAndView reservoirsAll(
+//            @PageableDefault(size = 9, sort = "countVisitors", direction = Sort.Direction.DESC)
+//            Pageable pageable, HttpServletRequest request) {
+//        ModelAndView modelAndView = new ModelAndView("reservoirs");
+//        Page<ReservoirAllDTO> allReservoir = reservoirsService.getAllReservoirs(pageable);
+//        modelAndView.addObject("allReservoir", allReservoir);
+//        modelAndView.addObject("currentUrl", request.getRequestURI());
+//
+//        return modelAndView;
+//    }
 
     @GetMapping("reservoirsByType/{type}")
     public ModelAndView reservoirsByType(
@@ -102,10 +102,9 @@ public class ReservoirsController {
 
     @GetMapping("{id}")
     public ModelAndView details(@PathVariable("id") Long id) {
+
         ModelAndView modelAndView = new ModelAndView("reservoirsDetails");
         ReservoirsDetailsDTO reservoirsDetailsDTO = reservoirsService.getDetails(id);
-
-
         if (reservoirsDetailsDTO == null) {
             return new ModelAndView("errors/errorFindPage");
         }
