@@ -12,6 +12,7 @@ import com.example.carpmap.Repository.ReservoirRepository;
 import com.example.carpmap.Repository.UserRepository;
 import com.example.carpmap.Service.PictureService;
 import com.example.carpmap.Service.ReservoirsService;
+import com.example.carpmap.Utility.CryptoBgnToEng;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +26,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -43,18 +43,20 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     private final UserRepository userRepository;
     private final FishRepository fishRepository;
     private final PictureService pictureService;
+    private final CryptoBgnToEng cryptoBgnToEng;
 
 
     public ReservoirsServiceImpl(ModelMapper modelMapper, ReservoirRepository reservoirRepository,
                                  CountryRepository countryRepository, UserRepository userRepository,
-                                 FishRepository fishRepository, PictureService pictureService) {
+                                 FishRepository fishRepository, PictureService pictureService,
+                                 CryptoBgnToEng cryptoBgnToEng) {
         this.modelMapper = modelMapper;
         this.reservoirRepository = reservoirRepository;
         this.countryRepository = countryRepository;
         this.userRepository = userRepository;
         this.fishRepository = fishRepository;
         this.pictureService = pictureService;
-
+        this.cryptoBgnToEng = cryptoBgnToEng;
     }
 
     @Override
@@ -220,6 +222,9 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     public ReservoirsDetailsDTO getDetailsByName(String name) {
         Optional<Reservoir> findReservoir = reservoirRepository.findByName(name);
         ReservoirsDetailsDTO reservoirsDetailsDTO = modelMapper.map(findReservoir, ReservoirsDetailsDTO.class);
+        String name1 = reservoirsDetailsDTO.getName();
+        reservoirsDetailsDTO.setName(cryptoBgnToEng.convertCyrillicToLatin(name1));
+
         List<FishNameDTO> fihsNameList = new ArrayList<>();
 
         if (findReservoir.isPresent()) {
