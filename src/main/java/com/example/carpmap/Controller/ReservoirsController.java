@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -100,14 +99,15 @@ public class ReservoirsController {
         return modelAndView;
     }
 
-    @GetMapping("{name}")
-    public ModelAndView details(@PathVariable("name") String name) {
+    @GetMapping("{urlName}")
+    public ModelAndView details(@PathVariable("urlName") String urlName) {
 
         ModelAndView modelAndView = new ModelAndView("reservoirsDetails");
-        ReservoirsDetailsDTO reservoirsDetailsDTO = reservoirsService.getDetailsByName(name);
+        ReservoirsDetailsDTO reservoirsDetailsDTO = reservoirsService.getDetailsByUrlName(urlName);
         if (reservoirsDetailsDTO == null) {
             return new ModelAndView("errors/errorFindPage");
         }
+        String name = reservoirsDetailsDTO.getName();
         List<ReservoirPicturesDTO> reservoirPicturesList = pictureService.getAllReservoirPictureByName(name);
         if (reservoirPicturesList == null) {
             return new ModelAndView("errors/errorFindPage");

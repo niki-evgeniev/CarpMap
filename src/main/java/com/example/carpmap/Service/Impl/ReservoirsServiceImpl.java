@@ -121,8 +121,8 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     @Override
     public Page<ReservoirAllDTO> getReservoirsByType(String type, Pageable pageable) {
         ReservoirType reservoirType = switch (type) {
-            case "СВОБОДЕН" -> ReservoirType.СВОБОДЕН;
-            case "ЧАСТЕН" -> ReservoirType.ЧАСТЕН;
+            case "free_reservoir" -> ReservoirType.СВОБОДЕН;
+            case "private_reservoir" -> ReservoirType.ЧАСТЕН;
             default -> null;
         };
         Page<Reservoir> allByReservoirType = null;
@@ -144,6 +144,17 @@ public class ReservoirsServiceImpl implements ReservoirsService {
                 .map(reservoir -> {
                     return modelMapper.map(reservoir, ReservoirAllDTO.class);
                 });
+
+//        PRINT ALL NAME
+        List<Reservoir> all = reservoirRepository.findAll();
+        for (Reservoir reservoir : all) {
+            if (!reservoir.getUrlName().isEmpty() ) {
+                String urlEng = cryptoBgnToEng.convertCyrillicToLatin(reservoir.getName().toLowerCase());
+                reservoir.setUrlName(urlEng);
+                System.out.println(urlEng);
+            }
+            reservoirRepository.saveAll(all);
+        }
         return reservoirByType;
     }
 
@@ -155,47 +166,6 @@ public class ReservoirsServiceImpl implements ReservoirsService {
                     return modelMapper.map(reservoirByName, ReservoirAllDTO.class);
                 });
         return allReservoirByName;
-    }
-
-    @Override
-    public ReservoirsDetailsDTO getDetails(Long id) {
-        Optional<Reservoir> findReservoir = reservoirRepository.findById(id);
-        ReservoirsDetailsDTO reservoirsDetailsDTO = modelMapper.map(findReservoir, ReservoirsDetailsDTO.class);
-        List<FishNameDTO> fihsNameList = new ArrayList<>();
-
-        if (findReservoir.isPresent()) {
-
-            Reservoir reservoirCount = findReservoir.get();
-            if (reservoirCount.getCountVisitors() == null) {
-                reservoirCount.setCountVisitors(Integer.parseInt(String.valueOf(1)));
-                reservoirRepository.save(reservoirCount);
-            } else {
-                Integer countVisitors = reservoirCount.getCountVisitors();
-                countVisitors++;
-                reservoirCount.setCountVisitors(countVisitors);
-                reservoirRepository.save(findReservoir.get());
-            }
-            System.out.printf(COUNT_RESERVOIR_OPENING,
-                    reservoirCount.getName(), reservoirCount.getCountVisitors());
-
-            List<Fish> allDetailsFishTypes = findReservoir.get().getFish();
-            for (Fish fish : allDetailsFishTypes) {
-                FishNameDTO mapDBFishType = new FishNameDTO();
-                mapDBFishType.setFishName(fish.getFishName());
-                fihsNameList.add(mapDBFishType);
-            }
-
-            String fishNames = fihsNameList.stream()
-                    .map(FishNameDTO::getFishName)
-                    .collect(Collectors.joining(", "));
-            reservoirsDetailsDTO.setFishNames(fishNames);
-        }
-
-        if (reservoirsDetailsDTO == null) {
-            String errMsg = String.format(RESERVOIR_WITH_ID_NOT_FOUND_REDIRECT_TO_INDEX, id);
-            LOGGER.error(errMsg);
-        }
-        return reservoirsDetailsDTO;
     }
 
     @Override
@@ -219,11 +189,11 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     }
 
     @Override
-    public ReservoirsDetailsDTO getDetailsByName(String name) {
-        Optional<Reservoir> findReservoir = reservoirRepository.findByName(name);
+    public ReservoirsDetailsDTO getDetailsByUrlName(String urlName) {
+        Optional<Reservoir> findReservoir = reservoirRepository.findByUrlName(urlName);
         ReservoirsDetailsDTO reservoirsDetailsDTO = modelMapper.map(findReservoir, ReservoirsDetailsDTO.class);
         String name1 = reservoirsDetailsDTO.getName();
-        reservoirsDetailsDTO.setName(cryptoBgnToEng.convertCyrillicToLatin(name1));
+
 
         List<FishNameDTO> fihsNameList = new ArrayList<>();
 
@@ -253,12 +223,11 @@ public class ReservoirsServiceImpl implements ReservoirsService {
                     .map(FishNameDTO::getFishName)
                     .collect(Collectors.joining(", "));
             reservoirsDetailsDTO.setFishNames(fishNames);
-        }
-
-        if (reservoirsDetailsDTO == null) {
-            String errMsg = String.format(RESERVOIR_WITH_ID_NOT_FOUND_REDIRECT_TO_INDEX, name);
+        } else {
+            String errMsg = String.format(RESERVOIR_WITH_ID_NOT_FOUND_REDIRECT_TO_INDEX, urlName);
             LOGGER.error(errMsg);
         }
+
         return reservoirsDetailsDTO;
     }
 

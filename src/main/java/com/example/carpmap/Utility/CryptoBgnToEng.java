@@ -71,6 +71,7 @@ public class CryptoBgnToEng {
         cyrToLatMap.put('ь', "");
         cyrToLatMap.put('ю', "yu");
         cyrToLatMap.put('я', "ya");
+        cyrToLatMap.put(' ', "-");
 
         StringBuilder result = new StringBuilder();
         for (char c : name.toCharArray()) {

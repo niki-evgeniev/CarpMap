@@ -8,6 +8,8 @@ public class ReservoirAllDTO {
 
     private String name;
 
+    private String urlName;
+
     private String city;
 
     private String information;
@@ -39,6 +41,14 @@ public class ReservoirAllDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUrlName() {
+        return urlName;
+    }
+
+    public void setUrlName(String urlName) {
+        this.urlName = urlName;
     }
 
     public String getCity() {

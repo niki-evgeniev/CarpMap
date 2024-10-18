@@ -37,7 +37,7 @@
     <h6 th:text="*{details.city}"
         class="text-center">Град</h6>
     <div class="cd__action text-center">
-        <a th:href="@{/reservoirs/reservoirsByType/{type}(type = ALL)}"
+        <a th:href="@{/reservoirs/reservoirsByType/{type}(type = reservoirs)}"
            title="Back to download and tutorial page"
            class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5">BACK</a>
     </div>
@@ -46,7 +46,7 @@
 <main class="cd__main">
     <div class="container my-5">
         <div class="row" th:object="${details}">
-            <div class="col-md-6">
+            <div class="col-md-7">
                 <div class="main-img">
                     <img class="img-fluid img-detail"
                          th:src="*{urlImage}"
@@ -83,8 +83,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-5">
                 <div class="main-description px-2">
+                    <br>
                     <div class="category text-bold text-start"
                          th:text="'Име на язовира : ' + *{name}">
                     </div>
@@ -97,12 +98,15 @@
                          th:text="'Тип : ' + *{reservoirType}">
                     </div>
                     <div class="product-title text-bold my-3 text-start"
+                         sec:authorize="hasRole('ADMIN') or hasRole('MODERATOR')"
                          th:text="'Kординати - Latitude: ' + *{latitude}">
                     </div>
                     <div class="product-title text-bold my-3 text-start"
+                         sec:authorize="hasRole('ADMIN') or hasRole('MODERATOR')"
                          th:text="'ID: ' + *{id}">
                     </div>
                     <div class="product-title text-bold my-3 text-start"
+                         sec:authorize="hasRole('ADMIN') or hasRole('MODERATOR')"
                          th:text="'Kординати - Longitude: ' + *{longitude}">
                     </div>
 

@@ -91,7 +91,7 @@ public class SitemapScheduler {
         List<Reservoir> all = reservoirRepository.findAll();
 
         for (Reservoir reservoir : all) {
-            WebSitemapUrl webSitemapUrlReservoir = new WebSitemapUrl.Options("https://carpmap.online/reservoirs/" + reservoir.getName())
+            WebSitemapUrl webSitemapUrlReservoir = new WebSitemapUrl.Options("https://carpmap.online/reservoirs/" + reservoir.getUrlName())
                     .lastMod(day)
                     .changeFreq(ChangeFreq.DAILY)
                     .priority(0.8)
