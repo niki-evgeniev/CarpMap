@@ -194,11 +194,9 @@ public class ReservoirsServiceImpl implements ReservoirsService {
         ReservoirsDetailsDTO reservoirsDetailsDTO = modelMapper.map(findReservoir, ReservoirsDetailsDTO.class);
         String name1 = reservoirsDetailsDTO.getName();
 
-
         List<FishNameDTO> fihsNameList = new ArrayList<>();
 
         if (findReservoir.isPresent()) {
-
             Reservoir reservoirCount = findReservoir.get();
             if (reservoirCount.getCountVisitors() == null) {
                 reservoirCount.setCountVisitors(Integer.parseInt(String.valueOf(1)));
@@ -227,7 +225,6 @@ public class ReservoirsServiceImpl implements ReservoirsService {
             String errMsg = String.format(RESERVOIR_WITH_ID_NOT_FOUND_REDIRECT_TO_INDEX, urlName);
             LOGGER.error(errMsg);
         }
-
         return reservoirsDetailsDTO;
     }
 
@@ -264,7 +261,6 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     public String editReservoir(ReservoirsEditDTO reservoirsEditDTO, UserDetails userDetails) {
         Optional<Reservoir> findReservoir = reservoirRepository.findById(reservoirsEditDTO.getId());
 
-
         if (findReservoir.isPresent()) {
             if (!reservoirsEditDTO.getName().equals(findReservoir.get().getName())) {
                 boolean isExistNameOfReservoir = checkNameExisting(reservoirsEditDTO.getName());
@@ -272,11 +268,8 @@ public class ReservoirsServiceImpl implements ReservoirsService {
                     return "existing name";
                 }
             }
-
             Reservoir editReservoir = editingReservoir(reservoirsEditDTO, userDetails, findReservoir);
-
             reservoirRepository.save(editReservoir);
-
             System.out.printf(SUCCESSFUL_EDIT_RESERVOIR, editReservoir.getName(),
                     editReservoir.getCountry().getCountry(), editReservoir.getCity(),
                     editReservoir.getReservoirType(), editReservoir.getLatitude(),
@@ -290,7 +283,6 @@ public class ReservoirsServiceImpl implements ReservoirsService {
         Reservoir editReservoir = modelMapper.map(reservoirsEditDTO, Reservoir.class);
 
         if (findReservoir.isPresent()) {
-            editReservoir.setUrlName(findReservoir.get().getUrlName());
             editReservoir.setCountry(findReservoir.get().getCountry());
             editReservoir.setCountVisitors(findReservoir.get().getCountVisitors());
             editReservoir.setFish(findReservoir.get().getFish());
@@ -319,5 +311,4 @@ public class ReservoirsServiceImpl implements ReservoirsService {
         }
         return editReservoir;
     }
-
 }
