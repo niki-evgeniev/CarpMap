@@ -54,6 +54,9 @@ public class ReservoirsController {
     public ModelAndView reservoirsByType(
             @PageableDefault(size = 9, sort = "name") Pageable pageable, @PathVariable String type,
             HttpServletRequest request) {
+        if(type.equals("ALL")){
+            return new ModelAndView("redirect:/reservoirs/reservoirsByType/reservoirs");
+        }
 
         ModelAndView modelAndView = new ModelAndView("reservoirs");
         Page<ReservoirAllDTO> allReservoirByType = reservoirsService.getReservoirsByType(type, pageable);
