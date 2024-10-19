@@ -40,7 +40,8 @@ public class ReservoirController {
         if (checkForAdminRole(userDetails)) {
             reservoirsService.deleteReservoir(id);
         }
-        return new ModelAndView("redirect:/reservoirs/reservoirsByType/{type}(type = ALL)}");
+//        return new ModelAndView("redirect:/reservoirs/reservoirsByType/{type}(type = ALL)}");
+        return new ModelAndView("redirect:/reservoirs/reservoirsByType/reservoirs");
     }
 
     @GetMapping("reservoirsEdit/{id}")
@@ -114,7 +115,7 @@ public class ReservoirController {
                                        @Valid EditGalleryDTO editGalleryDTO, BindingResult bindingResult,
                                        @AuthenticationPrincipal UserDetails userDetails) {
 
-        ModelAndView modelAndView = new ModelAndView("about");
+        ModelAndView modelAndView = new ModelAndView("redirect:/reservoirs/");
         return modelAndView;
     }
 

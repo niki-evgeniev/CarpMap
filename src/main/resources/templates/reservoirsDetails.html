@@ -103,13 +103,12 @@
                     </div>
                     <div class="product-title text-bold my-3 text-start"
                          sec:authorize="hasRole('ADMIN') or hasRole('MODERATOR')"
-                         th:text="'ID: ' + *{id}">
+                         th:text="'Kординати - Longitude: ' + *{longitude}">
                     </div>
                     <div class="product-title text-bold my-3 text-start"
                          sec:authorize="hasRole('ADMIN') or hasRole('MODERATOR')"
-                         th:text="'Kординати - Longitude: ' + *{longitude}">
+                         th:text="'ID: ' + *{id}">
                     </div>
-
                     <div class="product-title text-bold my-3 text-start"
                          th:text="'Добавен на : ' + *{createDate.toLocalDate()}">
                     </div>

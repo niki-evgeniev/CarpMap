@@ -75,6 +75,8 @@ public class ReservoirsServiceImpl implements ReservoirsService {
 
                 addNewReservoirs.setFish(fish);
                 addNewReservoirs.setUser(findUser.get());
+                String createUrlName = convertorBgToEn.convertCyrillicToLatin(addNewReservoirs.getName());
+                addNewReservoirs.setUrlName(createUrlName);
                 reservoirRepository.save(addNewReservoirs);
                 System.out.printf(SUCCESSFUL_ADD_RESERVOIR,
                         reservoirsAddDTO.getName(), reservoirsAddDTO.getCountry());
@@ -148,7 +150,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
 //        PRINT ALL NAME
 //        List<Reservoir> all = reservoirRepository.findAll();
 //        for (Reservoir reservoir : all) {
-//            if (!reservoir.getUrlName().isEmpty()) {
+//            if (reservoir.getUrlName().isEmpty()) {
 //                String urlEng = convertorBgToEn.convertCyrillicToLatin(reservoir.getName().toLowerCase());
 //                reservoir.setUrlName(urlEng);
 //                System.out.println(urlEng);
@@ -264,7 +266,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
         if (findReservoir.isPresent()) {
             if (!reservoirsEditDTO.getName().equals(findReservoir.get().getName())) {
                 boolean isExistNameOfReservoir = checkNameExisting(reservoirsEditDTO.getName());
-                if (isExistNameOfReservoir){
+                if (isExistNameOfReservoir) {
                     return "existing name";
                 }
             }
