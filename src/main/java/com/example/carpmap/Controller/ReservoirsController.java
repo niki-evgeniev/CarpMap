@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -55,6 +54,9 @@ public class ReservoirsController {
     public ModelAndView reservoirsByType(
             @PageableDefault(size = 9, sort = "name") Pageable pageable, @PathVariable String type,
             HttpServletRequest request) {
+        if(type.equals("ALL")){
+            return new ModelAndView("redirect:/reservoirs/reservoirsByType/reservoirs");
+        }
 
         ModelAndView modelAndView = new ModelAndView("reservoirs");
         Page<ReservoirAllDTO> allReservoirByType = reservoirsService.getReservoirsByType(type, pageable);
@@ -100,17 +102,19 @@ public class ReservoirsController {
         return modelAndView;
     }
 
-    @GetMapping("{id}")
-    public ModelAndView details(@PathVariable("id") Long id) {
+    @GetMapping("{urlName}")
+    public ModelAndView details(@PathVariable("urlName") String urlName) {
 
         ModelAndView modelAndView = new ModelAndView("reservoirsDetails");
-        ReservoirsDetailsDTO reservoirsDetailsDTO = reservoirsService.getDetails(id);
+        ReservoirsDetailsDTO reservoirsDetailsDTO = reservoirsService.getDetailsByUrlName(urlName);
         if (reservoirsDetailsDTO == null) {
             return new ModelAndView("errors/errorFindPage");
         }
-
-
-        List<ReservoirPicturesDTO> reservoirPicturesList = pictureService.getAllReservoirPicture(id);
+        String name = reservoirsDetailsDTO.getName();
+        List<ReservoirPicturesDTO> reservoirPicturesList = pictureService.getAllReservoirPictureByName(name);
+        if (reservoirPicturesList == null) {
+            return new ModelAndView("errors/errorFindPage");
+        }
         modelAndView.addObject("details", reservoirsDetailsDTO);
         modelAndView.addObject("pictures", reservoirPicturesList);
         return modelAndView;

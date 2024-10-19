@@ -15,8 +15,12 @@ public class Reservoir extends BaseEntity {
     @Column(name = "city", nullable = false)
     private String city;
 
+
     @Column(name = "name", nullable = false, unique = true)
     private String name;
+
+    @Column(name = "url_name", nullable = false, unique = true)
+    private String urlName;
 
     @Column(name = "latitude")
     private String latitude;
@@ -81,6 +85,14 @@ public class Reservoir extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUrlName() {
+        return urlName;
+    }
+
+    public void setUrlName(String urlName) {
+        this.urlName = urlName;
     }
 
     public String getLatitude() {

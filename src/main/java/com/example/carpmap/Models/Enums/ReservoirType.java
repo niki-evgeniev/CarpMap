@@ -4,5 +4,7 @@ public enum ReservoirType {
 
     ЧАСТЕН,
 
-    СВОБОДЕН
+    СВОБОДЕН,
+
+    ВСИЧКИ
 }

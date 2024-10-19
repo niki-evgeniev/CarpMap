@@ -38,7 +38,7 @@ public class SitemapScheduler {
                 .build();
         webSitemapGenerator.addUrl(webSitemapUrlCarpMap);
 
-        WebSitemapUrl webSitemapUrlReservoirs = new WebSitemapUrl.Options("https://carpmap.online/reservoirs/reservoirsByType/ALL")
+        WebSitemapUrl webSitemapUrlReservoirs = new WebSitemapUrl.Options("https://carpmap.online/reservoirs/reservoirsByType/reservoirs")
 //                .lastMod(Date.from(LocalDateTime.now().toInstant(ZoneOffset.UTC)))
                 .lastMod(day)
                 .changeFreq(ChangeFreq.DAILY)
@@ -74,30 +74,30 @@ public class SitemapScheduler {
                 .build();
         webSitemapGenerator.addUrl(webSitemapUrlCountVisitors);
 
-        WebSitemapUrl webSitemapUrlCountry = new WebSitemapUrl.Options("https://carpmap.online/reservoirs/reservoirsByType/%D0%A7%D0%90%D0%A1%D0%A2%D0%95%D0%9D")
+        WebSitemapUrl webSitemapUrlCountry = new WebSitemapUrl.Options("https://carpmap.online/reservoirs/reservoirsByType/private_reservoir")
                 .lastMod(day)
                 .changeFreq(ChangeFreq.DAILY)
                 .priority(0.8)
                 .build();
         webSitemapGenerator.addUrl(webSitemapUrlCountry);
 
-        WebSitemapUrl webSitemapUrlFree = new WebSitemapUrl.Options("https://carpmap.online/reservoirs/reservoirsByType/%D0%A1%D0%92%D0%9E%D0%91%D0%9E%D0%94%D0%95%D0%9D")
+        WebSitemapUrl webSitemapUrlFree = new WebSitemapUrl.Options("https://carpmap.online/reservoirs/reservoirsByType/free_reservoir")
                 .lastMod(day)
                 .changeFreq(ChangeFreq.DAILY)
                 .priority(0.8)
                 .build();
         webSitemapGenerator.addUrl(webSitemapUrlFree);
 
-//        List<Reservoir> all = reservoirRepository.findAll();
-//
-//        for (Reservoir reservoir : all) {
-//            WebSitemapUrl webSitemapUrlReservoir = new WebSitemapUrl.Options("https://carpmap.online/reservoirs/" + reservoir.getId())
-//                    .lastMod(day)
-//                    .changeFreq(ChangeFreq.DAILY)
-//                    .priority(0.8)
-//                    .build();
-//            webSitemapGenerator.addUrl(webSitemapUrlReservoir);
-//        }
+        List<Reservoir> all = reservoirRepository.findAll();
+
+        for (Reservoir reservoir : all) {
+            WebSitemapUrl webSitemapUrlReservoir = new WebSitemapUrl.Options("https://carpmap.online/reservoirs/" + reservoir.getUrlName())
+                    .lastMod(day)
+                    .changeFreq(ChangeFreq.DAILY)
+                    .priority(0.8)
+                    .build();
+            webSitemapGenerator.addUrl(webSitemapUrlReservoir);
+        }
 
         webSitemapGenerator.write();
 

@@ -15,7 +15,7 @@ public interface ReservoirsService {
 
     ReservoirsEditDTO findReservoirToEdit(Long id);
 
-    Long editReservoir(ReservoirsEditDTO reservoirsEditDTO, UserDetails userDetails);
+    String editReservoir(ReservoirsEditDTO reservoirsEditDTO, UserDetails userDetails);
 
     Page<ReservoirAllDTO> getAllReservoirs(Pageable pageable);
 
@@ -23,9 +23,9 @@ public interface ReservoirsService {
 
     Page<ReservoirAllDTO> findReservoirByName(String reservoir, Pageable pageable);
 
-    ReservoirsDetailsDTO getDetails(Long id);
-
     void deleteReservoir(Long id);
 
     List<ReservoirEditGalleryDTO> getAllGalleryImage(Long id);
+
+    ReservoirsDetailsDTO getDetailsByUrlName(String urlName);
 }

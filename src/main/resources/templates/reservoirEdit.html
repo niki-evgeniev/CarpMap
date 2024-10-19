@@ -17,6 +17,7 @@
                     <div class="card-body">
                         <h2 class="card-title text-center">Edit reservoirs</h2>
 
+
                         <!-- General Form Elements -->
                         <form th:method="POST"
                               th:action="@{/reservoirs/reservoirsEdit/{id}(id = *{id})}"
@@ -71,6 +72,27 @@
                                     <div class="text-primary text-center"
                                          th:if="${#fields.hasErrors('name')}"
                                          th:errors="*{name}">Please, enter your name!
+                                    </div>
+                                    <div class="text-primary text-center"
+                                         th:if="${nameExisting == true}"
+                                    >Existing name
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="name"
+                                       class="col-sm-2 col-form-label">Name</label>
+                                <div class="col-sm-10">
+                                    <input th:field="*{urlName}"
+                                           th:errorclass="is-invalid"
+                                           type="text"
+                                           name="url name"
+                                           id="urlName"
+                                           disabled
+                                           class="form-control">
+                                    <div class="text-primary text-center"
+                                         th:if="${#fields.hasErrors('urlName')}"
+                                         th:errors="*{urlName}">Please, enter your name!
                                     </div>
                                     <div class="text-primary text-center"
                                          th:if="${isExistNameOfReservoir == true}"

@@ -12,6 +12,7 @@ import com.example.carpmap.Repository.ReservoirRepository;
 import com.example.carpmap.Repository.UserRepository;
 import com.example.carpmap.Service.PictureService;
 import com.example.carpmap.Service.ReservoirsService;
+import com.example.carpmap.Utility.ConvertorBgToEn;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,7 +26,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -43,18 +43,20 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     private final UserRepository userRepository;
     private final FishRepository fishRepository;
     private final PictureService pictureService;
+    private final ConvertorBgToEn convertorBgToEn;
 
 
     public ReservoirsServiceImpl(ModelMapper modelMapper, ReservoirRepository reservoirRepository,
                                  CountryRepository countryRepository, UserRepository userRepository,
-                                 FishRepository fishRepository, PictureService pictureService) {
+                                 FishRepository fishRepository, PictureService pictureService,
+                                 ConvertorBgToEn convertorBgToEn) {
         this.modelMapper = modelMapper;
         this.reservoirRepository = reservoirRepository;
         this.countryRepository = countryRepository;
         this.userRepository = userRepository;
         this.fishRepository = fishRepository;
         this.pictureService = pictureService;
-
+        this.convertorBgToEn = convertorBgToEn;
     }
 
     @Override
@@ -73,6 +75,8 @@ public class ReservoirsServiceImpl implements ReservoirsService {
 
                 addNewReservoirs.setFish(fish);
                 addNewReservoirs.setUser(findUser.get());
+                String createUrlName = convertorBgToEn.convertCyrillicToLatin(addNewReservoirs.getName());
+                addNewReservoirs.setUrlName(createUrlName);
                 reservoirRepository.save(addNewReservoirs);
                 System.out.printf(SUCCESSFUL_ADD_RESERVOIR,
                         reservoirsAddDTO.getName(), reservoirsAddDTO.getCountry());
@@ -119,8 +123,8 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     @Override
     public Page<ReservoirAllDTO> getReservoirsByType(String type, Pageable pageable) {
         ReservoirType reservoirType = switch (type) {
-            case "СВОБОДЕН" -> ReservoirType.СВОБОДЕН;
-            case "ЧАСТЕН" -> ReservoirType.ЧАСТЕН;
+            case "free_reservoir" -> ReservoirType.СВОБОДЕН;
+            case "private_reservoir" -> ReservoirType.ЧАСТЕН;
             default -> null;
         };
         Page<Reservoir> allByReservoirType = null;
@@ -142,6 +146,17 @@ public class ReservoirsServiceImpl implements ReservoirsService {
                 .map(reservoir -> {
                     return modelMapper.map(reservoir, ReservoirAllDTO.class);
                 });
+
+//        PRINT ALL NAME
+//        List<Reservoir> all = reservoirRepository.findAll();
+//        for (Reservoir reservoir : all) {
+//            if (reservoir.getUrlName().isEmpty()) {
+//                String urlEng = convertorBgToEn.convertCyrillicToLatin(reservoir.getName().toLowerCase());
+//                reservoir.setUrlName(urlEng);
+//                System.out.println(urlEng);
+//            }
+//            reservoirRepository.saveAll(all);
+//        }
         return reservoirByType;
     }
 
@@ -156,13 +171,34 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     }
 
     @Override
-    public ReservoirsDetailsDTO getDetails(Long id) {
-        Optional<Reservoir> findReservoir = reservoirRepository.findById(id);
+    @Transactional
+    public void deleteReservoir(Long id) {
+        Optional<Reservoir> toDelete = reservoirRepository.findById(id);
+        pictureService.deleteAllListOfPicture(id);
+
+        if (toDelete.isPresent()) {
+            reservoirRepository.deleteById(id);
+            System.out.printf(SUCCESSFUL_DELETE_RESERVOIR, toDelete.get().getName());
+        } else {
+            System.out.print(NOT_FOUND_TO_DELETE_RESERVOIR);
+        }
+    }
+
+    @Override
+    public List<ReservoirEditGalleryDTO> getAllGalleryImage(Long id) {
+        List<ReservoirEditGalleryDTO> allPicture = pictureService.findAllPicture(id);
+        return allPicture;
+    }
+
+    @Override
+    public ReservoirsDetailsDTO getDetailsByUrlName(String urlName) {
+        Optional<Reservoir> findReservoir = reservoirRepository.findByUrlName(urlName);
         ReservoirsDetailsDTO reservoirsDetailsDTO = modelMapper.map(findReservoir, ReservoirsDetailsDTO.class);
+        String name1 = reservoirsDetailsDTO.getName();
+
         List<FishNameDTO> fihsNameList = new ArrayList<>();
 
         if (findReservoir.isPresent()) {
-
             Reservoir reservoirCount = findReservoir.get();
             if (reservoirCount.getCountVisitors() == null) {
                 reservoirCount.setCountVisitors(Integer.parseInt(String.valueOf(1)));
@@ -187,33 +223,11 @@ public class ReservoirsServiceImpl implements ReservoirsService {
                     .map(FishNameDTO::getFishName)
                     .collect(Collectors.joining(", "));
             reservoirsDetailsDTO.setFishNames(fishNames);
-        }
-
-        if (reservoirsDetailsDTO == null) {
-            String errMsg = String.format(RESERVOIR_WITH_ID_NOT_FOUND_REDIRECT_TO_INDEX, id);
+        } else {
+            String errMsg = String.format(RESERVOIR_WITH_ID_NOT_FOUND_REDIRECT_TO_INDEX, urlName);
             LOGGER.error(errMsg);
         }
         return reservoirsDetailsDTO;
-    }
-
-    @Override
-    @Transactional
-    public void deleteReservoir(Long id) {
-        Optional<Reservoir> toDelete = reservoirRepository.findById(id);
-        pictureService.deleteAllListOfPicture(id);
-
-        if (toDelete.isPresent()) {
-            reservoirRepository.deleteById(id);
-            System.out.printf(SUCCESSFUL_DELETE_RESERVOIR, toDelete.get().getName());
-        } else {
-            System.out.print(NOT_FOUND_TO_DELETE_RESERVOIR);
-        }
-    }
-
-    @Override
-    public List<ReservoirEditGalleryDTO> getAllGalleryImage(Long id) {
-        List<ReservoirEditGalleryDTO> allPicture = pictureService.findAllPicture(id);
-        return allPicture;
     }
 
     @Override
@@ -246,22 +260,25 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     }
 
     @Override
-    public Long editReservoir(ReservoirsEditDTO reservoirsEditDTO, UserDetails userDetails) {
+    public String editReservoir(ReservoirsEditDTO reservoirsEditDTO, UserDetails userDetails) {
         Optional<Reservoir> findReservoir = reservoirRepository.findById(reservoirsEditDTO.getId());
 
         if (findReservoir.isPresent()) {
-
+            if (!reservoirsEditDTO.getName().equals(findReservoir.get().getName())) {
+                boolean isExistNameOfReservoir = checkNameExisting(reservoirsEditDTO.getName());
+                if (isExistNameOfReservoir) {
+                    return "existing name";
+                }
+            }
             Reservoir editReservoir = editingReservoir(reservoirsEditDTO, userDetails, findReservoir);
-
             reservoirRepository.save(editReservoir);
-
             System.out.printf(SUCCESSFUL_EDIT_RESERVOIR, editReservoir.getName(),
                     editReservoir.getCountry().getCountry(), editReservoir.getCity(),
                     editReservoir.getReservoirType(), editReservoir.getLatitude(),
                     editReservoir.getLongitude());
-            return reservoirsEditDTO.getId();
+            return editReservoir.getUrlName();
         }
-        return 0L;
+        return "";
     }
 
     private Reservoir editingReservoir(ReservoirsEditDTO reservoirsEditDTO, UserDetails userDetails, Optional<Reservoir> findReservoir) {
@@ -269,7 +286,10 @@ public class ReservoirsServiceImpl implements ReservoirsService {
 
         if (findReservoir.isPresent()) {
             editReservoir.setCountry(findReservoir.get().getCountry());
+            editReservoir.setCountVisitors(findReservoir.get().getCountVisitors());
             editReservoir.setFish(findReservoir.get().getFish());
+            String urlName = convertorBgToEn.convertCyrillicToLatin(reservoirsEditDTO.getName().toLowerCase());
+            editReservoir.setUrlName(urlName);
             LocalDateTime createDate = findReservoir.get().getCreateDate();
             editReservoir.setCreateDate(createDate);
         }
@@ -293,5 +313,4 @@ public class ReservoirsServiceImpl implements ReservoirsService {
         }
         return editReservoir;
     }
-
 }

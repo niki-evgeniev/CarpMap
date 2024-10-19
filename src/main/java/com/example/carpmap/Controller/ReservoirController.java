@@ -13,7 +13,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/reservoirs/")
@@ -36,7 +40,8 @@ public class ReservoirController {
         if (checkForAdminRole(userDetails)) {
             reservoirsService.deleteReservoir(id);
         }
-        return new ModelAndView("redirect:/reservoirs/reservoirsByType/{type}(type = ALL)}");
+//        return new ModelAndView("redirect:/reservoirs/reservoirsByType/{type}(type = ALL)}");
+        return new ModelAndView("redirect:/reservoirs/reservoirsByType/reservoirs");
     }
 
     @GetMapping("reservoirsEdit/{id}")
@@ -63,18 +68,26 @@ public class ReservoirController {
 
     @PostMapping("reservoirsEdit/{id}")
     public ModelAndView reservoirsEdit(@Valid ReservoirsEditDTO reservoirsEditDTO, BindingResult bindingResult,
-                                       @AuthenticationPrincipal UserDetails userDetails) {
+                                       @AuthenticationPrincipal UserDetails userDetails) throws UnsupportedEncodingException {
+        boolean nameExisting = false;
+
         if (!bindingResult.hasErrors()) {
-            Long idReservoir = reservoirsService.editReservoir(reservoirsEditDTO, userDetails);
-            if (idReservoir == 0L) {
+            String urlName = reservoirsService.editReservoir(reservoirsEditDTO, userDetails);
+            if (urlName.isEmpty()) {
                 return new ModelAndView("errors/errorFindPage");
+            } else if (urlName.equals("existing name")) {
+                nameExisting = true;
+            } else {
+                String name = reservoirsEditDTO.getName();
+                return new ModelAndView("redirect:/reservoirs/" + urlName);
             }
-            return new ModelAndView("redirect:/reservoirs/" + idReservoir);
+
         }
         List<FishNameDTO> allFishName = fishService.getAllFishName();
         List<CountryDTO> allCountry = countryService.getAllCountry();
         ModelAndView modelAndView = new ModelAndView("reservoirEdit");
         modelAndView.addObject("fishTypeNonExist", allFishName);
+        modelAndView.addObject("nameExisting", nameExisting);
         modelAndView.addObject("allCountry", allCountry);
 
         return modelAndView;
@@ -102,7 +115,7 @@ public class ReservoirController {
                                        @Valid EditGalleryDTO editGalleryDTO, BindingResult bindingResult,
                                        @AuthenticationPrincipal UserDetails userDetails) {
 
-        ModelAndView modelAndView = new ModelAndView("about");
+        ModelAndView modelAndView = new ModelAndView("redirect:/reservoirs/");
         return modelAndView;
     }
 
