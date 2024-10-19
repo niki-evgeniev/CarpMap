@@ -7,7 +7,7 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://carpmap.online/reservoirs/reservoirsByType/ALL</loc>
+    <loc>https://carpmap.online/reservoirs/reservoirsByType/reservoirs</loc>
     <lastmod>2024-10-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -37,13 +37,13 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://carpmap.online/reservoirs/reservoirsByType/%D0%A7%D0%90%D0%A1%D0%A2%D0%95%D0%9D</loc>
+    <loc>https://carpmap.online/reservoirs/reservoirsByType/private_reservoir</loc>
     <lastmod>2024-10-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://carpmap.online/reservoirs/reservoirsByType/%D0%A1%D0%92%D0%9E%D0%91%D0%9E%D0%94%D0%95%D0%9D</loc>
+    <loc>https://carpmap.online/reservoirs/reservoirsByType/free_reservoir</loc>
     <lastmod>2024-10-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
