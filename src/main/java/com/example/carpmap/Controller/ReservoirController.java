@@ -17,6 +17,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/reservoirs/")
@@ -67,19 +68,25 @@ public class ReservoirController {
     @PostMapping("reservoirsEdit/{id}")
     public ModelAndView reservoirsEdit(@Valid ReservoirsEditDTO reservoirsEditDTO, BindingResult bindingResult,
                                        @AuthenticationPrincipal UserDetails userDetails) throws UnsupportedEncodingException {
+        boolean nameExisting = false;
+
         if (!bindingResult.hasErrors()) {
-            Long idReservoir = reservoirsService.editReservoir(reservoirsEditDTO, userDetails);
-            if (idReservoir == 0L) {
+            String urlName = reservoirsService.editReservoir(reservoirsEditDTO, userDetails);
+            if (urlName.isEmpty()) {
                 return new ModelAndView("errors/errorFindPage");
+            } else if (urlName.equals("existing name")) {
+                nameExisting = true;
+            } else {
+                String name = reservoirsEditDTO.getName();
+                return new ModelAndView("redirect:/reservoirs/" + urlName);
             }
-            String name = reservoirsEditDTO.getName();
-            String encodedName = URLEncoder.encode(name, StandardCharsets.UTF_8);
-            return new ModelAndView("redirect:/reservoirs/" + encodedName);
+
         }
         List<FishNameDTO> allFishName = fishService.getAllFishName();
         List<CountryDTO> allCountry = countryService.getAllCountry();
         ModelAndView modelAndView = new ModelAndView("reservoirEdit");
         modelAndView.addObject("fishTypeNonExist", allFishName);
+        modelAndView.addObject("nameExisting", nameExisting);
         modelAndView.addObject("allCountry", allCountry);
 
         return modelAndView;

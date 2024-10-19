@@ -15,7 +15,7 @@ public interface ReservoirsService {
 
     ReservoirsEditDTO findReservoirToEdit(Long id);
 
-    Long editReservoir(ReservoirsEditDTO reservoirsEditDTO, UserDetails userDetails);
+    String editReservoir(ReservoirsEditDTO reservoirsEditDTO, UserDetails userDetails);
 
     Page<ReservoirAllDTO> getAllReservoirs(Pageable pageable);
 

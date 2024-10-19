@@ -12,7 +12,7 @@ import com.example.carpmap.Repository.ReservoirRepository;
 import com.example.carpmap.Repository.UserRepository;
 import com.example.carpmap.Service.PictureService;
 import com.example.carpmap.Service.ReservoirsService;
-import com.example.carpmap.Utility.CryptoBgnToEng;
+import com.example.carpmap.Utility.ConvertorBgToEn;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,20 +43,20 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     private final UserRepository userRepository;
     private final FishRepository fishRepository;
     private final PictureService pictureService;
-    private final CryptoBgnToEng cryptoBgnToEng;
+    private final ConvertorBgToEn convertorBgToEn;
 
 
     public ReservoirsServiceImpl(ModelMapper modelMapper, ReservoirRepository reservoirRepository,
                                  CountryRepository countryRepository, UserRepository userRepository,
                                  FishRepository fishRepository, PictureService pictureService,
-                                 CryptoBgnToEng cryptoBgnToEng) {
+                                 ConvertorBgToEn convertorBgToEn) {
         this.modelMapper = modelMapper;
         this.reservoirRepository = reservoirRepository;
         this.countryRepository = countryRepository;
         this.userRepository = userRepository;
         this.fishRepository = fishRepository;
         this.pictureService = pictureService;
-        this.cryptoBgnToEng = cryptoBgnToEng;
+        this.convertorBgToEn = convertorBgToEn;
     }
 
     @Override
@@ -146,15 +146,15 @@ public class ReservoirsServiceImpl implements ReservoirsService {
                 });
 
 //        PRINT ALL NAME
-        List<Reservoir> all = reservoirRepository.findAll();
-        for (Reservoir reservoir : all) {
-            if (!reservoir.getUrlName().isEmpty() ) {
-                String urlEng = cryptoBgnToEng.convertCyrillicToLatin(reservoir.getName().toLowerCase());
-                reservoir.setUrlName(urlEng);
-                System.out.println(urlEng);
-            }
-            reservoirRepository.saveAll(all);
-        }
+//        List<Reservoir> all = reservoirRepository.findAll();
+//        for (Reservoir reservoir : all) {
+//            if (!reservoir.getUrlName().isEmpty()) {
+//                String urlEng = convertorBgToEn.convertCyrillicToLatin(reservoir.getName().toLowerCase());
+//                reservoir.setUrlName(urlEng);
+//                System.out.println(urlEng);
+//            }
+//            reservoirRepository.saveAll(all);
+//        }
         return reservoirByType;
     }
 
@@ -261,10 +261,17 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     }
 
     @Override
-    public Long editReservoir(ReservoirsEditDTO reservoirsEditDTO, UserDetails userDetails) {
+    public String editReservoir(ReservoirsEditDTO reservoirsEditDTO, UserDetails userDetails) {
         Optional<Reservoir> findReservoir = reservoirRepository.findById(reservoirsEditDTO.getId());
 
+
         if (findReservoir.isPresent()) {
+            if (!reservoirsEditDTO.getName().equals(findReservoir.get().getName())) {
+                boolean isExistNameOfReservoir = checkNameExisting(reservoirsEditDTO.getName());
+                if (isExistNameOfReservoir){
+                    return "existing name";
+                }
+            }
 
             Reservoir editReservoir = editingReservoir(reservoirsEditDTO, userDetails, findReservoir);
 
@@ -274,17 +281,21 @@ public class ReservoirsServiceImpl implements ReservoirsService {
                     editReservoir.getCountry().getCountry(), editReservoir.getCity(),
                     editReservoir.getReservoirType(), editReservoir.getLatitude(),
                     editReservoir.getLongitude());
-            return reservoirsEditDTO.getId();
+            return editReservoir.getUrlName();
         }
-        return 0L;
+        return "";
     }
 
     private Reservoir editingReservoir(ReservoirsEditDTO reservoirsEditDTO, UserDetails userDetails, Optional<Reservoir> findReservoir) {
         Reservoir editReservoir = modelMapper.map(reservoirsEditDTO, Reservoir.class);
 
         if (findReservoir.isPresent()) {
+            editReservoir.setUrlName(findReservoir.get().getUrlName());
             editReservoir.setCountry(findReservoir.get().getCountry());
+            editReservoir.setCountVisitors(findReservoir.get().getCountVisitors());
             editReservoir.setFish(findReservoir.get().getFish());
+            String urlName = convertorBgToEn.convertCyrillicToLatin(reservoirsEditDTO.getName().toLowerCase());
+            editReservoir.setUrlName(urlName);
             LocalDateTime createDate = findReservoir.get().getCreateDate();
             editReservoir.setCreateDate(createDate);
         }
