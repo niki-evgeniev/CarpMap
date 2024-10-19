@@ -42,6 +42,8 @@ public class ReservoirsEditDTO {
     @Size(min = 3, max = 240, message = "URL Image for Reservoirs  length must be between 3 and 20 character!")
     private String mainUrlImage;
 
+    private String urlName;
+
     @NotNull
     private ReservoirType reservoirType;
 
@@ -177,4 +179,11 @@ public class ReservoirsEditDTO {
         this.fishName = fishName;
     }
 
+    public String getUrlName() {
+        return urlName;
+    }
+
+    public void setUrlName(String urlName) {
+        this.urlName = urlName;
+    }
 }
