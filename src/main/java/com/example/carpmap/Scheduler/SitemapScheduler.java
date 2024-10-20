@@ -23,7 +23,8 @@ public class SitemapScheduler {
         this.reservoirRepository = reservoirRepository;
     }
 
-    @Scheduled(cron = "0 */1 * * * *")
+//    @Scheduled(cron = "0 */1 * * * *")
+    @Scheduled(cron = "0 0 0 1 * ?")
     public void createSitemap() throws MalformedURLException, ParseException {
 
         WebSitemapGenerator webSitemapGenerator = WebSitemapGenerator.
