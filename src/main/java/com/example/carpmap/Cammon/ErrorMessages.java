@@ -15,7 +15,7 @@ public class ErrorMessages {
             "Reservoir to edit with ID %s is not found";
 
     public static final String RESERVOIR_WITH_ID_NOT_FOUND_REDIRECT_TO_INDEX =
-            "Reservoir with id %s not found !!! Redirect to index ";
+            "Reservoir with id %s not found !!! Redirect to url name ";
 
     public static final String USERNAME_NOT_FOUND =
             "USERNAME to edit is not found %n";

@@ -1,6 +1,7 @@
 package com.example.carpmap.Controller;
 
 import com.example.carpmap.Models.DTO.Reservoirs.*;
+import com.example.carpmap.Repository.ReservoirRepository;
 import com.example.carpmap.Service.CountryService;
 import com.example.carpmap.Service.FishService;
 import com.example.carpmap.Service.PictureService;
@@ -10,6 +11,7 @@ import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -38,30 +40,34 @@ public class ReservoirsController {
         this.pictureService = pictureService;
     }
 
-//    @GetMapping("reservoirsAll")
-//    public ModelAndView reservoirsAll(
-//            @PageableDefault(size = 9, sort = "countVisitors", direction = Sort.Direction.DESC)
-//            Pageable pageable, HttpServletRequest request) {
-//        ModelAndView modelAndView = new ModelAndView("reservoirs");
-//        Page<ReservoirAllDTO> allReservoir = reservoirsService.getAllReservoirs(pageable);
-//        modelAndView.addObject("allReservoir", allReservoir);
-//        modelAndView.addObject("currentUrl", request.getRequestURI());
-//
-//        return modelAndView;
-//    }
-
     @GetMapping("reservoirsByType/{type}")
     public ModelAndView reservoirsByType(
             @PageableDefault(size = 9, sort = "name") Pageable pageable, @PathVariable String type,
             HttpServletRequest request) {
-        if(type.equals("ALL")){
-            return new ModelAndView("redirect:/reservoirs/reservoirsByType/reservoirs");
+        if (type.equals("ALL")) {
+            ModelAndView modelAndView = new ModelAndView(
+                    "redirect:/reservoirs/reservoirsByType/reservoirs");
+            modelAndView.setStatus(HttpStatus.MOVED_PERMANENTLY);
+            System.out.println("CONTROLLER : SEARCH " + type + " REDIRECT TO reservoirs");
+            return modelAndView;
+        } else if (type.equals("ЧАСТЕН")) {
+            ModelAndView modelAndView = new ModelAndView(
+                    "redirect:/reservoirs/reservoirsByType/private_reservoir");
+            modelAndView.setStatus(HttpStatus.MOVED_PERMANENTLY);
+            System.out.println("CONTROLLER : SEARCH " + type + " REDIRECT TO private_reservoir");
+            return modelAndView;
+        } else if (type.equals("СВОБОДЕН")) {
+            ModelAndView modelAndView = new ModelAndView(
+                    "redirect:/reservoirs/reservoirsByType/free_reservoir");
+            modelAndView.setStatus(HttpStatus.MOVED_PERMANENTLY);
+            System.out.println("CONTROLLER : SEARCH " + type + " REDIRECT TO free_reservoir");
+            return modelAndView;
         }
 
         ModelAndView modelAndView = new ModelAndView("reservoirs");
         Page<ReservoirAllDTO> allReservoirByType = reservoirsService.getReservoirsByType(type, pageable);
         if (allReservoirByType == null) {
-            return new ModelAndView("errors/errorFindPage");
+            return new ModelAndView("errors/errorFindPage404");
         }
         modelAndView.addObject("allReservoir", allReservoirByType);
         modelAndView.addObject("type", type);
@@ -108,8 +114,25 @@ public class ReservoirsController {
         ModelAndView modelAndView = new ModelAndView("reservoirsDetails");
         ReservoirsDetailsDTO reservoirsDetailsDTO = reservoirsService.getDetailsByUrlName(urlName);
         if (reservoirsDetailsDTO == null) {
-            return new ModelAndView("errors/errorFindPage");
+            if (urlName.equals("reservoirsAll")) {
+                ModelAndView modelAndView1 = new ModelAndView("redirect:/reservoirs/reservoirsByType/reservoirs");
+                modelAndView.setStatus(HttpStatus.MOVED_PERMANENTLY);
+                return modelAndView1;
+            }
+            ReservoirIDDTO reservoirByID = reservoirsService.isReservoirId(urlName);
+            if (reservoirByID != null) {
+                ModelAndView modelAndView1 = new ModelAndView("redirect:/reservoirs/" + reservoirByID
+                        .getUrlName());
+                modelAndView1.setStatus(HttpStatus.MOVED_PERMANENTLY);
+                System.out.println("CONTROLLER : USED ID FOR RESERVOIR: " + reservoirByID.getUrlName());
+                return modelAndView1;
+            }
+            ModelAndView modelAndView1 = new ModelAndView("errors/errorFindPage");
+            modelAndView1.setStatus(HttpStatus.NOT_FOUND);
+            System.out.println("CONTROLLER : RESERVOIR WITH URL NAME " + urlName + " NOT FOUND");
+            return modelAndView1;
         }
+
         String name = reservoirsDetailsDTO.getName();
         List<ReservoirPicturesDTO> reservoirPicturesList = pictureService.getAllReservoirPictureByName(name);
         if (reservoirPicturesList == null) {
@@ -119,6 +142,7 @@ public class ReservoirsController {
         modelAndView.addObject("pictures", reservoirPicturesList);
         return modelAndView;
     }
+
 
     private ModelAndView getAllCountry() {
         ModelAndView modelAndView = new ModelAndView("reservoirsAdd");

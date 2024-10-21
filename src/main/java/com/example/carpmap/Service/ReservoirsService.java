@@ -28,4 +28,6 @@ public interface ReservoirsService {
     List<ReservoirEditGalleryDTO> getAllGalleryImage(Long id);
 
     ReservoirsDetailsDTO getDetailsByUrlName(String urlName);
+
+    ReservoirIDDTO  isReservoirId(String urlName);
 }
