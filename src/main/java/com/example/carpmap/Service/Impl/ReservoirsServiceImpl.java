@@ -231,6 +231,29 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     }
 
     @Override
+    public ReservoirIDDTO  isReservoirId(String urlName) {
+
+        if (isNumeric(urlName)) {
+            Long id = Long.parseLong(urlName);
+            Optional<Reservoir> findId = reservoirRepository.findById(Long.valueOf(urlName));
+            return modelMapper.map(findId, ReservoirIDDTO.class);
+        }
+        return null;
+    }
+
+    public boolean isNumeric(String str) {
+        if (str == null) {
+            return false;
+        }
+        try {
+            Long.parseLong(str);  // Можеш да използваш и Integer.parseInt() за по-малки числа
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    @Override
     public ReservoirsEditDTO findReservoirToEdit(Long id) {
         Optional<Reservoir> reservoirDetails = reservoirRepository.findById(id);
         ReservoirsEditDTO editingReservoir = modelMapper.map(reservoirDetails, ReservoirsEditDTO.class);
