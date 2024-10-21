@@ -15,11 +15,16 @@ To access the home page, open a -> https://carpmap.online
 - Contact form
 - Admin panel for managing users, blog and reservoirs
   - IP management for access control
+  - IP to see visiotr last day/month/new for today
+  - BANNED Ip
 - Mail system
   - Receive and delete messages
   - View message details
 - Scheduler for periodic IP address checks in the database
 - Interceptor for banning IP addresses
+- Server info
+  - Info about server : Used memory/free memory/ all memory, cpu , cpu load ...
+- Add sitemap
 
 ## Technologies
 
@@ -32,3 +37,5 @@ To access the home page, open a -> https://carpmap.online
 - Spring Security
 - Thymeleaf
 - MySQL DB
+- Actuator
+- Oshi
