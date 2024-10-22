@@ -26,16 +26,16 @@ public class IpUtility {
 
     public ModelAndView getIpAndBlog(UserDetails userDetails, String cloudflareIp, HttpServletRequest request)
             throws InterruptedException {
-        Long counter = ipAddressService.findAllVisits();
-
-        if (counter == null) {
-            counter = 1L;
-        } else {
-            counter = counter + 1L;
-        }
+//        Long counter = ipAddressService.findAllVisits();
+//
+//        if (counter == null) {
+//            counter = 1L;
+//        } else {
+//            counter = counter + 1L;
+//        }
         Long countLastDayVisitor = ipAddressService.findLastDayVisitor();
         Long newUserForToday = ipAddressService.findNewUsersForToday();
-        System.out.println("Total visitors in app " + counter);
+//        System.out.println("Total visitors in app " + counter);
         String ipAddress = ipAddressService.getIp().trim();
         System.out.println(LocalDateTime.now() + " Visitor address : " + ipAddress);
         System.out.println(LocalDateTime.now() + " Visitor cloudflare address : " + cloudflareIp);
@@ -49,9 +49,9 @@ public class IpUtility {
 
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("blogPackages", blogPackagesDTO);
-        modelAndView.addObject("counter", counter);
-        modelAndView.addObject("countLastDayVisitor", countLastDayVisitor);
-        modelAndView.addObject("newUserForToday", newUserForToday);
+//        modelAndView.addObject("counter", counter);
+//        modelAndView.addObject("countLastDayVisitor", countLastDayVisitor);
+//        modelAndView.addObject("newUserForToday", newUserForToday);
         modelAndView.addObject("currentUrl", request.getRequestURI());
         return modelAndView;
     }

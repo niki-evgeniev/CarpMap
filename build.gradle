@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.example'
-version = '0.2.08'
+version = '0.2.1'
 
 java {
     sourceCompatibility = '17'
@@ -13,6 +13,13 @@ java {
 
 repositories {
     mavenCentral()
+}
+bootJar {
+    manifest {
+        attributes(
+                'Implementation-Version': project.version
+        )
+    }
 }
 
 dependencies {

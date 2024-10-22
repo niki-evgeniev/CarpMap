@@ -4,8 +4,10 @@ import com.example.carpmap.Models.DTO.Profile.ProfileAllDTO;
 import com.example.carpmap.Models.DTO.Profile.ProfileEditDTO;
 import com.example.carpmap.Models.DTO.Profile.ProfileInfoDTO;
 import com.example.carpmap.Models.DTO.Profile.ProfileNewPasswordDTO;
+import com.example.carpmap.Service.IpAddressService;
 import com.example.carpmap.Service.ProfileService;
 import com.example.carpmap.Service.ServerInfoService;
+import com.example.carpmap.Utility.AppInfo;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,15 +34,20 @@ public class AdminController {
     private final ProfileService profileService;
     private final RestTemplate restTemplate;
     private final SystemInfo systemInfo;
-    private final ServerInfoService serverInfoService ;
+    private final ServerInfoService serverInfoService;
+    private final IpAddressService ipAddressService;
+    private final AppInfo appInfo;
 
 
     public AdminController(ProfileService profileService, RestTemplate restTemplate,
-                           SystemInfo systemInfo, ServerInfoService serverInfoService) {
+                           SystemInfo systemInfo, ServerInfoService serverInfoService,
+                           IpAddressService ipAddressService, AppInfo appInfo) {
         this.profileService = profileService;
         this.restTemplate = restTemplate;
         this.systemInfo = systemInfo;
         this.serverInfoService = serverInfoService;
+        this.ipAddressService = ipAddressService;
+        this.appInfo = appInfo;
     }
 
     @GetMapping("details/byId/{id}")
@@ -75,7 +82,6 @@ public class AdminController {
         String metric = restTemplate.getForObject("http://localhost:8080/actuator/metrics", String.class);
 
         RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean();
-//        long uptime = runtimeMXBean.getUptime();
         long freeMemory = Runtime.getRuntime().freeMemory();
         long totalMemory = Runtime.getRuntime().totalMemory();
         long usedMemory = totalMemory - freeMemory;
@@ -83,15 +89,25 @@ public class AdminController {
         CentralProcessor centralProcessor = systemInfo.getHardware().getProcessor();
         String cpu = centralProcessor.getProcessorIdentifier().getName();
         double cpuLoad = centralProcessor.getSystemCpuLoad(1000) * 100;
-
+        String formattedCpuLoad = String.format("%.2f", cpuLoad);
         String uptime = serverInfoService.getUptime();
+        String v = appInfo.getAppVersion();
+        System.out.println();
+        Long counter = ipAddressService.findAllVisits();
+
+        Long countLastDayVisitor = ipAddressService.findLastDayVisitor();
+        Long newUserForToday = ipAddressService.findNewUsersForToday();
 
         ModelAndView modelAndView = new ModelAndView("serverInfo");
         modelAndView.addObject("freeMemory", freeMemory / (1024 * 1024) + " MB");
         modelAndView.addObject("usedMemory", usedMemory / (1024 * 1024) + " MB");
         modelAndView.addObject("totalMemory",  totalMemory / (1024 * 1024) + " MB");
-        modelAndView.addObject("cpuLoad",  cpuLoad + " %");
+        modelAndView.addObject("cpuLoad",  formattedCpuLoad + " %");
         modelAndView.addObject("cpu",  cpu);
+        modelAndView.addObject("countLastDayVisitor",  countLastDayVisitor);
+        modelAndView.addObject("counter",  counter);
+        modelAndView.addObject("newUserForToday",  newUserForToday);
+        modelAndView.addObject("v",  v);
 
         modelAndView.addObject("uptime", uptime);
 
