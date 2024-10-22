@@ -56,8 +56,7 @@ public class SuccessfulMessages {
                     " longitude: %s %n";
 
     public static final String SUCCESSFUL_FIND_PROFILE =
-            "SUCCESSFUL find user Profile %n" +
-                    "PRofile test";
+            "SUCCESSFUL find user Profile %n";
 
     public static final String SUCCESSFUL_EDIT_USER =
             "SUCCESSFUL edit username: %s %n";
