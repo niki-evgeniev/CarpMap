@@ -23,29 +23,45 @@
      style="background: linear-gradient(rgba(19, 53, 123, 0.3), rgba(19, 53, 153, 0.3)); object-fit: cover;">
     <div class="container py-5 text-center">
         <div class="row justify-content-center donate">
-            <div class="col-lg-6 ">
+            <div class="col-lg-12">
                 <i class="fas fa-server fa-2x text-primary"></i>
                 <h1 class="display-4">CarpMap</h1>
-                <h1>Информация за сървъра</h1>
-                <h3>Състояние на сървъра : Online</h3>
+                <h1 class="mb-3">Информация за сървъра</h1>
+                <h3 class="mb-2" th:text="'CarpMap ' + ${v}"></h3>
+                <h3 class="mb-4">Състояние на сървъра : Online</h3>
                 <br>
-                <h6>Used Memory</h6>
-                <th:block th:text="${usedMemory}"></th:block>
-                <br>
-                <h6>Free memory</h6>
-                <th:block th:text="${freeMemory}"></th:block>
-                <br>
-                <h6>Total Memory</h6>
-                <th:block th:text="${totalMemory}"></th:block>
-
-                <h6>Uptime</h6>
-                <th:block th:text="${uptime}"></th:block>
-                <br>
-                <h6>CPU</h6>
-                <th:block th:text="${cpu}"></th:block>
-                <br>
-                <h6>CPU load</h6>
-                <th:block th:text="${cpuLoad}"></th:block>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5>Used Memory</h5>
+                        <th:block th:text="${usedMemory}"></th:block>
+                        <br>
+                        <h5>Free memory</h5>
+                        <th:block th:text="${freeMemory}"></th:block>
+                        <br>
+                        <h5>Total Memory</h5>
+                        <th:block th:text="${totalMemory}"></th:block>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Uptime</h5>
+                        <th:block th:text="${uptime}"></th:block>
+                        <br>
+                        <h5>CPU</h5>
+                        <th:block th:text="${cpu}"></th:block>
+                        <br>
+                        <h5>CPU load</h5>
+                        <th:block th:text="${cpuLoad}"></th:block>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Visitors</h5>
+                        <th:block th:text="${counter}"></th:block>
+                        <br>
+                        <h5>Visitors last 24h</h5>
+                        <th:block th:text="${countLastDayVisitor}"></th:block>
+                        <br>
+                        <h5>Last day visitors</h5>
+                        <th:block th:text="${newUserForToday}"></th:block>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
