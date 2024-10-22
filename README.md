@@ -15,7 +15,7 @@ To access the home page, open a -> https://carpmap.online
 - Contact form
 - Admin panel for managing users, blog and reservoirs
   - IP management for access control
-  - IP to see visiotr last day/month/new for today
+  - IP to see visitor last day/month/new for today
   - BANNED Ip
 - Mail system
   - Receive and delete messages
@@ -23,7 +23,7 @@ To access the home page, open a -> https://carpmap.online
 - Scheduler for periodic IP address checks in the database
 - Interceptor for banning IP addresses
 - Server info
-  - Info about server : Used memory/free memory/ all memory, cpu , cpu load ...
+  - Info about server : Used memory/free memory/ all memory, cpu , cpu load, uptime ...
 - Add sitemap
 
 ## Technologies
