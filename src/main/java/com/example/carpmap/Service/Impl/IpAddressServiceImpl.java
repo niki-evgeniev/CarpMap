@@ -60,156 +60,169 @@ public class IpAddressServiceImpl implements IpAddressService {
     public void checkIpAddressLogin(String username, String ipAddress) {
         Optional<IpAddress> findExistingIpAddress = ipAddressRepository.findByAddress(ipAddress);
         Optional<User> findUser = userRepository.findByUsername(username);
-        IpAddress newAddress = new IpAddress();
 
         if (findExistingIpAddress.isEmpty()) {
+            IpAddress newAddress = new IpAddress();
             newAddress.setAddress(ipAddress);
             newAddress.setTimeToAdd(LocalDateTime.now());
             newAddress.setCountVisits(1L);
             findUser.ifPresent(newAddress::setUser);
-
+            ipAddressRepository.save(newAddress);
+        } else if (findExistingIpAddress.get().getUser() == null) {
+            findUser.ifPresent(user ->
+                    findExistingIpAddress.get().setUser(user));
+            addView(findExistingIpAddress);
+            ipAddressRepository.save(findExistingIpAddress.get());
         } else {
-            newAddress = findExistingIpAddress.get();
-            addView(newAddress);
+            findUser.ifPresent(user ->
+                    findExistingIpAddress.get().setUser(user));
+            addView(findExistingIpAddress);
+            ipAddressRepository.save(findExistingIpAddress.get());
         }
-
-        if (newAddress.getUser() == null) {
-            findUser.ifPresent(newAddress::setUser);  // Свързваме с потребителя, ако е наличен
-        }
-
-        ipAddressRepository.save(newAddress);
     }
 
-    private static void addView(IpAddress ipAddress) {
-            ipAddress.setCountVisits(ipAddress.getCountVisits() + 1L);
-            ipAddress.setLastSeen(LocalDateTime.now());
+    private static void addView(Optional<IpAddress> findExistingIpAddress) {
 
+        if (findExistingIpAddress.isPresent()) {
+            findExistingIpAddress.get().setCountVisits(findExistingIpAddress.get().getCountVisits() + 1L);
+            findExistingIpAddress.get().setLastSeen(LocalDateTime.now());
+        }
     }
 
     @Override
     @Transactional
     public void getIpVisitor(String ipAddress) {
-        IpAddress ipAddressEntity = ipAddressRepository.findByAddress(ipAddress)
-                .orElseGet(() -> {
-                    IpAddress newIp = new IpAddress();
-                    newIp.setAddress(ipAddress);
-                    newIp.setTimeToAdd(LocalDateTime.now());
-                    newIp.setCountVisits(1L);
-                    return newIp;
-                });
+
+        Optional<IpAddress> findIp = ipAddressRepository.findByAddress(ipAddress);
+
+        IpAddress ipAddressEntity = findIp.orElseGet(() -> {
+            IpAddress newIp = new IpAddress();
+            newIp.setAddress(ipAddress);
+            newIp.setTimeToAdd(LocalDateTime.now());
+            newIp.setCountVisits(1L);
+            return newIp;
+        });
 
         if (ipAddressEntity.getId() != null) {
             ipAddressEntity.setCountVisits(ipAddressEntity.getCountVisits() + 1L);
             ipAddressEntity.setLastSeen(LocalDateTime.now());
+        } else {
+            // DOUBLE CHECK FOR RACE CONDITION
+            Optional<IpAddress> doubleCheck = ipAddressRepository.findByAddress(ipAddress);
+            if (doubleCheck.isPresent()) {
+                ipAddressEntity = doubleCheck.get();
+                ipAddressEntity.setCountVisits(ipAddressEntity.getCountVisits() + 1L);
+                ipAddressEntity.setLastSeen(LocalDateTime.now());
+            }
         }
+
         ipAddressRepository.save(ipAddressEntity);
-
-    }
-
-    @Override
-    @Transactional
-    public boolean banIp(Long id) {
-        return banOrUnbanIp(id, true);
-    }
-
-    @Override
-    @Transactional
-    public boolean unbanIp(Long id) {
-        return banOrUnbanIp(id, false);
-    }
-
-    @Override
-    public Page<AllIpDTO> getAllIpsAddress(Pageable pageable) {
-        Page<IpAddress> all = ipAddressRepository.findAll(pageable);
-        return getAllIpDTOS(all);
-    }
-
-    @Override
-    public Page<AllIpDTO> findOnlyUsedByUser(Pageable pageable, String type) {
-        Page<IpAddress> allByUserIsNotNull = ipAddressRepository.findAllByUserIsNotNull(pageable);
-
-        return getAllIpDTOS(allByUserIsNotNull);
-    }
-
-    @Override
-    public Page<AllIpDTO> findLastDay(Pageable pageable, String type) {
-        LocalDateTime lastDay = LocalDateTime.now().minusDays(1);
-        Page<IpAddress> findAllLastDay = ipAddressRepository.findAllIpAddressesFromLastDay(lastDay, pageable);
-
-        return getAllIpDTOS(findAllLastDay);
-    }
-
-    @Override
-    public Long findLastDayVisitor() {
-        Result result = getResult();
-        long countAll = ipAddressRepository.countUserForToday(result.startOfDay(), result.endOfDay());
-        return countAll;
-    }
-
-    @Override
-    public Long findNewUsersForToday() {
-
-        Result result = getResult();
-        long newUsersToday = ipAddressRepository.countNewUserForToday(result.startOfDay(), result.endOfDay());
-        return newUsersToday;
-    }
-
-    @Override
-    public Page<AllIpDTO> findNewForToday(Pageable pageable, String type) {
-        Result result = getResult();
-        Page<IpAddress> newUsersForToday = ipAddressRepository.findNewUsersForToday(result.startOfDay(),
-                result.endOfDay(), pageable);
-        return getAllIpDTOS(newUsersForToday);
-    }
-
-
-    @Override
-    public Page<AllIpDTO> findThirtyDaysAgo(Pageable pageable, String type) {
-        LocalDateTime thirtyDaysAgo = LocalDateTime.now().minusDays(30);
-        Page<IpAddress> allUserJoin30DaysAgo = ipAddressRepository.findAllIpAddressesFromLast30Days(thirtyDaysAgo, pageable);
-
-        return getAllIpDTOS(allUserJoin30DaysAgo);
-    }
-
-
-    private Page<AllIpDTO> getAllIpDTOS(Page<IpAddress> entityToMap) {
-        Page<AllIpDTO> findUserIsNotNull = entityToMap.map(
-                ip -> {
-                    AllIpDTO map = modelMapper.map(ip, AllIpDTO.class);
-                    map.setIsBanned(ip.getBanned().toString());
-                    if (ip.getUser() != null) {
-                        map.setUserId(ip.getUser().getUsername());
-                    }
-                    return map;
-                }
-        );
-        return findUserIsNotNull;
-    }
-
-    private boolean banOrUnbanIp(Long id, boolean banned) {
-        Optional<IpAddress> findIpToBan = ipAddressRepository.findById(id);
-
-        if (findIpToBan.isPresent()) {
-            IpAddress ipAddress = findIpToBan.get();
-            ipAddress.setBanned(banned);
-            ipAddressRepository.save(ipAddress);
-            String errMsg = String.format(SUCCESSFUL_CHANGE_IS_BANNED, banned, ipAddress.getAddress());
-            LOGGER.error(errMsg);
-            return true;
         }
-        String errMsg = String.format(ERROR_CHANGE_IS_BANNED_CANT_FIND, id);
-        LOGGER.error(errMsg);
-        return false;
-    }
 
-    private static Result getResult() {
-        LocalDate today = LocalDate.now();
-        LocalDateTime startOfDay = today.atStartOfDay();
-        LocalDateTime endOfDay = today.atTime(LocalTime.MAX);
-        Result result = new Result(startOfDay, endOfDay);
-        return result;
-    }
+        @Override
+        @Transactional
+        public boolean banIp (Long id){
+            return banOrUnbanIp(id, true);
+        }
 
-    private record Result(LocalDateTime startOfDay, LocalDateTime endOfDay) {
+        @Override
+        @Transactional
+        public boolean unbanIp (Long id){
+            return banOrUnbanIp(id, false);
+        }
+
+        @Override
+        public Page<AllIpDTO> getAllIpsAddress (Pageable pageable){
+            Page<IpAddress> all = ipAddressRepository.findAll(pageable);
+            return getAllIpDTOS(all);
+        }
+
+        @Override
+        public Page<AllIpDTO> findOnlyUsedByUser (Pageable pageable, String type){
+            Page<IpAddress> allByUserIsNotNull = ipAddressRepository.findAllByUserIsNotNull(pageable);
+
+            return getAllIpDTOS(allByUserIsNotNull);
+        }
+
+        @Override
+        public Page<AllIpDTO> findLastDay (Pageable pageable, String type){
+            LocalDateTime lastDay = LocalDateTime.now().minusDays(1);
+            Page<IpAddress> findAllLastDay = ipAddressRepository.findAllIpAddressesFromLastDay(lastDay, pageable);
+
+            return getAllIpDTOS(findAllLastDay);
+        }
+
+        @Override
+        public Long findLastDayVisitor () {
+            Result result = getResult();
+            long countAll = ipAddressRepository.countUserForToday(result.startOfDay(), result.endOfDay());
+            return countAll;
+        }
+
+        @Override
+        public Long findNewUsersForToday () {
+
+            Result result = getResult();
+            long newUsersToday = ipAddressRepository.countNewUserForToday(result.startOfDay(), result.endOfDay());
+            return newUsersToday;
+        }
+
+        @Override
+        public Page<AllIpDTO> findNewForToday (Pageable pageable, String type){
+            Result result = getResult();
+            Page<IpAddress> newUsersForToday = ipAddressRepository.findNewUsersForToday(result.startOfDay(),
+                    result.endOfDay(), pageable);
+            return getAllIpDTOS(newUsersForToday);
+        }
+
+
+        @Override
+        public Page<AllIpDTO> findThirtyDaysAgo (Pageable pageable, String type){
+            LocalDateTime thirtyDaysAgo = LocalDateTime.now().minusDays(30);
+            Page<IpAddress> allUserJoin30DaysAgo = ipAddressRepository.findAllIpAddressesFromLast30Days(thirtyDaysAgo, pageable);
+
+            return getAllIpDTOS(allUserJoin30DaysAgo);
+        }
+
+
+        private Page<AllIpDTO> getAllIpDTOS (Page < IpAddress > entityToMap) {
+            Page<AllIpDTO> findUserIsNotNull = entityToMap.map(
+                    ip -> {
+                        AllIpDTO map = modelMapper.map(ip, AllIpDTO.class);
+                        map.setIsBanned(ip.getBanned().toString());
+                        if (ip.getUser() != null) {
+                            map.setUserId(ip.getUser().getUsername());
+                        }
+                        return map;
+                    }
+            );
+            return findUserIsNotNull;
+        }
+
+        private boolean banOrUnbanIp (Long id,boolean banned){
+            Optional<IpAddress> findIpToBan = ipAddressRepository.findById(id);
+
+            if (findIpToBan.isPresent()) {
+                IpAddress ipAddress = findIpToBan.get();
+                ipAddress.setBanned(banned);
+                ipAddressRepository.save(ipAddress);
+                String errMsg = String.format(SUCCESSFUL_CHANGE_IS_BANNED, banned, ipAddress.getAddress());
+                LOGGER.error(errMsg);
+                return true;
+            }
+            String errMsg = String.format(ERROR_CHANGE_IS_BANNED_CANT_FIND, id);
+            LOGGER.error(errMsg);
+            return false;
+        }
+
+        private static Result getResult () {
+            LocalDate today = LocalDate.now();
+            LocalDateTime startOfDay = today.atStartOfDay();
+            LocalDateTime endOfDay = today.atTime(LocalTime.MAX);
+            Result result = new Result(startOfDay, endOfDay);
+            return result;
+        }
+
+        private record Result(LocalDateTime startOfDay, LocalDateTime endOfDay) {
+        }
     }
-}
