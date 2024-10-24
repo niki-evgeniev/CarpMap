@@ -20,21 +20,23 @@ To access the home page, open a -> https://carpmap.online
 - Mail system
   - Receive and delete messages
   - View message details
-- Scheduler for periodic IP address checks in the database
+- Scheduler 
+  - Checking for duplicate IP addresses
+  - Аdd new page to sitemap.xml
 - Interceptor for banning IP addresses
 - Server info
   -  Used memory
-  -  free memor
-  -  all memory
-  -  version APP
-  -  cpu info
-  -  cpu load
-  -  uptime
-  -  counter for register Reservoir
-  -  counter for register Users
+  -  Free memor
+  -  All memory
+  -  Version APP
+  -  Cpu info
+  -  Cpu load
+  -  Uptime
+  -  Counter for register Reservoir
+  -  Counter for register Users
   -  SSD free space
   -  SSD usege space
-  -  network info 
+  -  Network info 
 - Add sitemap
 
 ## Technologies
