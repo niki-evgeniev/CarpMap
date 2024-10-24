@@ -8,6 +8,7 @@ import com.example.carpmap.Service.IpAddressService;
 import com.example.carpmap.Service.ProfileService;
 import com.example.carpmap.Service.ServerInfoService;
 import com.example.carpmap.Utility.AppInfo;
+import org.aspectj.apache.bcel.classfile.Field;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,7 +23,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
+import oshi.hardware.NetworkIF;
 
+import java.io.File;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
 
@@ -81,36 +84,68 @@ public class AdminController {
         String health = restTemplate.getForObject("http://localhost:8080/actuator/health", String.class);
         String metric = restTemplate.getForObject("http://localhost:8080/actuator/metrics", String.class);
 
+        return getModelAndView();
+    }
+
+    private ModelAndView getModelAndView() {
+        //MEMORY INFO
         RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean();
         long freeMemory = Runtime.getRuntime().freeMemory();
         long totalMemory = Runtime.getRuntime().totalMemory();
         long usedMemory = totalMemory - freeMemory;
 
+        // CPU INFO
         CentralProcessor centralProcessor = systemInfo.getHardware().getProcessor();
         String cpu = centralProcessor.getProcessorIdentifier().getName();
         double cpuLoad = centralProcessor.getSystemCpuLoad(1000) * 100;
         String formattedCpuLoad = String.format("%.2f", cpuLoad);
-        String uptime = serverInfoService.getUptime();
-        String v = appInfo.getAppVersion();
-        System.out.println();
-        Long counter = ipAddressService.findAllVisits();
 
+        // UPTIME MACHINE
+        String uptime = serverInfoService.getUptime();
+
+        //APP VERSION
+        String versionApp = appInfo.getAppVersion();
+
+        //GET INFO FROM DB FOR USERs
+        Long counterAllUser = ipAddressService.findAllVisits();
         Long countLastDayVisitor = ipAddressService.findLastDayVisitor();
         Long newUserForToday = ipAddressService.findNewUsersForToday();
+
+        // GET INFO FROM DB
+        Long allReservoir = serverInfoService.countAllReservoir();
+        Long allUsers = serverInfoService.countAllUsers();
+        Long allPictureCloudinary = serverInfoService.countAllPictureCloudinary();
+
+        // GET DISK INFO
+        File file = new File("/");
+        long freeSpace = file.getFreeSpace();
+        long totalDisk = file.getTotalSpace();
+        long usableSpace = file.getUsableSpace();
 
         ModelAndView modelAndView = new ModelAndView("serverInfo");
         modelAndView.addObject("freeMemory", freeMemory / (1024 * 1024) + " MB");
         modelAndView.addObject("usedMemory", usedMemory / (1024 * 1024) + " MB");
-        modelAndView.addObject("totalMemory",  totalMemory / (1024 * 1024) + " MB");
-        modelAndView.addObject("cpuLoad",  formattedCpuLoad + " %");
-        modelAndView.addObject("cpu",  cpu);
-        modelAndView.addObject("countLastDayVisitor",  countLastDayVisitor);
-        modelAndView.addObject("counter",  counter);
-        modelAndView.addObject("newUserForToday",  newUserForToday);
-        modelAndView.addObject("v",  v);
-
+        modelAndView.addObject("totalMemory", totalMemory / (1024 * 1024) + " MB");
+        modelAndView.addObject("cpuLoad", formattedCpuLoad + " %");
+        modelAndView.addObject("cpu", cpu);
+        modelAndView.addObject("countLastDayVisitor", countLastDayVisitor);
+        modelAndView.addObject("counter", counterAllUser);
+        modelAndView.addObject("newUserForToday", newUserForToday);
+        modelAndView.addObject("versionApp", versionApp);
+        modelAndView.addObject("allReservoir", allReservoir);
+        modelAndView.addObject("allUsers", allUsers);
+        modelAndView.addObject("allPictureCloudinary", allPictureCloudinary);
         modelAndView.addObject("uptime", uptime);
-
+        modelAndView.addObject("usableSpace", usableSpace / (1024 * 1024 * 1024) + " GB");
+        modelAndView.addObject("freeSpace", freeSpace / (1024 * 1024 * 1024) + " GB");
+        modelAndView.addObject("totalDisk", totalDisk / (1024 * 1024 * 1024) + " GB");
+        //NETWORK
+        NetworkIF[] networkIFS = systemInfo.getHardware().getNetworkIFs().toArray(new NetworkIF[0]);
+        for (NetworkIF net : networkIFS) {
+            modelAndView.addObject("networkName", net.getName());
+            modelAndView.addObject("bytesSent", net.getBytesSent() / (1024 * 1024) + " MB");
+            modelAndView.addObject("bytesReceived", net.getBytesRecv() / (1024 * 1024) + " MB");
+        }
         return modelAndView;
     }
 

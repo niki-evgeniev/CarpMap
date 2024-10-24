@@ -27,11 +27,12 @@
                 <i class="fas fa-server fa-2x text-primary"></i>
                 <h1 class="display-4">CarpMap</h1>
                 <h1 class="mb-3">Информация за сървъра</h1>
-                <h3 class="mb-2" th:text="'CarpMap ' + ${v}"></h3>
+                <h3 class="mb-2" th:text="'CarpMap: ' + ${versionApp} + 'v'"></h3>
                 <h3 class="mb-4">Състояние на сървъра : Online</h3>
                 <br>
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-4 py-4">
+                        <h4 class="mb-3 text-uppercase">Memory</h4>
                         <h5>Used Memory</h5>
                         <th:block th:text="${usedMemory}"></th:block>
                         <br>
@@ -41,7 +42,8 @@
                         <h5>Total Memory</h5>
                         <th:block th:text="${totalMemory}"></th:block>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 py-4">
+                        <h4 class="mb-3 text-uppercase">CPU</h4>
                         <h5>Uptime</h5>
                         <th:block th:text="${uptime}"></th:block>
                         <br>
@@ -51,7 +53,8 @@
                         <h5>CPU load</h5>
                         <th:block th:text="${cpuLoad}"></th:block>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 py-4">
+                        <h4 class="mb-3 text-uppercase">INFO FOR VISITORS</h4>
                         <h5>Visitors</h5>
                         <th:block th:text="${counter}"></th:block>
                         <br>
@@ -60,6 +63,39 @@
                         <br>
                         <h5>Last new day visitors</h5>
                         <th:block th:text="${newUserForToday}"></th:block>
+                    </div>
+                    <div class="col-md-4 py-4">
+                        <h4 class="mb-3 text-uppercase">INFO FROM DB</h4>
+                        <h5>All Reservoir</h5>
+                        <th:block th:text="${allReservoir}"></th:block>
+                        <br>
+                        <h5>All Users</h5>
+                        <th:block th:text="${allUsers}"></th:block>
+                        <br>
+                        <h5>Picture Cloudinary</h5>
+                        <th:block th:text="${allPictureCloudinary}"></th:block>
+                    </div>
+                    <div class="col-md-4 py-4">
+                        <h4 class="mb-3 text-uppercase">SSD INFO</h4>
+                        <h5>Usable Space</h5>
+                        <th:block th:text="${usableSpace}"></th:block>
+                        <br>
+                        <h5>Free Space</h5>
+                        <th:block th:text="${freeSpace}"></th:block>
+                        <br>
+                        <h5>totalDisk</h5>
+                        <th:block th:text="${totalDisk}"></th:block>
+                    </div>
+                    <div class="col-md-4 py-4">
+                        <h4 class="mb-3 text-uppercase">Network Info</h4>
+                        <h5>networkName</h5>
+                        <th:block th:text="${networkName}"></th:block>
+                        <br>
+                        <h5>bytesSent </h5>
+                        <th:block th:text="${bytesSent}"></th:block>
+                        <br>
+                        <h5>bytesReceived</h5>
+                        <th:block th:text="${bytesReceived}"></th:block>
                     </div>
                 </div>
             </div>
