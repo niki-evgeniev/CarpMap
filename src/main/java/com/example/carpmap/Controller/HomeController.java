@@ -31,6 +31,8 @@ public class HomeController {
                               HttpServletRequest request)
             throws InterruptedException {
         String cloudflareIp = request.getRemoteAddr();
+        String userAgent = request.getHeader("User-Agent");
+        System.out.println(userAgent);
         return ipUtility.getIpAndBlog(userDetails, cloudflareIp, request);
     }
 
