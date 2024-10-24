@@ -23,7 +23,6 @@ To access the home page, open a -> https://carpmap.online
 - Scheduler for periodic IP address checks in the database
 - Interceptor for banning IP addresses
 - Server info
-  - Info about server : Used memory/free memory/ all memory, cpu , cpu load, uptime ...
   -  Used memory
   -  free memor
   -  all memory
