@@ -24,6 +24,18 @@ To access the home page, open a -> https://carpmap.online
 - Interceptor for banning IP addresses
 - Server info
   - Info about server : Used memory/free memory/ all memory, cpu , cpu load, uptime ...
+  -  Used memory
+  -  free memor
+  -  all memory
+  -  version APP
+  -  cpu info
+  -  cpu load
+  -  uptime
+  -  counter for register Reservoir
+  -  counter for register Users
+  -  SSD free space
+  -  SSD usege space
+  -  network info 
 - Add sitemap
 
 ## Technologies
