@@ -47,6 +47,6 @@ To access the home page, open a -> https://carpmap.online
 - Spring Boot
 - Spring Security
 - Thymeleaf
-- MySQL DB
+- MySQL
 - Actuator
 - Oshi
