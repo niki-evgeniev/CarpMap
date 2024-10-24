@@ -60,31 +60,30 @@ public class IpAddressServiceImpl implements IpAddressService {
     public void checkIpAddressLogin(String username, String ipAddress) {
         Optional<IpAddress> findExistingIpAddress = ipAddressRepository.findByAddress(ipAddress);
         Optional<User> findUser = userRepository.findByUsername(username);
+        IpAddress newAddress = new IpAddress();
 
         if (findExistingIpAddress.isEmpty()) {
-            IpAddress newAddress = new IpAddress();
             newAddress.setAddress(ipAddress);
             newAddress.setTimeToAdd(LocalDateTime.now());
             newAddress.setCountVisits(1L);
             findUser.ifPresent(newAddress::setUser);
-            ipAddressRepository.save(newAddress);
-        } else if (findExistingIpAddress.get().getUser() == null) {
-            findUser.ifPresent(user -> findExistingIpAddress.get().setUser(user));
-            addView(findExistingIpAddress);
-            ipAddressRepository.save(findExistingIpAddress.get());
+
         } else {
-            findUser.ifPresent(user -> findExistingIpAddress.get().setUser(user));
-            addView(findExistingIpAddress);
-            ipAddressRepository.save(findExistingIpAddress.get());
+            newAddress = findExistingIpAddress.get();
+            addView(newAddress);
         }
+
+        if (newAddress.getUser() == null) {
+            findUser.ifPresent(newAddress::setUser);  // Свързваме с потребителя, ако е наличен
+        }
+
+        ipAddressRepository.save(newAddress);
     }
 
-    private static void addView(Optional<IpAddress> findExistingIpAddress) {
+    private static void addView(IpAddress ipAddress) {
+            ipAddress.setCountVisits(ipAddress.getCountVisits() + 1L);
+            ipAddress.setLastSeen(LocalDateTime.now());
 
-        if (findExistingIpAddress.isPresent()) {
-            findExistingIpAddress.get().setCountVisits(findExistingIpAddress.get().getCountVisits() + 1L);
-            findExistingIpAddress.get().setLastSeen(LocalDateTime.now());
-        }
     }
 
     @Override
