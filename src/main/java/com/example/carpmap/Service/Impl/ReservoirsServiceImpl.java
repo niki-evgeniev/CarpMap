@@ -246,7 +246,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
             return false;
         }
         try {
-            Long.parseLong(str);  // Можеш да използваш и Integer.parseInt() за по-малки числа
+            Long.parseLong(str);
             return true;
         } catch (NumberFormatException e) {
             return false;
