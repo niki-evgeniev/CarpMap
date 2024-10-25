@@ -20,10 +20,23 @@ To access the home page, open a -> https://carpmap.online
 - Mail system
   - Receive and delete messages
   - View message details
-- Scheduler for periodic IP address checks in the database
+- Scheduler 
+  - Checking for duplicate IP addresses
+  - Аdd new page to sitemap.xml
 - Interceptor for banning IP addresses
 - Server info
-  - Info about server : Used memory/free memory/ all memory, cpu , cpu load, uptime ...
+  -  Used memory
+  -  Free memor
+  -  All memory
+  -  Version APP
+  -  Cpu info
+  -  Cpu load
+  -  Uptime
+  -  Counter for register Reservoir
+  -  Counter for register Users
+  -  SSD free space
+  -  SSD usege space
+  -  Network info 
 - Add sitemap
 
 ## Technologies
@@ -36,6 +49,6 @@ To access the home page, open a -> https://carpmap.online
 - Spring Boot
 - Spring Security
 - Thymeleaf
-- MySQL DB
+- MySQL
 - Actuator
 - Oshi
