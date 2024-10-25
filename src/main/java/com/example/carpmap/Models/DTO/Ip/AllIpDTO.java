@@ -1,7 +1,10 @@
 package com.example.carpmap.Models.DTO.Ip;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class AllIpDTO {
 
@@ -11,9 +14,13 @@ public class AllIpDTO {
 
     private LocalDateTime timeToAdd;
 
+    private String timeToAddFormat;
+
     private Long countVisits;
 
     private LocalDateTime lastSeen;
+
+    private String lastSeenFormat;
 
     private String isBanned;
 
@@ -76,5 +83,27 @@ public class AllIpDTO {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getTimeToAddFormat() {
+        if (timeToAdd != null) {
+            return timeToAdd.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        }
+        return "";
+    }
+
+    public void setTimeToAddFormat(String timeToAddFormat) {
+        this.timeToAddFormat = timeToAddFormat;
+    }
+
+    public String getLastSeenFormat() {
+        if (lastSeen != null) {
+            return lastSeen.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        }
+        return "";
+    }
+
+    public void setLastSeenFormat(String lastSeenFormat) {
+        this.lastSeenFormat = lastSeenFormat;
     }
 }

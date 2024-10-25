@@ -47,8 +47,10 @@ public class ReservoirsEditDTO {
     @NotNull
     private ReservoirType reservoirType;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createDate;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime modifiedDate;
 
     @NotEmpty(message = "Reservoirs information must not be empty")
@@ -62,7 +64,6 @@ public class ReservoirsEditDTO {
     @NotEmpty(message = "Select at least 1 type of fish")
     private List<String> fishName;
 
-//    private List<FishNameDTO> fishName;
 
     public ReservoirsEditDTO() {
     }
