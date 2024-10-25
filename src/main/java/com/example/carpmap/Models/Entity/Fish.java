@@ -8,6 +8,7 @@ import java.util.List;
 @Table(name = "fish_type")
 public class Fish extends BaseEntity {
 
+    @Column(name = "fish_name")
     private String fishName;
 
     public Fish() {

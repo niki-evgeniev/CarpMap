@@ -1,5 +1,6 @@
 package com.example.carpmap.Models.Entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -8,6 +9,7 @@ import jakarta.persistence.Table;
 @Table(name = "pictures")
 public class Picture extends BaseEntity {
 
+    @Column(name = "imageurl")
     private String imageURL;
 
     @ManyToOne
