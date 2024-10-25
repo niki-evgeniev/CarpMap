@@ -110,8 +110,10 @@
                                 <th scope="row" class="scope"
                                     th:text="*{id}"></th>
                                 <td th:text="*{address}">1 Year</td>
-                                <td th:text="*{timeToAdd}">1 Year</td>
-                                <td th:text="*{lastSeen}">$70000000.00</td>
+                                <!--          GET INFO FROM DTO AllIpDTO -->
+                                <td th:text="*{#temporals.format(timeToAdd, 'yyyy-MM-dd HH:mm')}">1 Year</td>
+                                <!--          GET INFO FROM DTO AllIpDTO -->
+                                <td th:text="*{#temporals.format(lastSeen, 'yyyy-MM-dd HH:mm:ss')}">$70000000.00</td>
                                 <td th:text="*{countVisits}">$5.00</td>
                                 <td th:text="*{isBanned}">Role</td>
                                 <td th:text="*{userId} == null ? '-' : *{userId}">Role</td>
