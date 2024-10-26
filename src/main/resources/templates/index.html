@@ -30,9 +30,11 @@
 
 <body>
 <th:block th:replace="~{fragments/topbar}"></th:block>
+
 <th:block th:replace="~{fragments/navbar}"></th:block>
-<!-- Carousel Start -->
+
 <main>
+    <!-- Carousel Start -->
     <div class="carousel-header">
         <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
             <ol class="carousel-indicators">
@@ -134,25 +136,14 @@
                     INCONVENIENCE</h1>
 
             </div>
-<!--            <div sec:authorize="isAuthenticated() and hasRole('ADMIN')">-->
-<!--                <h1 class="text-capitalize text-center mb-4 "-->
-
-<!--                    th:text="'Total visitors ' + *{counter}">You Like To Go?</h1>-->
-<!--                <h1 class="text-capitalize text-center mb-4 "-->
-<!--                    th:text="'Last 24h visitors ' + *{countLastDayVisitor}">You Like To Go?</h1>-->
-<!--                <h1 class="text-capitalize text-center mb-4 "-->
-<!--                    th:text="'Last 24h new visitors ' + *{newUserForToday}">You Like To Go?</h1>-->
-<!--                <h1 class="text-capitalize text-center mb-4 ">-->
-<!--                    LAST UPDATE IS : FIXING RESPONSIVE</h1>-->
-<!--            </div>-->
         </div>
     </div>
     <!-- Navbar & Hero End -->
-
     <!-- Gallery Start -->
+    <div>
     <th:block th:replace="~{fragments/gallery}"></th:block>
+    </div>
     <!-- Gallery End -->
-
     <!-- Packages Start -->
     <div class="container-fluid packages">
         <div class="container package">
@@ -190,27 +181,33 @@
     </div>
     <!-- Packages End -->
     <!-- Subscribe Start -->
-    <th:block th:replace="~{fragments/subscribe}"></th:block>
+    <div>
+    <th:block th:replace="~{fragments/subscribe}"></th:block></div>
     <!-- Subscribe End -->
-    <!-- Footer Start -->
-    <th:block th:replace="~{fragments/footer}"></th:block>
-    <!-- Footer End -->
-    <th:block th:replace="~{fragments/js}"></th:block>
 
-    <div id="cookieBackdrop" class="cookie-backdrop"></div>
-
-    <!-- Cookie Consent Popup -->
-    <div id="cookieConsent" class="cookie-consent">
-        <div class="cookie-message">
-            <p>Този сайт използва "бисквитки" за подобряване на потребителското изживяване. Прочетете нашата
-                <a th:href="@{/cookiePolicy}" target="_blank">политика за бисквитките</a>.
-            </p>
-            <button id="acceptCookies">Приемам</button>
-        </div>
-    </div>
-
-    <script th:src="@{/js/cookie.js}"></script>
 </main>
+<!-- Footer Start -->
+<footer>
+    <th:block th:replace="~{fragments/footer}"></th:block>
+</footer>
+<!-- Footer End -->
+<div>
+<th:block th:replace="~{fragments/js}"></th:block>
+</div>
+
+<div id="cookieBackdrop" class="cookie-backdrop"></div>
+
+<!-- Cookie Consent Popup -->
+<div id="cookieConsent" class="cookie-consent">
+    <div class="cookie-message">
+        <p>Този сайт използва "бисквитки" за подобряване на потребителското изживяване. Прочетете нашата
+            <a th:href="@{/cookiePolicy}" target="_blank">политика за бисквитките</a>.
+        </p>
+        <button id="acceptCookies">Приемам</button>
+    </div>
+</div>
+
+<script th:src="@{/js/cookie.js}"></script>
 <!-- Back to Top -->
 <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i
         class="fa fa-arrow-up"></i></a>
