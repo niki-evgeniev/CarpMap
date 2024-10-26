@@ -27,6 +27,7 @@ public class ProfileController {
     private final String EDIT = "profile-edit";
     private final String SETTINGS = "profile-settings";
     private final String CHANGE_PASSWORD = "profile-change-password";
+    private final String CHANGE_ROLE = "profile-change-role";
     private final ProfileService profileService;
 
     public ProfileController(ProfileService profileService) {
@@ -35,8 +36,7 @@ public class ProfileController {
     }
 
     @GetMapping("details")
-    public ModelAndView details(@RequestParam(value = "activeTab", required = false)
-                                String activeTab,
+    public ModelAndView details(@RequestParam(value = "activeTab", required = false) String activeTab,
                                 @AuthenticationPrincipal UserDetails userDetails) {
 //        PROFILE USER
 
@@ -107,7 +107,8 @@ public class ProfileController {
         return modelAndView;
     }
 
-    private void getEditDTOAndNewPasswordDTO(ModelAndView modelAndView, ProfileInfoDTO profileService, Long profileEditDTO) {
+    private void getEditDTOAndNewPasswordDTO(ModelAndView modelAndView, ProfileInfoDTO profileService,
+                                             Long profileEditDTO) {
         modelAndView.addObject("profileInfoDTO", profileService);
         ProfileNewPasswordDTO profileNewPasswordDTO = new ProfileNewPasswordDTO();
         profileNewPasswordDTO.setId(profileEditDTO);

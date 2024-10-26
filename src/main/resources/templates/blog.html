@@ -31,6 +31,7 @@
 <th:block th:replace="~{fragments/topbar}"></th:block>
 <th:block th:replace="~{fragments/navbar}"></th:block>
 <!-- Header Start -->
+<main>
 <div class="container-fluid bg-breadcrumb">
     <div class="container text-center py-5" style="max-width: 900px;">
         <h3 class="text-white display-3 mb-4">Our Blog</h3>
@@ -94,21 +95,23 @@
             </div>
         </div>
     </div>
+    <!-- Blog End -->
 </div>
-<!-- Blog End -->
-<!-- Subscribe Start -->
-<th:block th:replace="~{fragments/subscribe}"></th:block>
-<!-- Subscribe End -->
+    <!-- Subscribe Start -->
+    <div><th:block th:replace="~{fragments/subscribe}"></th:block></div>
+    <!-- Subscribe End -->
+</main>
 <!-- Footer Start -->
+<footer>
 <th:block th:replace="~{fragments/footer}"></th:block>
+</footer>
 <!-- Footer End -->
+<!-- JavaScript Libraries -->
+<div>
+<th:block th:replace="~{fragments/js}"></th:block></div>
 
 <!-- Back to Top -->
 <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>
-
-<!-- JavaScript Libraries -->
-<th:block th:replace="~{fragments/js}"></th:block>
-
 
 </body>
 

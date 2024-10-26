@@ -26,9 +26,11 @@
     <th:block th:replace="~{fragments/head}"></th:block>
 </head>
 <body>
+
 <th:block th:replace="~{fragments/topbar}"></th:block>
 <th:block th:replace="~{fragments/navbar}"></th:block>
 <!-- About Start -->
+<main>
 <div class="container-fluid about py-5">
     <div class="container py-5">
         <div class="row g-5 align-items-center">
@@ -145,13 +147,21 @@
 </div>
 <!-- Travel Guide End -->
 <!-- Subscribe Start -->
+    <div>
 <th:block th:replace="~{fragments/subscribe}"></th:block>
+    </div>
 <!-- Subscribe End -->
+</main>
 <!-- Footer Start -->
+<footer>
 <th:block th:replace="~{fragments/footer}"></th:block>
+</footer>
 <!-- Footer End -->
+
 <!-- JavaScript Libraries -->
+<div>
 <th:block th:replace="~{fragments/js}"></th:block>
+</div>
 <!-- Back to Top -->
 <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>
 </body>
