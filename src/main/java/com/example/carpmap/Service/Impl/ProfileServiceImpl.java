@@ -7,6 +7,7 @@ import com.example.carpmap.Models.DTO.Profile.ProfileNewPasswordDTO;
 import com.example.carpmap.Models.DTO.Users.ErrorRegister;
 import com.example.carpmap.Models.Entity.User;
 import com.example.carpmap.Models.Entity.UserRole;
+import com.example.carpmap.Models.Enums.RoleType;
 import com.example.carpmap.Repository.UserRepository;
 import com.example.carpmap.Service.ProfileService;
 import org.modelmapper.ModelMapper;
@@ -45,10 +46,10 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public Page<ProfileAllDTO> findAllUsers(Pageable pageable) {
+    public Page<ProfileAllDTO> findAllUsers(Pageable pageable, UserDetails userDetails) {
 
-        Page<User> all = userRepository.findAll(pageable);
-        Page<ProfileAllDTO> allProfiles = all
+        Page<User> allByUsernameIsNotLoggedUser = userRepository.findAllByUsernameIsNot(pageable, userDetails.getUsername());
+        Page<ProfileAllDTO> allProfiles = allByUsernameIsNotLoggedUser
                 .map(profile -> {
                     ProfileAllDTO map = modelMapper.map(profile, ProfileAllDTO.class);
                     List<UserRole> roles = profile.getRoles();
@@ -60,6 +61,7 @@ public class ProfileServiceImpl implements ProfileService {
                         map.setRole("USER");
                     }
                     return map;
+
                 });
         System.out.printf(SUCCESSFUL_LOAD_INFORMATION_ABOUT_USERS);
         return allProfiles;
@@ -75,6 +77,7 @@ public class ProfileServiceImpl implements ProfileService {
             throw new UsernameNotFoundException(errorMessage);
         }
         ProfileInfoDTO profileDTO = modelMapper.map(profile, ProfileInfoDTO.class);
+        setRoleForUser(profile, profileDTO);
         String format = String.format(SUCCESSFUL_FIND_PROFILE);
         LOGGER.info(format);
         return profileDTO;
@@ -88,8 +91,22 @@ public class ProfileServiceImpl implements ProfileService {
             LOGGER.error(errorMessage);
         }
         ProfileInfoDTO profileDTO = modelMapper.map(profile, ProfileInfoDTO.class);
+        setRoleForUser(profile, profileDTO);
         System.out.println("SUCCESSFUL find user Profile ID");
         return profileDTO;
+    }
+
+    private static void setRoleForUser(Optional<User> profile, ProfileInfoDTO profileDTO) {
+
+        if (profile.isPresent()) {
+            if (profile.get().getRoles().size() == 3) {
+                profileDTO.setRoleType(RoleType.ADMIN);
+            } else if (profile.get().getRoles().size() == 2) {
+                profileDTO.setRoleType(RoleType.MODERATOR);
+            } else {
+                profileDTO.setRoleType(RoleType.USER);
+            }
+        }
     }
 
     @Override

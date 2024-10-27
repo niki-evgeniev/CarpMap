@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface ProfileService {
 
-    Page<ProfileAllDTO> findAllUsers(Pageable pageable);
+    Page<ProfileAllDTO> findAllUsers(Pageable pageable, UserDetails userDetails);
 
     ProfileInfoDTO findProfile(UserDetails userDetails);
 

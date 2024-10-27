@@ -1,5 +1,6 @@
 package com.example.carpmap.Models.DTO.Profile;
 
+import com.example.carpmap.Models.Enums.RoleType;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotEmpty;
@@ -44,6 +45,8 @@ public class ProfileInfoDTO {
     private String linkedIn;
 
     private String twitter;
+
+    private RoleType roleType;
 
     public ProfileInfoDTO() {
     }
@@ -174,5 +177,13 @@ public class ProfileInfoDTO {
 
     public void setTwitter(String twitter) {
         this.twitter = twitter;
+    }
+
+    public RoleType getRoleType() {
+        return roleType;
+    }
+
+    public void setRoleType(RoleType roleType) {
+        this.roleType = roleType;
     }
 }
