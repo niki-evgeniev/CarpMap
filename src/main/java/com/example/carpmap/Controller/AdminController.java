@@ -8,11 +8,11 @@ import com.example.carpmap.Service.IpAddressService;
 import com.example.carpmap.Service.ProfileService;
 import com.example.carpmap.Service.ServerInfoService;
 import com.example.carpmap.Utility.AppInfo;
-import org.aspectj.apache.bcel.classfile.Field;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -72,9 +72,10 @@ public class AdminController {
 
     @GetMapping("profiles")
     public ModelAndView profiles(
-            @PageableDefault(size = 9, sort = "id") Pageable pageable) {
+            @PageableDefault(size = 9, sort = "id") Pageable pageable,
+            @AuthenticationPrincipal  UserDetails userDetails) {
         ModelAndView modelAndView = new ModelAndView("adminAllProfiles");
-        Page<ProfileAllDTO> allProfiles = profileService.findAllUsers(pageable);
+        Page<ProfileAllDTO> allProfiles = profileService.findAllUsers(pageable, userDetails);
         modelAndView.addObject("allProfiles", allProfiles);
         return modelAndView;
     }
