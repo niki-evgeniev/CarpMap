@@ -10,6 +10,8 @@ To access the home page, open a -> https://carpmap.online
 - Search for reservoirs by name or type
 - Detailed reservoir information
 - User profile management
+  - change password
+  - change user details info ( email, facebook , twiter and more )
 - User register management
 - Blog posts
 - Contact form
@@ -17,6 +19,9 @@ To access the home page, open a -> https://carpmap.online
   - IP management for access control
   - IP to see visitor last day/month/new for today
   - BANNED Ip
+  - Change password
+  - Change user roles
+  - Change to other user details info ( email, facebook , twiter and more )
 - Mail system
   - Receive and delete messages
   - View message details
