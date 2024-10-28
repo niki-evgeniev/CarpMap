@@ -1,10 +1,8 @@
 package com.example.carpmap.Service;
 
-import com.example.carpmap.Models.DTO.Profile.ProfileAllDTO;
-import com.example.carpmap.Models.DTO.Profile.ProfileEditDTO;
-import com.example.carpmap.Models.DTO.Profile.ProfileInfoDTO;
-import com.example.carpmap.Models.DTO.Profile.ProfileNewPasswordDTO;
+import com.example.carpmap.Models.DTO.Profile.*;
 import com.example.carpmap.Models.DTO.Users.ErrorRegister;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,5 +23,6 @@ public interface ProfileService {
 
     List<ErrorRegister> changePassword(ProfileNewPasswordDTO profileNewPasswordDTO);
 
+    void changeRoles(ProfileChangeRoleDTO profileChangeRoleDTO);
 }
 

@@ -1,14 +1,12 @@
 package com.example.carpmap.Service.Impl;
 
-import com.example.carpmap.Models.DTO.Profile.ProfileAllDTO;
-import com.example.carpmap.Models.DTO.Profile.ProfileEditDTO;
-import com.example.carpmap.Models.DTO.Profile.ProfileInfoDTO;
-import com.example.carpmap.Models.DTO.Profile.ProfileNewPasswordDTO;
+import com.example.carpmap.Models.DTO.Profile.*;
 import com.example.carpmap.Models.DTO.Users.ErrorRegister;
 import com.example.carpmap.Models.Entity.User;
 import com.example.carpmap.Models.Entity.UserRole;
 import com.example.carpmap.Models.Enums.RoleType;
 import com.example.carpmap.Repository.UserRepository;
+import com.example.carpmap.Repository.UserRoleRepository;
 import com.example.carpmap.Service.ProfileService;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -25,6 +23,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.example.carpmap.Cammon.ErrorMessages.*;
 import static com.example.carpmap.Cammon.SuccessfulMessages.*;
@@ -37,12 +37,14 @@ public class ProfileServiceImpl implements ProfileService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
+    private final UserRoleRepository userRoleRepository;
 
     public ProfileServiceImpl(UserRepository userRepository, ModelMapper modelMapper,
-                              PasswordEncoder passwordEncoder) {
+                              PasswordEncoder passwordEncoder, UserRoleRepository userRoleRepository) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
+        this.userRoleRepository = userRoleRepository;
     }
 
     @Override
@@ -164,6 +166,34 @@ public class ProfileServiceImpl implements ProfileService {
             }
         }
         return err;
+    }
+
+    @Override
+    public void changeRoles(ProfileChangeRoleDTO profileChangeRoleDTO) {
+        Optional<User> findUser = userRepository.findById(profileChangeRoleDTO.getId());
+        if (findUser.isPresent()) {
+            User userAddRole = findUser.get();
+            if (profileChangeRoleDTO.getRoleType().equals(RoleType.MODERATOR)) {
+                
+                List<UserRole> allRoles = userRoleRepository.findAll();
+                userAddRole.setRoles(List.of(allRoles.get(1), allRoles.get(2)));
+
+                System.out.println();
+
+            } else if (profileChangeRoleDTO.getRoleType().equals(RoleType.ADMIN)) {
+
+                List<UserRole> roles = Stream.of(RoleType.ADMIN, RoleType.MODERATOR, RoleType.USER)
+                        .map(roleType -> {
+                            UserRole role = new UserRole();
+                            role.setRoleType(roleType);
+                            return role;
+                        }).toList();
+                userRoleRepository.saveAll(roles);
+                userAddRole.setRoles(roles);
+                System.out.println();
+            }
+            userRepository.save(userAddRole);
+        }
     }
 
 }
