@@ -23,8 +23,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 import static com.example.carpmap.Cammon.ErrorMessages.*;
 import static com.example.carpmap.Cammon.SuccessfulMessages.*;
@@ -173,24 +172,24 @@ public class ProfileServiceImpl implements ProfileService {
         Optional<User> findUser = userRepository.findById(profileChangeRoleDTO.getId());
         if (findUser.isPresent()) {
             User userAddRole = findUser.get();
-            if (profileChangeRoleDTO.getRoleType().equals(RoleType.MODERATOR)) {
-                
-                List<UserRole> allRoles = userRoleRepository.findAll();
-                userAddRole.setRoles(List.of(allRoles.get(1), allRoles.get(2)));
+            List<UserRole> allRoles = userRoleRepository.findAll();
+            UserRole admin = allRoles.get(0);
+            UserRole moderator = allRoles.get(1);
+            UserRole user = allRoles.get(2);
 
-                System.out.println();
+            if (profileChangeRoleDTO.getRoleType().equals(RoleType.MODERATOR)) {
+                userAddRole.setRoles(List.of(moderator, user));
+                String msg  = String.format(SUCCESSFUL_CHANGE_TYPE_TO_MODERATOR, userAddRole.getUsername());
+                LOGGER.error(msg);
 
             } else if (profileChangeRoleDTO.getRoleType().equals(RoleType.ADMIN)) {
-
-                List<UserRole> roles = Stream.of(RoleType.ADMIN, RoleType.MODERATOR, RoleType.USER)
-                        .map(roleType -> {
-                            UserRole role = new UserRole();
-                            role.setRoleType(roleType);
-                            return role;
-                        }).toList();
-                userRoleRepository.saveAll(roles);
-                userAddRole.setRoles(roles);
-                System.out.println();
+                userAddRole.setRoles(List.of(admin,moderator, user));
+                String msg  = String.format(SUCCESSFUL_CHANGE_TYPE_TO_ADMIN, userAddRole.getUsername());
+                LOGGER.error(msg, userAddRole.getUsername());
+            } else {
+                userAddRole.setRoles(List.of(user));
+                String msg  = String.format(SUCCESSFUL_CHANGE_TYPE_TO_USER, userAddRole.getUsername());
+                LOGGER.error(msg, userAddRole.getUsername());
             }
             userRepository.save(userAddRole);
         }

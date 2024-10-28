@@ -7,7 +7,7 @@
     <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
             <a href="/" class="navbar-brand p-0">
-                <h1 class="m-0"><i class="fa fa-map-marker-alt me-3"></i>CarpMap</h1>
+                <h1 class="m-0"><i class="fa fa-fish me-3"></i>CarpMap</h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars"></span>
@@ -26,16 +26,19 @@
                     <a th:href="@{/about}"
                        th:classappend="${currentUrl != null and currentUrl.startsWith('/about')} ? 'active'"
                        class="nav-item nav-link">За нас</a>
-                    <div sec:authorize="isAuthenticated() and hasRole('ADMIN') or hasRole('MODERATOR')"
+                    <div sec:authorize="isAuthenticated() and hasRole('MODERATOR')"
                          class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Admin Panel</a>
                         <div class="dropdown-menu m-0">
-                            <a sec:authorize="isAuthenticated() and hasRole('ADMIN')"
-                               th:href="@{/reservoirs/add/reservoirAdd}" class="dropdown-item">Add Reservoir</a>
-                            <a href="tour.html" class="dropdown-item">Add blog</a>
+                            <a sec:authorize="isAuthenticated() and hasRole('MODERATOR')"
+                               th:href="@{/reservoirs/add/reservoirAdd}"
+                               class="dropdown-item">Add Reservoir</a>
+                            <a href="tour.html"
+                               sec:authorize="isAuthenticated() and hasRole('MODERATOR')"
+                               class="dropdown-item">Add blog</a>
                             <a sec:authorize="isAuthenticated() and hasRole('ADMIN')"
                                th:href="@{/admin/profiles}" class="dropdown-item">Manage users</a>
-                            <a sec:authorize="isAuthenticated() and hasRole('ADMIN')"
+                            <a sec:authorize="isAuthenticated() and hasRole('MODERATOR')"
                                th:href="@{/admin/ip/{type}(type = all)}"
                                class="dropdown-item">Info IP</a>
                         </div>

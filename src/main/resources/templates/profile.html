@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -36,7 +37,8 @@
                                     Profile
                                 </button>
                             </li>
-                            <li class="nav-item">
+                            <li sec:authorize="isAuthenticated() and hasRole('ADMIN')"
+                                class="nav-item">
                                 <button th:classappend="${activeTab == 'profile-settings'} ? 'active' : ''"
                                         class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">
                                     Settings
@@ -48,7 +50,8 @@
                                     Change Password
                                 </button>
                             </li>
-                            <li class="nav-item">
+                            <li sec:authorize="isAuthenticated() and hasRole('ADMIN')"
+                                class="nav-item" >
                                 <button th:classappend="${activeTab == 'profile-roles'} ? 'active' : ''"
                                         class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-roles">
                                     Roles

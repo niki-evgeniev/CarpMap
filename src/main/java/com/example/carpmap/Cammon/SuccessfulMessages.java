@@ -82,5 +82,15 @@ public class SuccessfulMessages {
     public static final String SUCCESSFUL_CHANGE_IS_BANNED =
             "Change options isBanned : %s for ip %s";
 
+    public static final String SUCCESSFUL_CHANGE_TYPE_TO_USER =
+            "Change role type to USER for user: %s";
+
+    public static final String SUCCESSFUL_CHANGE_TYPE_TO_MODERATOR =
+            "Change role type to MODERATOR for user: %s";
+
+    public static final String SUCCESSFUL_CHANGE_TYPE_TO_ADMIN =
+            "Change role type to ADMIN for user: %s";
+
+
 
 }
