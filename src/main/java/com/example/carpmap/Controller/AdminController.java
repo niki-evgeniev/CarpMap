@@ -1,24 +1,23 @@
 package com.example.carpmap.Controller;
 
-import com.example.carpmap.Models.DTO.Profile.ProfileAllDTO;
-import com.example.carpmap.Models.DTO.Profile.ProfileEditDTO;
-import com.example.carpmap.Models.DTO.Profile.ProfileInfoDTO;
-import com.example.carpmap.Models.DTO.Profile.ProfileNewPasswordDTO;
+import com.example.carpmap.Models.DTO.Profile.*;
+import com.example.carpmap.Models.Enums.RoleType;
 import com.example.carpmap.Service.IpAddressService;
 import com.example.carpmap.Service.ProfileService;
 import com.example.carpmap.Service.ServerInfoService;
 import com.example.carpmap.Utility.AppInfo;
-import org.aspectj.apache.bcel.classfile.Field;
-import org.modelmapper.ModelMapper;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 import oshi.SystemInfo;
@@ -28,6 +27,7 @@ import oshi.hardware.NetworkIF;
 import java.io.File;
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
+import java.util.List;
 
 
 @Controller
@@ -70,11 +70,38 @@ public class AdminController {
         return modelAndView;
     }
 
+    @PostMapping("change-roles/{id}")
+    public ModelAndView changeUserRoles(@Valid ProfileChangeRoleDTO profileChangeRoleDTO,
+                                        @PathVariable("id") Long id,
+                                        @AuthenticationPrincipal UserDetails userDetails,
+                                        BindingResult bindingResult) {
+
+        boolean checkIsAdmin = checkForAdminRole(userDetails);
+        if (checkIsAdmin && !bindingResult.hasErrors()){
+            profileService.changeRoles(profileChangeRoleDTO);
+        }
+
+        return new ModelAndView("redirect:/admin/details/byId/" + id);
+    }
+
+    private static boolean checkForAdminRole(UserDetails userDetails) {
+        String roleAdmin = "ROLE_" + RoleType.ADMIN;
+        boolean hasRoleAdmin = userDetails.getAuthorities().stream()
+                .anyMatch(authority -> authority.getAuthority().equals(roleAdmin));
+        return hasRoleAdmin;
+    }
+
+    @ModelAttribute
+    ProfileChangeRoleDTO profileChangeRoleDTO() {
+        return new ProfileChangeRoleDTO();
+    }
+
     @GetMapping("profiles")
     public ModelAndView profiles(
-            @PageableDefault(size = 9, sort = "id") Pageable pageable) {
+            @PageableDefault(size = 9, sort = "id") Pageable pageable,
+            @AuthenticationPrincipal UserDetails userDetails) {
         ModelAndView modelAndView = new ModelAndView("adminAllProfiles");
-        Page<ProfileAllDTO> allProfiles = profileService.findAllUsers(pageable);
+        Page<ProfileAllDTO> allProfiles = profileService.findAllUsers(pageable, userDetails);
         modelAndView.addObject("allProfiles", allProfiles);
         return modelAndView;
     }

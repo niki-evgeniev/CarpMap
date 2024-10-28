@@ -15,7 +15,7 @@
     <!-- Open Graph тагове за социални мрежи -->
     <meta property="og:title" th:content="'Язовир ' + ${details.name}">
     <meta property="og:description" th:content="'Информация за ' + ${details.name}">
-    <meta property="og:url" th:content="@{https://carpmap.online/yazovir/{id}(id = *{details.id})}">
+    <meta property="og:url" th:content="@{https://carpmap.online/reservoirs/{id}(id = *{details.urlName})}">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://carpmap.online/path-to-your-image.jpg">
 
@@ -23,9 +23,10 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" th:content="'Язовир ' + ${details.name}">
     <meta name="twitter:description" th:content="'Информация за ' + ${details.name}">
-    <meta name="twitter:url" th:content="@{https://carpmap.online/yazovir/{id}(id = *{details.id})}">
+    <meta name="twitter:url" th:content="@{https://carpmap.online/reservoirs/{id}(id = *{details.urlName})}">
     <meta name="twitter:image"
           content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
+    <link rel="canonical" th:href="@{https://carpmap.online/reservoirs/{id}(id = *{details.urlName})}" />
     <th:block th:replace="~{fragments/head}"></th:block>
 </head>
 <body>

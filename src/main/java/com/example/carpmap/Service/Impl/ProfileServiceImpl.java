@@ -1,13 +1,12 @@
 package com.example.carpmap.Service.Impl;
 
-import com.example.carpmap.Models.DTO.Profile.ProfileAllDTO;
-import com.example.carpmap.Models.DTO.Profile.ProfileEditDTO;
-import com.example.carpmap.Models.DTO.Profile.ProfileInfoDTO;
-import com.example.carpmap.Models.DTO.Profile.ProfileNewPasswordDTO;
+import com.example.carpmap.Models.DTO.Profile.*;
 import com.example.carpmap.Models.DTO.Users.ErrorRegister;
 import com.example.carpmap.Models.Entity.User;
 import com.example.carpmap.Models.Entity.UserRole;
+import com.example.carpmap.Models.Enums.RoleType;
 import com.example.carpmap.Repository.UserRepository;
+import com.example.carpmap.Repository.UserRoleRepository;
 import com.example.carpmap.Service.ProfileService;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -25,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 import static com.example.carpmap.Cammon.ErrorMessages.*;
 import static com.example.carpmap.Cammon.SuccessfulMessages.*;
 
@@ -36,19 +36,21 @@ public class ProfileServiceImpl implements ProfileService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
     private final PasswordEncoder passwordEncoder;
+    private final UserRoleRepository userRoleRepository;
 
     public ProfileServiceImpl(UserRepository userRepository, ModelMapper modelMapper,
-                              PasswordEncoder passwordEncoder) {
+                              PasswordEncoder passwordEncoder, UserRoleRepository userRoleRepository) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.passwordEncoder = passwordEncoder;
+        this.userRoleRepository = userRoleRepository;
     }
 
     @Override
-    public Page<ProfileAllDTO> findAllUsers(Pageable pageable) {
+    public Page<ProfileAllDTO> findAllUsers(Pageable pageable, UserDetails userDetails) {
 
-        Page<User> all = userRepository.findAll(pageable);
-        Page<ProfileAllDTO> allProfiles = all
+        Page<User> allByUsernameIsNotLoggedUser = userRepository.findAllByUsernameIsNot(pageable, userDetails.getUsername());
+        Page<ProfileAllDTO> allProfiles = allByUsernameIsNotLoggedUser
                 .map(profile -> {
                     ProfileAllDTO map = modelMapper.map(profile, ProfileAllDTO.class);
                     List<UserRole> roles = profile.getRoles();
@@ -60,6 +62,7 @@ public class ProfileServiceImpl implements ProfileService {
                         map.setRole("USER");
                     }
                     return map;
+
                 });
         System.out.printf(SUCCESSFUL_LOAD_INFORMATION_ABOUT_USERS);
         return allProfiles;
@@ -75,6 +78,7 @@ public class ProfileServiceImpl implements ProfileService {
             throw new UsernameNotFoundException(errorMessage);
         }
         ProfileInfoDTO profileDTO = modelMapper.map(profile, ProfileInfoDTO.class);
+        setRoleForUser(profile, profileDTO);
         String format = String.format(SUCCESSFUL_FIND_PROFILE);
         LOGGER.info(format);
         return profileDTO;
@@ -88,8 +92,22 @@ public class ProfileServiceImpl implements ProfileService {
             LOGGER.error(errorMessage);
         }
         ProfileInfoDTO profileDTO = modelMapper.map(profile, ProfileInfoDTO.class);
+        setRoleForUser(profile, profileDTO);
         System.out.println("SUCCESSFUL find user Profile ID");
         return profileDTO;
+    }
+
+    private static void setRoleForUser(Optional<User> profile, ProfileInfoDTO profileDTO) {
+
+        if (profile.isPresent()) {
+            if (profile.get().getRoles().size() == 3) {
+                profileDTO.setRoleType(RoleType.ADMIN);
+            } else if (profile.get().getRoles().size() == 2) {
+                profileDTO.setRoleType(RoleType.MODERATOR);
+            } else {
+                profileDTO.setRoleType(RoleType.USER);
+            }
+        }
     }
 
     @Override
@@ -147,6 +165,34 @@ public class ProfileServiceImpl implements ProfileService {
             }
         }
         return err;
+    }
+
+    @Override
+    public void changeRoles(ProfileChangeRoleDTO profileChangeRoleDTO) {
+        Optional<User> findUser = userRepository.findById(profileChangeRoleDTO.getId());
+        if (findUser.isPresent()) {
+            User userAddRole = findUser.get();
+            List<UserRole> allRoles = userRoleRepository.findAll();
+            UserRole admin = allRoles.get(0);
+            UserRole moderator = allRoles.get(1);
+            UserRole user = allRoles.get(2);
+
+            if (profileChangeRoleDTO.getRoleType().equals(RoleType.MODERATOR)) {
+                userAddRole.setRoles(List.of(moderator, user));
+                String msg  = String.format(SUCCESSFUL_CHANGE_TYPE_TO_MODERATOR, userAddRole.getUsername());
+                LOGGER.error(msg);
+
+            } else if (profileChangeRoleDTO.getRoleType().equals(RoleType.ADMIN)) {
+                userAddRole.setRoles(List.of(admin,moderator, user));
+                String msg  = String.format(SUCCESSFUL_CHANGE_TYPE_TO_ADMIN, userAddRole.getUsername());
+                LOGGER.error(msg, userAddRole.getUsername());
+            } else {
+                userAddRole.setRoles(List.of(user));
+                String msg  = String.format(SUCCESSFUL_CHANGE_TYPE_TO_USER, userAddRole.getUsername());
+                LOGGER.error(msg, userAddRole.getUsername());
+            }
+            userRepository.save(userAddRole);
+        }
     }
 
 }

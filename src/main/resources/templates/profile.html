@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -36,7 +37,8 @@
                                     Profile
                                 </button>
                             </li>
-                            <li class="nav-item">
+                            <li sec:authorize="isAuthenticated() and hasRole('ADMIN')"
+                                class="nav-item">
                                 <button th:classappend="${activeTab == 'profile-settings'} ? 'active' : ''"
                                         class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-settings">
                                     Settings
@@ -48,7 +50,8 @@
                                     Change Password
                                 </button>
                             </li>
-                            <li class="nav-item">
+                            <li sec:authorize="isAuthenticated() and hasRole('ADMIN')"
+                                class="nav-item" >
                                 <button th:classappend="${activeTab == 'profile-roles'} ? 'active' : ''"
                                         class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-roles">
                                     Roles
@@ -494,26 +497,31 @@
                             <div th:classappend="${activeTab == 'profile-roles'} ? 'show active' : ''"
                                  class="tab-pane fade pt-3" id="profile-roles">
                                 <!-- Settings Form -->
-                                <form>
+                                <form th:method="POST"
+                                      th:action="@{/admin/change-roles/{id}(id = *{id})}">
                                     <div class="row mb-3">
-                                        <label for="profile-roles" class="col-md-4 col-lg-3 col-form-label">Email
-                                            Notifications</label>
-                                        <div class="col-md-8 col-lg-9">
-                                            <div class="form-check">
-                                                <input class="form-check-input"
-                                                       type="checkbox"
-                                                       id="test"
-                                                       checked>
-                                                <label class="form-check-label"
-                                                       for="changesMade">
-                                                    Changes made to your account
-                                                </label>
-                                            </div>
+                                        <span th:text="*{id}"></span>
+                                        <label class="col-sm-2 col-form-label">Select type</label>
+                                        <div class="col-sm-10">
+                                            <select th:field="*{roleType}"
+                                                    th:errorclass="is-invalid"
+                                                    id="reservoirType"
+                                                    name="reservoirType"
+                                                    class="form-select" aria-label="Default select example">
+                                                <option value="">Open this select menu</option>
+                                                <option th:each="type : ${T(com.example.carpmap.Models.Enums.RoleType).values()}"
+                                                        th:text="${type}"
+                                                        th:value="${type}"
+                                                        value="1">One
+                                                </option>
+
+                                            </select>
                                         </div>
                                     </div>
 
                                     <div class="text-center">
-                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                        <button th:object="${profileChangeRoleDTO}"
+                                                type="submit" class="btn btn-primary">Change Role</button>
                                     </div>
                                 </form><!-- End settings Form -->
                             </div>

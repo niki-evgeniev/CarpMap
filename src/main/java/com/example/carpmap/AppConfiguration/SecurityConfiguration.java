@@ -36,21 +36,30 @@ public class SecurityConfiguration {
                         .requestMatchers("/js/**", "/lib/**").permitAll()
                         .requestMatchers("/", "/users/login", "/users/profile",
                                 "/users/login-error").permitAll()
-                        .requestMatchers("/reservoirs/reservoirsByType/ALL", "/reservoirs/{id}",
-                                "/reservoirs/reservoirsByType/{type}").permitAll()
+                        .requestMatchers("/reservoirs/reservoirsByType/reservoirs",
+                                "/reservoirs/reservoirsByType/private_reservoir",
+                                "/reservoirs/reservoirsByType/free_reservoir",
+                                "/reservoirs/reservoirsByType/countVisitors",
+                                "/reservoirs/{type}",
+                                "/reservoirs/reservoirsByType/{type}")
+                        .permitAll()
                         .requestMatchers("/donate", "/cookiePolicy").permitAll()
-                        .requestMatchers("/home", "/robots.txt", "/sitemap.xml").permitAll()
-                        .requestMatchers("/about", "/blog", "/contact").permitAll()
+                        .requestMatchers("/robots.txt", "/sitemap.xml").permitAll()
+                        .requestMatchers("/about", "/blog", "/contact", "/home").permitAll()
                         .requestMatchers("/subscribe/send").permitAll()
                         .requestMatchers("/gallery", "/search").permitAll()
-                        .requestMatchers("/reservoirs/reservoirsEdit/{id}")
+                        .requestMatchers("/reservoirs/add/reservoirAdd",
+                                "/reservoirs/reservoirsEdit/{id}",
+                        "/reservoirs/delete/{id}")
                         .hasAnyRole(RoleType.MODERATOR.name())
-                        .requestMatchers("/reservoirs/add/reservoirAdd")
-                        .hasAnyRole(RoleType.MODERATOR.name())
-                        .requestMatchers("/reservoirs/delete/{id}", "/profile/profiles")
+                        .requestMatchers("/profile/profiles")
                         .hasAnyRole(RoleType.ADMIN.name())
                         .requestMatchers("/reservoirs/gallery/{id}")
                         .hasAnyRole(RoleType.ADMIN.name())
+                        .requestMatchers("/admin/ip/all", "/admin/ip/findByUser", "/admin/ip/lastDay",
+                                "/admin/ip/thirtyDaysAgo", "/admin/ip/newForToday", "/admin/profiles",
+                                "/admin/details/byId/{id}")
+                        .hasAnyRole(RoleType.MODERATOR.name())
                         .anyRequest().authenticated()
 
         ).formLogin(

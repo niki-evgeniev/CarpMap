@@ -238,6 +238,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
             Optional<Reservoir> findId = reservoirRepository.findById(Long.valueOf(urlName));
             return modelMapper.map(findId, ReservoirIDDTO.class);
         }
+        System.out.println("RETURNING NULL FROM isReservoirId");
         return null;
     }
 
