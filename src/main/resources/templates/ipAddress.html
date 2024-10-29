@@ -195,7 +195,7 @@
                 <!-- Previous Page Button -->
                 <li th:class="${allIps.hasPrevious()} ? 'page-item' : 'page-item disabled'">
                     <a class="page-link" th:if="${allIps.hasPrevious()}"
-                       th:href="@{/admin/reservoirsByType/{type}(type=${type},page=${allIps.previousPageable().pageNumber})}"><-</a>
+                       th:href="@{/admin/ip/{type}(type=${type},page=${allIps.previousPageable().pageNumber})}"><-</a>
                 </li>
 
                 <!-- First Page -->
