@@ -194,7 +194,6 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     public ReservoirsDetailsDTO getDetailsByUrlName(String urlName) {
         Optional<Reservoir> findReservoir = reservoirRepository.findByUrlName(urlName);
         ReservoirsDetailsDTO reservoirsDetailsDTO = modelMapper.map(findReservoir, ReservoirsDetailsDTO.class);
-//        String name1 = reservoirsDetailsDTO.getName();
 
         List<FishNameDTO> fihsNameList = new ArrayList<>();
 

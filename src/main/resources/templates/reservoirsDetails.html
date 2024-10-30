@@ -9,23 +9,24 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="keywords" content="website">
     <meta name="title" th:content="'Язовир ' + ${details.name}">
-    <meta name="description" th:content="'Информация за ' + ${details.name} ">
+    <meta name="description" th:content="'Информация за язовир ' + ${details.name} ">
     <meta name="author" content="Nikolay">
     <meta name="robots" content="index, follow">
     <!-- Open Graph тагове за социални мрежи -->
     <meta property="og:title" th:content="'Язовир ' + ${details.name}">
-    <meta property="og:description" th:content="'Информация за ' + ${details.name}">
+    <meta property="og:description" th:content="'Информация за язовир ' + ${details.name}">
     <meta property="og:url" th:content="@{https://carpmap.online/reservoirs/{id}(id = *{details.urlName})}">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://carpmap.online/path-to-your-image.jpg">
+    <meta property="og:locate" content="bg_BG">
+    <meta property="og:image" th:content="${details.urlImage}">
 
     <!-- Twitter Card тагове -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" th:content="'Язовир ' + ${details.name}">
-    <meta name="twitter:description" th:content="'Информация за ' + ${details.name}">
+    <meta name="twitter:description" th:content="'Информация за язовир ' + ${details.name}">
     <meta name="twitter:url" th:content="@{https://carpmap.online/reservoirs/{id}(id = *{details.urlName})}">
     <meta name="twitter:image"
-          content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
+          th:content="${details.urlImage}">
     <link rel="canonical" th:href="@{https://carpmap.online/reservoirs/{id}(id = *{details.urlName})}" />
     <th:block th:replace="~{fragments/head}"></th:block>
 </head>
