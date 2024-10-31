@@ -32,8 +32,9 @@ public class SecurityConfiguration {
 
         httpSecurity.authorizeHttpRequests(
                 authorizeRequest -> authorizeRequest
+                        .requestMatchers("/error").permitAll()
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .requestMatchers("/js/**", "/lib/**").permitAll()
+                        .requestMatchers("/js/**", "/lib/**", "/images/**", "/css/**").permitAll()
                         .requestMatchers("/", "/users/login", "/users/profile",
                                 "/users/login-error").permitAll()
                         .requestMatchers("/reservoirs/reservoirsByType/reservoirs",
@@ -51,11 +52,11 @@ public class SecurityConfiguration {
                         .requestMatchers("/reservoirs/add/reservoirAdd",
                                 "/reservoirs/reservoirsEdit/{id}",
                         "/reservoirs/delete/{id}")
-                        .hasAnyRole(RoleType.MODERATOR.name())
+                            .hasAnyRole(RoleType.MODERATOR.name())
                         .requestMatchers("/profile/profiles")
-                        .hasAnyRole(RoleType.ADMIN.name())
+                            .hasAnyRole(RoleType.ADMIN.name())
                         .requestMatchers("/reservoirs/gallery/{id}")
-                        .hasAnyRole(RoleType.ADMIN.name())
+                            .hasAnyRole(RoleType.ADMIN.name())
                         .requestMatchers("/admin/ip/all", "/admin/ip/findByUser", "/admin/ip/lastDay",
                                 "/admin/ip/thirtyDaysAgo", "/admin/ip/newForToday", "/admin/profiles",
                                 "/admin/details/byId/{id}")
@@ -85,11 +86,7 @@ public class SecurityConfiguration {
                             .rememberMeParameter("remember-me")
                             .rememberMeCookieName("remember-me");
                 }
-        ).csrf(
-                csfr -> {
-//                    csfr.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-//                    csfr.ignoringRequestMatchers(new AntPathRequestMatcher("/"));
-                }
+
         ).portMapper(
                 httpSecurityHTTPS -> {
                     httpSecurityHTTPS
