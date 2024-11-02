@@ -34,7 +34,7 @@ public class SecurityConfiguration {
                 authorizeRequest -> authorizeRequest
                         .requestMatchers("/error").permitAll()
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .requestMatchers("/js/**", "/lib/**", "/images/**", "/css/**").permitAll()
+                        .requestMatchers("/js/**", "/images/**", "/css/**", "/lib/**").permitAll()
                         .requestMatchers("/", "/users/login", "/users/profile",
                                 "/users/login-error").permitAll()
                         .requestMatchers("/reservoirs/reservoirsByType/reservoirs",
