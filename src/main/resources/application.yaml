@@ -66,8 +66,8 @@ server:
   error:
     whitelabel:
       enabled: false
-    path: /error
     include-stacktrace: never
+    path: /error
 management:
   endpoints:
     web:
