@@ -4,12 +4,12 @@ spring:
     #    url: "jdbc:mysql://localhost:3306/carpmap?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
     #    username: root
     #    password: 12345
-    url: "jdbc:mysql://192.168.0.120:3306/carpmap?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=Europe/Sofia"
-    username: test
-    password: 12345
-#    url: "jdbc:mysql://localhost:3306/carpmap?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=Europe/Sofia"
-#    username: root
+#    url: "jdbc:mysql://192.168.0.120:3306/carpmap?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=Europe/Sofia"
+#    username: test
 #    password: 12345
+    url: "jdbc:mysql://localhost:3306/carpmap?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=Europe/Sofia"
+    username: root
+    password: 12345
   servlet:
     multipart:
       max-file-size: 1MB
@@ -35,6 +35,18 @@ spring:
       hibernate:
         format_sql: true
     defer-datasource-initialization: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username:  your_email@gmail.com
+    password: your_password
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
   #Cloudinary Properties
   #cloudinary:
   #api-key:
@@ -51,7 +63,11 @@ logging:
 #    org.apache.coyote.http11.Http11Processor: DEBUG
 #    org.apache.tomcat.util.net: DEBUG
 server:
-  port: 8080
+  error:
+    whitelabel:
+      enabled: false
+    include-stacktrace: never
+    path: /error
 management:
   endpoints:
     web:
@@ -63,4 +79,6 @@ management:
   metrics:
     enable:
       all: true
+
+
 

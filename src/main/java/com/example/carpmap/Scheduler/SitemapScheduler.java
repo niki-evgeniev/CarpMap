@@ -39,6 +39,13 @@ public class SitemapScheduler {
                 .build();
         webSitemapGenerator.addUrl(webSitemapUrlCarpMap);
 
+        WebSitemapUrl webSitemapUrlAnnounced = new WebSitemapUrl.Options("https://carpmap.online/announced")
+                .lastMod(day)
+                .changeFreq(ChangeFreq.DAILY)
+                .priority(1.0)
+                .build();
+        webSitemapGenerator.addUrl(webSitemapUrlAnnounced);
+
         WebSitemapUrl webSitemapUrlReservoirs = new WebSitemapUrl.Options("https://carpmap.online/reservoirs/reservoirsByType/reservoirs")
 //                .lastMod(Date.from(LocalDateTime.now().toInstant(ZoneOffset.UTC)))
                 .lastMod(day)
@@ -53,6 +60,8 @@ public class SitemapScheduler {
                 .priority(1.0)
                 .build();
         webSitemapGenerator.addUrl(webSitemapUrlBlog);
+
+
 
         WebSitemapUrl webSitemapUrlAbout = new WebSitemapUrl.Options("https://carpmap.online/about")
                 .lastMod(day)
@@ -90,7 +99,6 @@ public class SitemapScheduler {
         webSitemapGenerator.addUrl(webSitemapUrlFree);
 
         List<Reservoir> all = reservoirRepository.findAll();
-
         for (Reservoir reservoir : all) {
             WebSitemapUrl webSitemapUrlReservoir = new WebSitemapUrl.Options("https://carpmap.online/reservoirs/" + reservoir.getUrlName())
                     .lastMod(day)

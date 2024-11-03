@@ -3,17 +3,20 @@ package com.example.carpmap.AppConfiguration;
 import com.example.carpmap.Models.Enums.RoleType;
 import com.example.carpmap.Repository.UserRepository;
 import com.example.carpmap.Service.Impl.CarpUserService;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
 
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 
 
 @Configuration
@@ -33,35 +36,45 @@ public class SecurityConfiguration {
         httpSecurity.authorizeHttpRequests(
                 authorizeRequest -> authorizeRequest
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .requestMatchers("/js/**", "/lib/**").permitAll()
-                        .requestMatchers("/", "/users/login", "/users/profile",
+                        .requestMatchers("/js/**", "/images/**", "/css/**", "/lib/**").permitAll()
+//                        .requestMatchers("/error/**").permitAll()
+                        .requestMatchers("/", "/error","/error/**","/users/login", "/users/profile",
                                 "/users/login-error").permitAll()
                         .requestMatchers("/reservoirs/reservoirsByType/reservoirs",
                                 "/reservoirs/reservoirsByType/private_reservoir",
                                 "/reservoirs/reservoirsByType/free_reservoir",
                                 "/reservoirs/reservoirsByType/countVisitors",
                                 "/reservoirs/{type}",
-                                "/reservoirs/reservoirsByType/{type}")
-                        .permitAll()
+                                "/reservoirs/reservoirsByType/{type}").permitAll()
                         .requestMatchers("/donate", "/cookiePolicy").permitAll()
                         .requestMatchers("/robots.txt", "/sitemap.xml").permitAll()
-                        .requestMatchers("/about", "/blog", "/contact", "/home").permitAll()
+                        .requestMatchers("/about", "/blog", "/contact", "/home", "/announced").permitAll()
                         .requestMatchers("/subscribe/send").permitAll()
                         .requestMatchers("/gallery", "/search").permitAll()
                         .requestMatchers("/reservoirs/add/reservoirAdd",
                                 "/reservoirs/reservoirsEdit/{id}",
                         "/reservoirs/delete/{id}")
-                        .hasAnyRole(RoleType.MODERATOR.name())
+                            .hasAnyRole(RoleType.MODERATOR.name())
                         .requestMatchers("/profile/profiles")
-                        .hasAnyRole(RoleType.ADMIN.name())
+                            .hasAnyRole(RoleType.ADMIN.name())
                         .requestMatchers("/reservoirs/gallery/{id}")
-                        .hasAnyRole(RoleType.ADMIN.name())
+                            .hasAnyRole(RoleType.ADMIN.name())
                         .requestMatchers("/admin/ip/all", "/admin/ip/findByUser", "/admin/ip/lastDay",
                                 "/admin/ip/thirtyDaysAgo", "/admin/ip/newForToday", "/admin/profiles",
                                 "/admin/details/byId/{id}")
                         .hasAnyRole(RoleType.MODERATOR.name())
                         .anyRequest().authenticated()
 
+        ).exceptionHandling(
+                exceptionHandling -> exceptionHandling
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            if (request.getRequestURI().startsWith("/error")) {
+                                response.sendError(HttpServletResponse.SC_NOT_FOUND);
+                            } else {
+                                System.out.println("Redirecting to login due to unauthorized access: " + request.getRequestURI());
+                                response.sendRedirect("/users/login");
+                            }
+                        })
         ).formLogin(
                 formLogin -> {
                     formLogin
@@ -85,11 +98,7 @@ public class SecurityConfiguration {
                             .rememberMeParameter("remember-me")
                             .rememberMeCookieName("remember-me");
                 }
-        ).csrf(
-                csfr -> {
-//                    csfr.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-//                    csfr.ignoringRequestMatchers(new AntPathRequestMatcher("/"));
-                }
+
         ).portMapper(
                 httpSecurityHTTPS -> {
                     httpSecurityHTTPS
