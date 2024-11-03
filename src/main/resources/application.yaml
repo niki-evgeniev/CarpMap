@@ -63,11 +63,11 @@ logging:
 #    org.apache.coyote.http11.Http11Processor: DEBUG
 #    org.apache.tomcat.util.net: DEBUG
 server:
-  port: 8080
   error:
     whitelabel:
-      enabled: true
-    include-path: always
+      enabled: false
+    path: /error
+    include-stacktrace: never
 management:
   endpoints:
     web:
