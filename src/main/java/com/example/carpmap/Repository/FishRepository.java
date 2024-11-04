@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface FishRepository extends JpaRepository<Fish, Long> {
 
     Optional<Fish> findByFishName(String fishName);
-
 }
+

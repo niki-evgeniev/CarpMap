@@ -92,5 +92,4 @@ public class SuccessfulMessages {
             "Change role type to ADMIN for user: %s";
 
 
-
 }

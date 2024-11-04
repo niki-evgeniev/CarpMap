@@ -53,7 +53,7 @@ public class IpAddressController {
     }
 
     @ModelAttribute
-    SearchIpDTO searchIpDTO(){
+    SearchIpDTO searchIpDTO() {
         return new SearchIpDTO();
     }
 

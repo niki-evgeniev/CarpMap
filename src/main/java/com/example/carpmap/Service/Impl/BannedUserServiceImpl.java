@@ -24,7 +24,6 @@ public class BannedUserServiceImpl implements BannedUserService {
         if (ipAddress.isPresent()) {
             return ipAddress.get().getBanned();
         }
-
         return false;
     }
 }

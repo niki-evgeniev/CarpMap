@@ -179,16 +179,16 @@ public class ProfileServiceImpl implements ProfileService {
 
             if (profileChangeRoleDTO.getRoleType().equals(RoleType.MODERATOR)) {
                 userAddRole.setRoles(List.of(moderator, user));
-                String msg  = String.format(SUCCESSFUL_CHANGE_TYPE_TO_MODERATOR, userAddRole.getUsername());
+                String msg = String.format(SUCCESSFUL_CHANGE_TYPE_TO_MODERATOR, userAddRole.getUsername());
                 LOGGER.error(msg);
 
             } else if (profileChangeRoleDTO.getRoleType().equals(RoleType.ADMIN)) {
-                userAddRole.setRoles(List.of(admin,moderator, user));
-                String msg  = String.format(SUCCESSFUL_CHANGE_TYPE_TO_ADMIN, userAddRole.getUsername());
+                userAddRole.setRoles(List.of(admin, moderator, user));
+                String msg = String.format(SUCCESSFUL_CHANGE_TYPE_TO_ADMIN, userAddRole.getUsername());
                 LOGGER.error(msg, userAddRole.getUsername());
             } else {
                 userAddRole.setRoles(List.of(user));
-                String msg  = String.format(SUCCESSFUL_CHANGE_TYPE_TO_USER, userAddRole.getUsername());
+                String msg = String.format(SUCCESSFUL_CHANGE_TYPE_TO_USER, userAddRole.getUsername());
                 LOGGER.error(msg, userAddRole.getUsername());
             }
             userRepository.save(userAddRole);

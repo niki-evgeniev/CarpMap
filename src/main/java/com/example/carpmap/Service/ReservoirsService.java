@@ -29,5 +29,5 @@ public interface ReservoirsService {
 
     ReservoirsDetailsDTO getDetailsByUrlName(String urlName);
 
-    ReservoirIDDTO  isReservoirId(String urlName);
+    ReservoirIDDTO isReservoirId(String urlName);
 }

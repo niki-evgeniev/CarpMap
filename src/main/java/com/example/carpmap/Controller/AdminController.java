@@ -77,7 +77,7 @@ public class AdminController {
                                         BindingResult bindingResult) {
 
         boolean checkIsAdmin = checkForAdminRole(userDetails);
-        if (checkIsAdmin && !bindingResult.hasErrors()){
+        if (checkIsAdmin && !bindingResult.hasErrors()) {
             profileService.changeRoles(profileChangeRoleDTO);
         }
 

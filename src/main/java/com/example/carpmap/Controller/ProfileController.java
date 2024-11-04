@@ -97,7 +97,6 @@ public class ProfileController {
     }
 
 
-
     private ModelAndView getAllView(UserDetails userDetails) {
         ModelAndView modelAndView = new ModelAndView("profile");
         ProfileInfoDTO profileInfoDTO = profileService.findProfile(userDetails);

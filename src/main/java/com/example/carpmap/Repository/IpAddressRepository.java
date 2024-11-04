@@ -54,8 +54,4 @@ public interface IpAddressRepository extends JpaRepository<IpAddress, Long> {
                                          Pageable pageable);
 
 
-
-
-
-
 }

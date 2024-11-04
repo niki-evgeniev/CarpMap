@@ -9,7 +9,7 @@ import java.util.Map;
 @Component
 public class ConvertorBgToEn {
 
-    public String convertCyrillicToLatin(String name){
+    public String convertCyrillicToLatin(String name) {
         Map<Character, String> convertor = new HashMap<>();
         convertor.put('А', "A");
         convertor.put('Б', "B");

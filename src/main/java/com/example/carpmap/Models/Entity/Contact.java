@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "contact")
-public class Contact extends BaseEntity{
+public class Contact extends BaseEntity {
 
     @Column(name = "name", nullable = false)
     private String name;

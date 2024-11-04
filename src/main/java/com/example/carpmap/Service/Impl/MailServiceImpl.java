@@ -58,7 +58,7 @@ public class MailServiceImpl implements MailService {
     @Override
     public boolean deleteMail(Long id) {
         Optional<Contact> findToDeleteMail = contactRepository.findById(id);
-        if (findToDeleteMail.isPresent()){
+        if (findToDeleteMail.isPresent()) {
             contactRepository.deleteById(id);
             String errMsg = String.format(SUCCESSFUL_DELETE_MAIL, findToDeleteMail.get().getId());
             LOGGER.error(errMsg);

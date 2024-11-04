@@ -18,16 +18,16 @@ import static com.example.carpmap.Cammon.SuccessfulMessages.SUCCESSFUL_SAVE_NEW_
 public class CleanDateBaseIPScheduler {
 
     private final Logger LOGGER = LoggerFactory.getLogger(CleanDateBaseIPScheduler.class);
-    private final IpAddressRepository ipAddressRepository ;
+    private final IpAddressRepository ipAddressRepository;
 
     public CleanDateBaseIPScheduler(IpAddressRepository ipAddressRepository) {
         this.ipAddressRepository = ipAddressRepository;
     }
 
-//    @Scheduled(cron = "0 */1 * * * *")    // executing every 10 min
+    //    @Scheduled(cron = "0 */1 * * * *")    // executing every 10 min
     @Scheduled(cron = "0 0 * * * *")    // executing every 1 h
 //    @Scheduled(cron = "0 0 */2 * * *")    // executing every 2h
-    public void cleanDbIp(){
+    public void cleanDbIp() {
         List<IpAddress> allIpAddressInDB = ipAddressRepository.findAll();
         List<IpAddress> allNewIpAddressInDB = new ArrayList<>();
 

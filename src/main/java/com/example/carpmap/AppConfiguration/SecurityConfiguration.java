@@ -50,7 +50,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/gallery", "/search").permitAll()
                         .requestMatchers("/reservoirs/add/reservoirAdd",
                                 "/reservoirs/reservoirsEdit/{id}",
-                        "/reservoirs/delete/{id}")
+                                "/reservoirs/delete/{id}")
                         .hasAnyRole(RoleType.MODERATOR.name())
                         .requestMatchers("/profile/profiles")
                         .hasAnyRole(RoleType.ADMIN.name())

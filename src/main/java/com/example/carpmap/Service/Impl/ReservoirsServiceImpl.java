@@ -231,7 +231,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     }
 
     @Override
-    public ReservoirIDDTO  isReservoirId(String urlName) {
+    public ReservoirIDDTO isReservoirId(String urlName) {
 
         if (isNumeric(urlName)) {
             Long id = Long.parseLong(urlName);

@@ -21,6 +21,5 @@ public interface ReservoirRepository extends JpaRepository<Reservoir, Long> {
     Page<Reservoir> findAllByName(String name, Pageable pageable);
 
     Page<Reservoir> findAllByReservoirType(ReservoirType reservoirType, Pageable pageable);
-
 }
 

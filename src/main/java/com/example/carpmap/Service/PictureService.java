@@ -17,5 +17,4 @@ public interface PictureService {
     List<ReservoirEditGalleryDTO> findAllPicture(Long id);
 
     List<ReservoirPicturesDTO> getAllReservoirPictureByName(String name);
-
 }
