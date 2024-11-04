@@ -32,6 +32,17 @@
                 <br>
                 <div class="row">
                     <div class="col-md-4 py-4">
+                        <h4 class="mb-3 text-uppercase">INFO FOR VISITORS</h4>
+                        <h5>Visitors</h5>
+                        <th:block th:text="${counter}"></th:block>
+                        <br>
+                        <h5>Visitors last 24h</h5>
+                        <th:block th:text="${countLastDayVisitor}"></th:block>
+                        <br>
+                        <h5>Last new day visitors</h5>
+                        <th:block th:text="${newUserForToday}"></th:block>
+                    </div>
+                    <div class="col-md-4 py-4">
                         <h4 class="mb-3 text-uppercase">Memory</h4>
                         <h5>Used Memory</h5>
                         <th:block th:text="${usedMemory}"></th:block>
@@ -52,17 +63,6 @@
                         <br>
                         <h5>CPU load</h5>
                         <th:block th:text="${cpuLoad}"></th:block>
-                    </div>
-                    <div class="col-md-4 py-4">
-                        <h4 class="mb-3 text-uppercase">INFO FOR VISITORS</h4>
-                        <h5>Visitors</h5>
-                        <th:block th:text="${counter}"></th:block>
-                        <br>
-                        <h5>Visitors last 24h</h5>
-                        <th:block th:text="${countLastDayVisitor}"></th:block>
-                        <br>
-                        <h5>Last new day visitors</h5>
-                        <th:block th:text="${newUserForToday}"></th:block>
                     </div>
                     <div class="col-md-4 py-4">
                         <h4 class="mb-3 text-uppercase">INFO FROM DB</h4>
