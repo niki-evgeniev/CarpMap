@@ -51,7 +51,7 @@
                                 </button>
                             </li>
                             <li sec:authorize="isAuthenticated() and hasRole('ADMIN')"
-                                class="nav-item" >
+                                class="nav-item">
                                 <button th:classappend="${activeTab == 'profile-roles'} ? 'active' : ''"
                                         class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-roles">
                                     Roles
@@ -521,7 +521,8 @@
 
                                     <div class="text-center">
                                         <button th:object="${profileChangeRoleDTO}"
-                                                type="submit" class="btn btn-primary">Change Role</button>
+                                                type="submit" class="btn btn-primary">Change Role
+                                        </button>
                                     </div>
                                 </form><!-- End settings Form -->
                             </div>

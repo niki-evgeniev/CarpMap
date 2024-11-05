@@ -8,12 +8,14 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="keywords" content="website">
     <meta name="title" content="Язовири и водоемите в България">
-    <meta name="description" content="Всички язовири в България и водоеми. Намерете информация,снимки, видове риба, локация, местоположение за различните язовири и водоеми">
+    <meta name="description"
+          content="Всички язовири в България и водоеми. Намерете информация,снимки, видове риба, локация, местоположение за различните язовири и водоеми">
     <meta name="author" content="Nikolay">
     <meta name="robots" content="index, follow">
     <!-- Open Graph тагове за социални мрежи -->
     <meta property="og:title" content="Язовири и водоемите в България">
-    <meta property="og:description" content="Всички язовири в България и водоеми. Намерете информация,снимки, видове риба, локация, местоположение за различните язовири и водоеми">
+    <meta property="og:description"
+          content="Всички язовири в България и водоеми. Намерете информация,снимки, видове риба, локация, местоположение за различните язовири и водоеми">
     <meta property="og:url" content="https://carpmap.online/reservoirs/reservoirsByType/reservoirs">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://carpmap.online/path-to-your-image.jpg">
@@ -25,7 +27,7 @@
     <meta name="twitter:url" content="https://carpmap.online/reservoirs/reservoirsByType/reservoirs">
     <meta name="twitter:image"
           content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
-    <link rel="canonical" href="https://carpmap.online/reservoirs/reservoirsByType/reservoirs" />
+    <link rel="canonical" href="https://carpmap.online/reservoirs/reservoirsByType/reservoirs"/>
     <th:block th:replace="~{fragments/head}"></th:block>
 </head>
 
@@ -33,10 +35,10 @@
 <th:block th:replace="~{fragments/topbar}"></th:block>
 <th:block th:replace="~{fragments/navbar}"></th:block>
 <section id="explore" class="explore">
-<!--    <div>-->
-<!--        <h1 class="text-capitalize text-lg-end text-center mb-4  fw-bold">APPLICATION NOW IS IN TEST SORRY FOR-->
-<!--            INCONVENIENCE</h1>-->
-<!--    </div>-->
+    <!--    <div>-->
+    <!--        <h1 class="text-capitalize text-lg-end text-center mb-4  fw-bold">APPLICATION NOW IS IN TEST SORRY FOR-->
+    <!--            INCONVENIENCE</h1>-->
+    <!--    </div>-->
     <div class="container">
         <link rel="stylesheet" href="/css/style2.css">
         <div class="section-header">
@@ -91,9 +93,10 @@
                             <h3><a th:href="@{/reservoirs/{urlName}(urlName = *{urlName})}"
                                    th:text="'Язовир ' + *{name}"></a></h3>
                             <p class="explore-rating-price">
-                                <span class="explore-rating" >5.0</span>
+                                <span class="explore-rating">5.0</span>
                                 <a th:href="@{/reservoirs/{urlName}(urlName = *{urlName})}"
-                                   th:text="*{countVisitors != null ? countVisitors + ' Посетен' : 0 + ' Посетен'}" > 10 ratings</a>
+                                   th:text="*{countVisitors != null ? countVisitors + ' Посетен' : 0 + ' Посетен'}"> 10
+                                    ratings</a>
                                 <span th:if="*{countryCode == 'BG'}" class="explore-price-box">
 											Държава:
 											<span th:text=" България" class="explore-price">5$-300$</span>
@@ -157,7 +160,8 @@
         <li th:each="i : ${#numbers.sequence(allReservoir.number - 1, allReservoir.number + 1)}"
             th:if="${i > 0 && i < allReservoir.totalPages - 1}"
             th:class="${i == allReservoir.number} ? 'page-item active' : 'page-item'">
-            <a class="page-link" th:href="@{/reservoirs/reservoirsByType/{type}(type=${type},page=${i})}" th:text="${i + 1}"></a>
+            <a class="page-link" th:href="@{/reservoirs/reservoirsByType/{type}(type=${type},page=${i})}"
+               th:text="${i + 1}"></a>
         </li>
 
         <!-- Dots after the current page if needed -->
@@ -168,7 +172,8 @@
         <!-- Last Page -->
         <li th:if="${allReservoir.totalPages > 1}"
             th:class="${allReservoir.totalPages - 1 == allReservoir.number} ? 'page-item active' : 'page-item'">
-            <a class="page-link" th:href="@{/reservoirs/reservoirsByType/{type}(type=${type},page=${allReservoir.totalPages - 1})}"
+            <a class="page-link"
+               th:href="@{/reservoirs/reservoirsByType/{type}(type=${type},page=${allReservoir.totalPages - 1})}"
                th:text="${allReservoir.totalPages}"></a>
         </li>
 
@@ -182,10 +187,10 @@
 
 <br>
 <footer>
-<th:block th:replace="~{fragments/footer}"></th:block>
+    <th:block th:replace="~{fragments/footer}"></th:block>
 </footer>
 <div>
-<th:block th:replace="~{fragments/js}"></th:block>
+    <th:block th:replace="~{fragments/js}"></th:block>
 </div>
 <!-- Back to Top -->
 <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i
