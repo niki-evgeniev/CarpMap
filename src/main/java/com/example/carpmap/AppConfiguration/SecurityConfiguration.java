@@ -73,7 +73,8 @@ public class SecurityConfiguration {
                             if (request.getRequestURI().startsWith("/error")) {
                                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
                             } else {
-                                System.out.println("Redirecting to login due to unauthorized access: " + request.getRequestURI());
+                                System.out.println("Redirecting to login due to unauthorized access: " +
+                                        request.getRequestURI());
                                 response.sendRedirect("/users/login");
                             }
                         })
