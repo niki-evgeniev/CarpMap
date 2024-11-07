@@ -20,6 +20,9 @@
                     <a th:href="@{/announced}"
                        th:classappend="${currentUrl != null and currentUrl.startsWith('/announced')} ? 'active'"
                        class="nav-item nav-link">Обяви</a>
+                    <a th:href="@{/announced}"
+                       th:classappend="${currentUrl != null and currentUrl.startsWith('/announced')} ? 'active'"
+                       class="nav-item nav-link">Видове Риби</a>
                     <a th:href="@{/reservoirs/reservoirsByType/{type}(type = reservoirs)}"
                        th:classappend="${currentUrl != null and currentUrl.startsWith('/reservoirs/reservoirsByType')} ? 'active'"
                        class="nav-item nav-link">Язовири</a>
