@@ -57,3 +57,4 @@ To access the home page, open a -> https://carpmap.online
 - MySQL
 - Actuator
 - Oshi
+- Responsive design
