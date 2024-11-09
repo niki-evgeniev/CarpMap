@@ -37,7 +37,6 @@ public class SecurityConfiguration {
                 authorizeRequest -> authorizeRequest
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/js/**", "/images/**", "/css/**", "/lib/**").permitAll()
-//                        .requestMatchers("/error/**").permitAll()
                         .requestMatchers("/", "/error", "/error/**", "/users/login", "/users/profile",
                                 "/users/login-error").permitAll()
                         .requestMatchers("/reservoirs/reservoirsByType/reservoirs",
@@ -48,7 +47,8 @@ public class SecurityConfiguration {
                                 "/reservoirs/reservoirsByType/{type}").permitAll()
                         .requestMatchers("/donate", "/cookiePolicy").permitAll()
                         .requestMatchers("/robots.txt", "/sitemap.xml").permitAll()
-                        .requestMatchers("/about", "/blog", "/contact", "/home", "/fish", "/announced").permitAll()
+                        .requestMatchers("/about", "/blog", "/contact", "/home", "/fish/**",
+                                "/announced").permitAll()
                         .requestMatchers("/subscribe/send").permitAll()
                         .requestMatchers("/gallery", "/search").permitAll()
                         .requestMatchers("/reservoirs/add/reservoirAdd",
