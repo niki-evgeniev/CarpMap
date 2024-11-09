@@ -19,8 +19,9 @@
                        class="nav-item nav-link">Начало</a>
                     <a th:href="@{/announced}"
                        th:classappend="${currentUrl != null and currentUrl.startsWith('/announced')} ? 'active'"
-                       class="nav-item nav-link">Обяви</a>
-                    <a th:href="@{/fish}"
+                       class="nav-item nav-link disabled"
+                    style="background-color: #777f85">Обяви</a>
+                    <a th:href="@{/fish/fishing-type}"
                        th:classappend="${currentUrl != null and currentUrl.startsWith('/fish')} ? 'active'"
                        class="nav-item nav-link">Видове Риби</a>
                     <a th:href="@{/reservoirs/reservoirsByType/{type}(type = reservoirs)}"
