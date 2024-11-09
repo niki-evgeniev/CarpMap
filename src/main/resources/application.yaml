@@ -52,6 +52,16 @@ spring:
   #api-key:
   #api-secret:
   #cloud-name:
+  thymeleaf: # Thymeleaf
+    cache: false
+    mode: HTML
+    encoding: UTF-8
+    prefix: file:src/main/resources/templates/
+  web:
+    resources:
+      static-locations: file:src/main/resources/static/
+      cache:
+        period: 0
 
 carpmap:
   remember.me.key: ${REMEMBER_ME_KEY}
