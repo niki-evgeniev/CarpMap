@@ -38,7 +38,7 @@ public class SecurityConfiguration {
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/js/**", "/images/**", "/css/**", "/lib/**").permitAll()
 //                        .requestMatchers("/error/**").permitAll()
-                        .requestMatchers("/", "/error","/error/**","/users/login", "/users/profile",
+                        .requestMatchers("/", "/error", "/error/**", "/users/login", "/users/profile",
                                 "/users/login-error").permitAll()
                         .requestMatchers("/reservoirs/reservoirsByType/reservoirs",
                                 "/reservoirs/reservoirsByType/private_reservoir",
@@ -48,7 +48,7 @@ public class SecurityConfiguration {
                                 "/reservoirs/reservoirsByType/{type}").permitAll()
                         .requestMatchers("/donate", "/cookiePolicy").permitAll()
                         .requestMatchers("/robots.txt", "/sitemap.xml").permitAll()
-                        .requestMatchers("/about", "/blog", "/contact", "/home", "/announced").permitAll()
+                        .requestMatchers("/about", "/blog", "/contact", "/home", "/fish", "/announced").permitAll()
                         .requestMatchers("/subscribe/send").permitAll()
                         .requestMatchers("/gallery", "/search").permitAll()
                         .requestMatchers("/reservoirs/add/reservoirAdd",
@@ -56,11 +56,11 @@ public class SecurityConfiguration {
                                 "/reservoirs/delete/{id}")
                         .hasAnyRole(RoleType.MODERATOR.name())
                         .requestMatchers("/reservoirs/delete/{id}")
-                            .hasAnyRole(RoleType.MODERATOR.name())
+                        .hasAnyRole(RoleType.MODERATOR.name())
                         .requestMatchers("/profile/profiles")
-                            .hasAnyRole(RoleType.ADMIN.name())
+                        .hasAnyRole(RoleType.ADMIN.name())
                         .requestMatchers("/reservoirs/gallery/{id}")
-                            .hasAnyRole(RoleType.ADMIN.name())
+                        .hasAnyRole(RoleType.ADMIN.name())
                         .requestMatchers("/admin/ip/all", "/admin/ip/findByUser", "/admin/ip/lastDay",
                                 "/admin/ip/thirtyDaysAgo", "/admin/ip/newForToday", "/admin/profiles",
                                 "/admin/details/byId/{id}")

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Fish</title>
+    <th:block th:replace="~{fragments/head}"></th:block>
+    <title>Carp Map</title>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="keywords" content="website">
+</head>
+<body>
+<th:block th:replace="~{fragments/topbar}"></th:block>
+<th:block th:replace="~{fragments/navbar}"></th:block>
+
+
+<!--START-->
+<section id="explore" class="explore">
+<div class="container">
+    <link rel="stylesheet" href="/css/style2.css">
+    <div class="section-header">
+        <h2 class="text-center">Видове Риби</h2>
+        <p class="text-center">Тук ще намерите всички видове риби в CARP MAP</p>
+    </div>
+    <div class="tab-class text-center">
+        <ul class="nav nav-pills d-inline-flex justify-content-center mb-1">
+            <li class="nav-item px-1 my-3">
+                <div class="col-sm-12 text-end">
+                    <a class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5"
+                       th:href="@{/reservoirs/reservoirsByType/{type}(type = reservoirs)}">
+                        <span style="width: 150px;">Всички</span>
+                    </a>
+                    <br>
+                </div>
+            </li>
+        </ul>
+    </div>
+<div class="explore-content">
+    <div class="row">
+        <div class=" col-md-4 col-sm-6">
+            <div class="single-explore-item">
+                <div class="single-explore-img">
+                    <a class="image-all-reservoir">
+                        <img href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Cyprinus_carpio.jpeg/1200px-Cyprinus_carpio.jpeg"
+                             alt="explore image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Cyprinus_carpio.jpeg/1200px-Cyprinus_carpio.jpeg"></a>
+                </div>
+                <div class="single-explore-txt bg-theme-1">
+                    <h1 style="font-size: 3rem"><a  href="https://cdncloudcart.com/14162/articles/images/108/108.webp?1714220551">SHARAN</a>
+                    </h1>
+                    <p class="explore-rating-price">
+                        <span class="explore-rating">5.0</span>
+                        <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Cyprinus_carpio.jpeg/1200px-Cyprinus_carpio.jpeg">
+                            <!--               th:text="*{countVisitors != null ? countVisitors + ' Посетен' : 0 + ' Посетен'}"> 10-->
+                            ratings</a>
+                        <span th:if="*{countryCode == 'BG'}" class="explore-price-box">
+											Държава:
+											<span th:text="България" class="explore-price">5$-300$</span>
+										</span>
+                        <span class="explore-type-box">
+											Тип:
+											<span th:text=" manamana" class="explore-price">5$-300$</span>
+										</span>
+                    </p>
+                    <div class="explore-person">
+                        <div class="row">
+                            <div class="col-sm-2">
+                                <div class="explore-person-img">
+                                    <a href="#">
+                                        <img src="/images/277348542_5331251560231792_5412271903652794342_n.jpg"
+                                             alt="explore person">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-sm-10">
+                                <p th:text="INFO"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="explore-open-close-part">
+                        <div class="row">
+                            <div class="col-sm-12 text-end">
+                                <a class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2"
+                                   data-abc="true"
+                                   href="https://cdncloudcart.com/14162/articles/images/108/108.webp?1714220551">Информация</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+<!--END-->
+</body>
+<th:block th:replace="~{fragments/footer}"></th:block>
+<th:block th:replace="~{fragments/js}"></th:block>
+</html>
