@@ -5,14 +5,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "fish_list")
 public class FishList extends BaseEntity{
 
-    @Column(name = "fish_name")
+    @Column(name = "fish_name", unique = true, nullable = false)
     private String fishName;
 
-    @Column(name = "description")
+    @Column(name = "description",columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "image_url")
@@ -20,6 +22,9 @@ public class FishList extends BaseEntity{
 
     @Column(name = "english_name")
     private String englishName;
+
+    @Column(name = "added_on_date", nullable = false)
+    private LocalDateTime addedOnDate;
 
     @ManyToOne
     private User user;
@@ -65,5 +70,13 @@ public class FishList extends BaseEntity{
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public LocalDateTime getAddedOnDate() {
+        return addedOnDate;
+    }
+
+    public void setAddedOnDate(LocalDateTime addedOnDate) {
+        this.addedOnDate = addedOnDate;
     }
 }

@@ -11,4 +11,5 @@ public interface FishService {
     List<FishNameDTO> getAllFishName();
 
     List<FishNameDTO> getNonExistingFishType(List<String> fishName);
+
 }

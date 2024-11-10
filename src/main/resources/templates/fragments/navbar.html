@@ -21,8 +21,8 @@
                        th:classappend="${currentUrl != null and currentUrl.startsWith('/announced')} ? 'active'"
                        class="nav-item nav-link disabled"
                     style="background-color: #777f85">Обяви</a>
-                    <a th:href="@{/fish/fishing-type}"
-                       th:classappend="${currentUrl != null and currentUrl.startsWith('/fish')} ? 'active'"
+                    <a th:href="@{/fish-list-type/fishing-type}"
+                       th:classappend="${currentUrl != null and currentUrl.startsWith('/fish-list-type')} ? 'active'"
                        class="nav-item nav-link">Видове Риби</a>
                     <a th:href="@{/reservoirs/reservoirsByType/{type}(type = reservoirs)}"
                        th:classappend="${currentUrl != null and currentUrl.startsWith('/reservoirs/reservoirsByType')} ? 'active'"
@@ -40,6 +40,9 @@
                             <a sec:authorize="isAuthenticated() and hasRole('MODERATOR')"
                                th:href="@{/reservoirs/add/reservoirAdd}"
                                class="dropdown-item">Add Reservoir</a>
+                            <a sec:authorize="isAuthenticated() and hasRole('MODERATOR')"
+                               th:href="@{/fish-list-type/add/adding-fish}"
+                               class="dropdown-item">Add fish</a>
                             <a href="tour.html"
                                sec:authorize="isAuthenticated() and hasRole('MODERATOR')"
                                class="dropdown-item">Add blog</a>
