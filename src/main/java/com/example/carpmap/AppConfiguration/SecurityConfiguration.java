@@ -45,17 +45,16 @@ public class SecurityConfiguration {
                                 "/reservoirs/reservoirsByType/countVisitors",
                                 "/reservoirs/{type}",
                                 "/reservoirs/reservoirsByType/{type}").permitAll()
-                        .requestMatchers("/donate", "/cookiePolicy").permitAll()
                         .requestMatchers("/robots.txt", "/sitemap.xml").permitAll()
-                        .requestMatchers("/about", "/blog", "/contact", "/home", "/fish/**",
-                                "/announced").permitAll()
-                        .requestMatchers("/subscribe/send").permitAll()
-                        .requestMatchers("/gallery", "/search").permitAll()
+                        .requestMatchers("/about", "/blog", "/contact", "/home",
+                                "/fish-list-type/fishing-type",
+                                "/announced", "/donate", "/cookiePolicy", "/subscribe/send",
+                                "/gallery", "/search").permitAll()
+                        .requestMatchers("/fish/add/addingFisha", "/fish/add/adding-fish")
+                        .hasAnyRole(RoleType.MODERATOR.name())
                         .requestMatchers("/reservoirs/add/reservoirAdd",
                                 "/reservoirs/reservoirsEdit/{id}",
                                 "/reservoirs/delete/{id}")
-                        .hasAnyRole(RoleType.MODERATOR.name())
-                        .requestMatchers("/reservoirs/delete/{id}")
                         .hasAnyRole(RoleType.MODERATOR.name())
                         .requestMatchers("/profile/profiles")
                         .hasAnyRole(RoleType.ADMIN.name())
