@@ -9,12 +9,12 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "fish_list")
-public class FishList extends BaseEntity{
+public class FishList extends BaseEntity {
 
     @Column(name = "fish_name", unique = true, nullable = false)
     private String fishName;
 
-    @Column(name = "description",columnDefinition = "TEXT")
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
     @Column(name = "image_url")
@@ -25,6 +25,7 @@ public class FishList extends BaseEntity{
 
     @Column(name = "added_on_date", nullable = false)
     private LocalDateTime addedOnDate;
+
 
     @ManyToOne
     private User user;
@@ -64,19 +65,19 @@ public class FishList extends BaseEntity{
         this.englishName = englishName;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public LocalDateTime getAddedOnDate() {
         return addedOnDate;
     }
 
     public void setAddedOnDate(LocalDateTime addedOnDate) {
         this.addedOnDate = addedOnDate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
