@@ -19,7 +19,8 @@
                         <!-- General Form Elements -->
                         <form th:method="POST"
                               th:action="@{/fish-list-type/add/adding-fish}"
-                              th:object="${addFishDTO}">
+                              th:object="${addFishDTO}"
+                              enctype="multipart/form-data">
                             <div class="row mb-3">
                                 <label for="fishName"
                                        class="col-sm-2 col-form-label">Име</label>
@@ -53,12 +54,12 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="formFile"
+                                <label for="pictureFile"
                                        class="col-sm-2 col-form-label">Качи снимка</label>
                                 <div class="col-sm-10">
                                     <input type="file"
-                                           name="formFile"
-                                           id="formFile"
+                                           name="pictureFile"
+                                           id="pictureFile"
                                            class="form-control">
                                 </div>
                             </div>
