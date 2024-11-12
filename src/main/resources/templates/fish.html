@@ -42,19 +42,19 @@
                     <div class="single-explore-item">
                         <div class="single-explore-img">
                             <a class="image-all-reservoir">
-                                <img 
-                                     alt="explore image"
-                                     src="images/fishList/admin/13bc493d-d2e4-4c80-b05c-a877a0042cb2.png"></a>
+                                <img
+                                        alt="explore image"
+                                        src="images/fishList/admin/13bc493d-d2e4-4c80-b05c-a877a0042cb2.png"></a>
                         </div>
                         <div class="single-explore-txt bg-theme-1">
                             <h1 style="font-size: 2rem"><a
                                     href="https://cdncloudcart.com/14162/articles/images/108/108.webp?1714220551">Шаран</a>
                             </h1>
                             <p class="explore-rating-price">
-<!--                                <span class="explore-rating">5.0</span>-->
-<!--                                <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Cyprinus_carpio.jpeg/1200px-Cyprinus_carpio.jpeg">-->
-<!--                                    &lt;!&ndash;               th:text="*{countVisitors != null ? countVisitors + ' Посетен' : 0 + ' Посетен'}"> 10&ndash;&gt;-->
-<!--                                    ratings</a>-->
+                                <!--                                <span class="explore-rating">5.0</span>-->
+                                <!--                                <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Cyprinus_carpio.jpeg/1200px-Cyprinus_carpio.jpeg">-->
+                                <!--                                    &lt;!&ndash;               th:text="*{countVisitors != null ? countVisitors + ' Посетен' : 0 + ' Посетен'}"> 10&ndash;&gt;-->
+                                <!--                                    ratings</a>-->
                                 <span th:if="*{countryCode == 'BG'}" class="explore-price-box">
 											Държава:
 											<span th:text="България" class="explore-price">5$-300$</span>
@@ -90,7 +90,10 @@
     </div>
 </section>
 <!--END-->
+<footer>
+    <th:block th:replace="~{fragments/footer}"></th:block>
+    <th:block th:replace="~{fragments/js}"></th:block>
+</footer>
 </body>
-<th:block th:replace="~{fragments/footer}"></th:block>
-<th:block th:replace="~{fragments/js}"></th:block>
+
 </html>
