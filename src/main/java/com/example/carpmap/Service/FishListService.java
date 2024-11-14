@@ -1,7 +1,9 @@
 package com.example.carpmap.Service;
 
 import com.example.carpmap.Models.DTO.Fish.AddFishDTO;
-import jakarta.validation.Valid;
+import com.example.carpmap.Models.DTO.Fish.FishListAllDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public interface FishListService {
@@ -10,4 +12,6 @@ public interface FishListService {
 
 
     void addFishList(AddFishDTO addFishDTO, UserDetails userDetails);
+
+    Page<FishListAllDTO> getAll(Pageable pageable);
 }

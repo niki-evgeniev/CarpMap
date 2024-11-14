@@ -25,11 +25,9 @@ public interface IpAddressRepository extends JpaRepository<IpAddress, Long> {
     Page<IpAddress> findAllIpAddressesFromLast30Days
             (@Param("thirtyDaysAgo") LocalDateTime thirtyDaysAgo, Pageable pageable);
 
-
     @Query("SELECT ip FROM IpAddress ip WHERE (ip.lastSeen >= :lastDay OR ip.timeToAdd >= :lastDay)")
     Page<IpAddress> findAllIpAddressesFromLastDay
             (@Param("lastDay") LocalDateTime lastDay, Pageable pageable);
-
 
     @Query("SELECT COUNT(i) FROM IpAddress i WHERE i.lastSeen >= :startOfDay " +
             "AND i.lastSeen < :endOfDay")
@@ -38,10 +36,6 @@ public interface IpAddressRepository extends JpaRepository<IpAddress, Long> {
     @Query("SELECT COUNT(i) FROM IpAddress i WHERE (i.timeToAdd >= :startOfDay " +
             "AND i.timeToAdd < :endOfDay) OR (i.lastSeen >= :startOfDay AND i.lastSeen < :endOfDay)")
     long countUserForToday(@Param("startOfDay") LocalDateTime startOfDay, @Param("endOfDay") LocalDateTime endOfDay);
-
-//    @Query("SELECT COUNT(ip) FROM IpAddress ip WHERE ip.timeToAdd BETWEEN :startOfDay " +
-//            "AND :endOfDay")
-//    long countNewUserForToday(@Param("startOfDay") LocalDateTime startOfDay, @Param("endOfDay") LocalDateTime endOfDay);
 
     @Query("SELECT COUNT(ip) FROM IpAddress ip WHERE ip.timeToAdd BETWEEN :startOfDay " +
             "AND :endOfDay AND ip.lastSeen IS NULL")

@@ -2,12 +2,15 @@ package com.example.carpmap.Controller;
 
 
 import com.example.carpmap.Models.DTO.Fish.AddFishDTO;
+import com.example.carpmap.Models.DTO.Fish.FishListAllDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.CountryDTO;
 import com.example.carpmap.Service.CountryService;
 import com.example.carpmap.Service.FishListService;
-import com.example.carpmap.Service.FishService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -33,7 +36,10 @@ public class FishController {
 
 
     @GetMapping("fishing-type")
-    public ModelAndView getFish(HttpServletRequest request) {
+    public ModelAndView getFish(@PageableDefault(size = 20) Pageable pageable,
+                                HttpServletRequest request) {
+
+        Page<FishListAllDTO> getAllFishList = fishListService.getAll(pageable);
         ModelAndView modelAndView = new ModelAndView("fish");
         modelAndView.addObject("currentUrl", request.getRequestURI());
         return modelAndView;

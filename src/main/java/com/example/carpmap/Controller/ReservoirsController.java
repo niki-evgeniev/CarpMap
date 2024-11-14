@@ -43,24 +43,28 @@ public class ReservoirsController {
     public ModelAndView reservoirsByType(
             @PageableDefault(size = 9, sort = "name") Pageable pageable, @PathVariable String type,
             HttpServletRequest request) {
-        if (type.equals("ALL")) {
-            ModelAndView modelAndView = new ModelAndView(
-                    "redirect:/reservoirs/reservoirsByType/reservoirs");
-            modelAndView.setStatus(HttpStatus.MOVED_PERMANENTLY);
-            System.out.println("CONTROLLER : SEARCH " + type + " REDIRECT TO reservoirs");
-            return modelAndView;
-        } else if (type.equals("ЧАСТЕН")) {
-            ModelAndView modelAndView = new ModelAndView(
-                    "redirect:/reservoirs/reservoirsByType/private_reservoir");
-            modelAndView.setStatus(HttpStatus.MOVED_PERMANENTLY);
-            System.out.println("CONTROLLER : SEARCH " + type + " REDIRECT TO private_reservoir");
-            return modelAndView;
-        } else if (type.equals("СВОБОДЕН")) {
-            ModelAndView modelAndView = new ModelAndView(
-                    "redirect:/reservoirs/reservoirsByType/free_reservoir");
-            modelAndView.setStatus(HttpStatus.MOVED_PERMANENTLY);
-            System.out.println("CONTROLLER : SEARCH " + type + " REDIRECT TO free_reservoir");
-            return modelAndView;
+        switch (type) {
+            case "ALL" -> {
+                ModelAndView modelAndView = new ModelAndView(
+                        "redirect:/reservoirs/reservoirsByType/reservoirs");
+                modelAndView.setStatus(HttpStatus.MOVED_PERMANENTLY);
+                System.out.println("CONTROLLER : SEARCH " + type + " REDIRECT TO reservoirs");
+                return modelAndView;
+            }
+            case "ЧАСТЕН" -> {
+                ModelAndView modelAndView = new ModelAndView(
+                        "redirect:/reservoirs/reservoirsByType/private_reservoir");
+                modelAndView.setStatus(HttpStatus.MOVED_PERMANENTLY);
+                System.out.println("CONTROLLER : SEARCH " + type + " REDIRECT TO private_reservoir");
+                return modelAndView;
+            }
+            case "СВОБОДЕН" -> {
+                ModelAndView modelAndView = new ModelAndView(
+                        "redirect:/reservoirs/reservoirsByType/free_reservoir");
+                modelAndView.setStatus(HttpStatus.MOVED_PERMANENTLY);
+                System.out.println("CONTROLLER : SEARCH " + type + " REDIRECT TO free_reservoir");
+                return modelAndView;
+            }
         }
 
         ModelAndView modelAndView = new ModelAndView("reservoirs");
