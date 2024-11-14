@@ -7,6 +7,7 @@ import com.example.carpmap.Models.Entity.User;
 import com.example.carpmap.Repository.FishListRepository;
 import com.example.carpmap.Repository.UserRepository;
 import com.example.carpmap.Service.FishListService;
+import com.example.carpmap.Utility.ConvertorBgToEn;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,13 +27,16 @@ import java.util.UUID;
 public class FishListServiceImpl implements FishListService {
     private final FishListRepository fishListRepository;
     private final UserRepository userRepository;
-    private final static String IMAGE_PATH = "./imagesTest/fishList/";
+    private final static String IMAGE_PATH = "./imagesApp/fishList/";
     private final ModelMapper modelMapper;
+    private final ConvertorBgToEn convertorBgToEn;
 
-    public FishListServiceImpl(FishListRepository fishListRepository, UserRepository userRepository, ModelMapper modelMapper) {
+    public FishListServiceImpl(FishListRepository fishListRepository, UserRepository userRepository,
+                               ModelMapper modelMapper, ConvertorBgToEn convertorBgToEn) {
         this.fishListRepository = fishListRepository;
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
+        this.convertorBgToEn = convertorBgToEn;
     }
 
     @Override
@@ -45,7 +49,8 @@ public class FishListServiceImpl implements FishListService {
     public void addFishList(AddFishDTO addFishDTO, UserDetails userDetails) {
         MultipartFile pictureFile = addFishDTO.getPictureFile();
         String pictureName = getPicturePath(pictureFile, userDetails.getUsername());
-
+        String imagePath = IMAGE_PATH.substring(1);
+        String engName = convertorBgToEn.convertCyrillicToLatin(addFishDTO.getFishName()).toLowerCase();
 
         try {
             File file = new File(IMAGE_PATH + pictureName);
@@ -59,9 +64,10 @@ public class FishListServiceImpl implements FishListService {
             fishList.setUser(user.get());
             fishList.setFishName(addFishDTO.getFishName());
             fishList.setAddedOnDate(LocalDateTime.now());
-            fishList.setEnglishName(addFishDTO.getEnglishName());
+            fishList.setLatinName(addFishDTO.getLatinName());
+            fishList.setEnglishName(engName);
             fishList.setDescription(addFishDTO.getDescription());
-            fishList.setImageUrl(IMAGE_PATH + pictureName);
+            fishList.setImageUrl(imagePath + pictureName);
             fishListRepository.save(fishList);
         } catch (IOException e) {
             System.out.println(e.getStackTrace());
@@ -70,8 +76,15 @@ public class FishListServiceImpl implements FishListService {
 
     @Override
     public Page<FishListAllDTO> getAll(Pageable pageable) {
-        Page<FishList> all = fishListRepository.findAll(pageable);
-        Page<FishListAllDTO> allFishListPage = all
+        Page<FishList> allFishList = fishListRepository.findAll(pageable);
+        for (FishList fishList : allFishList) {
+            String description = fishList.getDescription();
+            if (description.length() > 500) {
+                String getFirst50 = description.substring(1, 500);
+                fishList.setDescription(getFirst50);
+            }
+        }
+        Page<FishListAllDTO> allFishListPage = allFishList
                 .map(fishList -> {
                     return modelMapper.map(fishList, FishListAllDTO.class);
                 });

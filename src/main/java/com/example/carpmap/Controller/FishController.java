@@ -42,14 +42,15 @@ public class FishController {
         Page<FishListAllDTO> getAllFishList = fishListService.getAll(pageable);
         ModelAndView modelAndView = new ModelAndView("fish");
         modelAndView.addObject("currentUrl", request.getRequestURI());
+        modelAndView.addObject("allFishList", getAllFishList);
         return modelAndView;
     }
 
     @GetMapping("add/adding-fish")
     public ModelAndView addFish() {
-        List<CountryDTO> allCountry = countryService.getAllCountry();
+
         ModelAndView modelAndView = new ModelAndView("fishAdd");
-        modelAndView.addObject("allCountry", allCountry);
+
         return modelAndView;
     }
 

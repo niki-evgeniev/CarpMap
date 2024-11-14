@@ -12,6 +12,8 @@ public class FishListAllDTO {
 
     private String englishName;
 
+    private String latinName;
+
     private LocalDateTime addedOnDate;
 
     public FishListAllDTO() {
@@ -47,6 +49,14 @@ public class FishListAllDTO {
 
     public void setEnglishName(String englishName) {
         this.englishName = englishName;
+    }
+
+    public String getLatinName() {
+        return latinName;
+    }
+
+    public void setLatinName(String latinName) {
+        this.latinName = latinName;
     }
 
     public LocalDateTime getAddedOnDate() {

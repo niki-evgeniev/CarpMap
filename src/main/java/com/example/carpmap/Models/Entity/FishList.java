@@ -23,6 +23,9 @@ public class FishList extends BaseEntity {
     @Column(name = "english_name")
     private String englishName;
 
+    @Column(name = "latin_name")
+    private String latinName;
+
     @Column(name = "added_on_date", nullable = false)
     private LocalDateTime addedOnDate;
 
@@ -63,6 +66,14 @@ public class FishList extends BaseEntity {
 
     public void setEnglishName(String englishName) {
         this.englishName = englishName;
+    }
+
+    public String getLatinName() {
+        return latinName;
+    }
+
+    public void setLatinName(String latinName) {
+        this.latinName = latinName;
     }
 
     public LocalDateTime getAddedOnDate() {

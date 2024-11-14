@@ -18,6 +18,8 @@ public class AddFishDTO {
 
     private String englishName;
 
+    private String latinName;
+
     public AddFishDTO() {
     }
 
@@ -51,5 +53,13 @@ public class AddFishDTO {
 
     public void setEnglishName(String englishName) {
         this.englishName = englishName;
+    }
+
+    public String getLatinName() {
+        return latinName;
+    }
+
+    public void setLatinName(String latinName) {
+        this.latinName = latinName;
     }
 }
