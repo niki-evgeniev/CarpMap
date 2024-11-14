@@ -20,8 +20,8 @@ public class FishList extends BaseEntity {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @Column(name = "english_name")
-    private String englishName;
+    @Column(name = "url_name")
+    private String urlName;
 
     @Column(name = "latin_name")
     private String latinName;
@@ -60,12 +60,12 @@ public class FishList extends BaseEntity {
         this.imageUrl = imageUrl;
     }
 
-    public String getEnglishName() {
-        return englishName;
+    public String getUrlName() {
+        return urlName;
     }
 
-    public void setEnglishName(String englishName) {
-        this.englishName = englishName;
+    public void setUrlName(String urlName) {
+        this.urlName = urlName;
     }
 
     public String getLatinName() {

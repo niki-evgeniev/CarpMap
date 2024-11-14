@@ -65,7 +65,7 @@ public class FishListServiceImpl implements FishListService {
             fishList.setFishName(addFishDTO.getFishName());
             fishList.setAddedOnDate(LocalDateTime.now());
             fishList.setLatinName(addFishDTO.getLatinName());
-            fishList.setEnglishName(engName);
+            fishList.setUrlName(engName);
             fishList.setDescription(addFishDTO.getDescription());
             fishList.setImageUrl(imagePath + pictureName);
             fishListRepository.save(fishList);

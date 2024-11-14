@@ -38,7 +38,7 @@ public class SecurityConfiguration {
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/js/**", "/images/**", "/css/**", "/lib/**").permitAll()
                         .requestMatchers("/", "/error", "/error/**", "/users/login", "/users/profile",
-                                "/users/login-error", "/imagesTest/**").permitAll()
+                                "/users/login-error", "/imagesApp/**").permitAll()
                         .requestMatchers("/reservoirs/reservoirsByType/reservoirs",
                                 "/reservoirs/reservoirsByType/private_reservoir",
                                 "/reservoirs/reservoirsByType/free_reservoir",

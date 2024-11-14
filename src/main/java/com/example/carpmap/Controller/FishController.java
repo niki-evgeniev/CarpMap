@@ -3,8 +3,6 @@ package com.example.carpmap.Controller;
 
 import com.example.carpmap.Models.DTO.Fish.AddFishDTO;
 import com.example.carpmap.Models.DTO.Fish.FishListAllDTO;
-import com.example.carpmap.Models.DTO.Reservoirs.CountryDTO;
-import com.example.carpmap.Service.CountryService;
 import com.example.carpmap.Service.FishListService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -26,11 +24,10 @@ import java.util.List;
 @Controller
 @RequestMapping("/fish-list-type/")
 public class FishController {
-    private final CountryService countryService;
+
     private final FishListService fishListService;
 
-    public FishController(CountryService countryService, FishListService fishListService) {
-        this.countryService = countryService;
+    public FishController( FishListService fishListService) {
         this.fishListService = fishListService;
     }
 

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Fish</title>
     <th:block th:replace="~{fragments/head}"></th:block>
-    <title>Carp Map</title>
+    <title>CarpMap</title>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="keywords" content="website">
@@ -20,8 +20,8 @@
     <div class="container">
         <link rel="stylesheet" href="/css/style2.css">
         <div class="section-header">
-            <h2 class="text-center">Видове Риби</h2>
-            <p class="text-center">Тук ще намерите всички видове риби в CARP MAP</p>
+            <h1 class="text-center">Видове Риби</h1>
+            <p class="text-center">Тук ще намерите всички видове риби в CarpMap</p>
         </div>
         <div class="explore-content">
             <div class="row">
@@ -29,7 +29,7 @@
                      th:object="${fishList}"
                      class=" col-md-3 col-sm-6">
                     <div class="single-explore-item">
-                        <div class="single-explore-img">
+                        <div class="single-explore-img fish-list">
                             <a class="image-all-reservoir">
                                 <img
                                         alt="explore image"
@@ -41,14 +41,6 @@
                                     th:text="*{fishName}">Шаран</a>
                             </h1>
                             <p class="explore-rating-price">
-                                <!--                                <span class="explore-rating">5.0</span>-->
-                                <!--                                <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Cyprinus_carpio.jpeg/1200px-Cyprinus_carpio.jpeg">-->
-                                <!--                                    &lt;!&ndash;               th:text="*{countVisitors != null ? countVisitors + ' Посетен' : 0 + ' Посетен'}"> 10&ndash;&gt;-->
-                                <!--                                    ratings</a>-->
-                                <!--                                <span th:if="*{countryCode == 'BG'}" class="explore-price-box">-->
-                                <!--											Държава:-->
-                                <!--											<span th:text="България" class="explore-price">5$-300$</span>-->
-                                <!--										</span>-->
                                 <span class="explore-type-box">
 											Тип:
 											<span th:text="*{latinName}" class="explore-price">5$-300$</span>

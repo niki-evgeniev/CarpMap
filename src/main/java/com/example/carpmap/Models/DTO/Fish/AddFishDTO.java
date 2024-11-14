@@ -16,9 +16,10 @@ public class AddFishDTO {
 
     private MultipartFile pictureFile;
 
-    private String englishName;
+    private String urlName;
 
     private String latinName;
+
 
     public AddFishDTO() {
     }
@@ -47,12 +48,12 @@ public class AddFishDTO {
         this.pictureFile = pictureFile;
     }
 
-    public String getEnglishName() {
-        return englishName;
+    public String getUrlName() {
+        return urlName;
     }
 
-    public void setEnglishName(String englishName) {
-        this.englishName = englishName;
+    public void setUrlName(String urlName) {
+        this.urlName = urlName;
     }
 
     public String getLatinName() {

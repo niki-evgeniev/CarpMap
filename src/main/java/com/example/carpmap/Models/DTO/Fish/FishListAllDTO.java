@@ -10,7 +10,7 @@ public class FishListAllDTO {
 
     private String imageUrl;
 
-    private String englishName;
+    private String urlName;
 
     private String latinName;
 
@@ -43,12 +43,12 @@ public class FishListAllDTO {
         this.imageUrl = imageUrl;
     }
 
-    public String getEnglishName() {
-        return englishName;
+    public String getUrlName() {
+        return urlName;
     }
 
-    public void setEnglishName(String englishName) {
-        this.englishName = englishName;
+    public void setUrlName(String urlName) {
+        this.urlName = urlName;
     }
 
     public String getLatinName() {

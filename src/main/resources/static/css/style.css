@@ -1674,3 +1674,6 @@ body > main > div.container-fluid.packages.py-5 {
     background: rgb(19, 53, 123);
     margin-top: 2%;
 }
+.fish-list {
+    border-radius: 50%;
+}
