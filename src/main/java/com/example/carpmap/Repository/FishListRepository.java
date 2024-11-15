@@ -11,4 +11,6 @@ public interface FishListRepository extends JpaRepository<FishList, Long> {
 
     Optional<FishList> findByFishName(String name);
 
+    Optional<FishList> findByUrlName(String urlName);
+
 }
