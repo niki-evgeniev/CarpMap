@@ -50,8 +50,9 @@ public class FishListServiceImpl implements FishListService {
         MultipartFile pictureFile = addFishDTO.getPictureFile();
         String pictureName = getPicturePath(pictureFile, userDetails.getUsername());
         String imagePath = IMAGE_PATH.substring(1);
-        String engName = convertorBgToEn.convertCyrillicToLatin(addFishDTO.getFishName()).toLowerCase();
-
+        String urlName = addFishDTO.getFishName().toLowerCase().trim();
+        String engName = convertorBgToEn.convertCyrillicToLatin(urlName);
+        System.out.println();
         try {
             File file = new File(IMAGE_PATH + pictureName);
             file.getParentFile().mkdirs();
@@ -83,11 +84,11 @@ public class FishListServiceImpl implements FishListService {
                                        Optional<User> user, String engName,
                                        String imagePath, String pictureName) {
         fishList.setUser(user.get());
-        fishList.setFishName(addFishDTO.getFishName());
+        fishList.setFishName(addFishDTO.getFishName().trim());
         fishList.setAddedOnDate(LocalDateTime.now());
-        fishList.setLatinName(addFishDTO.getLatinName());
+        fishList.setLatinName(addFishDTO.getLatinName().trim());
         fishList.setUrlName(engName);
-        fishList.setDescription(addFishDTO.getDescription());
+        fishList.setDescription(addFishDTO.getDescription().trim());
         fishList.setImageUrl(imagePath + pictureName);
     }
 
