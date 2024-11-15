@@ -35,6 +35,9 @@
                                          th:if="${#fields.hasErrors('fishName')}"
                                          th:errors="*{fishName}">Please, enter your name!
                                     </div>
+                                    <p th:if="${existingName}" class="errors alert alert-danger text-center">
+                                        Името вече съществува.
+                                    </p>
                                 </div>
                             </div>
                             <div class="row mb-3">
