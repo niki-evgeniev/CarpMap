@@ -11,7 +11,7 @@ public class AddFishDTO {
     private String fishName;
 
     @NotEmpty(message = "Въведете име на язовир")
-    @Size(min = 3, max = 2000, message = "Може да въвеждате максимално 50 символа и минимално 3")
+    @Size(min = 3, max = 2000, message = "Може да въвеждате максимално 2000 символа и минимално 3")
     private String description;
 
     private MultipartFile pictureFile;
