@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Fish</title>
     <th:block th:replace="~{fragments/head}"></th:block>
-    <title>Carp Map</title>
+    <title>CarpMap</title>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="keywords" content="website">
@@ -20,56 +20,37 @@
     <div class="container">
         <link rel="stylesheet" href="/css/style2.css">
         <div class="section-header">
-            <h2 class="text-center">Видове Риби</h2>
-            <p class="text-center">Тук ще намерите всички видове риби в CARP MAP</p>
-        </div>
-        <div class="tab-class text-center">
-            <ul class="nav nav-pills d-inline-flex justify-content-center mb-1">
-                <li class="nav-item px-1 my-3">
-                    <div class="col-sm-12 text-end">
-                        <a class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5"
-                           th:href="@{/reservoirs/reservoirsByType/{type}(type = reservoirs)}">
-                            <span style="width: 150px;">Всички</span>
-                        </a>
-                        <br>
-                    </div>
-                </li>
-            </ul>
+            <h1 class="text-center">Видове Риби</h1>
+            <p class="text-center">Тук ще намерите всички видове риби в CarpMap</p>
         </div>
         <div class="explore-content">
             <div class="row">
-                <div class=" col-md-3 col-sm-6">
+                <div th:each="fishList : ${allFishList.getContent()}"
+                     th:object="${fishList}"
+                     class=" col-md-3 col-sm-6">
                     <div class="single-explore-item">
-                        <div class="single-explore-img">
+                        <div class="single-explore-img fish-list">
                             <a class="image-all-reservoir">
-                                <img href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Cyprinus_carpio.jpeg/1200px-Cyprinus_carpio.jpeg"
-                                     alt="explore image"
-                                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Cyprinus_carpio.jpeg/1200px-Cyprinus_carpio.jpeg"></a>
+                                <img
+                                        alt="explore image"
+                                        th:src="*{imageUrl}"></a>
                         </div>
                         <div class="single-explore-txt bg-theme-1">
                             <h1 style="font-size: 2rem"><a
-                                    href="https://cdncloudcart.com/14162/articles/images/108/108.webp?1714220551">Шаран</a>
+                                    th:href="*{imageUrl}"
+                                    th:text="*{fishName}">Шаран</a>
                             </h1>
                             <p class="explore-rating-price">
-<!--                                <span class="explore-rating">5.0</span>-->
-<!--                                <a href="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Cyprinus_carpio.jpeg/1200px-Cyprinus_carpio.jpeg">-->
-<!--                                    &lt;!&ndash;               th:text="*{countVisitors != null ? countVisitors + ' Посетен' : 0 + ' Посетен'}"> 10&ndash;&gt;-->
-<!--                                    ratings</a>-->
-                                <span th:if="*{countryCode == 'BG'}" class="explore-price-box">
-											Държава:
-											<span th:text="България" class="explore-price">5$-300$</span>
-										</span>
                                 <span class="explore-type-box">
 											Тип:
-											<span th:text="'Cyprinus carpio'" class="explore-price">5$-300$</span>
+											<span th:text="*{latinName}" class="explore-price">5$-300$</span>
 										</span>
                             </p>
                             <div class="explore-person">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <p style="font-size: 14px"
-                                           th:text="'Шаранът (Cyprinus carpio) е сладководна риба, която достига до 120 см на дължина и до 35 кг на тегло. Той е всеяден, като в ранна възраст се храни с планктон и с увеличаване на теглото, преминава към консумиране на различни бентосни организми. По-големите риби ядат и малки рибки поради неспособността да си осигуряват необходимото количество храна. Размножава се през пролетта. В нашите води той намира отлични условия за размножаване и живот. Днес шаранът се отглежда често в язовири и други водоеми.Високогърбестият шаран има дълги ъглести гръбни перки и четири мустака около устата,с които търси по дъното растения и дребни животинки.Чрез развъждане и селекциониране в продължение на столетия от него са създадени многобройни раси.Особено известни са унгарските шарани, които отстрани имат съвсем малко едри люспи(едролюспест шаран)както и огледалните(голи)шарани. През май и юни по камъни и водни растения женските шарани хвърлят хайвера си -до 500 000 хайверни зрънца.Малките рибки се отглеждат в плитки, обрасли с растителност басейни.През есента се преместват в по-дълбоки басейни за презимуване.Тук, заровени в тинята са защитени от студа.Теглото на един две-тригодишен шаран достига средно три килограма.
-'"></p>
+                                           th:text="*{description} + '......'"></p>
                                     </div>
                                 </div>
                             </div>
@@ -78,7 +59,7 @@
                                     <div class="col-sm-12 text-end">
                                         <a class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2"
                                            data-abc="true"
-                                           href="https://cdncloudcart.com/14162/articles/images/108/108.webp?1714220551">Информация</a>
+                                           th:href="@{/fish-list-type/{urlName}(urlName = *{urlName})}">Информация</a>
                                     </div>
                                 </div>
                             </div>
@@ -90,7 +71,10 @@
     </div>
 </section>
 <!--END-->
+<footer>
+    <th:block th:replace="~{fragments/footer}"></th:block>
+    <th:block th:replace="~{fragments/js}"></th:block>
+</footer>
 </body>
-<th:block th:replace="~{fragments/footer}"></th:block>
-<th:block th:replace="~{fragments/js}"></th:block>
+
 </html>

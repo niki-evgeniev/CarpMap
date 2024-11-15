@@ -37,25 +37,24 @@ public class SecurityConfiguration {
                 authorizeRequest -> authorizeRequest
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/js/**", "/images/**", "/css/**", "/lib/**").permitAll()
-//                        .requestMatchers("/error/**").permitAll()
                         .requestMatchers("/", "/error", "/error/**", "/users/login", "/users/profile",
-                                "/users/login-error").permitAll()
+                                "/users/login-error", "/imagesApp/**").permitAll()
                         .requestMatchers("/reservoirs/reservoirsByType/reservoirs",
                                 "/reservoirs/reservoirsByType/private_reservoir",
                                 "/reservoirs/reservoirsByType/free_reservoir",
                                 "/reservoirs/reservoirsByType/countVisitors",
                                 "/reservoirs/{type}",
                                 "/reservoirs/reservoirsByType/{type}").permitAll()
-                        .requestMatchers("/donate", "/cookiePolicy").permitAll()
                         .requestMatchers("/robots.txt", "/sitemap.xml").permitAll()
-                        .requestMatchers("/about", "/blog", "/contact", "/home", "/fish", "/announced").permitAll()
-                        .requestMatchers("/subscribe/send").permitAll()
-                        .requestMatchers("/gallery", "/search").permitAll()
+                        .requestMatchers("/about", "/blog", "/contact", "/home",
+                                "/fish-list-type/fishing-type",
+                                "/announced", "/donate", "/cookiePolicy", "/subscribe/send",
+                                "/gallery", "/search").permitAll()
+                        .requestMatchers("/fish/add/addingFisha", "/fish/add/adding-fish")
+                        .hasAnyRole(RoleType.MODERATOR.name())
                         .requestMatchers("/reservoirs/add/reservoirAdd",
                                 "/reservoirs/reservoirsEdit/{id}",
                                 "/reservoirs/delete/{id}")
-                        .hasAnyRole(RoleType.MODERATOR.name())
-                        .requestMatchers("/reservoirs/delete/{id}")
                         .hasAnyRole(RoleType.MODERATOR.name())
                         .requestMatchers("/profile/profiles")
                         .hasAnyRole(RoleType.ADMIN.name())

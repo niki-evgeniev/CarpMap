@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link href="/css/style3.css" rel="stylesheet">
+    <title>Детайли- CarpMap</title>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="keywords" content="website">
+    <!--    <meta name="title" th:content="'Язовир ' + ${details.name}">-->
+    <!--    <meta name="description" th:content="'Информация за язовир ' + ${details.name} ">-->
+    <!--    <meta name="author" content="Nikolay">-->
+    <!--    <meta name="robots" content="index, follow">-->
+    <!--    &lt;!&ndash; Open Graph тагове за социални мрежи &ndash;&gt;-->
+    <!--    <meta property="og:title" th:content="'Язовир ' + ${details.name}">-->
+    <!--    <meta property="og:description" th:content="'Информация за язовир ' + ${details.name}">-->
+    <!--    <meta property="og:url" th:content="@{https://carpmap.online/reservoirs/{id}(id = *{details.urlName})}">-->
+    <!--    <meta property="og:type" content="website">-->
+    <!--    <meta property="og:locate" content="bg_BG">-->
+    <!--    <meta property="og:image" th:content="${details.urlImage}">-->
+
+    <!--    &lt;!&ndash; Twitter Card тагове &ndash;&gt;-->
+    <!--    <meta name="twitter:card" content="summary_large_image">-->
+    <!--    <meta name="twitter:title" th:content="'Язовир ' + ${details.name}">-->
+    <!--    <meta name="twitter:description" th:content="'Информация за язовир ' + ${details.name}">-->
+    <!--    <meta name="twitter:url" th:content="@{https://carpmap.online/reservoirs/{id}(id = *{details.urlName})}">-->
+    <!--    <meta name="twitter:image"-->
+    <!--          th:content="${details.urlImage}">-->
+    <!--    <link rel="canonical" th:href="@{https://carpmap.online/reservoirs/{id}(id = *{details.urlName})}"/>-->
+    <th:block th:replace="~{fragments/head}"></th:block>
+</head>
+<body>
+<th:block th:replace="~{fragments/topbar}"></th:block>
+<th:block th:replace="~{fragments/navbar}"></th:block>
+<header class="cd__intro">
+    <h1 class="text-center"
+        th:text="*{fishDetailsDTO.fishName}"></h1>
+    <h6 th:text="*{fishDetailsDTO.latinName}"
+        class="text-center">Град</h6>
+    <br>
+    <div class="cd__action text-center">
+        <a th:href="@{/fish-list-type/fishing-type}"
+           title="Back to download and tutorial page"
+           class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5">BACK</a>
+    </div>
+</header>
+<!--$%adsense%$-->
+<main class="cd__main">
+    <div class="container my-5">
+        <div class="row" th:object="${fishDetailsDTO}">
+            <div class="col-md-7">
+                <div class="main-img">
+                    <img class="img-fluid img-detail"
+                         th:src="*{imageUrl}"
+                         data-toggle="modal"
+                         data-target="#exampleModal"
+                         alt="ProductS">
+                    <div class="modal fade"
+                         id="exampleModal"
+                         tabindex="-1"
+                         role="dialog"
+                         aria-labelledby="exampleModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog"
+                             role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title w-100 text-center"
+                                        id="exampleModalLabel"
+                                        th:text="*{fishName}">
+                                    </h3>
+                                </div>
+                                <!--Modal body with image-->
+                                <div class="modal-body">
+                                    <img th:src="*{imageUrl}"/>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn"
+                                            data-dismiss="modal">
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="main-description px-2">
+                    <div class="product-title text-bold my-3 text-start"
+                         th:text="'Добавен на : ' + *{fishName}">
+                    </div>
+                    <div class="product-title text-bold my-3 text-start"
+                         th:text="'Добавен на : ' + *{addedOnDate.toLocalDate()}">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container my-5" th:object="${fishDetailsDTO}">
+        <div class="row">
+            <div class="product-details my-4 col-md-12">
+                <p class="details-title text-color mb-1" th:text="'Информация за яз. ' + *{fishName}"></p>
+                <p class="description" th:text="*{description}"></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 text-center"
+         sec:authorize="hasRole('ADMIN') or hasRole('MODERATOR')">
+        <form sec:authorize="hasRole('ADMIN')"
+              th:method="DELETE"
+              th:action="@{/fish-list-type/delete/{urlName}(urlName = ${fishDetailsDTO.urlName})}"
+              class="deleteReservoir text-end px-5 py-4"
+              onsubmit="return confirmDeletion()">
+            <input type="submit" value="DELETE" class="btn btn-danger rounded-pill py-2 px-4 ms-lg-2"/>
+        </form>
+    </div>
+</main>
+<!-- Footer Start -->
+<footer>
+    <th:block th:replace="~{fragments/footer}"></th:block>
+</footer>
+<!-- Footer End -->
+
+<!-- JavaScript Libraries -->
+<div>
+    <th:block th:replace="~{fragments/js}"></th:block>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity=
+                    "sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity=
+                    "sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous">
+    </script>
+    <script>
+        function confirmDeletion() {
+            return confirm("Are you sure you want to delete this item?");
+        }
+    </script>
+</div>
+<!-- Back to Top -->
+<a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i
+        class="fa fa-arrow-up"></i></a>
+</body>
+</html>

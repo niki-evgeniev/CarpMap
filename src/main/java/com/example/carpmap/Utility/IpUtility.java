@@ -25,10 +25,7 @@ public class IpUtility {
 
     }
 
-    public ModelAndView getIpAndBlog(UserDetails userDetails, String cloudflareIp, HttpServletRequest request)
-            throws InterruptedException {
-        Long countLastDayVisitor = ipAddressService.findLastDayVisitor();
-        Long newUserForToday = ipAddressService.findNewUsersForToday();
+    public ModelAndView getIpAndBlog(UserDetails userDetails, String cloudflareIp, HttpServletRequest request) {
         String ipAddress = ipAddressService.getIp().trim();
         System.out.println(LocalDateTime.now() + " Visitor address : " + ipAddress);
         System.out.println(LocalDateTime.now() + " Visitor cloudflare address : " + cloudflareIp);

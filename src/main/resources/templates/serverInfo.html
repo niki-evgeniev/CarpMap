@@ -33,13 +33,13 @@
                 <div class="row">
                     <div class="col-md-4 py-4">
                         <h4 class="mb-3 text-uppercase">INFO FOR VISITORS</h4>
-                        <h5>Visitors</h5>
+                        <h5>All visitors</h5>
                         <th:block th:text="${counter}"></th:block>
                         <br>
-                        <h5>Visitors last 24h</h5>
+                        <h5>Visits for the last 24h</h5>
                         <th:block th:text="${countLastDayVisitor}"></th:block>
                         <br>
-                        <h5>Last new day visitors</h5>
+                        <h5>New visitors today</h5>
                         <th:block th:text="${newUserForToday}"></th:block>
                     </div>
                     <div class="col-md-4 py-4">
@@ -88,13 +88,13 @@
                     </div>
                     <div class="col-md-4 py-4">
                         <h4 class="mb-3 text-uppercase">Network Info</h4>
-                        <h5>networkName</h5>
+                        <h5>network Name</h5>
                         <th:block th:text="${networkName}"></th:block>
                         <br>
-                        <h5>bytesSent </h5>
+                        <h5>bytes Sent </h5>
                         <th:block th:text="${bytesSent}"></th:block>
                         <br>
-                        <h5>bytesReceived</h5>
+                        <h5>bytes Received</h5>
                         <th:block th:text="${bytesReceived}"></th:block>
                     </div>
                 </div>
@@ -102,15 +102,17 @@
         </div>
     </div>
 </div>
-
 <!-- Server Info End -->
 <!-- Footer Start -->
-<th:block th:replace="~{fragments/footer}"></th:block>
-<!-- Footer End -->
-<!-- Back to Top -->
-<a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>
-<!-- JavaScript Libraries -->
-<th:block th:replace="~{fragments/js}"></th:block>
+<footer>
+    <th:block th:replace="~{fragments/footer}"></th:block>
+    <!-- Footer End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i
+            class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <th:block th:replace="~{fragments/js}"></th:block>
+</footer>
 </body>
 
 </html>
