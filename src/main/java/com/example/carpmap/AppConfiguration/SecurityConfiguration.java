@@ -37,7 +37,7 @@ public class SecurityConfiguration {
                 authorizeRequest -> authorizeRequest
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                         .requestMatchers("/js/**", "/images/**", "/css/**", "/lib/**").permitAll()
-                        .requestMatchers("/", "/error", "/error/**", "/users/login", "/users/profile",
+                        .requestMatchers("/", "/error", "/error/**", "/users/login",
                                 "/users/login-error", "/imagesApp/**").permitAll()
                         .requestMatchers("/reservoirs/reservoirsByType/reservoirs",
                                 "/reservoirs/reservoirsByType/private_reservoir",
@@ -50,7 +50,7 @@ public class SecurityConfiguration {
                                 "/fish-list-type/fishing-type",
                                 "/announced", "/donate", "/cookiePolicy", "/subscribe/send",
                                 "/gallery", "/search").permitAll()
-                        .requestMatchers("/fish/add/addingFisha", "/fish/add/adding-fish")
+                        .requestMatchers("/fish/add/adding-fish")
                         .hasAnyRole(RoleType.MODERATOR.name())
                         .requestMatchers("/reservoirs/add/reservoirAdd",
                                 "/reservoirs/reservoirsEdit/{id}",
@@ -73,7 +73,7 @@ public class SecurityConfiguration {
                                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
                             } else {
                                 System.out.println("Redirecting to login due to unauthorized access: " +
-                                        request.getRequestURI());
+                                        request.getRequestURI() + " " + request.getRemoteAddr());
                                 response.sendRedirect("/users/login");
                             }
                         })

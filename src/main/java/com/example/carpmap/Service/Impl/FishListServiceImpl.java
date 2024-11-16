@@ -66,7 +66,7 @@ public class FishListServiceImpl implements FishListService {
             fishListRepository.save(fishList);
             outputStream.close();
         } catch (IOException e) {
-            System.out.println(e.getStackTrace());
+            System.out.println(e.getMessage());
         }
     }
 
@@ -83,13 +83,16 @@ public class FishListServiceImpl implements FishListService {
     private static void mapNewFishList(AddFishDTO addFishDTO, FishList fishList,
                                        Optional<User> user, String engName,
                                        String imagePath, String pictureName) {
-        fishList.setUser(user.get());
-        fishList.setFishName(addFishDTO.getFishName().trim());
-        fishList.setAddedOnDate(LocalDateTime.now());
-        fishList.setLatinName(addFishDTO.getLatinName().trim());
-        fishList.setUrlName(engName);
-        fishList.setDescription(addFishDTO.getDescription().trim());
-        fishList.setImageUrl(imagePath + pictureName);
+        if (user.isPresent()) {
+            User userToAdd = user.get();
+            fishList.setUser(userToAdd);
+            fishList.setFishName(addFishDTO.getFishName().trim());
+            fishList.setAddedOnDate(LocalDateTime.now());
+            fishList.setLatinName(addFishDTO.getLatinName().trim());
+            fishList.setUrlName(engName);
+            fishList.setDescription(addFishDTO.getDescription().trim());
+            fishList.setImageUrl(imagePath + pictureName);
+        }
     }
 
     @Override
@@ -126,7 +129,6 @@ public class FishListServiceImpl implements FishListService {
         String relativePath = "." + fishList.getImageUrl();
 
         Path filePath = Paths.get(relativePath).toAbsolutePath();
-
         File file = filePath.toFile();
 
         if (file.exists()) {
@@ -139,7 +141,6 @@ public class FishListServiceImpl implements FishListService {
         } else {
             System.out.println("File not exist " + filePath);
         }
-
     }
 }
 
