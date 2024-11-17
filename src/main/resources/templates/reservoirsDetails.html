@@ -28,6 +28,8 @@
     <meta name="twitter:image"
           th:content="${details.urlImage}">
     <link rel="canonical" th:href="@{https://carpmap.online/reservoirs/{id}(id = *{details.urlName})}"/>
+    <meta property="og:site_name" content="CarpMap">
+    <meta property="og:locale" content="bg_BG">
     <th:block th:replace="~{fragments/head}"></th:block>
 </head>
 <body>
