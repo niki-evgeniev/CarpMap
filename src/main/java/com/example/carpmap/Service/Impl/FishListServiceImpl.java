@@ -97,8 +97,8 @@ public class FishListServiceImpl implements FishListService {
         Page<FishList> allFishList = fishListRepository.findAll(pageable);
         for (FishList fishList : allFishList) {
             String description = fishList.getDescription();
-            if (description.length() > 350) {
-                String getFirst50 = description.substring(0, 350);
+            if (description.length() > 250) {
+                String getFirst50 = description.substring(0, 250);
                 fishList.setDescription(getFirst50);
             }
         }

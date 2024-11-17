@@ -1,6 +1,7 @@
 package com.example.carpmap.Models.DTO.Fish;
 
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,6 +15,7 @@ public class AddFishDTO {
     @Size(min = 3, max = 2000, message = "Може да въвеждате максимално 2000 символа и минимално 3")
     private String description;
 
+    @NotNull
     private MultipartFile pictureFile;
 
     private String urlName;

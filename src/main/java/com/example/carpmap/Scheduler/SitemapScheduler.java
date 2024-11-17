@@ -1,6 +1,8 @@
 package com.example.carpmap.Scheduler;
 
+import com.example.carpmap.Models.Entity.FishList;
 import com.example.carpmap.Models.Entity.Reservoir;
+import com.example.carpmap.Repository.FishListRepository;
 import com.example.carpmap.Repository.ReservoirRepository;
 import com.redfin.sitemapgenerator.ChangeFreq;
 import com.redfin.sitemapgenerator.WebSitemapGenerator;
@@ -18,12 +20,14 @@ import java.util.List;
 public class SitemapScheduler {
 
     private final ReservoirRepository reservoirRepository;
+    private final FishListRepository fishListRepository;
 
-    public SitemapScheduler(ReservoirRepository reservoirRepository) {
+    public SitemapScheduler(ReservoirRepository reservoirRepository, FishListRepository fishListRepository) {
         this.reservoirRepository = reservoirRepository;
+        this.fishListRepository = fishListRepository;
     }
 
-    //        @Scheduled(cron = "0 */1 * * * *")
+//    @Scheduled(cron = "0 */1 * * * *")
     @Scheduled(cron = "0 0 0 1 * ?")
     public void createSitemap() throws MalformedURLException, ParseException {
 
@@ -60,7 +64,6 @@ public class SitemapScheduler {
                 .priority(1.0)
                 .build();
         webSitemapGenerator.addUrl(webSitemapUrlBlog);
-
 
 
         WebSitemapUrl webSitemapUrlAbout = new WebSitemapUrl.Options("https://carpmap.online/about")
@@ -103,10 +106,21 @@ public class SitemapScheduler {
             WebSitemapUrl webSitemapUrlReservoir = new WebSitemapUrl.Options("https://carpmap.online/reservoirs/" + reservoir.getUrlName())
                     .lastMod(day)
                     .changeFreq(ChangeFreq.DAILY)
-                    .priority(0.8)
+                    .priority(1.0)
                     .build();
             webSitemapGenerator.addUrl(webSitemapUrlReservoir);
         }
+
+        List<FishList> allFishList = fishListRepository.findAll();
+        for (FishList fishList : allFishList) {
+            WebSitemapUrl webSitemapUrlFishList = new WebSitemapUrl.Options("https://carpmap.online/fish-list-type/" + fishList.getUrlName())
+                    .lastMod(day)
+                    .changeFreq(ChangeFreq.DAILY)
+                    .priority(1.0)
+                    .build();
+            webSitemapGenerator.addUrl(webSitemapUrlFishList);
+        }
+
 
         webSitemapGenerator.write();
 
