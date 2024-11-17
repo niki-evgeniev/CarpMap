@@ -47,7 +47,7 @@ public class SecurityConfiguration {
                                 "/reservoirs/reservoirsByType/{type}").permitAll()
                         .requestMatchers("/robots.txt", "/sitemap.xml").permitAll()
                         .requestMatchers("/about", "/blog", "/contact", "/home",
-                                "/fish-list-type/fishing-type",
+                                "/fish-list-type/fishing-type", "/fish-list-type/**",
                                 "/announced", "/donate", "/cookiePolicy", "/subscribe/send",
                                 "/gallery", "/search").permitAll()
                         .requestMatchers("/fish/add/addingFisha", "/fish/add/adding-fish")
