@@ -26,6 +26,7 @@ public class ContactController {
     public ModelAndView contact(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView("contact");
         modelAndView.addObject("currentUrl", request.getRequestURI());
+        System.out.println("contact type opening");
         return modelAndView;
     }
 

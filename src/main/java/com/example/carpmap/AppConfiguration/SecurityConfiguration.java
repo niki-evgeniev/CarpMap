@@ -36,9 +36,11 @@ public class SecurityConfiguration {
         httpSecurity.authorizeHttpRequests(
                 authorizeRequest -> authorizeRequest
                         .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                        .requestMatchers("/js/**", "/images/**", "/css/**", "/lib/**").permitAll()
-                        .requestMatchers("/", "/error", "/error/**", "/users/login",
-                                "/users/login-error", "/imagesApp/**").permitAll()
+                        .requestMatchers("/js/**", "/lib/**", "/css/**", "/images/**").permitAll()
+                        .requestMatchers("/home", "/about", "/blog", "/contact",
+                                "/fish-list-type/fishing-type", "/fish-list-type/**",
+                                "/announced", "/donate", "/cookiePolicy", "/subscribe/send",
+                                "/gallery", "/search").permitAll()
                         .requestMatchers("/reservoirs/reservoirsByType/reservoirs",
                                 "/reservoirs/reservoirsByType/private_reservoir",
                                 "/reservoirs/reservoirsByType/free_reservoir",
@@ -46,10 +48,8 @@ public class SecurityConfiguration {
                                 "/reservoirs/{type}",
                                 "/reservoirs/reservoirsByType/{type}").permitAll()
                         .requestMatchers("/robots.txt", "/sitemap.xml").permitAll()
-                        .requestMatchers("/about", "/blog", "/contact", "/home",
-                                "/fish-list-type/fishing-type", "/fish-list-type/**",
-                                "/announced", "/donate", "/cookiePolicy", "/subscribe/send",
-                                "/gallery", "/search").permitAll()
+                        .requestMatchers("/", "/error", "/error/**", "/users/login",
+                                "/users/login-error", "/imagesApp/**").permitAll()
                         .requestMatchers("/fish/add/adding-fish")
                         .hasAnyRole(RoleType.MODERATOR.name())
                         .requestMatchers("/reservoirs/add/reservoirAdd",
@@ -66,17 +66,17 @@ public class SecurityConfiguration {
                         .hasAnyRole(RoleType.MODERATOR.name())
                         .anyRequest().authenticated()
 
-        ).exceptionHandling(
-                exceptionHandling -> exceptionHandling
-                        .authenticationEntryPoint((request, response, authException) -> {
-                            if (request.getRequestURI().startsWith("/error")) {
-                                response.sendError(HttpServletResponse.SC_NOT_FOUND);
-                            } else {
-                                System.out.println("Redirecting to login due to unauthorized access: " +
-                                        request.getRequestURI() + " " + request.getRemoteAddr());
-                                response.sendRedirect("/users/login");
-                            }
-                        })
+//        ).exceptionHandling(
+//                exceptionHandling -> exceptionHandling
+//                        .authenticationEntryPoint((request, response, authException) -> {
+//                            if (request.getRequestURI().startsWith("/error")) {
+//                                response.sendError(HttpServletResponse.SC_NOT_FOUND);
+//                            } else {
+//                                System.out.println("Redirecting to login due to unauthorized access: " +
+//                                        request.getRequestURI() + " " + request.getRemoteAddr());
+//                                response.sendRedirect("/users/login");
+//                            }
+//                        })
         ).formLogin(
                 formLogin -> {
                     formLogin

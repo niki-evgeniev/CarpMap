@@ -33,6 +33,7 @@ public class HomeController {
         String cloudflareIp = request.getRemoteAddr();
         String userAgent = request.getHeader("User-Agent");
         System.out.println(userAgent);
+        System.out.println("Home type opening");
         return ipUtility.getIpAndBlog(userDetails, cloudflareIp, request);
     }
 

@@ -29,6 +29,7 @@ public class UserController {
 
     @GetMapping("login")
     public ModelAndView login() {
+        System.out.println("LOGIN type opening");
         return new ModelAndView("login");
     }
 

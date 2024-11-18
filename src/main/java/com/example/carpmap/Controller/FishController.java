@@ -31,13 +31,14 @@ public class FishController {
 
 
     @GetMapping("fishing-type")
-    public ModelAndView getFish(@PageableDefault(size = 6) Pageable pageable,
+    public ModelAndView getFish(@PageableDefault(size = 6, sort = "fishName") Pageable pageable,
                                 HttpServletRequest request) {
 
         Page<FishListAllDTO> getAllFishList = fishListService.getAll(pageable);
         ModelAndView modelAndView = new ModelAndView("fish");
         modelAndView.addObject("currentUrl", request.getRequestURI());
         modelAndView.addObject("allFishList", getAllFishList);
+        System.out.println("fishList type opening");
         return modelAndView;
     }
 
