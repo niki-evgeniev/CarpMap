@@ -4,7 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
 <head>
     <link href="/css/style3.css" rel="stylesheet">
-    <title>Детайли- CarpMap</title>
+    <title th:text="'Информация за рибата ' + ${fishDetailsDTO.fishName} + ' - CarpMap'">Детайли- CarpMap</title>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <!--    <meta name="keywords" content="website"-->

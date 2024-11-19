@@ -52,13 +52,15 @@ public class FishListServiceImpl implements FishListService {
         String imagePath = IMAGE_PATH.substring(1);
         String urlName = addFishDTO.getFishName().toLowerCase().trim();
         String engName = convertorBgToEn.convertCyrillicToLatin(urlName);
-        System.out.println();
         try {
             File file = new File(IMAGE_PATH + pictureName);
             file.getParentFile().mkdirs();
             file.createNewFile();
 
             OutputStream outputStream = new FileOutputStream(file);
+            if (pictureFile.isEmpty()){
+                System.out.println("EMPTY FILE");
+            }
             outputStream.write(pictureFile.getBytes());
             Optional<User> user = userRepository.findByUsername(userDetails.getUsername());
             FishList fishList = new FishList();
@@ -100,8 +102,8 @@ public class FishListServiceImpl implements FishListService {
         Page<FishList> allFishList = fishListRepository.findAll(pageable);
         for (FishList fishList : allFishList) {
             String description = fishList.getDescription();
-            if (description.length() > 250) {
-                String getFirst50 = description.substring(0, 250);
+            if (description.length() > 200) {
+                String getFirst50 = description.substring(0, 200);
                 fishList.setDescription(getFirst50);
             }
         }

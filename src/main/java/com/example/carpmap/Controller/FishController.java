@@ -31,7 +31,7 @@ public class FishController {
 
 
     @GetMapping("fishing-type")
-    public ModelAndView getFish(@PageableDefault(size = 6, sort = "fishName") Pageable pageable,
+    public ModelAndView getFish(@PageableDefault(size = 12, sort = "fishName") Pageable pageable,
                                 HttpServletRequest request) {
 
         Page<FishListAllDTO> getAllFishList = fishListService.getAll(pageable);
