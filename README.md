@@ -1,60 +1,104 @@
-CarpMap is a water reservoir management application designed for anglers and fishing enthusiasts.
-The project is implemented using Spring Boot + Thymeleaf and includes functionalities such as reservoir search,
-reservoir details, blog and others.
+# CarpMap
 
-To access the home page, open a -> https://carpmap.online
+CarpMap is a water reservoir management application designed for anglers and fishing enthusiasts.  
+The project is implemented using **Spring Boot** and **Thymeleaf**, offering functionalities such as reservoir search,
+detailed reservoir information, fish type, blog posts, and more.
 
-## Features
+### **Live Demo**
 
+Visit the home page: [CarpMap Online](https://carpmap.online)
+
+---
+
+## **Features**
+
+### **Reservoir Management**
+
+- Add new reservoirs
 - View all reservoirs in Bulgaria
-- Search for reservoirs by name or type
 - Detailed reservoir information
-- User profile management
-  - change password
-  - change user details info ( email, facebook , twiter and more )
-- User register management
-- Blog posts
-- Contact form
-- Admin panel for managing users, blog and reservoirs
-  - IP management for access control
-  - IP to see visitor last day/month/new for today
-  - BANNED Ip
-  - Change password
-  - Change user roles
-  - Change to other user details info ( email, facebook , twiter and more )
-- Mail system
-  - Receive and delete messages
-  - View message details
-- Scheduler 
-  - Checking for duplicate IP addresses
-  - Аdd new page to sitemap.xml
-- Interceptor for banning IP addresses
-- Server info
-  -  Used memory
-  -  Free memor
-  -  All memory
-  -  Version APP
-  -  Cpu info
-  -  Cpu load
-  -  Uptime
-  -  Counter for register Reservoir
-  -  Counter for register Users
-  -  SSD free space
-  -  SSD usege space
-  -  Network info 
-- Add sitemap
+- Search reservoirs by name or type
+- Edit reservoirs:
+    - Change name, iframe, descriptions, and more
+    - Update or delete pictures (from Cloudinary)
+    - Remove reservoirs
 
-## Technologies
+### **Fish Type Management**
 
-- Java 17
-- HTML
-- CSS
-- Boostrap
-- JavaScript
-- Spring Boot
-- Spring Security
-- Thymeleaf
-- MySQL
-- Actuator
-- Oshi
-- Responsive design
+- Add new fish types
+- View all fish types in Bulgaria
+- Detailed fish information
+
+### **User Management**
+
+- User registration and profile updates
+- Change password
+- Update user details (email, Facebook, Twitter, etc.)
+
+### **Blog and Contact**
+
+- Create and manage blog posts
+- Contact form for inquiries
+
+### **Admin Panel**
+
+- Manage users and roles (USER, MODERATOR, ADMIN)
+- IP management for access control:
+    - View visitor statistics (daily, monthly, etc.)
+    - Ban/unban IPs
+- Edit user details (email, social links, etc.)
+
+### **Mail System**
+
+- Receive and delete messages
+- View message details
+
+### **Scheduler**
+
+- Check for duplicate IP addresses
+- Add new pages to `sitemap.xml`
+
+### **Server Monitoring**
+
+- View system information:
+    - Memory usage (used, free, total)
+    - Application version
+    - CPU information and load
+    - Uptime
+    - Registered reservoir and user counters
+    - SSD usage and free space
+    - Network details
+
+---
+
+## **Technologies Used**
+
+- **Java 17**
+- **Spring Boot**
+- **Spring Security**
+- **Thymeleaf**
+- **MySQL**
+- **HTML, CSS, Bootstrap, JavaScript**
+- **Actuator**
+- **Oshi** (for system monitoring)
+- **Responsive Design**
+
+---
+
+## **Future Improvements**
+
+- Enhance the UI/UX design
+- Add advanced search filters for reservoirs
+- Introduce user subscription plans for premium features
+
+---
+
+## **Contributing**
+
+We welcome contributions! Feel free to fork the repository and submit pull requests.
+
+---
+
+## **Contact**
+
+For any questions, feel free to reach out via the [contact form](https://carpmap.online/contact).  
