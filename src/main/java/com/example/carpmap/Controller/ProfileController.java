@@ -6,6 +6,7 @@ import com.example.carpmap.Models.DTO.Profile.ProfileInfoDTO;
 import com.example.carpmap.Models.DTO.Profile.ProfileNewPasswordDTO;
 import com.example.carpmap.Models.DTO.Users.ErrorRegister;
 import com.example.carpmap.Service.ProfileService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,18 +30,20 @@ public class ProfileController {
     private final String CHANGE_PASSWORD = "profile-change-password";
     private final String CHANGE_ROLE = "profile-change-role";
     private final ProfileService profileService;
+    private final HttpServletRequest request;
 
-    public ProfileController(ProfileService profileService) {
+    public ProfileController(ProfileService profileService, HttpServletRequest request) {
         this.profileService = profileService;
-
+        this.request = request;
     }
 
     @GetMapping("details")
     public ModelAndView details(@RequestParam(value = "activeTab", required = false) String activeTab,
                                 @AuthenticationPrincipal UserDetails userDetails) {
 //        PROFILE USER
-
+        String url = request.getRequestURI();
         ModelAndView modelAndView = getAllView(userDetails);
+        modelAndView.addObject("url", url);
         modelAndView.addObject("activeTab", OVERVIEW);
         return modelAndView;
     }
@@ -50,6 +53,8 @@ public class ProfileController {
                                 @Valid ProfileEditDTO profileEditDTO,
                                 BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView("profile");
+        String url = request.getRequestURI();
+        modelAndView.addObject("url", url);
         if (bindingResult.hasErrors()) {
             modelAndView.addObject("profileInfoDTO", profileService.findProfileById(id));
             modelAndView.addObject("activeTab", EDIT);
@@ -66,6 +71,8 @@ public class ProfileController {
                                     @Valid ProfileNewPasswordDTO profileNewPasswordDTO,
                                     BindingResult bindingResult) {
         ModelAndView modelAndView = new ModelAndView("profile");
+        String url = request.getRequestURI();
+        modelAndView.addObject("url", url);
         modelAndView.addObject("profileInfoDTO", profileService.findProfileById(id));
 
         if (bindingResult.hasErrors()) {
@@ -76,9 +83,9 @@ public class ProfileController {
         List<ErrorRegister> err = profileService.changePassword(profileNewPasswordDTO);
 
         if (err.isEmpty()) {
-            modelAndView.addObject("activeTab", OVERVIEW);
-            modelAndView.addObject("profileInfoDTO", profileService.findProfileById(id));
-            return modelAndView;
+//            modelAndView.addObject("activeTab", OVERVIEW);
+//            modelAndView.addObject("profileInfoDTO", profileService.findProfileById(id));
+            return new ModelAndView("redirect:/profile/details");
         }
         modelAndView.addObject("activeTab", CHANGE_PASSWORD);
         modelAndView.addObject("errors", err);

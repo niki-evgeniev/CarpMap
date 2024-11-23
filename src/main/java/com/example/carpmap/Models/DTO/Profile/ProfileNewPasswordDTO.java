@@ -8,15 +8,15 @@ public class ProfileNewPasswordDTO {
     private Long id;
 
     @NotEmpty(message = "old Password name field information must not be empty")
-    @Size(min = 1, max = 10)
+    @Size(min = 1, max = 50)
     private String currentPassword;
 
     @NotEmpty(message = "Password name field information must not be empty")
-    @Size(min = 1, max = 10)
+    @Size(min = 5, max = 50)
     private String newPassword;
 
     @NotEmpty(message = "Password name field information must not be empty")
-    @Size(min = 1, max = 10)
+    @Size(min = 5, max = 50)
     private String confirmNewPassword;
 
     public ProfileNewPasswordDTO() {

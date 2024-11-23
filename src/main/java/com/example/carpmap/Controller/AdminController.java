@@ -6,6 +6,7 @@ import com.example.carpmap.Service.IpAddressService;
 import com.example.carpmap.Service.ProfileService;
 import com.example.carpmap.Service.ServerInfoService;
 import com.example.carpmap.Utility.AppInfo;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,32 +41,39 @@ public class AdminController {
     private final ServerInfoService serverInfoService;
     private final IpAddressService ipAddressService;
     private final AppInfo appInfo;
+    private final HttpServletRequest request;
 
 
     public AdminController(ProfileService profileService, RestTemplate restTemplate,
                            SystemInfo systemInfo, ServerInfoService serverInfoService,
-                           IpAddressService ipAddressService, AppInfo appInfo) {
+                           IpAddressService ipAddressService, AppInfo appInfo,
+                           HttpServletRequest request) {
         this.profileService = profileService;
         this.restTemplate = restTemplate;
         this.systemInfo = systemInfo;
         this.serverInfoService = serverInfoService;
         this.ipAddressService = ipAddressService;
         this.appInfo = appInfo;
+        this.request = request;
     }
 
     @GetMapping("details/byId/{id}")
-    public ModelAndView detailsById(@PathVariable("id") Long id) {
+    public ModelAndView detailsById(@PathVariable("id") Long id,
+                                    HttpServletRequest request) {
 
         String activeTab = "profile-overview";
         ProfileInfoDTO profileInfoDTO = profileService.findProfileById(id);
-        ProfileEditDTO map = profileService.mapInfoDtoToEditDTO(profileInfoDTO);
+        ProfileEditDTO profileEditDTO = profileService.mapInfoDtoToEditDTO(profileInfoDTO);
         ProfileNewPasswordDTO profileNewPasswordDTO = new ProfileNewPasswordDTO();
         profileNewPasswordDTO.setId(profileInfoDTO.getId());
 
         ModelAndView modelAndView = new ModelAndView("profile");
+        String url = request.getRequestURI();
+        modelAndView.addObject("url", url);
         modelAndView.addObject("profileInfoDTO", profileInfoDTO);
-        modelAndView.addObject("profileEditDTO", map);
+        modelAndView.addObject("profileEditDTO", profileEditDTO);
         modelAndView.addObject("profileNewPasswordDTO", profileNewPasswordDTO);
+        modelAndView.addObject("url", url);
         modelAndView.addObject("activeTab", activeTab);
         return modelAndView;
     }
@@ -80,7 +88,6 @@ public class AdminController {
         if (checkIsAdmin && !bindingResult.hasErrors()) {
             profileService.changeRoles(profileChangeRoleDTO);
         }
-
         return new ModelAndView("redirect:/admin/details/byId/" + id);
     }
 

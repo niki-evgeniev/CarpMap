@@ -21,11 +21,11 @@ public class RegisterDTO {
     private String username;
 
     @NotEmpty(message = "Password cannot be empty!")
-    @Size(min = 8, max = 20, message = "Password length must be between 8 and 20 character!")
+    @Size(min = 8, max = 50, message = "Password length must be between 8 and 20 character!")
     private String password;
 
     @NotEmpty(message = "ConfirmPassword cannot be empty!")
-    @Size(min = 8, max = 20, message = "Password length must be between 8 and 20 character!")
+    @Size(min = 8, max = 50, message = "Password length must be between 8 and 20 character!")
     private String confirmPassword;
 
     public RegisterDTO() {

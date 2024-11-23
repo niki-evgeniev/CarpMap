@@ -51,6 +51,7 @@
                                 </button>
                             </li>
                             <li sec:authorize="isAuthenticated() and hasRole('ADMIN')"
+                                th:if="${url.startsWith('/admin/')}"
                                 class="nav-item">
                                 <button th:classappend="${activeTab == 'profile-roles'} ? 'active' : ''"
                                         class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-roles">
@@ -428,6 +429,7 @@
                             </div>
                             <div th:classappend="${activeTab == 'profile-change-password'} ? 'show active' : ''"
                                  class="tab-pane fade pt-3" id="profile-change-password">
+
                                 <!-- Change Password Form -->
                                 <form th:method="POST"
                                       th:action="@{/profile/details/newPassword/{id}(id = *{id})}"
@@ -494,7 +496,8 @@
                                     </div>
                                 </form><!-- End Change Password Form -->
                             </div>
-                            <div th:classappend="${activeTab == 'profile-roles'} ? 'show active' : ''"
+                            <div
+                                    th:classappend="${activeTab == 'profile-roles'} ? 'show active' : ''"
                                  class="tab-pane fade pt-3" id="profile-roles">
                                 <!-- Settings Form -->
                                 <form th:method="POST"
