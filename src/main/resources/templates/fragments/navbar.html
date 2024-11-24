@@ -52,6 +52,9 @@
                         <a sec:authorize="isAuthenticated() and hasRole('MODERATOR')"
                            th:href="@{/admin/ip/{type}(type = all)}"
                            class="dropdown-item">Info IP</a>
+                        <a sec:authorize="isAuthenticated() and hasRole('MODERATOR')"
+                           th:href="@{/admin/server-info}"
+                           class="dropdown-item">Server info</a>
                     </div>
                 </div>
                 <a sec:authorize="!isAuthenticated()"

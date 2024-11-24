@@ -34,6 +34,7 @@ public class IpAddressController {
             case "thirtyDaysAgo" -> ipAddressService.findThirtyDaysAgo(pageable, type);
             case "lastDay" -> ipAddressService.findLastDay(pageable, type);
             case "newForToday" -> ipAddressService.findNewForToday(pageable, type);
+            case "banned" -> ipAddressService.findAllBanned(pageable, type);
             default -> ipAddressService.getAllIpsAddress(pageable);
         };
 
@@ -47,9 +48,17 @@ public class IpAddressController {
     public ModelAndView searchIp(@Valid SearchIpDTO searchIpDTO, BindingResult bindingResult,
                                  @PageableDefault(size = 9, sort = {"id"}) Pageable pageable) {
 
-        System.out.println();
-//TODO
-        return null;
+        ModelAndView modelAndView = new ModelAndView("ipAddress");
+        String type = "all";
+        modelAndView.addObject("type", type);
+        if (!bindingResult.hasErrors()) {
+            Page<AllIpDTO> searchByIpAddress = ipAddressService.findByIpAddress(pageable, searchIpDTO);
+            modelAndView.addObject("allIps", searchByIpAddress);
+        } else {
+            Page<AllIpDTO> getAllIpAddress = ipAddressService.getAllIpsAddress(pageable);
+            modelAndView.addObject("allIps", getAllIpAddress);
+        }
+        return modelAndView;
     }
 
     @ModelAttribute

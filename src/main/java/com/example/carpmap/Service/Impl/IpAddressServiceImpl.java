@@ -185,7 +185,6 @@ public class IpAddressServiceImpl implements IpAddressService {
     @Override
     public Page<AllIpDTO> findByIpAddress(Pageable pageable, SearchIpDTO searchIpDTO) {
         Page<IpAddress> allByAddress = ipAddressRepository.findAllByAddress(pageable, searchIpDTO.getAddress());
-        System.out.println();
         return getAllIpDTOS(allByAddress);
     }
 
@@ -194,7 +193,6 @@ public class IpAddressServiceImpl implements IpAddressService {
     public Page<AllIpDTO> findThirtyDaysAgo(Pageable pageable, String type) {
         LocalDateTime thirtyDaysAgo = LocalDateTime.now().minusDays(30);
         Page<IpAddress> allUserJoin30DaysAgo = ipAddressRepository.findAllIpAddressesFromLast30Days(thirtyDaysAgo, pageable);
-
         return getAllIpDTOS(allUserJoin30DaysAgo);
     }
 
