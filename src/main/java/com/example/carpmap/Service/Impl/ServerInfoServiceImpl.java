@@ -1,5 +1,6 @@
 package com.example.carpmap.Service.Impl;
 
+import com.example.carpmap.Repository.FishListRepository;
 import com.example.carpmap.Repository.PictureRepository;
 import com.example.carpmap.Repository.ReservoirRepository;
 import com.example.carpmap.Repository.UserRepository;
@@ -17,11 +18,14 @@ public class ServerInfoServiceImpl implements ServerInfoService {
     private final ReservoirRepository reservoirRepository;
     private final UserRepository userRepository;
     private final PictureRepository pictureRepository;
+    private final FishListRepository fishListRepository;
 
-    public ServerInfoServiceImpl(ReservoirRepository reservoirRepository, UserRepository userRepository, PictureRepository pictureRepository) {
+    public ServerInfoServiceImpl(ReservoirRepository reservoirRepository, UserRepository userRepository,
+                                 PictureRepository pictureRepository, FishListRepository fishListRepository) {
         this.reservoirRepository = reservoirRepository;
         this.userRepository = userRepository;
         this.pictureRepository = pictureRepository;
+        this.fishListRepository = fishListRepository;
     }
 
     @Override
@@ -45,6 +49,11 @@ public class ServerInfoServiceImpl implements ServerInfoService {
     @Override
     public Long countAllPictureCloudinary() {
         return pictureRepository.count();
+    }
+
+    @Override
+    public Long countFishList() {
+        return fishListRepository.count();
     }
 
     private String formatUptime(long uptimeMachine) {

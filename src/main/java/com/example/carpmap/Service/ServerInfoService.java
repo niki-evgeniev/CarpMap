@@ -9,4 +9,6 @@ public interface ServerInfoService {
     Long countAllUsers();
 
     Long countAllPictureCloudinary();
+
+    Long countFishList();
 }

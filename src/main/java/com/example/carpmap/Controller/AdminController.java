@@ -115,8 +115,8 @@ public class AdminController {
 
     @GetMapping("server-info")
     public ModelAndView getServerInfo(Model model) {
-        String health = restTemplate.getForObject("http://localhost:8080/actuator/health", String.class);
-        String metric = restTemplate.getForObject("http://localhost:8080/actuator/metrics", String.class);
+//        String health = restTemplate.getForObject("http://localhost:8080/actuator/health", String.class);
+//        String metric = restTemplate.getForObject("http://localhost:8080/actuator/metrics", String.class);
 
         return getModelAndView();
     }
@@ -149,6 +149,7 @@ public class AdminController {
         Long allReservoir = serverInfoService.countAllReservoir();
         Long allUsers = serverInfoService.countAllUsers();
         Long allPictureCloudinary = serverInfoService.countAllPictureCloudinary();
+        Long allFishList = serverInfoService.countFishList();
 
         // GET DISK INFO
         File file = new File("/");
@@ -169,6 +170,7 @@ public class AdminController {
         modelAndView.addObject("allReservoir", allReservoir);
         modelAndView.addObject("allUsers", allUsers);
         modelAndView.addObject("allPictureCloudinary", allPictureCloudinary);
+        modelAndView.addObject("allFishList", allFishList);
         modelAndView.addObject("uptime", uptime);
         modelAndView.addObject("usableSpace", usableSpace / (1024 * 1024 * 1024) + " GB");
         modelAndView.addObject("freeSpace", freeSpace / (1024 * 1024 * 1024) + " GB");
