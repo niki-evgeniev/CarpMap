@@ -49,5 +49,8 @@ public interface IpAddressRepository extends JpaRepository<IpAddress, Long> {
                                          @Param("endOfDay") LocalDateTime endOfDay,
                                          Pageable pageable);
 
+    Page<IpAddress> findAllByIsBannedIs(Boolean isBanned, Pageable pageable);
+
+    Page<IpAddress> findAllByAddress(Pageable pageable, String ipAddress);
 
 }

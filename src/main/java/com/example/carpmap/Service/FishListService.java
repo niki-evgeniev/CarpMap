@@ -11,7 +11,6 @@ public interface FishListService {
 
     boolean checkName(String fishName);
 
-
     void addFishList(AddFishDTO addFishDTO, UserDetails userDetails);
 
     Page<FishListAllDTO> getAll(Pageable pageable);

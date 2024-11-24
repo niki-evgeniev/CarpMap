@@ -1,6 +1,7 @@
 package com.example.carpmap.Service.Impl;
 
 import com.example.carpmap.Models.DTO.Ip.AllIpDTO;
+import com.example.carpmap.Models.DTO.Ip.SearchIpDTO;
 import com.example.carpmap.Models.Entity.IpAddress;
 import com.example.carpmap.Models.Entity.User;
 import com.example.carpmap.Repository.IpAddressRepository;
@@ -173,6 +174,19 @@ public class IpAddressServiceImpl implements IpAddressService {
         Page<IpAddress> newUsersForToday = ipAddressRepository.findNewUsersForToday(result.startOfDay(),
                 result.endOfDay(), pageable);
         return getAllIpDTOS(newUsersForToday);
+    }
+
+    @Override
+    public Page<AllIpDTO> findAllBanned(Pageable pageable, String type) {
+        Page<IpAddress> findAllIsBanned = ipAddressRepository.findAllByIsBannedIs(true, pageable);
+        return getAllIpDTOS(findAllIsBanned);
+    }
+
+    @Override
+    public Page<AllIpDTO> findByIpAddress(Pageable pageable, SearchIpDTO searchIpDTO) {
+        Page<IpAddress> allByAddress = ipAddressRepository.findAllByAddress(pageable, searchIpDTO.getAddress());
+        System.out.println();
+        return getAllIpDTOS(allByAddress);
     }
 
 
