@@ -36,7 +36,7 @@
                 <li class="nav-item px-1 my-3">
                     <a class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5"
                        th:href="@{/admin/ip/{type}(type = lastDay)}">
-                        <span style="width: 150px;">Last day IPs</span>
+                        <span style="width: 150px;">Last 24h IPs</span>
                     </a>
                     <br>
                 </li>
@@ -51,6 +51,13 @@
                     <a class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5"
                        th:href="@{/admin/ip/{type}(type = newForToday)}">
                         <span style="width: 150px;">New For Today</span>
+                    </a>
+                    <br>
+                </li>
+                <li class="nav-item px-1 my-3">
+                    <a class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5"
+                       th:href="@{/admin/ip/{type}(type = banned)}">
+                        <span style="width: 150px;">Is Banned</span>
                     </a>
                     <br>
                 </li>
@@ -145,50 +152,6 @@
             </div>
         </div>
     </section>
-    <!--        <nav aria-label="Page navigation" class="d-flex justify-content-center">-->
-    <!--            <ul th:fragment="ALL" class="pagination text-center">-->
-    <!--                &lt;!&ndash; Previous Page Button &ndash;&gt;-->
-    <!--                <li th:class="${!allIps.hasPrevious()} ? 'page-item disabled' : 'page-item'">-->
-    <!--                    <a class="page-link" th:if="${allIps.hasPrevious()}"-->
-    <!--                       th:href="@{/admin/ip(page=${allIps.previousPageable().pageNumber})}">Back</a>-->
-    <!--                </li>-->
-
-    <!--                &lt;!&ndash; First 3 Pages &ndash;&gt;-->
-    <!--                <li th:each="i : ${#numbers.sequence(0, 1)}"-->
-    <!--                    th:if="${i < allIps.totalPages}"-->
-    <!--                    th:class="${i == allIps.number} ? 'page-item active' : 'page-item'">-->
-    <!--                    <a class="page-link" th:href="@{/admin/ip(page=${i})}" th:text="${i + 1}"></a>-->
-    <!--                </li>-->
-
-    <!--                &lt;!&ndash; Dots if necessary &ndash;&gt;-->
-    <!--                <li th:if="${allIps.totalPages > 4 && allIps.number > 3 && allIps.number < allIps.totalPages - 3}">-->
-    <!--                    <span class="page-link">...</span>-->
-    <!--                </li>-->
-
-    <!--                &lt;!&ndash; Current Page in the middle &ndash;&gt;-->
-    <!--                <li th:if="${allIps.number > 2 && allIps.number < allIps.totalPages - 1}"-->
-    <!--                    th:class="'page-item active'">-->
-    <!--                    <a class="page-link" th:href="@{/admin/ip(page=${allIps.number})}" th:text="${allIps.number + 1}"></a>-->
-    <!--                </li>-->
-
-    <!--                &lt;!&ndash; Dots after the middle page &ndash;&gt;-->
-    <!--                <li th:if="${allIps.totalPages > 4 && allIps.number < allIps.totalPages - 4}">-->
-    <!--                    <span class="page-link">...</span>-->
-    <!--                </li>-->
-
-    <!--                &lt;!&ndash; Last Page &ndash;&gt;-->
-    <!--                <li th:if="${allIps.totalPages > 1}"-->
-    <!--                    th:class="${allIps.totalPages - 1 == allIps.number} ? 'page-item active' : 'page-item'">-->
-    <!--                    <a class="page-link" th:href="@{/admin/ip(page=${allIps.totalPages - 1})}" th:text="${allIps.totalPages}"></a>-->
-    <!--                </li>-->
-
-    <!--                &lt;!&ndash; Next Page Button &ndash;&gt;-->
-    <!--                <li th:class="${!allIps.hasNext()} ? 'page-item disabled' : 'page-item'">-->
-    <!--                    <a class="page-link" th:if="${allIps.hasNext()}"-->
-    <!--                       th:href="@{/admin/ip(page=${allIps.nextPageable().pageNumber})}">Next</a>-->
-    <!--                </li>-->
-    <!--            </ul>-->
-    <!--        </nav>-->
     <nav aria-label="Page navigation " class="d-flex justify-content-center">
         <ul th:fragment="ALL" class="pagination text-center">
 
