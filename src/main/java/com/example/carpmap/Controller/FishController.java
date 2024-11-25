@@ -14,6 +14,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -75,13 +76,14 @@ public class FishController {
         return modelAndView;
     }
 
+    @Transactional
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("delete/{urlName}")
     public ModelAndView deleteFishListDetails(@PathVariable String urlName) {
 
         fishListService.deleteFishListDetails(urlName);
 
-        System.out.println("DELETE DELETE");
+        System.out.println("DELETE " + urlName);
         return new ModelAndView("redirect:/fish-list-type/fishing-type");
     }
 
