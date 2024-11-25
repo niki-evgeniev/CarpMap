@@ -91,7 +91,17 @@
         <div class="container contactMail">
             <div class="row justify-content-center">
                 <div class="col-md-6 text-center mb-5">
-                    <h2 class="heading-section">IPs</h2>
+                    <h2 class="heading-section">IPs -
+                        <span th:switch="${type}">
+                            <span th:case="'all'">All address</span>
+                            <span th:case="'findByUser'">Only used by logged users</span>
+                            <span th:case="'lastDay'">All address for 24h </span>
+                            <span th:case="'thirtyDaysAgo'">All address for last 30 days</span>
+                            <span th:case="'newForToday'">New address for today</span>
+                            <span th:case="'banned'">All banned address</span>
+                            <span th:case="*">Unknown</span>
+                        </span>
+                    </h2>
                 </div>
             </div>
             <div class="row">
@@ -127,7 +137,7 @@
                                 <!--                                <td><a href="#" class="btn btn-primary"-->
                                 <!--                                       th:href="@{/mail/details/{id}(id = *{id})}">Details</a></td>-->
                                 <td>
-                                    <form th:if="*{isBanned} == 'false'"
+                                    <form th:if="!*{isBanned}"
                                           sec:authorize="hasRole('ADMIN')"
                                           th:method="POST"
                                           th:action="@{/admin/ban-ip/{id}(id = *{id})}">
@@ -135,7 +145,7 @@
                                                 type="submit">BAN IP
                                         </button>
                                     </form>
-                                    <form th:if="*{isBanned} == 'true'"
+                                    <form th:if="*{isBanned}"
                                           sec:authorize="hasRole('ADMIN')"
                                           th:method="POST"
                                           th:action="@{/admin/unban-ip/{id}(id = *{id})}">

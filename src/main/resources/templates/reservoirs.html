@@ -43,8 +43,15 @@
     <!--    </div>-->
     <div class="container">
         <link rel="stylesheet" href="/css/style2.css">
-        <div class="section-header">
+        <div>
             <h1 class="text-center">Язовири</h1>
+            <div th:switch="${type}">
+                <h2 class="text-center" th:case="'reservoirs'">Всички частни и държавни язовири</h2>
+                <h2 class="text-center" th:case="'private_reservoir'">Всички частни язовири</h2>
+                <h2 class="text-center" th:case="'free_reservoir'">Всички държавни язовири</h2>
+                <h2 class="text-center" th:case="'countVisitors'">Най-посещавани язовири</h2>
+                <h2 class="text-center" th:case="*">Unknown</h2>
+            </div>
             <p class="text-center">Тук ще намерите всички добавени язовири в CarpMap</p>
         </div><!--/.section-header-->
         <div class="tab-class text-center">
@@ -94,7 +101,7 @@
                         <div class="single-explore-txt bg-theme-1">
                             <h1 style="font-size: 2rem"><a
                                     th:href="@{/reservoirs/{urlName}(urlName = *{urlName})}"
-                                   th:text="'Язовир ' + *{name}"></a></h1>
+                                    th:text="'Язовир ' + *{name}"></a></h1>
                             <p class="explore-rating-price">
                                 <span class="explore-rating">5.0</span>
                                 <a th:href="@{/reservoirs/{urlName}(urlName = *{urlName})}"
