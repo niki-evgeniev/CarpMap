@@ -85,6 +85,7 @@ public class PictureServiceImpl implements PictureService {
                     .toList();
             return allPicture;
         }
+        System.out.println("Method name: getAllReservoirPictureByName" );
         return null;
     }
 

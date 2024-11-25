@@ -52,6 +52,7 @@ public class MailServiceImpl implements MailService {
         }
         String errorMassage = String.format(ERROR_MAIL_WITH_ID_NOT_FOUND, id);
         LOGGER.error(errorMassage);
+        System.out.println("Method name: getDetailsMail" );
         return null;
     }
 

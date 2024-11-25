@@ -121,6 +121,7 @@ public class FishListServiceImpl implements FishListService {
             FishDetailsDTO fishListDetails = modelMapper.map(getFishListDetails, FishDetailsDTO.class);
             return fishListDetails;
         }
+        System.out.println("Method name: getFishListDetails" );
         return null;
     }
 

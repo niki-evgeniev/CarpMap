@@ -261,6 +261,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
         if (reservoirDetails.isEmpty()) {
             String errMsg = String.format(RESERVOIR_WITH_ID_NOT_FOUND, id);
             LOGGER.error(errMsg);
+            System.out.println("Method name: findReservoirToEdit" );
             return null;
         }
 
