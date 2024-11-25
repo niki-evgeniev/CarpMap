@@ -54,7 +54,9 @@ public class SecurityConfiguration {
                         .hasAnyRole(RoleType.MODERATOR.name())
                         .requestMatchers("/reservoirs/add/reservoirAdd",
                                 "/reservoirs/reservoirsEdit/{id}",
-                                "/reservoirs/delete/{id}")
+                                "/reservoirs/delete/{id}",
+                                "/fish-list-type/delete/{urlName}",
+                                "/fish-list-type/add/adding-fish")
                         .hasAnyRole(RoleType.MODERATOR.name())
                         .requestMatchers("/profile/profiles")
                         .hasAnyRole(RoleType.ADMIN.name())
