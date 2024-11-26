@@ -39,9 +39,7 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public MailDetailsDTO getDetailsMail(Long id) {
-
         Optional<Contact> findContactMail = contactRepository.findById(id);
-
         if (findContactMail.isPresent()) {
             Contact readedContact = findContactMail.get();
             readedContact.setRead(true);
