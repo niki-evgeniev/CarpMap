@@ -9,6 +9,6 @@ public class DonateController {
 
     @GetMapping("/donate")
     public ModelAndView donate() {
-        return new ModelAndView("cryptoDonate");
+        return new ModelAndView("test");
     }
 }
