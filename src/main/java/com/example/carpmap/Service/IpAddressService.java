@@ -2,7 +2,6 @@ package com.example.carpmap.Service;
 
 import com.example.carpmap.Models.DTO.Ip.AllIpDTO;
 import com.example.carpmap.Models.DTO.Ip.SearchIpDTO;
-import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -13,9 +12,9 @@ public interface IpAddressService {
 
     Long findAllVisits();
 
-    void checkIpAddressLogin(String username, String ipAddress);
+    void checkIpAddressWhenUserLogin(String username, String ipAddress);
 
-    void getIpVisitor(String ipAddress);
+    void checkIpAddressAndAddToDB(String ipAddress);
 
     Page<AllIpDTO> getAllIpsAddress(Pageable pageable);
 

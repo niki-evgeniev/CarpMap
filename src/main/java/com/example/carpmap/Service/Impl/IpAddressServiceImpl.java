@@ -58,7 +58,7 @@ public class IpAddressServiceImpl implements IpAddressService {
 
     @Override
     @Transactional
-    public void checkIpAddressLogin(String username, String ipAddress) {
+    public void checkIpAddressWhenUserLogin(String username, String ipAddress) {
         Optional<IpAddress> findExistingIpAddress = ipAddressRepository.findByAddress(ipAddress);
         Optional<User> findUser = userRepository.findByUsername(username);
 
@@ -92,7 +92,7 @@ public class IpAddressServiceImpl implements IpAddressService {
 
     @Override
     @Transactional
-    public void getIpVisitor(String ipAddress) {
+    public void checkIpAddressAndAddToDB(String ipAddress) {
 
         Optional<IpAddress> findIp = ipAddressRepository.findByAddress(ipAddress);
 
