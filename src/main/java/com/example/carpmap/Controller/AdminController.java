@@ -58,8 +58,7 @@ public class AdminController {
     }
 
     @GetMapping("details/byId/{id}")
-    public ModelAndView detailsById(@PathVariable("id") Long id,
-                                    HttpServletRequest request) {
+    public ModelAndView detailsById(@PathVariable("id") Long id) {
 
         String activeTab = "profile-overview";
         ProfileInfoDTO profileInfoDTO = profileService.findProfileById(id);
