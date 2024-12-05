@@ -41,4 +41,16 @@ public class IpUtility {
         modelAndView.addObject("currentUrl", request.getRequestURI());
         return modelAndView;
     }
+
+    public void registerIpAddress(UserDetails userDetails,String cloudflareIp, HttpServletRequest request ){
+        String ipAddress = ipAddressService.getIp().trim();
+        System.out.println(LocalDateTime.now() + " Visitor address Login Form : " + ipAddress);
+        System.out.println(LocalDateTime.now() + " Visitor cloudflare address Login Form : " + cloudflareIp);
+
+        if (userDetails != null) {
+            ipAddressService.checkIpAddressWhenUserLogin(userDetails.getUsername(), cloudflareIp);
+        } else {
+            ipAddressService.checkIpAddressAndAddToDB(cloudflareIp);
+        }
+    }
 }
