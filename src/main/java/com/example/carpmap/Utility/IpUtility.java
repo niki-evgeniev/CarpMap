@@ -43,6 +43,7 @@ public class IpUtility {
     }
 
     public void registerIpAddress(UserDetails userDetails,String cloudflareIp, HttpServletRequest request ){
+        // login
         String ipAddress = ipAddressService.getIp().trim();
         System.out.println(LocalDateTime.now() + " Visitor address Login Form : " + ipAddress);
         System.out.println(LocalDateTime.now() + " Visitor cloudflare address Login Form : " + cloudflareIp);
