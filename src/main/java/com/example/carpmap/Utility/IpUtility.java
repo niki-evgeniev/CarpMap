@@ -42,7 +42,7 @@ public class IpUtility {
         return modelAndView;
     }
 
-    public void registerIpAddress(UserDetails userDetails,String cloudflareIp, HttpServletRequest request ){
+    public void registerIpAddress(UserDetails userDetails, String cloudflareIp, HttpServletRequest request) {
         // login
         String ipAddress = ipAddressService.getIp().trim();
         System.out.println(LocalDateTime.now() + " Visitor address Login Form : " + ipAddress);
