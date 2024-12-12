@@ -37,8 +37,6 @@ public class ReservoirsAddDTO {
     private String longitude;
 
 
-    @NotEmpty(message = "Reservoirs iFrameMap must not be empty")
-    @Size(min = 3, max = 500, message = "iFrameMap for Reservoirs length must be between 3 and 500 character!")
     private String iFrameMap;
 
 
