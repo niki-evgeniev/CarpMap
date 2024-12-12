@@ -9,6 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import static com.example.carpmap.Cammon.SuccessfulMessages.SUCCESSFUL_ADD_FISH_TYPE;
@@ -45,6 +46,7 @@ public class FishServiceImpl implements FishService {
             FishNameDTO fishNameDTO = modelMapper.map(fish, FishNameDTO.class);
             fishAllNameDTO.add(fishNameDTO);
         }
+        fishAllNameDTO.sort(Comparator.comparing(FishNameDTO::getFishName));
         return fishAllNameDTO;
     }
 
