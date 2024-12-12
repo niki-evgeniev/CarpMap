@@ -45,7 +45,8 @@ public class SearchController {
                                HttpServletRequest request) throws InterruptedException {
 
         if (!bindingResult.hasErrors()) {
-            Page<ReservoirAllDTO> reservoirByName = reservoirsService.findReservoirByName(searchDTO.getReservoir(), pageable);
+            String reservoirName = searchDTO.getReservoir().trim();
+            Page<ReservoirAllDTO> reservoirByName = reservoirsService.findReservoirByName(reservoirName, pageable);
             ModelAndView modelAndView = new ModelAndView("reservoirs");
             modelAndView.addObject("allReservoir", reservoirByName);
             return modelAndView;
