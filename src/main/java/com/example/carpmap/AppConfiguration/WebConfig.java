@@ -21,5 +21,8 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
        registry.addResourceHandler("/imagesApp/**")
                .addResourceLocations("file:./imagesApp/");
+
+        registry.addResourceHandler("/sitemap.xml")
+                .addResourceLocations("file:./sitemap/sitemap.xml");
     }
 }
