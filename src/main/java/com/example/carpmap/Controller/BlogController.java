@@ -24,6 +24,8 @@ public class BlogController {
         List<BlogDetailsDTO> blogDetails = blogService.getDetailsBlog();
         modelAndView.addObject("blogsDetails", blogDetails);
         modelAndView.addObject("currentUrl", request.getRequestURI());
+        String fishPage = "page";
+        modelAndView.addObject("page", fishPage);
         System.out.println("SUCCESSFUL load details BLOG");
         return modelAndView;
     }

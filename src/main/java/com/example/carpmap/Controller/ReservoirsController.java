@@ -75,6 +75,8 @@ public class ReservoirsController {
         modelAndView.addObject("allReservoir", allReservoirByType);
         modelAndView.addObject("type", type);
         modelAndView.addObject("currentUrl", request.getRequestURI());
+        String fishPage = "page";
+        modelAndView.addObject("page", fishPage);
         System.out.println("Reservoir type opening");
         return modelAndView;
     }
