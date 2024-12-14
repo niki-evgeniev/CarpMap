@@ -23,15 +23,15 @@ public class SitemapScheduler {
 
     private final ReservoirRepository reservoirRepository;
     private final FishListRepository fishListRepository;
-    private final Logger LOGGER = LoggerFactory.getLogger(SitemapScheduler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(SitemapScheduler.class);
 
     public SitemapScheduler(ReservoirRepository reservoirRepository, FishListRepository fishListRepository) {
         this.reservoirRepository = reservoirRepository;
         this.fishListRepository = fishListRepository;
     }
 
-    @Scheduled(cron = "0 */1 * * * *")
-//    @Scheduled(cron = "0 0 */6 * * *")
+//    @Scheduled(cron = "0 */1 * * * *")
+    @Scheduled(cron = "0 0 */4 * * *")
 //    @Scheduled(cron = "0 0 0 1 * ?")
     public void createSitemap() throws MalformedURLException, ParseException {
 
@@ -145,9 +145,9 @@ public class SitemapScheduler {
         if (!sitemapDir.exists()) {
             boolean created = sitemapDir.mkdirs();
             if (created) {
-                System.out.println("Sitemap folder created: " + folder);
+                LOGGER.info("Sitemap folder created: {}", folder);
             } else {
-                System.err.println("Failed to create sitemap folder: " + folder);
+                LOGGER.info("Failed to create sitemap folder: {}", folder);
             }
         }
     }
