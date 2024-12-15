@@ -37,10 +37,11 @@ public class FishController {
 
         Page<FishListAllDTO> getAllFishList = fishListService.getAll(pageable);
         ModelAndView modelAndView = new ModelAndView("fish");
-        String fishPage = "page";
+
         modelAndView.addObject("currentUrl", request.getRequestURI());
         modelAndView.addObject("allFishList", getAllFishList);
-        modelAndView.addObject("page", fishPage);
+        String navbarTransparent = "navbar";
+        modelAndView.addObject("navbar", navbarTransparent);
         System.out.println("fishList type opening");
         return modelAndView;
     }

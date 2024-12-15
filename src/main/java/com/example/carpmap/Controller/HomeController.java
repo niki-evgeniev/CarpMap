@@ -46,8 +46,8 @@ public class HomeController {
     public ModelAndView about(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView("about");
         modelAndView.addObject("currentUrl", request.getRequestURI());
-        String fishPage = "page";
-        modelAndView.addObject("page", fishPage);
+        String navbarTransparent = "navbar";
+        modelAndView.addObject("navbar", navbarTransparent);
         return modelAndView;
     }
 

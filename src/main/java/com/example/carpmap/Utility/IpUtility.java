@@ -39,8 +39,8 @@ public class IpUtility {
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("blogPackages", blogPackagesDTO);
         modelAndView.addObject("currentUrl", request.getRequestURI());
-        String fishPage = "page";
-        modelAndView.addObject("page", fishPage);
+        String navbarTransparent = "navbar";
+        modelAndView.addObject("navbar", navbarTransparent);
         return modelAndView;
     }
 

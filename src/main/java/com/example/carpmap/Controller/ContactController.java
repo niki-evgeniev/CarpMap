@@ -26,6 +26,8 @@ public class ContactController {
     public ModelAndView contact(HttpServletRequest request) {
         ModelAndView modelAndView = new ModelAndView("contact");
         modelAndView.addObject("currentUrl", request.getRequestURI());
+        String navbarTransparent = "navbar";
+        modelAndView.addObject("navbar", navbarTransparent);
         System.out.println("contact type opening");
         return modelAndView;
     }

@@ -5,9 +5,11 @@
 <body>
 <!-- Navbar & Hero Start -->
 <div class="container-fluid position-relative p-0">
-    <nav th:classappend="${page == 'page'} ? '' : 'navUsers'"
-            class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
-        <a href="/" class="navbar-brand p-0">
+    <nav th:classappend="${navbar == 'navbar'}
+                             ? ''
+                             : 'navUsers'"
+         class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+        <a href="/" class="navbar-brand p-0 fw-bold">
             <h1 class="m-0"><i class="fa fa-fish me-3"></i>CarpMap</h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -20,7 +22,7 @@
                    class="nav-item nav-link">Начало</a>
                 <a th:if="${false}"
                    th:href="@{/announced}"
-                   th:classappend="${currentUrl != null and currentUrl.startsWith('/announced')} ? 'active'"
+                   th:classappend="${currentUrl != null and currentUrl.startsWith('/announced')}  ? 'active'"
                    class="nav-item nav-link disabled"
                    style="background-color: #777f85">Обяви</a>
                 <a th:href="@{/fish-list-type/fishing-type}"
