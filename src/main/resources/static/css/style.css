@@ -158,21 +158,26 @@
     font-family: 'Roboto', sans-serif;
     position: relative;
     padding: 25px 15px;
+    /*color: #ffc107 !important;*/
     color: var(--bs-white) !important;
     font-size: 17px;
     font-weight: 400;
     outline: none;
     transition: .5s;
+    text-shadow: 1px 1px 0px black, -1px -1px 0px black, 1px -1px 0px black, -1px 1px 0px black;
 }
 
 .sticky-top.navbar-light .navbar-nav .nav-link {
     padding: 20px 15px;
     color: var(--bs-dark) !important;
+    text-shadow: 0.5px 0.5px 0px white, -0.5px -0.5px 0px white, 0.5px -0.5px 0px white, -0.5px 0.5px 0px white;
+    text-shadow: none;
 }
 
 .navbar-light .navbar-nav .nav-link:hover,
 .navbar-light .navbar-nav .nav-link.active {
     color: var(--bs-white) !important;
+    text-shadow: none
 }
 
 .navbar-light .navbar-brand h1 {
@@ -253,6 +258,7 @@
     .sticky-top.navbar-light .navbar-nav .nav-link {
         padding: 10px 0;
         color: var(--bs-dark) !important;
+        text-shadow: none;
     }
 
     .navbar-light .navbar-nav .nav-link:hover,
@@ -1335,7 +1341,7 @@ body > div.container-fluid.about.py-5 {
 }
 
 .explore {
-    margin-top: 3%;
+    margin-top: 0%;
 }
 
 .sendInfo {
@@ -1619,7 +1625,7 @@ body > main > div.container-fluid.packages.py-5 {
 }
 
 .reservoirPicCover {
-    background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)), url(../images/test4.jpg);
+    background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)), url(../images/cover/reservoirPicCover.jpg);
     max-width: 100%;
     background-position: center center;
     background-repeat: no-repeat;
@@ -1638,14 +1644,14 @@ body > main > div.container-fluid.packages.py-5 {
 }
 
 .fishPicCover {
-    background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)), url(../images/test22.jpg);
+    background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)), url(../images/cover/fishPicCover.jpg);
     max-width: 100%;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
     padding: 150px 0 50px 0;
-    height: 550px;
+    height: 450px;
 }
 
 .fishH1Tag {
@@ -1654,21 +1660,43 @@ body > main > div.container-fluid.packages.py-5 {
 }
 
 .aboutUs {
-    background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)), url(../images/test3.jpg);
+    background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)), url(../images/cover/aboutUs.jpg);
     max-width: 100%;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
     padding: 150px 0 50px 0;
-    height: 550px;
+    height: 450px;
 }
 
-.aboutUsh1Tag{
+.aboutUsh1Tag {
+    opacity: 0.4;
+}
+
+.contactPicCover {
+    background: linear-gradient(rgba(19, 53, 123, 0.5), rgba(19, 53, 123, 0.5)), url(../images/cover/reservoirPicCover.jpg);
+    max-width: 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 150px 0 50px 0;
+    height: 450px;
+}
+
+.contactH1Tag {
+    opacity: 0.4;
+}
+.blogH1Tag{
     opacity: 0.4;
 }
 
 .navUsers {
     background-color: #70a9ff;
+}
+
+.products {
+    margin-top: -3%;
 }
 
