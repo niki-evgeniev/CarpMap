@@ -20,7 +20,8 @@
           th:content="@{https://carpmap.online/fish-list-type/{urlName}(urlName = *{fishDetailsDTO.urlName})}">
     <meta property="og:type" content="website">
     <meta property="og:locate" content="bg_BG">
-    <meta property="og:image" th:content="${fishDetailsDTO.urlName}">
+<!--    <meta property="og:image" th:content="${'https://carpmap.online' + fishDetailsDTO.imageUrl}">    -->
+    <meta property="og:image" th:content="'https://carpmap.online' + ${fishDetailsDTO.imageUrl}">
 
     <!-- Twitter Card тагове -->
     <meta name="twitter:card" content="summary_large_image">
