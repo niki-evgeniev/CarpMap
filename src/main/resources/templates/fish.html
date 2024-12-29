@@ -54,9 +54,9 @@
                      class="cardres col-md-2 col-sm-6">
                     <div class="single-explore-item">
                         <div class="single-explore-img fish-list">
-                            <a class="image-all-reservoir">
-                                <img
-                                        alt="explore image"
+                            <a class="image-all-reservoir"
+                               th:href="@{/fish-list-type/{urlName}(urlName = *{urlName})}">
+                                <img alt="explore image"
                                         th:src="*{imageUrl}"></a>
                         </div>
                         <div class="single-explore-txt bg-theme-1">
