@@ -1498,15 +1498,74 @@ body > main > div.container-fluid.packages.py-5 {
         border-bottom: 2px solid #eceffa;
     }
 }
+/* 3D IMAGE INDEX*/
+/*#carouselId > div {*/
+/*    max-height: 765px;*/
+/*}*/
 
-#carouselId > div {
-    max-height: 765px;
-}
+/*.carousel-inner {*/
+/*    perspective: 1200px;*/
+/*    position: relative;*/
+/*    overflow: hidden;*/
+/*}*/
 
+/*.carousel-item {*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out, box-shadow 0.8s ease-in-out; !* Плавни преходи за трансформация и сенки *!*/
+/*    opacity: 0;*/
+/*    z-index: 1;*/
+/*}*/
+
+/*.carousel-item.active {*/
+/*    opacity: 1;*/
+/*    z-index: 2;*/
+/*}*/
+
+/*.carousel-item img {*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    object-fit: cover;*/
+/*    transition: transform 1s ease-in-out, box-shadow 1s ease-in-out, filter 1s ease-in-out;*/
+/*    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);*/
+/*}*/
+
+/*.carousel-item.active img {*/
+/*    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);*/
+/*    filter: brightness(1.2);*/
+/*}*/
+
+/*@keyframes carousel3D {*/
+/*    0%, 100% {*/
+/*        transform: translateX(0) rotateY(0deg);*/
+/*    }*/
+/*    25% {*/
+/*        transform: translateX(-10%) rotateY(15deg) scale(1.05);*/
+/*    }*/
+/*    50% {*/
+/*        transform: translateX(-20%) rotateY(0deg);*/
+/*    }*/
+/*}*/
+
+
+/*.carousel-item.active {*/
+/*    animation: carousel3D 5s infinite;*/
+/*}*/
+
+/*.carousel-item-next, .carousel-item-prev {*/
+/*    transform: translateX(-20%) rotateY(-15deg) scale(1.05);*/
+/*}*/
+/*END 3D IMAGE INDEX*/
+
+/*StaRT TEST INDEX IMAGE*/
 .carousel-inner {
     perspective: 1200px;
     position: relative;
     overflow: hidden;
+    background: #000; /* Основен фон, когато няма изображения */
 }
 
 .carousel-item {
@@ -1515,14 +1574,36 @@ body > main > div.container-fluid.packages.py-5 {
     left: 0;
     width: 100%;
     height: 100%;
-    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out, box-shadow 0.8s ease-in-out; /* Плавни преходи за трансформация и сенки */
+    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out, box-shadow 0.8s ease-in-out;
     opacity: 0;
     z-index: 1;
 }
 
-.carousel-item.active {
-    opacity: 1;
-    z-index: 2;
+.carousel-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(20px) brightness(0.7); /* Замъгляване и затъмнение */
+    z-index: -1; /* Поставяне зад елемента */
+    transition: background-image 0.8s ease-in-out;
+}
+
+/* Плавна смяна на фона за активния елемент */
+.carousel-item.active::before {
+    background-image: url('static/images/carousel-1.jpg'); /* Смени според активния елемент */
+}
+
+.carousel-item-next::before {
+    background-image: url('static/images/carousel-2.jpg');
+}
+
+.carousel-item-prev::before {
+    background-image: url('static/images/carousel-3.jpg');
 }
 
 .carousel-item img {
@@ -1538,6 +1619,7 @@ body > main > div.container-fluid.packages.py-5 {
     filter: brightness(1.2);
 }
 
+/* 3D анимация */
 @keyframes carousel3D {
     0%, 100% {
         transform: translateX(0) rotateY(0deg);
@@ -1550,7 +1632,6 @@ body > main > div.container-fluid.packages.py-5 {
     }
 }
 
-
 .carousel-item.active {
     animation: carousel3D 5s infinite;
 }
@@ -1558,6 +1639,12 @@ body > main > div.container-fluid.packages.py-5 {
 .carousel-item-next, .carousel-item-prev {
     transform: translateX(-20%) rotateY(-15deg) scale(1.05);
 }
+
+.carousel-item.active::before {
+    background-image: url('static/images/carousel-1.jpg');
+    background-color: red; /* Тестов цвят */
+}
+/*END TEST INDEX IMAGE*/
 
 .cookie-consent {
     position: fixed;
