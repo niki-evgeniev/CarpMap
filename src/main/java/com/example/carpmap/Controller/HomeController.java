@@ -15,11 +15,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class HomeController {
 
     private final IpUtility ipUtility;
+    private final List<String> videos = List.of("video1", "video2");
 
 
     public HomeController(IpUtility ipUtility) {
@@ -28,8 +30,7 @@ public class HomeController {
 
     @GetMapping("/")
     public ModelAndView index(@AuthenticationPrincipal UserDetails userDetails,
-                              HttpServletRequest request)
-            throws InterruptedException {
+                              HttpServletRequest request) throws InterruptedException {
         String cloudflareIp = request.getRemoteAddr();
         String userAgent = request.getHeader("User-Agent");
         System.out.println(userAgent);

@@ -47,7 +47,7 @@ public class SecurityConfiguration {
                                 "/reservoirs/reservoirsByType/countVisitors",
                                 "/reservoirs/{type}",
                                 "/reservoirs/reservoirsByType/{type}").permitAll()
-                        .requestMatchers("/robots.txt", "/sitemap.xml").permitAll()
+                        .requestMatchers("/robots.txt", "/sitemap.xml", "/video/**").permitAll()
                         .requestMatchers("/", "/error", "/error/**", "/users/login",
                                 "/users/login-error", "/imagesApp/**").permitAll()
                         .requestMatchers("/fish/add/adding-fish")
