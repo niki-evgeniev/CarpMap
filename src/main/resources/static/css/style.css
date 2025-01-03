@@ -381,12 +381,13 @@
 
 @media (max-width: 768px) {
     .carousel-header .carousel-inner .carousel-item img,
-    .carousel-header .carousel-inner .carousel-item .carousel-caption {
+    .carousel-header .carousel-inner .carousel-item .carousel-caption
+    .video-container .video-caption {
         height: 700px;
         margin-top: -100px;
     }
 
-    .carousel-header {
+    .carousel-header .video-container {
         height: 700px !important;
     }
 
@@ -1486,22 +1487,43 @@ body > main > div.container-fluid.packages.py-5 {
 .gallery {
     padding-bottom: 1rem;
     margin-bottom: 2rem;
-    margin-top: -3rem;
+    margin-top: -2rem;
 }
 
 
 /*NOT SURE END*/
 
-@media (min-width: 768px) {
+@media (min-width: 768px){
     .table tbody td:nth-child(odd) {
         background: #f4f6fc;
         border-bottom: 2px solid #eceffa;
     }
 }
-/* 3D IMAGE INDEX*/
-/*#carouselId > div {*/
-/*    max-height: 765px;*/
-/*}*/
+
+@media (max-height: 650px), (max-width: 300px) {
+    .info-server {
+        display: none;
+        margin-top: 35%;
+    }
+    .gallery {
+        margin-top: 8rem;
+    }
+}
+/* NEW YEAR/*/
+@media (max-height: 650px), (max-width: 500px) {
+    .info-server {
+        display: none;
+        margin-top: 35%;
+    }
+    .gallery {
+        margin-top: 8rem;
+    }
+}
+
+/* 3D IMAGE INDEX Carousel*/
+#carouselId > div {
+    max-height: 780px;
+}
 
 /*.carousel-inner {*/
 /*    perspective: 1200px;*/
@@ -1558,8 +1580,8 @@ body > main > div.container-fluid.packages.py-5 {
 /*.carousel-item-next, .carousel-item-prev {*/
 /*    transform: translateX(-20%) rotateY(-15deg) scale(1.05);*/
 /*}*/
-/*END 3D IMAGE INDEX*/
-/*START TEST 3D IMAGE INDEX*/
+/*END 3D IMAGE INDEX Carousel*/
+/*START video index*/
 .video-container {
     position: relative;
     width: 100%;
@@ -1591,11 +1613,7 @@ body > main > div.container-fluid.packages.py-5 {
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
 }
 
-/*END TEST 3D IMAGE INDEX*/
-
-/*StaRT TEST INDEX IMAGE*/
-
-/*END TEST INDEX IMAGE*/
+/*END video index*/
 
 .cookie-consent {
     position: fixed;
@@ -1726,7 +1744,8 @@ body > main > div.container-fluid.packages.py-5 {
 .contactH1Tag {
     opacity: 0.4;
 }
-.blogH1Tag{
+
+.blogH1Tag {
     opacity: 0.4;
 }
 

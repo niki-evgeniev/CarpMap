@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div class="carousel-header">
+  <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner" role="listbox">
+      <div class="carousel-item active">
+        <video autoplay loop muted playsinline class="video-bg">
+          <source th:src="*{videoPath}" type="video/mp4">
+          Вашият браузър не поддържа видео.
+        </video>
+        <div class="carousel-caption">
+          <div class="p-3" style="max-width: 900px">
+            <h1 class="text-white  fw-bold mb-4" style="letter-spacing: 3px">CarpMap</h1>
+            <p class="mb-5 fs-5">Честита Нова 2025 Година !!! С пожелание за успешна и плодородна година !!! Carpoholics team </p>
+            <h1 class="display-2 text-capitalize text-white mb-4">Язовирите в България</h1>
+            <p class="mb-5 fs-5">Разгледай всички язовири в България и намери пълната информация за тях </p>
+            <div class="d-flex align-items-center justify-content-center">
+              <a class="btn-hover-bg btn btn-primary rounded-pill text-white mb-5 py-3 px-5"
+                 th:href="@{/reservoirs/reservoirsByType/{type}(type = reservoirs)}">Намери сега</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

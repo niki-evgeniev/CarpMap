@@ -1,10 +1,7 @@
 package com.example.carpmap.Controller;
 
-import com.example.carpmap.Models.DTO.Blog.BlogPackagesDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirAllDTO;
 import com.example.carpmap.Models.DTO.SearchDTO;
-import com.example.carpmap.Service.BlogService;
-import com.example.carpmap.Service.IpAddressService;
 import com.example.carpmap.Service.ReservoirsService;
 import com.example.carpmap.Utility.IpUtility;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,12 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.time.LocalDateTime;
-import java.util.List;
 
 
 @Controller
@@ -52,7 +44,7 @@ public class SearchController {
             return modelAndView;
         }
         String cloudflareIp = request.getRemoteAddr();
-        ModelAndView modelAndView = ipUtility.getIpAndBlog(userDetails, cloudflareIp, request);
+        ModelAndView modelAndView = ipUtility.getAllIndexInfo(userDetails, cloudflareIp, request);
         System.out.println("search type opening");
         return modelAndView;
     }

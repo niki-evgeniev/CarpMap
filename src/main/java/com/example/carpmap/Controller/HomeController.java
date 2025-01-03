@@ -1,9 +1,6 @@
 package com.example.carpmap.Controller;
 
-import com.example.carpmap.Models.DTO.Blog.BlogPackagesDTO;
 import com.example.carpmap.Models.DTO.SearchDTO;
-import com.example.carpmap.Service.BlogService;
-import com.example.carpmap.Service.IpAddressService;
 import com.example.carpmap.Utility.IpUtility;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -13,15 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Random;
-
 @Controller
 public class HomeController {
 
     private final IpUtility ipUtility;
-    private final List<String> videos = List.of("video1", "video2");
 
 
     public HomeController(IpUtility ipUtility) {
@@ -35,7 +27,7 @@ public class HomeController {
         String userAgent = request.getHeader("User-Agent");
         System.out.println(userAgent);
         System.out.println("Home type opening");
-        return ipUtility.getIpAndBlog(userDetails, cloudflareIp, request);
+        return ipUtility.getAllIndexInfo(userDetails, cloudflareIp, request);
     }
 
     @ModelAttribute
