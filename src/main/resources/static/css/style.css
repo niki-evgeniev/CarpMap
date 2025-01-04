@@ -1510,15 +1510,15 @@ body > main > div.container-fluid.packages.py-5 {
     }
 }
 /* NEW YEAR/*/
-@media (max-height: 650px), (max-width: 500px) {
-    .info-server {
-        display: none;
-        margin-top: 35%;
-    }
-    .gallery {
-        margin-top: 8rem;
-    }
-}
+/*@media (max-height: 650px), (max-width: 500px) {*/
+/*    .info-server {*/
+/*        display: none;*/
+/*        margin-top: 35%;*/
+/*    }*/
+/*    .gallery {*/
+/*        margin-top: 8rem;*/
+/*    }*/
+/*}*/
 
 /* 3D IMAGE INDEX Carousel*/
 #carouselId > div {

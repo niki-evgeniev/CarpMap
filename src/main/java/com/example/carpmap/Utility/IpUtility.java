@@ -19,10 +19,10 @@ public class IpUtility {
     private final IpAddressService ipAddressService;
     private final BlogService blogService;
     private final List<String> videos = List.of(
-            "/video/20220501_114816.mp4", "/video/20220501_115313.mp4", "/video/20220501_144620.mp4",
-            "/video/20220501_144659.mp4", "/video/20220501_154929.mp4", "/video/20220501_184913.mp4",
-            "/video/20220521_185040.mp4", "/video/20220521_201710.mp4", "/video/20220521_224800.mp4",
-            "/video/20220522_133751.mp4", "/video/20220522_133939.mp4", "/video/20220522_155950.mp4");
+            "/videoApp/20220501_114816.mp4", "/videoApp/20220501_115313.mp4", "/videoApp/20220501_144620.mp4",
+            "/videoApp/20220501_144659.mp4", "/videoApp/20220501_154929.mp4", "/videoApp/20220501_184913.mp4",
+            "/videoApp/20220521_185040.mp4", "/videoApp/20220521_201710.mp4", "/videoApp/20220521_224800.mp4",
+            "/videoApp/20220522_133751.mp4", "/videoApp/20220522_133939.mp4", "/videoApp/20220522_155950.mp4");
     private String lastVideoUrl = "";
 
     public IpUtility(IpAddressService ipAddressService, BlogService blogService) {

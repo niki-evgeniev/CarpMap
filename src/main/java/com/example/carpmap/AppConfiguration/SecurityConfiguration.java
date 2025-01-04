@@ -47,9 +47,10 @@ public class SecurityConfiguration {
                                 "/reservoirs/reservoirsByType/countVisitors",
                                 "/reservoirs/{type}",
                                 "/reservoirs/reservoirsByType/{type}").permitAll()
-                        .requestMatchers("/robots.txt", "/sitemap.xml", "/video/**").permitAll()
-                        .requestMatchers("/", "/error", "/error/**", "/users/login",
-                                "/users/login-error", "/imagesApp/**").permitAll()
+                        .requestMatchers("/robots.txt", "/sitemap.xml",
+                                "/videoApp/**", "/imagesApp/**").permitAll()
+                        .requestMatchers("/", "/error", "/error/**",
+                                "/users/login", "/users/login-error").permitAll()
                         .requestMatchers("/fish/add/adding-fish")
                         .hasAnyRole(RoleType.MODERATOR.name())
                         .requestMatchers("/reservoirs/add/reservoirAdd",
