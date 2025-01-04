@@ -37,4 +37,5 @@ out/
 ### VS Code ###
 .vscode/
 /imagesApp/
+/videoApp/
 /src/main/resources/static/video/*
