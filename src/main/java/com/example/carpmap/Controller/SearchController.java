@@ -36,6 +36,7 @@ public class SearchController {
                                @PageableDefault(size = 6, sort = "name") Pageable pageable,
                                HttpServletRequest request) throws InterruptedException {
 
+        String req = request.getHeader("referer");
         if (!bindingResult.hasErrors()) {
             String reservoirName = searchDTO.getReservoir().trim();
             Page<ReservoirAllDTO> reservoirByName = reservoirsService.findReservoirByName(reservoirName, pageable);
@@ -43,6 +44,12 @@ public class SearchController {
             modelAndView.addObject("allReservoir", reservoirByName);
             return modelAndView;
         }
+
+        if (req.contains("/reservoirs/reservoirsByType/reservoirs")){
+//            return new ModelAndView("redirect:/reservoirs/reservoirsByType/reservoirs");
+            return new ModelAndView("reservoirs");
+        }
+
         String cloudflareIp = request.getRemoteAddr();
         ModelAndView modelAndView = ipUtility.getAllIndexInfo(userDetails, cloudflareIp, request);
         System.out.println("search type opening");

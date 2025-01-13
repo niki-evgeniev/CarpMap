@@ -163,6 +163,16 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     @Override
     public Page<ReservoirAllDTO> findReservoirByName(String reservoir, Pageable pageable) {
         Page<Reservoir> allByName = reservoirRepository.findAllByName(reservoir, pageable);
+
+        if (allByName.isEmpty()) {
+            allByName = reservoirRepository.findAllByUrlNameContaining(reservoir, pageable);
+        }
+        if (allByName.isEmpty()) {
+            allByName = reservoirRepository.findAllByNameContaining(reservoir, pageable);
+        }
+
+        System.out.println("SEARCH BY RESERVOIR: " + reservoir);
+
         Page<ReservoirAllDTO> allReservoirByName = allByName
                 .map(reservoirByName -> {
                     return modelMapper.map(reservoirByName, ReservoirAllDTO.class);
@@ -261,7 +271,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
         if (reservoirDetails.isEmpty()) {
             String errMsg = String.format(RESERVOIR_WITH_ID_NOT_FOUND, id);
             LOGGER.error(errMsg);
-            System.out.println("Method name: findReservoirToEdit" );
+            System.out.println("Method name: findReservoirToEdit");
             return null;
         }
 

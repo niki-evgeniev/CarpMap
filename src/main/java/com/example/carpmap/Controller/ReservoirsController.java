@@ -1,6 +1,7 @@
 package com.example.carpmap.Controller;
 
 import com.example.carpmap.Models.DTO.Reservoirs.*;
+import com.example.carpmap.Models.DTO.SearchDTO;
 import com.example.carpmap.Service.CountryService;
 import com.example.carpmap.Service.FishService;
 import com.example.carpmap.Service.PictureService;
@@ -147,6 +148,7 @@ public class ReservoirsController {
         modelAndView.addObject("details", reservoirsDetailsDTO);
         modelAndView.addObject("pictures", reservoirPicturesList);
         return modelAndView;
+
     }
 
 
@@ -160,5 +162,10 @@ public class ReservoirsController {
     @ModelAttribute
     ReservoirsAddDTO reservoirsAddDTO() {
         return new ReservoirsAddDTO();
+    }
+
+    @ModelAttribute
+    SearchDTO searchDTO() {
+        return new SearchDTO();
     }
 }
