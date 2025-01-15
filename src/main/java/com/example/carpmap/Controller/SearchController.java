@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 @Controller
 public class SearchController {
@@ -45,9 +48,27 @@ public class SearchController {
             return modelAndView;
         }
 
-        if (req.contains("/reservoirs/reservoirsByType/reservoirs")){
-//            return new ModelAndView("redirect:/reservoirs/reservoirsByType/reservoirs");
-            return new ModelAndView("reservoirs");
+        if (req.contains("/reservoirs/reservoirsByType")){
+            String type = req;
+            Pattern pattern = Pattern.compile("/reservoirs/reservoirsByType/(.+)");
+            Matcher matcher = pattern.matcher(type);
+            if (matcher.find()){
+                type = matcher.group(1);
+                System.out.println(type);
+            }
+
+            ModelAndView modelAndView = new ModelAndView("reservoirs");
+            Page<ReservoirAllDTO> allReservoirByType = reservoirsService.getReservoirsByType(type, pageable);
+            if (allReservoirByType == null) {
+                return new ModelAndView("errors/errorFindPage404");
+            }
+            modelAndView.addObject("allReservoir", allReservoirByType);
+            modelAndView.addObject("type", type);
+            modelAndView.addObject("currentUrl", request.getRequestURI());
+            String navbarTransparent = "navbar";
+            modelAndView.addObject("navbar", navbarTransparent);
+            System.out.println("Reservoir type opening");
+            return modelAndView;
         }
 
         String cloudflareIp = request.getRemoteAddr();
