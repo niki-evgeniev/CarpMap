@@ -39,4 +39,4 @@ out/
 /imagesApp/
 /videoApp/
 /src/main/resources/static/video/*
-cookiePolicy.html
+**/cookiePolicy.html
