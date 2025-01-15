@@ -40,3 +40,4 @@ out/
 /videoApp/
 /src/main/resources/static/video/*
 /src/main/resources/templates/cookiePolicy.*
+/src/main/resources/templates/testHMTL.*
