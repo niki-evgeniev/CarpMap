@@ -1,11 +1,13 @@
 package com.example.carpmap.Service.Impl;
 
+import com.example.carpmap.Models.DTO.Fish.FishListAllDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.FishNameDTO;
 import com.example.carpmap.Models.Entity.Fish;
 import com.example.carpmap.Models.Enums.FishType;
 import com.example.carpmap.Repository.FishRepository;
 import com.example.carpmap.Service.FishService;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -58,6 +60,7 @@ public class FishServiceImpl implements FishService {
                 .toList();
         return fishNameDTOS;
     }
+
 
     private FishNameDTO fishNameDTO(Fish fish) {
         FishNameDTO map = modelMapper.map(fish, FishNameDTO.class);

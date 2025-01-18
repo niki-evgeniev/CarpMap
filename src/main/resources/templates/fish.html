@@ -2,7 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Видове Риби - CarpMap</title>
+    <title>Видове Риби в България - CarpMap</title>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="keywords" content="website"
@@ -65,6 +65,31 @@
 <!--SEARCH FISH END-->
 <!--START-->
 <section id="explore" class="explore">
+    <div class="container-fluid  position-relative pb-5">
+        <div class="container">
+            <form th:method="GET"
+                  th:action="@{/searchFishType}"
+                  th:object="${searchFishDTO}">
+                <div class="searchIp position-relative rounded-pill w-100 mx-auto p-1">
+                    <input th:field="*{fishType}"
+                           class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5"
+                           name="reservoir"
+                           id="reservoir"
+                           type="text"
+                           placeholder="Търси риба"/>
+                    <button type="submit"
+                            class="btn btn-primary rounded-pill py-2 px-4 position-absolute me-2"
+                            style="top: 50%; right: 6px; transform: translateY(-50%)">Търси
+                    </button>
+                </div>
+                <div class="text-primary text-center"
+                     th:if="${#fields.hasErrors('fishType')}"
+                     th:errors="*{fishType}">Please, enter your name!
+                </div>
+                <br>
+            </form>
+        </div>
+    </div>
     <div class="container products">
         <link rel="stylesheet" href="/css/style2.css">
         <div class="section-header">

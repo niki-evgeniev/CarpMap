@@ -4,6 +4,7 @@ package com.example.carpmap.Controller;
 import com.example.carpmap.Models.DTO.Fish.AddFishDTO;
 import com.example.carpmap.Models.DTO.Fish.FishDetailsDTO;
 import com.example.carpmap.Models.DTO.Fish.FishListAllDTO;
+import com.example.carpmap.Models.DTO.Fish.SearchFishDTO;
 import com.example.carpmap.Service.FishListService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -48,9 +49,7 @@ public class FishController {
 
     @GetMapping("add/adding-fish")
     public ModelAndView addFish() {
-
         ModelAndView modelAndView = new ModelAndView("fishAdd");
-
         return modelAndView;
     }
 
@@ -93,5 +92,10 @@ public class FishController {
     @ModelAttribute
     AddFishDTO addFishDTO() {
         return new AddFishDTO();
+    }
+
+    @ModelAttribute
+    SearchFishDTO searchFishDTO(){
+        return new SearchFishDTO();
     }
 }

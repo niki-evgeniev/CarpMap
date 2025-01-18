@@ -11,6 +11,9 @@ import java.time.LocalDateTime;
 @Table(name = "fish_list")
 public class FishList extends BaseEntity {
 
+    @Column(name = "name", unique = true, nullable = false)
+    private String name;
+
     @Column(name = "fish_name", unique = true, nullable = false)
     private String fishName;
 
@@ -34,6 +37,14 @@ public class FishList extends BaseEntity {
     private User user;
 
     public FishList() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getFishName() {

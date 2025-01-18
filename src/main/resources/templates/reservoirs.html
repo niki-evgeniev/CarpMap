@@ -51,32 +51,33 @@
         </div>
     </div>
 </div>
-<div class="container-fluid  position-relative">
-    <div class="container">
-        <form th:method="GET"
-              th:action="@{/search}"
-              th:object="${searchDTO}">
-            <div class="searchIp position-relative rounded-pill w-100 mx-auto p-1">
-                <input th:field="*{reservoir}"
-                       class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5"
-                       name="reservoir"
-                       id="reservoir"
-                       type="text"
-                       placeholder="Enter IP"/>
-                <button type="submit"
-                        class="btn btn-primary rounded-pill py-2 px-4 position-absolute me-2"
-                        style="top: 50%; right: 6px; transform: translateY(-50%)">Търси
-                </button>
-            </div>
-            <div class="text-primary text-center"
-                 th:if="${#fields.hasErrors('reservoir')}"
-                 th:errors="*{reservoir}">Please, enter your name!
-            </div>
-            <br>
-        </form>
-    </div>
-</div>
+
 <section id="explore" class="explore">
+    <div class="container-fluid  position-relative pb-5">
+        <div class="container">
+            <form th:method="GET"
+                  th:action="@{/searchReservoir}"
+                  th:object="${searchDTO}">
+                <div class="searchIp position-relative rounded-pill w-100 mx-auto p-1">
+                    <input th:field="*{reservoir}"
+                           class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5"
+                           name="reservoir"
+                           id="reservoir"
+                           type="text"
+                           placeholder="Търси язовир"/>
+                    <button type="submit"
+                            class="btn btn-primary rounded-pill py-2 px-4 position-absolute me-2"
+                            style="top: 50%; right: 6px; transform: translateY(-50%)">Търси
+                    </button>
+                </div>
+                <div class="text-primary text-center"
+                     th:if="${#fields.hasErrors('reservoir')}"
+                     th:errors="*{reservoir}">Please, enter your name!
+                </div>
+                <br>
+            </form>
+        </div>
+    </div>
     <div class="container products">
         <link rel="stylesheet" href="/css/style2.css">
         <div>

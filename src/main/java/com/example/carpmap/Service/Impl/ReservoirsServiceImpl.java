@@ -146,17 +146,6 @@ public class ReservoirsServiceImpl implements ReservoirsService {
                 .map(reservoir -> {
                     return modelMapper.map(reservoir, ReservoirAllDTO.class);
                 });
-
-//        PRINT ALL NAME
-//        List<Reservoir> all = reservoirRepository.findAll();
-//        for (Reservoir reservoir : all) {
-//            if (reservoir.getUrlName().isEmpty()) {
-//                String urlEng = convertorBgToEn.convertCyrillicToLatin(reservoir.getName().toLowerCase());
-//                reservoir.setUrlName(urlEng);
-//                System.out.println(urlEng);
-//            }
-//            reservoirRepository.saveAll(all);
-//        }
         return reservoirByType;
     }
 

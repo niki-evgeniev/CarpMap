@@ -3,6 +3,7 @@ package com.example.carpmap.Service;
 import com.example.carpmap.Models.DTO.Fish.AddFishDTO;
 import com.example.carpmap.Models.DTO.Fish.FishDetailsDTO;
 import com.example.carpmap.Models.DTO.Fish.FishListAllDTO;
+import jakarta.validation.constraints.NotEmpty;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,4 +19,6 @@ public interface FishListService {
     FishDetailsDTO getFishListDetails(String urlName);
 
     void deleteFishListDetails(String urlName);
+
+    Page<FishListAllDTO> searchFish(String fishType, Pageable pageable);
 }

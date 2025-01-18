@@ -6,6 +6,7 @@ import com.example.carpmap.Service.CountryService;
 import com.example.carpmap.Service.FishService;
 import com.example.carpmap.Service.PictureService;
 import com.example.carpmap.Service.ReservoirsService;
+import com.example.carpmap.Utility.GetReservoirView;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -31,13 +32,15 @@ public class ReservoirsController {
     private final ReservoirsService reservoirsService;
     private final FishService fishService;
     private final PictureService pictureService;
+    private final GetReservoirView getReservoirView;
 
     public ReservoirsController(CountryService countryService, ReservoirsService reservoirsService,
-                                FishService fishService, PictureService pictureService) {
+                                FishService fishService, PictureService pictureService, GetReservoirView getReservoirView) {
         this.countryService = countryService;
         this.reservoirsService = reservoirsService;
         this.fishService = fishService;
         this.pictureService = pictureService;
+        this.getReservoirView = getReservoirView;
     }
 
     @GetMapping("reservoirsByType/{type}")
@@ -68,18 +71,19 @@ public class ReservoirsController {
             }
         }
 
-        ModelAndView modelAndView = new ModelAndView("reservoirs");
-        Page<ReservoirAllDTO> allReservoirByType = reservoirsService.getReservoirsByType(type, pageable);
-        if (allReservoirByType == null) {
-            return new ModelAndView("errors/errorFindPage404");
-        }
-        modelAndView.addObject("allReservoir", allReservoirByType);
-        modelAndView.addObject("type", type);
-        modelAndView.addObject("currentUrl", request.getRequestURI());
-        String navbarTransparent = "navbar";
-        modelAndView.addObject("navbar", navbarTransparent);
-        System.out.println("Reservoir type opening");
-        return modelAndView;
+//        ModelAndView modelAndView = new ModelAndView("reservoirs");
+//        Page<ReservoirAllDTO> allReservoirByType = reservoirsService.getReservoirsByType(type, pageable);
+//        if (allReservoirByType == null) {
+//            return new ModelAndView("errors/errorFindPage404");
+//        }
+//        modelAndView.addObject("allReservoir", allReservoirByType);
+//        modelAndView.addObject("type", type);
+//        modelAndView.addObject("currentUrl", request.getRequestURI());
+//        String navbarTransparent = "navbar";
+//        modelAndView.addObject("navbar", navbarTransparent);
+//        System.out.println("Reservoir type opening");
+//        return modelAndView;
+        return getReservoirView.getReservoirs(type, pageable,request);
     }
 
     @GetMapping("add/reservoirAdd")

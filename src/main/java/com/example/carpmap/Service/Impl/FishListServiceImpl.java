@@ -25,6 +25,7 @@ import java.util.UUID;
 
 @Service
 public class FishListServiceImpl implements FishListService {
+
     private final FishListRepository fishListRepository;
     private final UserRepository userRepository;
     private final static String IMAGE_PATH = "./imagesApp/fishList/";
@@ -58,7 +59,7 @@ public class FishListServiceImpl implements FishListService {
             file.createNewFile();
 
             OutputStream outputStream = new FileOutputStream(file);
-            if (pictureFile.isEmpty()){
+            if (pictureFile.isEmpty()) {
                 System.out.println("EMPTY FILE");
             }
             outputStream.write(pictureFile.getBytes());
@@ -121,7 +122,7 @@ public class FishListServiceImpl implements FishListService {
             FishDetailsDTO fishListDetails = modelMapper.map(getFishListDetails, FishDetailsDTO.class);
             return fishListDetails;
         }
-        System.out.println("Method name: getFishListDetails" );
+        System.out.println("Method name: getFishListDetails");
         return null;
     }
 
@@ -144,6 +145,20 @@ public class FishListServiceImpl implements FishListService {
         } else {
             System.out.println("File not exist " + filePath);
         }
+    }
+
+    @Override
+    public Page<FishListAllDTO> searchFish(String fishType, Pageable pageable) {
+        String urlName = fishType.trim();
+
+        System.out.println();
+//        Page<FishList> allByUrlNameContaining = fishListRepository.findAllByUrlNameContaining(urlName, pageable);
+        Page<FishList> allByUrlName = fishListRepository.findAllByFishName(urlName, pageable);
+        Page<FishListAllDTO> searchingFish = allByUrlName
+                .map(fish -> {
+                    return modelMapper.map(fish, FishListAllDTO.class);
+                });
+        return searchingFish;
     }
 }
 
