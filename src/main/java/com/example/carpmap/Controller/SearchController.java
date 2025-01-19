@@ -58,7 +58,7 @@ public class SearchController {
         }
         String cloudflareIp = request.getRemoteAddr();
         ModelAndView modelAndView = ipUtility.getAllIndexInfo(userDetails, cloudflareIp, request);
-        System.out.println("search type opening");
+        System.out.println("search type opening by search");
         return modelAndView;
     }
 
@@ -79,6 +79,7 @@ public class SearchController {
                 type = matcher.group(1);
                 System.out.println(type);
             }
+            System.out.println("search type opening by search reservoir");
             return getReservoirView.getReservoirs(type, pageable, request);
         }
         return new ModelAndView("redirect:/reservoirs/reservoirsByType/reservoirs");
@@ -89,6 +90,7 @@ public class SearchController {
                                        @PageableDefault(size = 12, sort = "name") Pageable pageable,
                                        HttpServletRequest request) {
         Page<FishListAllDTO> getSearchingFish = fishListService.searchFish(searchFishDTO.getName(), pageable);
+        System.out.println("search type opening by search fish name");
         return getFishView.getFish(pageable, request, getSearchingFish);
     }
 
