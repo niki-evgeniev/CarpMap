@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 public class SearchFishDTO {
-    @NotEmpty(message = "Въведете име на язовир")
+    @NotEmpty(message = "Въведете име на риба")
     @Size(min = 3, max = 50, message = "Може да въвеждате максимално 50 символа и минимално 3")
     private String name;
 
