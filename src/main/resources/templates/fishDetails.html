@@ -4,18 +4,18 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
 <head>
     <link href="/css/style3.css" rel="stylesheet">
-    <title th:text="'Информация за рибата ' + ${fishDetailsDTO.fishName} + ' - CarpMap'">Детайли- CarpMap</title>
+    <title th:text="'Информация за рибата ' + ${fishDetailsDTO.name} + ' - CarpMap'">Детайли- CarpMap</title>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="keywords" content="website"
-          th:content="'риба, информация за риба, срещани риби в българия, видове риби, ' + ${fishDetailsDTO.fishName}">
-    <meta name="title" th:content="'Всичко за рибата ' + ${fishDetailsDTO.fishName}">
-    <meta name="description" th:content="'Научете повече за рибата ' + ${fishDetailsDTO.fishName}">
+          th:content="'риба, информация за риба, срещани риби в българия, видове риби, ' + ${fishDetailsDTO.name}">
+    <meta name="title" th:content="'Всичко за рибата ' + ${fishDetailsDTO.name}">
+    <meta name="description" th:content="'Научете повече за рибата ' + ${fishDetailsDTO.name}">
     <meta name="author" content="Nikolay">
     <meta name="robots" content="index, follow">
     <!-- Open Graph тагове за социални мрежи -->
-    <meta property="og:title" th:content="'Всичко за рибата ' + ${fishDetailsDTO.fishName}">
-    <meta property="og:description" th:content="'Научете повече за рибата ' + ${fishDetailsDTO.fishName}">
+    <meta property="og:title" th:content="'Всичко за рибата ' + ${fishDetailsDTO.name}">
+    <meta property="og:description" th:content="'Научете повече за рибата ' + ${fishDetailsDTO.name}">
     <meta property="og:url"
           th:content="@{https://carpmap.online/fish-list-type/{urlName}(urlName = *{fishDetailsDTO.urlName})}">
     <meta property="og:type" content="website">
@@ -25,8 +25,8 @@
 
     <!-- Twitter Card тагове -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" th:content="'Всичко за рибата ' + ${fishDetailsDTO.fishName}">
-    <meta name="twitter:description" th:content="'Научете повече за рибата ' + ${fishDetailsDTO.fishName} ">
+    <meta name="twitter:title" th:content="'Всичко за рибата ' + ${fishDetailsDTO.name}">
+    <meta name="twitter:description" th:content="'Научете повече за рибата ' + ${fishDetailsDTO.name} ">
     <meta name="twitter:url"
           th:content="@{https://carpmap.online/fish-list-type/{urlName}(urlName = *{fishDetailsDTO.urlName})}">
     <meta name="twitter:image"
@@ -42,7 +42,7 @@
 <th:block th:replace="~{fragments/navbar}"></th:block>
 <header class="cd__intro">
     <h1 class="text-center"
-        th:text="*{fishDetailsDTO.fishName}"></h1>
+        th:text="*{fishDetailsDTO.name}"></h1>
     <h6 th:text="*{fishDetailsDTO.latinName}"
         class="text-center">Град</h6>
     <br>
@@ -75,7 +75,7 @@
                                 <div class="modal-header">
                                     <h3 class="modal-title w-100 text-center"
                                         id="exampleModalLabel"
-                                        th:text="*{fishName}">
+                                        th:text="*{name}">
                                     </h3>
                                 </div>
                                 <!--Modal body with image-->
@@ -96,7 +96,7 @@
             <div class="col-md-5">
                 <div class="main-description px-2">
                     <div class="product-title text-bold my-3 text-start"
-                         th:text="'Наименование на риба : ' + *{fishName}">
+                         th:text="'Наименование на риба : ' + *{name}">
                     </div>
                     <div class="product-title text-bold my-3 text-start"
                          th:text="'Латинско име : ' + *{latinName}">
@@ -112,7 +112,7 @@
     <div class="container my-5" th:object="${fishDetailsDTO}">
         <div class="row">
             <div class="product-details my-4 col-md-12">
-                <p class="details-title text-color mb-1" th:text="'Информация за ' + *{fishName}"></p>
+                <p class="details-title text-color mb-1" th:text="'Информация за ' + *{name}"></p>
                 <p class="description" th:text="*{description}"></p>
             </div>
         </div>

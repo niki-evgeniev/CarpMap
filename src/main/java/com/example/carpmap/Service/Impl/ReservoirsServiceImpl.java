@@ -150,7 +150,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
     }
 
     @Override
-    public Page<ReservoirAllDTO> findReservoirByName(String reservoir, Pageable pageable) {
+    public Page<ReservoirAllDTO> searchReservoirs(String reservoir, Pageable pageable) {
         Page<Reservoir> allByName = reservoirRepository.findAllByName(reservoir, pageable);
 
         if (allByName.isEmpty()) {

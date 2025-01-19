@@ -42,7 +42,7 @@ public class FishListServiceImpl implements FishListService {
 
     @Override
     public boolean checkName(String fishName) {
-        Optional<FishList> findByFishName = fishListRepository.findByFishName(fishName);
+        Optional<FishList> findByFishName = fishListRepository.findByName(fishName);
         return findByFishName.isPresent();
     }
 
@@ -51,7 +51,7 @@ public class FishListServiceImpl implements FishListService {
         MultipartFile pictureFile = addFishDTO.getPictureFile();
         String pictureName = getPicturePath(pictureFile, userDetails.getUsername());
         String imagePath = IMAGE_PATH.substring(1);
-        String urlName = addFishDTO.getFishName().toLowerCase().trim();
+        String urlName = addFishDTO.getName().toLowerCase().trim();
         String engName = convertorBgToEn.convertCyrillicToLatin(urlName);
         try {
             File file = new File(IMAGE_PATH + pictureName);
@@ -89,7 +89,7 @@ public class FishListServiceImpl implements FishListService {
         if (user.isPresent()) {
             User userToAdd = user.get();
             fishList.setUser(userToAdd);
-            fishList.setFishName(addFishDTO.getFishName().trim());
+            fishList.setName(addFishDTO.getName().trim());
             fishList.setAddedOnDate(LocalDateTime.now());
             fishList.setLatinName(addFishDTO.getLatinName().trim());
             fishList.setUrlName(engName);
@@ -104,8 +104,8 @@ public class FishListServiceImpl implements FishListService {
         for (FishList fishList : allFishList) {
             String description = fishList.getDescription();
             if (description.length() > 200) {
-                String getFirst50 = description.substring(0, 200);
-                fishList.setDescription(getFirst50);
+                String getFirst200 = description.substring(0, 200);
+                fishList.setDescription(getFirst200);
             }
         }
         Page<FishListAllDTO> allFishListPage = allFishList
@@ -149,14 +149,20 @@ public class FishListServiceImpl implements FishListService {
 
     @Override
     public Page<FishListAllDTO> searchFish(String fishType, Pageable pageable) {
-        String urlName = fishType.trim();
+        String fishName = fishType.trim();
+        Page<FishList> allByUrlName = fishListRepository.findAllByNameContaining(fishName, pageable);
+        if (allByUrlName.isEmpty()){
+            allByUrlName = fishListRepository.findAllByUrlNameContaining(fishName, pageable);
+        }
 
-        System.out.println();
-//        Page<FishList> allByUrlNameContaining = fishListRepository.findAllByUrlNameContaining(urlName, pageable);
-        Page<FishList> allByUrlName = fishListRepository.findAllByFishName(urlName, pageable);
         Page<FishListAllDTO> searchingFish = allByUrlName
                 .map(fish -> {
-                    return modelMapper.map(fish, FishListAllDTO.class);
+                    FishListAllDTO mapFish = modelMapper.map(fish, FishListAllDTO.class);
+                    if (mapFish.getDescription().length() > 200) {
+                        String getFirst200 = mapFish.getDescription().substring(0, 200);
+                        mapFish.setDescription(getFirst200);
+                    }
+                    return mapFish;
                 });
         return searchingFish;
     }

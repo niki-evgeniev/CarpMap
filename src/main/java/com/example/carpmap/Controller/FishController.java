@@ -6,6 +6,7 @@ import com.example.carpmap.Models.DTO.Fish.FishDetailsDTO;
 import com.example.carpmap.Models.DTO.Fish.FishListAllDTO;
 import com.example.carpmap.Models.DTO.Fish.SearchFishDTO;
 import com.example.carpmap.Service.FishListService;
+import com.example.carpmap.Utility.GetFishView;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -26,25 +27,28 @@ import org.springframework.web.servlet.ModelAndView;
 public class FishController {
 
     private final FishListService fishListService;
+    private final GetFishView getFishView;
 
-    public FishController(FishListService fishListService) {
+    public FishController(FishListService fishListService, GetFishView getFishView) {
         this.fishListService = fishListService;
+        this.getFishView = getFishView;
     }
 
 
     @GetMapping("fishing-type")
-    public ModelAndView getFish(@PageableDefault(size = 12, sort = "fishName") Pageable pageable,
+    public ModelAndView getFish(@PageableDefault(size = 12, sort = "name") Pageable pageable,
                                 HttpServletRequest request) {
 
         Page<FishListAllDTO> getAllFishList = fishListService.getAll(pageable);
-        ModelAndView modelAndView = new ModelAndView("fish");
-
-        modelAndView.addObject("currentUrl", request.getRequestURI());
-        modelAndView.addObject("allFishList", getAllFishList);
-        String navbarTransparent = "navbar";
-        modelAndView.addObject("navbar", navbarTransparent);
-        System.out.println("fishList type opening");
-        return modelAndView;
+//        ModelAndView modelAndView = new ModelAndView("fish");
+//
+//        modelAndView.addObject("currentUrl", request.getRequestURI());
+//        modelAndView.addObject("allFishList", getAllFishList);
+//        String navbarTransparent = "navbar";
+//        modelAndView.addObject("navbar", navbarTransparent);
+//        System.out.println("fishList type opening");
+//        return modelAndView;
+        return getFishView.getFish(pageable, request,getAllFishList);
     }
 
     @GetMapping("add/adding-fish")
@@ -58,7 +62,7 @@ public class FishController {
                                 BindingResult bindingResult,
                                 @AuthenticationPrincipal UserDetails userDetails) {
 
-        boolean checkNameIsExist = fishListService.checkName(addFishDTO.getFishName());
+        boolean checkNameIsExist = fishListService.checkName(addFishDTO.getName());
 
         ModelAndView modelAndView = new ModelAndView("fishAdd");
         if (checkNameIsExist) {

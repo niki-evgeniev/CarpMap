@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class FishDetailsDTO {
 
-    private String fishName;
+    private String name;
 
     private String description;
 
@@ -19,12 +19,12 @@ public class FishDetailsDTO {
     public FishDetailsDTO() {
     }
 
-    public String getFishName() {
-        return fishName;
+    public String getName() {
+        return name;
     }
 
-    public void setFishName(String fishName) {
-        this.fishName = fishName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {

@@ -14,9 +14,6 @@ public class FishList extends BaseEntity {
     @Column(name = "name", unique = true, nullable = false)
     private String name;
 
-    @Column(name = "fish_name", unique = true, nullable = false)
-    private String fishName;
-
     @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
@@ -47,13 +44,6 @@ public class FishList extends BaseEntity {
         this.name = name;
     }
 
-    public String getFishName() {
-        return fishName;
-    }
-
-    public void setFishName(String fishName) {
-        this.fishName = fishName;
-    }
 
     public String getDescription() {
         return description;

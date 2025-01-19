@@ -21,7 +21,7 @@ public interface ReservoirsService {
 
     Page<ReservoirAllDTO> getReservoirsByType(String type, Pageable pageable);
 
-    Page<ReservoirAllDTO> findReservoirByName(String reservoir, Pageable pageable);
+    Page<ReservoirAllDTO> searchReservoirs(String reservoir, Pageable pageable);
 
     void deleteReservoir(Long id);
 

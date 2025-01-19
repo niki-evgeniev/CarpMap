@@ -5,8 +5,8 @@ import com.example.carpmap.Models.DTO.Fish.SearchFishDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.ReservoirAllDTO;
 import com.example.carpmap.Models.DTO.SearchDTO;
 import com.example.carpmap.Service.FishListService;
-import com.example.carpmap.Service.FishService;
 import com.example.carpmap.Service.ReservoirsService;
+import com.example.carpmap.Utility.GetFishView;
 import com.example.carpmap.Utility.GetReservoirView;
 import com.example.carpmap.Utility.IpUtility;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,13 +33,16 @@ public class SearchController {
     private final IpUtility ipUtility;
     private final GetReservoirView getReservoirView;
     private final FishListService fishListService;
+    private final GetFishView getFishView;
 
     public SearchController(ReservoirsService reservoirsService, IpUtility ipUtility,
-                            GetReservoirView getReservoirView, FishListService fishListService) {
+                            GetReservoirView getReservoirView, FishListService fishListService,
+                            GetFishView getFishView) {
         this.reservoirsService = reservoirsService;
         this.ipUtility = ipUtility;
         this.getReservoirView = getReservoirView;
         this.fishListService = fishListService;
+        this.getFishView = getFishView;
     }
 
 
@@ -49,8 +52,10 @@ public class SearchController {
                                @PageableDefault(size = 9, sort = "name") Pageable pageable,
                                HttpServletRequest request) throws InterruptedException {
 
-        ModelAndView modelAndView1 = getSearchReservoir(searchDTO, bindingResult, pageable);
-        if (modelAndView1 != null) return modelAndView1;
+        ModelAndView modelAndView1 = getSearchingReservoirOrFish(searchDTO, bindingResult, pageable, request);
+        if (modelAndView1 != null) {
+            return modelAndView1;
+        }
         String cloudflareIp = request.getRemoteAddr();
         ModelAndView modelAndView = ipUtility.getAllIndexInfo(userDetails, cloudflareIp, request);
         System.out.println("search type opening");
@@ -61,7 +66,7 @@ public class SearchController {
     public ModelAndView searchReservoir(HttpServletRequest request,
                                         @Valid SearchDTO searchDTO, BindingResult bindingResult,
                                         @PageableDefault(size = 9, sort = "name") Pageable pageable) {
-        ModelAndView modelAndView = getSearchReservoir(searchDTO, bindingResult, pageable);
+        ModelAndView modelAndView = getSearchingReservoirOrFish(searchDTO, bindingResult, pageable, request);
         if (modelAndView != null) {
             return modelAndView;
         }
@@ -79,31 +84,35 @@ public class SearchController {
         return new ModelAndView("redirect:/reservoirs/reservoirsByType/reservoirs");
     }
 
-    @GetMapping("/searchFishType")
+    @GetMapping("/searchFishName")
     public ModelAndView searchFishType(@Valid SearchFishDTO searchFishDTO, BindingResult bindingResult,
-                                       @PageableDefault(size = 9, sort = "name") Pageable pageable,
+                                       @PageableDefault(size = 12, sort = "name") Pageable pageable,
                                        HttpServletRequest request) {
-        if (!bindingResult.hasErrors()) {
-            String fishType = searchFishDTO.getFishType().trim();
-            Page<FishListAllDTO> searchFish = fishListService.searchFish(fishType, pageable);
-            ModelAndView modelAndView = new ModelAndView("fish");
-            modelAndView.addObject("currentUrl", request.getRequestURI());
-            modelAndView.addObject("allFishList", searchFish);
-            String navbarTransparent = "navbar";
-            modelAndView.addObject("navbar", navbarTransparent);
-            System.out.println("fishList type opening");
-            return modelAndView;
-        }
-        return new ModelAndView("fish");
+        Page<FishListAllDTO> getSearchingFish = fishListService.searchFish(searchFishDTO.getName(), pageable);
+        return getFishView.getFish(pageable, request, getSearchingFish);
     }
 
-    private ModelAndView getSearchReservoir(SearchDTO searchDTO, BindingResult bindingResult, Pageable pageable) {
+    private ModelAndView getSearchingReservoirOrFish(SearchDTO searchDTO, BindingResult bindingResult, Pageable pageable,
+                                                     HttpServletRequest request) {
         if (!bindingResult.hasErrors()) {
             String reservoirName = searchDTO.getReservoir().trim();
-            Page<ReservoirAllDTO> reservoirByName = reservoirsService.findReservoirByName(reservoirName, pageable);
+            Page<ReservoirAllDTO> searchReservoirs = reservoirsService.searchReservoirs(reservoirName, pageable);
+            if (searchReservoirs.getContent().isEmpty()) {
+                Page<FishListAllDTO> fishListAllDTOS = fishListService.searchFish(reservoirName, pageable);
+                return getFishView.getFish(pageable, request, fishListAllDTOS);
+
+            }
+            String requestURI = request.getRequestURI();
+            if (requestURI.contains("/searchReservoir") || requestURI.contains("/search")) {
+                requestURI = "/reservoirs/reservoirsByType";
+            }
             ModelAndView modelAndView = new ModelAndView("reservoirs");
-            modelAndView.addObject("allReservoir", reservoirByName);
+            modelAndView.addObject("allReservoir", searchReservoirs);
+            modelAndView.addObject("currentUrl", requestURI);
+            String navbarTransparent = "navbar";
+            modelAndView.addObject("navbar", navbarTransparent);
             return modelAndView;
+
         }
         return null;
     }

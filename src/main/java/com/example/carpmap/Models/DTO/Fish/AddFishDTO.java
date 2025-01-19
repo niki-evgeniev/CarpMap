@@ -9,7 +9,7 @@ public class AddFishDTO {
 
     @NotEmpty(message = "Въведете име на язовир")
     @Size(min = 3, max = 50, message = "Може да въвеждате максимално 50 символа и минимално 3")
-    private String fishName;
+    private String name;
 
     @NotEmpty(message = "Въведете име на язовир")
     @Size(min = 3, max = 3000, message = "Може да въвеждате максимално 2000 символа и минимално 3")
@@ -26,12 +26,12 @@ public class AddFishDTO {
     public AddFishDTO() {
     }
 
-    public String getFishName() {
-        return fishName;
+    public String getName() {
+        return name;
     }
 
-    public void setFishName(String fishName) {
-        this.fishName = fishName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {

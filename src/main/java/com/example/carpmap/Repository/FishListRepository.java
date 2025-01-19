@@ -9,15 +9,12 @@ import java.util.Optional;
 
 public interface FishListRepository extends JpaRepository<FishList, Long> {
 
-    Optional<FishList> findByFishName(String name);
+    Optional<FishList> findByName(String name);
 
     Optional<FishList> findByUrlName(String urlName);
 
-    Page<FishList> findAllByUrlNameContaining(String urlName, Pageable pageable);
+    Page<FishList> findAllByNameContaining(String name, Pageable pageable);
 
-    Page<FishList> findAllByFishNameContaining (String name, Pageable pageable);
+    Page<FishList> findAllByUrlNameContaining(String name, Pageable pageable);
 
-    Page<FishList> findAllByUrlName(String fishType, Pageable pageable);
-
-    Page<FishList> findAllByFishName(String fishType, Pageable pageable);
 }
