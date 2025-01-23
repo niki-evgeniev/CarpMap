@@ -81,7 +81,10 @@
     <div class="container products">
         <link rel="stylesheet" href="/css/style2.css">
         <div>
-            <p class="text-center">Тук ще намерите всички добавени язовири в CarpMap</p>
+            <p th:if="${allReservoir.isEmpty()}"
+               class="text-center fw-bold py-5">НЕ СА ОТКРИТИ РЕЗУЛТАТИ</p>
+            <p th:unless="${allReservoir.isEmpty()}"
+               class="text-center">Тук ще намерите всички добавени язовири в CarpMap</p>
         </div><!--/.section-header-->
         <div class="tab-class text-center">
             <ul class="nav nav-pills d-inline-flex justify-content-center mb-1">
@@ -168,7 +171,9 @@
         </div>
     </div><!--/.container-->
 </section><!--/.explore-->
-<nav aria-label="Page navigation " class="d-flex justify-content-center">
+<nav th:unless="${allReservoir.isEmpty()}"
+     aria-label="Page navigation "
+     class="d-flex justify-content-center mt-4">
     <ul th:fragment="ALL" class="pagination text-center">
 
         <!-- Previous Page Button -->
