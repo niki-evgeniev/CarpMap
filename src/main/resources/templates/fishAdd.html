@@ -26,18 +26,18 @@
                               th:object="${addFishDTO}"
                               enctype="multipart/form-data">
                             <div class="row mb-3">
-                                <label for="fishName"
+                                <label for="name"
                                        class="col-sm-2 col-form-label">Име</label>
                                 <div class="col-sm-10">
-                                    <input th:field="*{fishName}"
+                                    <input th:field="*{name}"
                                            th:errorclass="is-invalid"
                                            type="text"
-                                           name="fishName"
-                                           id="fishName"
+                                           name="name"
+                                           id="name"
                                            class="form-control">
                                     <div class="text-primary text-center"
-                                         th:if="${#fields.hasErrors('fishName')}"
-                                         th:errors="*{fishName}">Please, enter your name!
+                                         th:if="${#fields.hasErrors('name')}"
+                                         th:errors="*{name}">Please, enter your name!
                                     </div>
                                     <p th:if="${existingName}" class="errors alert alert-danger text-center">
                                         Името вече съществува.

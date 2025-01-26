@@ -75,7 +75,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
 
                 addNewReservoirs.setFish(fish);
                 addNewReservoirs.setUser(findUser.get());
-                String createUrlName = convertorBgToEn.convertCyrillicToLatin(addNewReservoirs.getName());
+                String createUrlName = convertorBgToEn.convertCyrillicToLatin(addNewReservoirs.getName()).toLowerCase();
                 addNewReservoirs.setUrlName(createUrlName);
                 reservoirRepository.save(addNewReservoirs);
                 System.out.printf(SUCCESSFUL_ADD_RESERVOIR,
