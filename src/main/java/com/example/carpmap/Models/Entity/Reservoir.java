@@ -27,7 +27,7 @@ public class Reservoir extends BaseEntity {
     @Column(name = "longitude")
     private String longitude;
 
-    @Column(name = "iFrame_map", columnDefinition = "TEXT")
+    @Column(name = "i_Frame_map", columnDefinition = "TEXT")
     private String iFrameMap;
 
     @Column(name = "main_url_image")
@@ -50,7 +50,7 @@ public class Reservoir extends BaseEntity {
 
     private String description;
 
-    @Column(name = "countVisitors")
+    @Column(name = "count_visitors")
     private Integer countVisitors;
 
     @ManyToOne

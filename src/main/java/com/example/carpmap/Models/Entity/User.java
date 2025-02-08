@@ -53,7 +53,7 @@ public class User extends BaseEntity {
     @Column(name = "instagram")
     private String instagram;
 
-    @Column(name = "linkedIn")
+    @Column(name = "linked_in")
     private String linkedIn;
 
     @Column(name = "twitter")

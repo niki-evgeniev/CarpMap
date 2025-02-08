@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.example'
-version = '1.0.4'
+version = '1.0.5'
 
 java {
     sourceCompatibility = '17'
@@ -30,6 +30,7 @@ dependencies {
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.2.1'
     implementation 'org.springframework.boot:spring-boot-starter-security:3.3.5'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.2.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
 // https://mvnrepository.com/artifact/com.google.code/sitemapgen4j
     implementation 'com.google.code:sitemapgen4j:1.0.1'
 //    implementation 'org.springframework.boot:spring-boot-starter-actuator'

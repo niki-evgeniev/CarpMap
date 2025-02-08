@@ -40,7 +40,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/home", "/about", "/blog", "/contact",
                                 "/fish-list-type/fishing-type", "/fish-list-type/**",
                                 "/announced", "/donate", "/cookiePolicy", "/subscribe/send",
-                                "/gallery", "/search").permitAll()
+                                "/gallery", "/search", "/info").permitAll()
                         .requestMatchers("/reservoirs/reservoirsByType/reservoirs",
                                 "/reservoirs/reservoirsByType/private_reservoir",
                                 "/reservoirs/reservoirsByType/free_reservoir",

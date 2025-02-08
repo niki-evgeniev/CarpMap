@@ -22,7 +22,7 @@ public class Contact extends BaseEntity {
     @Column(name = "message", nullable = false)
     private String message;
 
-    @Column(name = "addedDate", nullable = false)
+    @Column(name = "added_date", nullable = false)
     private LocalDateTime addedDate;
 
     @Column(name = "is_read")

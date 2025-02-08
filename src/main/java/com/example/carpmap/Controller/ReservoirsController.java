@@ -71,18 +71,6 @@ public class ReservoirsController {
             }
         }
 
-//        ModelAndView modelAndView = new ModelAndView("reservoirs");
-//        Page<ReservoirAllDTO> allReservoirByType = reservoirsService.getReservoirsByType(type, pageable);
-//        if (allReservoirByType == null) {
-//            return new ModelAndView("errors/errorFindPage404");
-//        }
-//        modelAndView.addObject("allReservoir", allReservoirByType);
-//        modelAndView.addObject("type", type);
-//        modelAndView.addObject("currentUrl", request.getRequestURI());
-//        String navbarTransparent = "navbar";
-//        modelAndView.addObject("navbar", navbarTransparent);
-//        System.out.println("Reservoir type opening");
-//        return modelAndView;
         return getReservoirView.getReservoirs(type, pageable,request);
     }
 
