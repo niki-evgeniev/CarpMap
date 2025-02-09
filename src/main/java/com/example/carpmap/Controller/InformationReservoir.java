@@ -21,7 +21,11 @@ public class InformationReservoir {
     public ModelAndView getInfo() {
 
         Page<ReservoirInfoDTO> infoReservoirsDetails = informationService.getAllInformation(0, 10);
-        System.out.println();
-        return null;
+        int fillPercentage = 60;
+
+        ModelAndView modelAndView = new ModelAndView("information");
+        modelAndView.addObject("fillPercentage", fillPercentage);
+
+        return modelAndView;
     }
 }
