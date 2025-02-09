@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import java.util.List;
 
@@ -23,12 +24,13 @@ public class InformationServiceImpl implements InformationService {
     @Override
     public Page<ReservoirInfoDTO> getAllInformation(int page, int size) {
 
-        List<ReservoirInfoDTO> block = webClient.get()
-                .uri("http://localhost:8181/api/info")
-                .retrieve()
-                .bodyToFlux(ReservoirInfoDTO.class)
-                .collectList()
-                .block();
+//        List<ReservoirInfoDTO> block = webClient.get()
+//                .uri("http://localhost:8181/api/info")
+//                .retrieve()
+//                .bodyToFlux(ReservoirInfoDTO.class)
+//                .collectList()
+//                .block();
+        List<ReservoirInfoDTO> block = getApi();
         Pageable pageable = PageRequest.of(page, size);
         int start = (int) pageable.getOffset();
         assert block != null;
@@ -36,5 +38,24 @@ public class InformationServiceImpl implements InformationService {
         List<ReservoirInfoDTO> subList = block.subList(start, end);
 
         return new PageImpl<>(subList, pageable, block.size());
+    }
+
+    private List<ReservoirInfoDTO> getApi() {
+        try {
+            return webClient.get()
+                    .uri("http://localhost:8181/api/info")
+                    .retrieve()
+                    .bodyToFlux(ReservoirInfoDTO.class)
+                    .collectList()
+                    .block();
+        } catch (WebClientResponseException e) {
+            System.err.println("API NOT WORK " + e.getMessage());
+            return List.of();
+        } catch (Exception e) {
+            // Обработваме всяка друга грешка
+            System.err.println("Unexpected error: " + e.getMessage());
+            return List.of(); // Връщаме празен списък като безопасен резултат
+        }
+
     }
 }
