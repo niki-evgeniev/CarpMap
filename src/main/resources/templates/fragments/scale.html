@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Запълване на язовир</title>
+    <style>
+        /*body {*/
+        /*    font-family: Arial, sans-serif;*/
+        /*    text-align: center;*/
+        /*    margin: 20px;*/
+        /*}*/
+        .scale {
+            width: 80%;
+            max-width: 500px;
+            /*margin: auto;*/
+        }
+        .bar-container {
+            width: 100%;
+            height: 15px;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+        }
+        .bar {
+            height: 100%;
+            background-color: #4CAF50;
+            transition: width 0.5s ease-in-out;
+        }
+        .percentage {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="scale">
+    <h6>Запълване на язовир</h6>
+    <div class="bar-container">
+        <!-- Използвай th:style за да зададеш динамична ширина на барчето -->
+        <div class="bar" th:style="'width: ' + ${fillPercentage} + '%'"></div>
+    </div>
+    <p class="percentage" th:text="${fillPercentage} + '%'"></p>
+</div>
+
+</body>
+</html>

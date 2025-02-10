@@ -2,48 +2,114 @@
 <html lang="bg"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Запълване на язовир</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 20px;
-        }
-        .container {
-            width: 80%;
-            max-width: 500px;
-            margin: auto;
-        }
-        .bar-container {
-            width: 100%;
-            height: 30px;
-            background-color: #ddd;
-            border-radius: 5px;
-            overflow: hidden;
-            position: relative;
-        }
-        .bar {
-            height: 100%;
-            background-color: #4CAF50;
-            transition: width 0.5s ease-in-out;
-        }
-        .percentage {
-            margin-top: 10px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-    </style>
+    <link href="/css/style3.css" rel="stylesheet">
+    <th:block th:replace="~{fragments/head}"></th:block>
 </head>
 <body>
-<div class="container">
-    <h2>Запълване на язовир</h2>
-    <div class="bar-container">
-        <!-- Използвай th:style за да зададеш динамична ширина на барчето -->
-        <div class="bar" th:style="'width: ' + ${fillPercentage} + '%'"></div>
+<th:block th:replace="~{fragments/topbar}"></th:block>
+<th:block th:replace="~{fragments/navbar}"></th:block>
+<div class="container-fluid bg-breadcrumb reservoirPicCover">
+    <div class="container text-center py-5" style="max-width: 900px;">
+        <h1 class="text-white display-3 mb-4 reservoirH1Tag">Намерете информация за всички язовири и водоеми в
+            България</h1>
     </div>
-    <p class="percentage" th:text="${fillPercentage} + '%'"></p>
 </div>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-7">
+            <div class="main-img">
+                <img class="img-fluid img-detail"
+                     src="/images/gallery/beglika.jpg"
+                     data-toggle="modal"
+                     data-target="#exampleModal"
+                     alt="ProductS">
+                <div class="modal fade"
+                     id="exampleModal"
+                     tabindex="-1"
+                     role="dialog"
+                     aria-labelledby="exampleModalLabel"
+                     aria-hidden="true">
+                    <div class="modal-dialog"
+                         role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title w-100 text-center"
+                                    id="exampleModalLabel"
+                                    th:text="test">
+                                </h3>
+                            </div>
+                            <!--Modal body with image-->
+                            <div class="modal-body">
+                                <img src="/images/gallery/beglika.jpg"/>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn"
+                                        data-dismiss="modal">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="main-description px-2">
+                <br>
+                <div class="category text-bold text-start"
+                     th:text="'Име на язовира : ' ">
+                </div>
+                <br>
+                <br>
+                <th:block th:replace="~{fragments/scale}"></th:block>
+                <div class="category text-bold text-start"
+                     th:text="'Тип : ' ">
+                </div>
+
+                <div class="product-title text-bold my-3 text-start"
+                     th:text="'Добавен на : ' ">
+                </div>
+                <div class="product-details my-4">
+                    <p class="details-title text-color mb-1 text-start">Видове риба</p>
+                    <p
+                            class="description text-start">
+                        <span>SPAN</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <th:block th:replace="~{fragments/footer}"></th:block>
+</footer>
+<!-- Footer End -->
+
+<!-- JavaScript Libraries -->
+<div>
+    <th:block th:replace="~{fragments/js}"></th:block>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity=
+                    "sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity=
+                    "sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous">
+    </script>
+    <script>
+        function confirmDeletion() {
+            return confirm("Are you sure you want to delete this item?");
+        }
+    </script>
+</div>
+<!-- Back to Top -->
+<a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i
+        class="fa fa-arrow-up"></i></a>
 </body>
 </html>
