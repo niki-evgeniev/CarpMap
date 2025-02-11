@@ -1,6 +1,8 @@
 package com.example.carpmap.Service.Impl;
 
 import com.example.carpmap.Models.DTO.ReservoirInfoDTO;
+import com.example.carpmap.Models.DTO.ReservoirRepositoryDTO;
+import com.example.carpmap.Repository.ReservoirRepository;
 import com.example.carpmap.Service.InformationService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -10,37 +12,77 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
 public class InformationServiceImpl implements InformationService {
 
     private final WebClient webClient;
+    private final ReservoirRepository reservoirRepository;
 
-    public InformationServiceImpl(WebClient webClient) {
+    public InformationServiceImpl(WebClient webClient, ReservoirRepository reservoirRepository) {
         this.webClient = webClient;
+        this.reservoirRepository = reservoirRepository;
     }
 
     @Override
     public Page<ReservoirInfoDTO> getAllInformation(int page, int size) {
 
-//        List<ReservoirInfoDTO> block = webClient.get()
-//                .uri("http://localhost:8181/api/info")
-//                .retrieve()
-//                .bodyToFlux(ReservoirInfoDTO.class)
-//                .collectList()
-//                .block();
-        List<ReservoirInfoDTO> block = getApi();
+        List<ReservoirInfoDTO> informationReservoir = getApiInformation();
+        if (!informationReservoir.isEmpty()) {
+            List<ReservoirRepositoryDTO> findAllImages = reservoirRepository.findAllNameAndImageUrl();
+            for (ReservoirInfoDTO infoReservoir : informationReservoir) {
+                String reservoirName = infoReservoir.getName();
+                for (ReservoirRepositoryDTO image : findAllImages) {
+                    if (image.getName().equals(reservoirName)){
+                        infoReservoir.setMainUrlImage(image.getMainUrlImage());
+                    }
+                }
+                if (infoReservoir.getMainUrlImage() == null){
+                    infoReservoir.setMainUrlImage("images/reservoirImageNotFound.jpg");
+                }
+            }
+
+        }
+        System.out.println();
         Pageable pageable = PageRequest.of(page, size);
         int start = (int) pageable.getOffset();
-        assert block != null;
-        int end = Math.min((start + pageable.getPageSize()), block.size());
-        List<ReservoirInfoDTO> subList = block.subList(start, end);
+        assert informationReservoir != null;
+        int end = Math.min((start + pageable.getPageSize()), informationReservoir.size());
+        List<ReservoirInfoDTO> subList = informationReservoir.subList(start, end);
 
-        return new PageImpl<>(subList, pageable, block.size());
+        return new PageImpl<>(subList, pageable, informationReservoir.size());
     }
 
-    private List<ReservoirInfoDTO> getApi() {
+    @Override
+    public Page<ReservoirInfoDTO> getAllInformation2(Pageable pageable) {
+        List<ReservoirInfoDTO> informationReservoir = getApiInformation();
+        if (!informationReservoir.isEmpty()) {
+            List<ReservoirRepositoryDTO> findAllImages = reservoirRepository.findAllNameAndImageUrl();
+            for (ReservoirInfoDTO infoReservoir : informationReservoir) {
+                String reservoirName = infoReservoir.getName();
+                for (ReservoirRepositoryDTO image : findAllImages) {
+                    if (image.getName().equals(reservoirName)) {
+                        infoReservoir.setMainUrlImage(image.getMainUrlImage());
+                    }
+                }
+                if (infoReservoir.getMainUrlImage() == null) {
+                    infoReservoir.setMainUrlImage("images/reservoirImageNotFound.jpg");
+                }
+            }
+        }
+        informationReservoir.sort(Comparator.comparing(ReservoirInfoDTO::getTotalVolume).reversed());
+
+        // Пагинация с използване на Pageable
+        int start = (int) pageable.getOffset();
+        int end = Math.min((start + pageable.getPageSize()), informationReservoir.size());
+        List<ReservoirInfoDTO> subList = informationReservoir.subList(start, end);
+
+        return new PageImpl<>(subList, pageable, informationReservoir.size());
+    }
+
+    private List<ReservoirInfoDTO> getApiInformation() {
         try {
             return webClient.get()
                     .uri("http://localhost:8181/api/info")
