@@ -25,7 +25,8 @@
         }
         .bar {
             height: 100%;
-            background-color: #4CAF50;
+            background-color: #0093c4;
+            /*background-color: #4CAF50;*/
             transition: width 0.5s ease-in-out;
         }
         .percentage {
@@ -37,12 +38,12 @@
 </head>
 <body>
 <div class="scale">
-    <h6>Запълване на язовир</h6>
+    <h6>Наличен Обем Вода</h6>
     <div class="bar-container">
         <!-- Използвай th:style за да зададеш динамична ширина на барчето -->
-        <div class="bar" th:style="'width: ' + ${fillPercentage} + '%'"></div>
+        <div class="bar" th:style="'width: ' + *{fillPercentage} + '%'"></div>
     </div>
-    <p class="percentage" th:text="${fillPercentage} + '%'"></p>
+    <p class="percentage text-center" th:text="*{fillPercentage} + '%'"></p>
 </div>
 
 </body>
