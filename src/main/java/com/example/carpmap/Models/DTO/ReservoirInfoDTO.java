@@ -1,5 +1,6 @@
 package com.example.carpmap.Models.DTO;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 public class ReservoirInfoDTO {
@@ -17,6 +18,10 @@ public class ReservoirInfoDTO {
     private double availableVolume;
 
     private double volumePercentage;
+
+    private String mainUrlImage;
+
+    private LocalDate addedDate;
 
     public ReservoirInfoDTO() {
     }
@@ -75,5 +80,21 @@ public class ReservoirInfoDTO {
 
     public void setVolumePercentage(double volumePercentage) {
         this.volumePercentage = volumePercentage;
+    }
+
+    public String getMainUrlImage() {
+        return mainUrlImage;
+    }
+
+    public void setMainUrlImage(String mainUrlImage) {
+        this.mainUrlImage = mainUrlImage;
+    }
+
+    public LocalDate getAddedDate() {
+        return addedDate;
+    }
+
+    public void setAddedDate(LocalDate addedDate) {
+        this.addedDate = addedDate;
     }
 }
