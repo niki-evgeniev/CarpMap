@@ -20,6 +20,7 @@ public class InformationServiceImpl implements InformationService {
 
     private final WebClient webClient;
     private final ReservoirRepository reservoirRepository;
+    private final String apiUrlAddress = "http://localhost:8181/api/info";
 
     public InformationServiceImpl(WebClient webClient, ReservoirRepository reservoirRepository) {
         this.webClient = webClient;
@@ -35,11 +36,11 @@ public class InformationServiceImpl implements InformationService {
             for (ReservoirInfoDTO infoReservoir : informationReservoir) {
                 String reservoirName = infoReservoir.getName();
                 for (ReservoirRepositoryDTO image : findAllImages) {
-                    if (image.getName().equals(reservoirName)){
+                    if (image.getName().equals(reservoirName)) {
                         infoReservoir.setMainUrlImage(image.getMainUrlImage());
                     }
                 }
-                if (infoReservoir.getMainUrlImage() == null){
+                if (infoReservoir.getMainUrlImage() == null) {
                     infoReservoir.setMainUrlImage("images/reservoirImageNotFound.jpg");
                 }
             }
@@ -71,10 +72,9 @@ public class InformationServiceImpl implements InformationService {
                     infoReservoir.setMainUrlImage("images/reservoirImageNotFound.jpg");
                 }
             }
+            informationReservoir.sort(Comparator.comparing(ReservoirInfoDTO::getTotalVolume).reversed());
         }
-        informationReservoir.sort(Comparator.comparing(ReservoirInfoDTO::getTotalVolume).reversed());
 
-        // Пагинация с използване на Pageable
         int start = (int) pageable.getOffset();
         int end = Math.min((start + pageable.getPageSize()), informationReservoir.size());
         List<ReservoirInfoDTO> subList = informationReservoir.subList(start, end);
@@ -85,7 +85,7 @@ public class InformationServiceImpl implements InformationService {
     private List<ReservoirInfoDTO> getApiInformation() {
         try {
             return webClient.get()
-                    .uri("http://localhost:8181/api/info")
+                    .uri(apiUrlAddress)
                     .retrieve()
                     .bodyToFlux(ReservoirInfoDTO.class)
                     .collectList()
@@ -94,9 +94,8 @@ public class InformationServiceImpl implements InformationService {
             System.err.println("API NOT WORK " + e.getMessage());
             return List.of();
         } catch (Exception e) {
-            // Обработваме всяка друга грешка
             System.err.println("Unexpected error: " + e.getMessage());
-            return List.of(); // Връщаме празен списък като безопасен резултат
+            return List.of();
         }
 
     }

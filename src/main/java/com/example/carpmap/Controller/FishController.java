@@ -40,14 +40,6 @@ public class FishController {
                                 HttpServletRequest request) {
 
         Page<FishListAllDTO> getAllFishList = fishListService.getAll(pageable);
-//        ModelAndView modelAndView = new ModelAndView("fish");
-//
-//        modelAndView.addObject("currentUrl", request.getRequestURI());
-//        modelAndView.addObject("allFishList", getAllFishList);
-//        String navbarTransparent = "navbar";
-//        modelAndView.addObject("navbar", navbarTransparent);
-//        System.out.println("fishList type opening");
-//        return modelAndView;
         return getFishView.getFish(pageable, request,getAllFishList);
     }
 
