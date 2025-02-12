@@ -64,6 +64,13 @@ public class SitemapScheduler {
                 .priority(1.0)
                 .build();
         webSitemapGenerator.addUrl(webSitemapUrlReservoirs);
+        WebSitemapUrl webSitemapUrlInformation = new WebSitemapUrl
+                .Options("https://carpmap.online/info")
+                .lastMod(day)
+                .changeFreq(ChangeFreq.DAILY)
+                .priority(1.0)
+                .build();
+        webSitemapGenerator.addUrl(webSitemapUrlInformation);
 
         WebSitemapUrl webSitemapUrlBlog = new WebSitemapUrl
                 .Options("https://carpmap.online/blog")

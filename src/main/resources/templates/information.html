@@ -3,6 +3,19 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <link href="/css/style3.css" rel="stylesheet">
+    <title>Състояние на язовирите - CarpMap</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="язовири, информация за язовири,  водоеми,
+        състоянието на язовирите, наличен обем вада, състояние нивата на вода на язовирите">
+    <meta name="description" content="Списък налични язовири и тяхното състояние - ниво на водата, обем и др.">
+    <meta name="author" content="Nikolay">
+    <meta name="robots" content="index, follow">
+    <!-- Open Graph -->
+    <meta property="og:title" content="Състояние на язовирите - CarpMap">
+    <meta property="og:description" content="Разгледайте информация за различни язовири и тяхното състояние.">
+    <meta property="og:type" content="website">
+    <meta property="og:locate" content="bg_BG">
     <th:block th:replace="~{fragments/head}"></th:block>
 </head>
 <body>
@@ -11,10 +24,21 @@
 <div class="container-fluid bg-breadcrumb reservoirPicCover">
     <div class="container text-center py-5" style="max-width: 900px;">
         <h1 class="text-white display-3 mb-4 reservoirH1Tag">Състоянието на язовирите в България</h1>
-        <h5 class="text-center text-white reservoirH2Tag">Информацията е актуализирана от : МОСВ</h5>
+        <h1 class="text-center text-white reservoirH2Tag">CarpMap --> API</h1>
+        <br>
+        <h5 class="text-center text-white reservoirH2Tag">Информацията е актуализирана от : <b>МОСВ</b></h5>
     </div>
 </div>
+<div th:if="${infoReservoirsDetails.isEmpty()}">
+    <br>
+    <br>
+    <br>
+    <h1 class="text-center text-bold">The API is currently unavailable. Please try again later.</h1>
+</div>
 <div class="container my-5">
+    <div>
+        <h2 class="text-center text-white reservoirH2Tag">CarpMap --> API</h2>
+    </div>
     <div class="row"
          th:each="reservoir : ${infoReservoirsDetails.getContent()}"
          th:object="${reservoir}">
@@ -30,9 +54,11 @@
         </div>
         <div class="col-md-6">
             <div class="main-description px-2">
-                <div class="category text-bold text-center"
-                     th:text="'Язовир : ' + *{name}">
-                </div>
+                <h1 class="category text-bold text-center"
+                    style="font-size: 22px"
+                    th:text="'Язовир : ' + *{name}">
+                </h1>
+                <br>
                 <th:block th:replace="~{fragments/scale}"></th:block>
 
                 <div class="product-title text-bold my-3 text-start"
