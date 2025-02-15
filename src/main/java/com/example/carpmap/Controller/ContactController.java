@@ -3,6 +3,7 @@ package com.example.carpmap.Controller;
 
 import com.example.carpmap.Models.DTO.ContactDTO;
 import com.example.carpmap.Service.ContactService;
+import com.example.carpmap.Service.IpAddressService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -16,14 +17,17 @@ import org.springframework.web.servlet.ModelAndView;
 public class ContactController {
 
     private final ContactService contactService;
+    private final IpAddressService ipAddressService;
 
-    public ContactController(ContactService contactService) {
+    public ContactController(ContactService contactService, IpAddressService ipAddressService) {
         this.contactService = contactService;
+        this.ipAddressService = ipAddressService;
     }
 
 
     @GetMapping("/contact")
     public ModelAndView contact(HttpServletRequest request) {
+        ipAddressService.checkIpAddressAndAddToDB(request.getRemoteAddr());
         ModelAndView modelAndView = new ModelAndView("contact");
         modelAndView.addObject("currentUrl", request.getRequestURI());
         String navbarTransparent = "navbar";

@@ -93,6 +93,12 @@ public class IpAddressServiceImpl implements IpAddressService {
     @Override
     @Transactional
     public void checkIpAddressAndAddToDB(String ipAddress) {
+        StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+        for (StackTraceElement element : stackTrace) {
+            if (element.getClassName().contains("Controller")) {
+                System.out.println("Called from Controller: " + element.getClassName() + " -> " + element.getMethodName());
+            }
+        }
 
         Optional<IpAddress> findIp = ipAddressRepository.findByAddress(ipAddress);
 

@@ -6,6 +6,7 @@ import com.example.carpmap.Models.DTO.Fish.FishDetailsDTO;
 import com.example.carpmap.Models.DTO.Fish.FishListAllDTO;
 import com.example.carpmap.Models.DTO.Fish.SearchFishDTO;
 import com.example.carpmap.Service.FishListService;
+import com.example.carpmap.Service.IpAddressService;
 import com.example.carpmap.Utility.GetFishView;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -28,17 +29,20 @@ public class FishController {
 
     private final FishListService fishListService;
     private final GetFishView getFishView;
+    private final IpAddressService ipAddressService;
 
-    public FishController(FishListService fishListService, GetFishView getFishView) {
+    public FishController(FishListService fishListService, GetFishView getFishView,
+                          IpAddressService ipAddressService) {
         this.fishListService = fishListService;
         this.getFishView = getFishView;
+        this.ipAddressService = ipAddressService;
     }
 
 
     @GetMapping("fishing-type")
     public ModelAndView getFish(@PageableDefault(size = 12, sort = "name") Pageable pageable,
                                 HttpServletRequest request) {
-
+        ipAddressService.checkIpAddressAndAddToDB(request.getRemoteAddr());
         Page<FishListAllDTO> getAllFishList = fishListService.getAll(pageable);
         return getFishView.getFish(pageable, request,getAllFishList);
     }
@@ -67,7 +71,9 @@ public class FishController {
     }
 
     @GetMapping("{urlName}")
-    public ModelAndView getFishInformation(@PathVariable("urlName") String urlName) {
+    public ModelAndView getFishInformation(@PathVariable("urlName") String urlName,
+                                           HttpServletRequest request) {
+        ipAddressService.checkIpAddressAndAddToDB(request.getRemoteAddr());
         FishDetailsDTO fishDetailsDTO = fishListService.getFishListDetails(urlName);
         ModelAndView modelAndView = new ModelAndView("fishDetails");
         modelAndView.addObject("fishDetailsDTO", fishDetailsDTO);

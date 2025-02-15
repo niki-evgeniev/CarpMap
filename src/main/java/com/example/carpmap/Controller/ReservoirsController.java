@@ -2,10 +2,7 @@ package com.example.carpmap.Controller;
 
 import com.example.carpmap.Models.DTO.Reservoirs.*;
 import com.example.carpmap.Models.DTO.SearchDTO;
-import com.example.carpmap.Service.CountryService;
-import com.example.carpmap.Service.FishService;
-import com.example.carpmap.Service.PictureService;
-import com.example.carpmap.Service.ReservoirsService;
+import com.example.carpmap.Service.*;
 import com.example.carpmap.Utility.GetReservoirView;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -33,20 +30,24 @@ public class ReservoirsController {
     private final FishService fishService;
     private final PictureService pictureService;
     private final GetReservoirView getReservoirView;
+    private final IpAddressService ipAddressService;
 
     public ReservoirsController(CountryService countryService, ReservoirsService reservoirsService,
-                                FishService fishService, PictureService pictureService, GetReservoirView getReservoirView) {
+                                FishService fishService, PictureService pictureService,
+                                GetReservoirView getReservoirView, IpAddressService ipAddressService) {
         this.countryService = countryService;
         this.reservoirsService = reservoirsService;
         this.fishService = fishService;
         this.pictureService = pictureService;
         this.getReservoirView = getReservoirView;
+        this.ipAddressService = ipAddressService;
     }
 
     @GetMapping("reservoirsByType/{type}")
     public ModelAndView reservoirsByType(
             @PageableDefault(size = 9, sort = "name") Pageable pageable, @PathVariable String type,
             HttpServletRequest request) {
+        ipAddressService.checkIpAddressAndAddToDB(request.getRemoteAddr());
         switch (type) {
             case "ALL" -> {
                 ModelAndView modelAndView = new ModelAndView(
@@ -108,8 +109,9 @@ public class ReservoirsController {
     }
 
     @GetMapping("{urlName}")
-    public ModelAndView details(@PathVariable("urlName") String urlName) {
-
+    public ModelAndView details(@PathVariable("urlName") String urlName,
+                                HttpServletRequest request) {
+        ipAddressService.checkIpAddressAndAddToDB(request.getRemoteAddr());
         ModelAndView modelAndView = new ModelAndView("reservoirsDetails");
         ReservoirsDetailsDTO reservoirsDetailsDTO = reservoirsService.getDetailsByUrlName(urlName);
         if (reservoirsDetailsDTO == null) {
