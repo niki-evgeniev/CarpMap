@@ -23,6 +23,9 @@ Visit the home page: [CarpMap Online](https://carpmap.online)
     - Update or delete pictures (from Cloudinary)
     - Remove reservoirs
 
+###**Level and volume**
+ - Check the status of reservoirs in Bulgaria
+
 ### **Fish Type Management**
 
 - Add new fish types
@@ -82,6 +85,7 @@ Visit the home page: [CarpMap Online](https://carpmap.online)
 - **Actuator**
 - **Oshi** (for system monitoring)
 - **Responsive Design**
+- **ReservoirAPI (for real-time water level and volume data)**
 
 ---
 
