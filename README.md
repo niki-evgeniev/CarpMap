@@ -23,7 +23,7 @@ Visit the home page: [CarpMap Online](https://carpmap.online)
     - Update or delete pictures (from Cloudinary)
     - Remove reservoirs
 
-###**Level and volume**
+### **Level and volume**
  - Check the status of reservoirs in Bulgaria
 
 ### **Fish Type Management**
