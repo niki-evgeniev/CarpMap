@@ -28,36 +28,7 @@ public class InformationServiceImpl implements InformationService {
     }
 
     @Override
-    public Page<ReservoirInfoDTO> getAllInformation(int page, int size) {
-
-        List<ReservoirInfoDTO> informationReservoir = getApiInformation();
-        if (!informationReservoir.isEmpty()) {
-            List<ReservoirRepositoryDTO> findAllImages = reservoirRepository.findAllNameAndImageUrl();
-            for (ReservoirInfoDTO infoReservoir : informationReservoir) {
-                String reservoirName = infoReservoir.getName();
-                for (ReservoirRepositoryDTO image : findAllImages) {
-                    if (image.getName().equals(reservoirName)) {
-                        infoReservoir.setMainUrlImage(image.getMainUrlImage());
-                    }
-                }
-                if (infoReservoir.getMainUrlImage() == null) {
-                    infoReservoir.setMainUrlImage("images/reservoirImageNotFound.jpg");
-                }
-            }
-
-        }
-        System.out.println();
-        Pageable pageable = PageRequest.of(page, size);
-        int start = (int) pageable.getOffset();
-        assert informationReservoir != null;
-        int end = Math.min((start + pageable.getPageSize()), informationReservoir.size());
-        List<ReservoirInfoDTO> subList = informationReservoir.subList(start, end);
-
-        return new PageImpl<>(subList, pageable, informationReservoir.size());
-    }
-
-    @Override
-    public Page<ReservoirInfoDTO> getAllInformation2(Pageable pageable) {
+    public Page<ReservoirInfoDTO> getAllInformation(Pageable pageable) {
         List<ReservoirInfoDTO> informationReservoir = getApiInformation();
         if (!informationReservoir.isEmpty()) {
             List<ReservoirRepositoryDTO> findAllImages = reservoirRepository.findAllNameAndImageUrl();
