@@ -2,6 +2,7 @@ package com.example.carpmap.Controller;
 
 
 import com.example.carpmap.Models.DTO.ReservoirInfoDTO;
+import com.example.carpmap.Models.DTO.SearchDTO;
 import com.example.carpmap.Service.InformationService;
 import com.example.carpmap.Service.IpAddressService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -28,7 +30,7 @@ public class InfoReservoirController {
                                 HttpServletRequest request) {
         String requestURI = request.getRequestURI();
         ipAddressService.checkIpAddressAndAddToDB(request.getRemoteAddr());
-        Page<ReservoirInfoDTO> infoReservoirsDetails = informationService.getAllInformation2(pageable);
+        Page<ReservoirInfoDTO> infoReservoirsDetails = informationService.getAllInformation(pageable);
         ModelAndView modelAndView = new ModelAndView("information");
         if (infoReservoirsDetails.isEmpty()) {
             System.err.println("API NOT RESPONDING");
@@ -42,6 +44,11 @@ public class InfoReservoirController {
 
         System.out.println("Information reservoir opening");
         return modelAndView;
+    }
+
+    @ModelAttribute
+    SearchDTO searchDTO() {
+        return new SearchDTO();
     }
 
 }
