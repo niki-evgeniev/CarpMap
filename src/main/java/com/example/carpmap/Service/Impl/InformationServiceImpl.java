@@ -1,5 +1,6 @@
 package com.example.carpmap.Service.Impl;
 
+import com.example.carpmap.Models.DTO.InfoReservoirDTO;
 import com.example.carpmap.Models.DTO.ReservoirInfoDTO;
 import com.example.carpmap.Models.DTO.ReservoirRepositoryDTO;
 import com.example.carpmap.Repository.ReservoirRepository;
@@ -21,6 +22,7 @@ public class InformationServiceImpl implements InformationService {
     private final WebClient webClient;
     private final ReservoirRepository reservoirRepository;
     private final String apiUrlAddress = "http://localhost:8181/api/info";
+    private final String apiUrlAddressReservoir = "http://localhost:8181/api/";
 
     public InformationServiceImpl(WebClient webClient, ReservoirRepository reservoirRepository) {
         this.webClient = webClient;
@@ -53,6 +55,30 @@ public class InformationServiceImpl implements InformationService {
         return new PageImpl<>(subList, pageable, informationReservoir.size());
     }
 
+    @Override
+    public InfoReservoirDTO getInfoReservoir(String name) {
+        String apiReservoirInfo = "http://localhost:8181/api/info/" + name;
+        InfoReservoirDTO infoReservoirDTO = getApiInfoReservoir(apiReservoirInfo);
+        System.out.println();
+        return infoReservoirDTO;
+    }
+
+    private InfoReservoirDTO getApiInfoReservoir(String link) {
+        try {
+            return webClient.get()
+                    .uri(link)
+                    .retrieve()
+                    .bodyToFlux(InfoReservoirDTO.class)
+                    .blockLast();
+        } catch (WebClientResponseException e) {
+            System.err.println("API NOT WORK " + e.getMessage());
+            return null;
+        } catch (Exception e) {
+            System.err.println("Unexpected error: " + e.getMessage());
+            return null;
+        }
+    }
+
     private List<ReservoirInfoDTO> getApiInformation() {
         try {
             return webClient.get()
@@ -68,6 +94,5 @@ public class InformationServiceImpl implements InformationService {
             System.err.println("Unexpected error: " + e.getMessage());
             return List.of();
         }
-
     }
 }
