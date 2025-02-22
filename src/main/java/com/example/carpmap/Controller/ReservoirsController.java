@@ -1,12 +1,12 @@
 package com.example.carpmap.Controller;
 
+import com.example.carpmap.Models.DTO.InfoReservoirDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.*;
 import com.example.carpmap.Models.DTO.SearchDTO;
 import com.example.carpmap.Service.*;
 import com.example.carpmap.Utility.GetReservoirView;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
@@ -31,16 +31,19 @@ public class ReservoirsController {
     private final PictureService pictureService;
     private final GetReservoirView getReservoirView;
     private final IpAddressService ipAddressService;
+    private final InformationService informationService;
 
     public ReservoirsController(CountryService countryService, ReservoirsService reservoirsService,
                                 FishService fishService, PictureService pictureService,
-                                GetReservoirView getReservoirView, IpAddressService ipAddressService) {
+                                GetReservoirView getReservoirView, IpAddressService ipAddressService,
+                                InformationService informationService) {
         this.countryService = countryService;
         this.reservoirsService = reservoirsService;
         this.fishService = fishService;
         this.pictureService = pictureService;
         this.getReservoirView = getReservoirView;
         this.ipAddressService = ipAddressService;
+        this.informationService = informationService;
     }
 
     @GetMapping("reservoirsByType/{type}")
@@ -72,7 +75,7 @@ public class ReservoirsController {
             }
         }
 
-        return getReservoirView.getReservoirs(type, pageable,request);
+        return getReservoirView.getReservoirs(type, pageable, request);
     }
 
     @GetMapping("add/reservoirAdd")
@@ -112,8 +115,9 @@ public class ReservoirsController {
     public ModelAndView details(@PathVariable("urlName") String urlName,
                                 HttpServletRequest request) {
         ipAddressService.checkIpAddressAndAddToDB(request.getRemoteAddr());
-        ModelAndView modelAndView = new ModelAndView("reservoirsDetails");
+        ModelAndView modelAndView = new ModelAndView("reservoirsDetails2");
         ReservoirsDetailsDTO reservoirsDetailsDTO = reservoirsService.getDetailsByUrlName(urlName);
+
         if (reservoirsDetailsDTO == null) {
             if (urlName.equals("reservoirsAll")) {
                 ModelAndView modelAndView1 = new ModelAndView("redirect:/reservoirs/reservoirsByType/reservoirs");
@@ -139,6 +143,8 @@ public class ReservoirsController {
         if (reservoirPicturesList == null) {
             return new ModelAndView("errors/errorFindPage");
         }
+        InfoReservoirDTO infoReservoirDTO = informationService.getInfoReservoir(name);
+        // TODO ADD TO FE
         modelAndView.addObject("details", reservoirsDetailsDTO);
         modelAndView.addObject("pictures", reservoirPicturesList);
         return modelAndView;
