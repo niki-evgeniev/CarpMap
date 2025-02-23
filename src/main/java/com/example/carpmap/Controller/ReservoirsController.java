@@ -115,7 +115,7 @@ public class ReservoirsController {
     public ModelAndView details(@PathVariable("urlName") String urlName,
                                 HttpServletRequest request) {
         ipAddressService.checkIpAddressAndAddToDB(request.getRemoteAddr());
-        ModelAndView modelAndView = new ModelAndView("reservoirsDetails2");
+        ModelAndView modelAndView = new ModelAndView("reservoirsDetails");
         ReservoirsDetailsDTO reservoirsDetailsDTO = reservoirsService.getDetailsByUrlName(urlName);
 
         if (reservoirsDetailsDTO == null) {
@@ -144,9 +144,9 @@ public class ReservoirsController {
             return new ModelAndView("errors/errorFindPage");
         }
         InfoReservoirDTO infoReservoirDTO = informationService.getInfoReservoir(name);
-        // TODO ADD TO FE
         modelAndView.addObject("details", reservoirsDetailsDTO);
         modelAndView.addObject("pictures", reservoirPicturesList);
+        modelAndView.addObject("info", infoReservoirDTO);
         return modelAndView;
 
     }

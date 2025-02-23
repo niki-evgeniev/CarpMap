@@ -9,7 +9,8 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="keywords" content="website"
-          th:content="'язовир, информация за язовир, места за риболов в българия, водоеми, ' +  ${details.name}">
+          th:content="'язовир, информация за язовир, обем, наличен обем ,места за риболов в българия, водоеми, '
+          +  ${details.name}">
     <meta name="title" th:content="'Язовир ' + ${details.name}">
     <meta name="description" th:content="'Информация за язовир ' + ${details.name} ">
     <meta name="author" content="Nikolay">
@@ -91,11 +92,6 @@
             </div>
             <div class="col-md-5">
                 <div class="main-description px-2">
-                    <br>
-                    <div class="category text-bold text-start"
-                         th:text="'Язовир : ' + *{name}">
-                    </div>
-                    <br>
                     <div class="category text-bold text-start"
                          th:text="'Намира се : ' + *{country} + ' - ' + *{city}">
                     </div>
@@ -116,7 +112,7 @@
                          th:text="'ID: ' + *{id}">
                     </div>
                     <div class="product-title text-bold my-3 text-start"
-                         th:text="'Добавен на : ' + *{createDate.toLocalDate()}">
+                         th:text="'Добавен на : ' + *{#temporals.format(createDate, 'dd.MM.yyyy')}">
                     </div>
                     <div class="product-details my-4">
                         <p class="details-title text-color mb-1 text-start">Видове риба</p>
@@ -125,11 +121,38 @@
                             <span th:text="*{fishNames}"></span>
                         </p>
                     </div>
+                    <th:block th:if="${info != null}">
+                    <div class="product-title text-bold my-3 text-start"
+                         th:text="'Общ обем : ' + ${info.totalVolume} + ' млн.м³'">
+                    </div>
+                    <div class="product-title text-bold my-3 text-start"
+                         th:text="'Наличен обем : ' + ${info.allAvailableVolume} + ' млн.м³'">
+                    </div>
+                    <div class="product-title text-bold my-3 text-start"
+                         th:text="'Наличен полезен обем : ' + ${info.availableVolume} + ' млн.м³'">
+                    </div>
+                    <div class="product-title text-bold my-3 text-start"
+                         th:text="'Санитарен обем : ' + ${info.minimumFlowVolume} + ' млн.м³'">
+                    </div>
+                    </th:block>
                 </div>
             </div>
         </div>
     </div>
     <div class="container my-5" th:object="${details}">
+        <div th:if="${info != null}"
+                th:object="${info}">
+            <th:block th:replace="~{fragments/scale}"></th:block>
+        </div>
+        <script>
+            document.querySelector(".scale").style.maxWidth= "100%";
+            document.querySelector(".scale").style.width= "100%";
+            document.querySelector(".scale").style.textAlign = "center";
+        </script>
+        <div th:if="${info != null}"
+             class="product-title text-bold my-3 text-start"
+             th:text="'Информацията за обем на водата е от : ' + ${#temporals.format(info.addedDate, 'dd.MM.yyyy')}">
+        </div>
         <div class="row">
             <div class="product-details my-4 col-md-12">
                 <p class="details-title text-color mb-1" th:text="'Информация за яз. ' + *{name}"></p>

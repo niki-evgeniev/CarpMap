@@ -12,6 +12,7 @@ public class InfoReservoirDTO {
     private String fillPercentage;
     private String availableVolume;
     private String volumePercentage;
+    private String allAvailableVolume;
 
     public InfoReservoirDTO() {
     }
@@ -78,5 +79,13 @@ public class InfoReservoirDTO {
 
     public void setVolumePercentage(String volumePercentage) {
         this.volumePercentage = volumePercentage;
+    }
+
+    public String getAllAvailableVolume() {
+        return allAvailableVolume;
+    }
+
+    public void setAllAvailableVolume(String allAvailableVolume) {
+        this.allAvailableVolume = allAvailableVolume;
     }
 }

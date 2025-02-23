@@ -59,6 +59,12 @@ public class InformationServiceImpl implements InformationService {
     public InfoReservoirDTO getInfoReservoir(String name) {
         String apiReservoirInfo = "http://localhost:8181/api/info/" + name;
         InfoReservoirDTO infoReservoirDTO = getApiInfoReservoir(apiReservoirInfo);
+        if (infoReservoirDTO != null) {
+            double minimumFlowVolume = Double.parseDouble(infoReservoirDTO.getMinimumFlowVolume());
+            double availableVolume = Double.parseDouble(infoReservoirDTO.getAvailableVolume());
+            double allAvailableVolume = minimumFlowVolume + availableVolume;
+            infoReservoirDTO.setAllAvailableVolume(String.format("%.2f", allAvailableVolume));
+        }
         System.out.println();
         return infoReservoirDTO;
     }

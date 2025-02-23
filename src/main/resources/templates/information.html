@@ -95,10 +95,10 @@
                      th:text="'Наличен полезен обем :  ' + *{availableVolume} + ' млн.м³'">
                 </div>
                 <div class="product-title text-bold my-3 text-start"
-                     th:text="'Мъртав обем : ' + *{minimumFlowVolume} + ' млн.м³'">
+                     th:text="'Санитарен обем : ' + *{minimumFlowVolume} + ' млн.м³'">
                 </div>
                 <div class="product-title text-bold my-3 text-start"
-                     th:text="'Информацията е от : '+ *{addedDate} ">
+                     th:text="'Информацията е от : '+ *{#temporals.format(addedDate, 'dd.MM.yyyy')}">
                 </div>
                 <br>
                 <div class="explore-open-close-part">
@@ -113,7 +113,6 @@
             </div>
         </div>
     </div>
-
 </div>
 <nav th:unless="${infoReservoirsDetails.isEmpty()}"
      aria-label="Page navigation "
