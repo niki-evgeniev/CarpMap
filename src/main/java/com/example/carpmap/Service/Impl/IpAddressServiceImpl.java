@@ -7,6 +7,7 @@ import com.example.carpmap.Models.Entity.User;
 import com.example.carpmap.Repository.IpAddressRepository;
 import com.example.carpmap.Repository.UserRepository;
 import com.example.carpmap.Service.IpAddressService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -41,15 +44,28 @@ public class IpAddressServiceImpl implements IpAddressService {
         this.modelMapper = modelMapper;
     }
 
+    //
+//    @Override
+//    public String getIp() {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//
+//        if (authentication != null && authentication.getDetails() instanceof WebAuthenticationDetails details) {
+//            return details.getRemoteAddress();
+//        }
+//        return "Cant detect ip";
+//    }
     @Override
     public String getIp() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+        String ip = request.getHeader("X-Forwarded-For");
 
-        if (authentication != null && authentication.getDetails() instanceof WebAuthenticationDetails details) {
-            return details.getRemoteAddress();
+        if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getRemoteAddr();
         }
-        return "Cant detect ip";
+
+        return ip;
     }
+
 
     @Override
     public Long findAllVisits() {
