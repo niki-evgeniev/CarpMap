@@ -76,7 +76,7 @@ Visit the home page: [CarpMap Online](https://carpmap.online)
 
 ## **Technologies Used**
 
-- **Java 17**
+- **Java 21**
 - **Spring Boot**
 - **Spring Security**
 - **Thymeleaf**
