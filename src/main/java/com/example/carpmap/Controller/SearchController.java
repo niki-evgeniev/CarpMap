@@ -102,7 +102,6 @@ public class SearchController {
             if (searchReservoirs.getContent().isEmpty()) {
                 Page<FishListAllDTO> fishListAllDTOS = fishListService.searchFish(reservoirName, pageable);
                 return getFishView.getFish(pageable, request, fishListAllDTOS);
-
             }
             String requestURI = request.getRequestURI();
             if (requestURI.contains("/searchReservoir") || requestURI.contains("/search")) {
@@ -114,7 +113,6 @@ public class SearchController {
             String navbarTransparent = "navbar";
             modelAndView.addObject("navbar", navbarTransparent);
             return modelAndView;
-
         }
         return null;
     }

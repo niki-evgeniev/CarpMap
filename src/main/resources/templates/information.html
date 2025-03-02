@@ -47,9 +47,9 @@
                        name="reservoir"
                        id="reservoir"
                        type="text"
-                       placeholder="Работим по тази секция !!! Благодарим за търпението"/>
+                       placeholder="Намери Язовир"/>
                 <button type="submit"
-                        class="btn btn-primary rounded-pill py-2 px-4 position-absolute me-2 disabled"
+                        class="btn btn-primary rounded-pill py-2 px-4 position-absolute me-2 "
                         style="top: 50%; right: 6px; transform: translateY(-50%)">Търси
                 </button>
             </div>
@@ -101,11 +101,13 @@
                      th:text="'Информацията е от : '+ *{#temporals.format(addedDate, 'dd.MM.yyyy')}">
                 </div>
                 <br>
-                <div class="explore-open-close-part">
+                <div th:if="*{urlName != null}"
+                        class="explore-open-close-part">
                     <div class="row">
                         <div class="col-sm-12 text-start">
                             <a class="btn btn-primary rounded-pill py-2 px-4 ms-lg-2"
-                               data-abc="true">Информация скоро</a>
+                               data-abc="true"
+                               th:href="@{/reservoirs/{urlName}(urlName = *{urlName})}">Информация</a>
                         </div>
                     </div>
                 </div>

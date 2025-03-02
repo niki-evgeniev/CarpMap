@@ -7,6 +7,8 @@ public class ReservoirInfoDTO {
 
     private String name;
 
+    private String urlName;
+
     private UUID uuid;
 
     private double totalVolume;
@@ -32,6 +34,14 @@ public class ReservoirInfoDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getUrlName() {
+        return urlName;
+    }
+
+    public void setUrlName(String urlName) {
+        this.urlName = urlName;
     }
 
     public UUID getUuid() {

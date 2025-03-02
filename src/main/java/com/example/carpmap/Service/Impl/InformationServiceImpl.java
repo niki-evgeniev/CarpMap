@@ -39,6 +39,8 @@ public class InformationServiceImpl implements InformationService {
                 for (ReservoirRepositoryDTO image : findAllImages) {
                     if (image.getName().equals(reservoirName)) {
                         infoReservoir.setMainUrlImage(image.getMainUrlImage());
+                        infoReservoir.setUrlName(image.getUrlName());
+
                     }
                 }
                 if (infoReservoir.getMainUrlImage() == null) {
@@ -65,7 +67,6 @@ public class InformationServiceImpl implements InformationService {
             double allAvailableVolume = minimumFlowVolume + availableVolume;
             infoReservoirDTO.setAllAvailableVolume(String.format("%.2f", allAvailableVolume));
         }
-        System.out.println();
         return infoReservoirDTO;
     }
 
