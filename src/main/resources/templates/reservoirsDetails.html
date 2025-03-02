@@ -154,6 +154,10 @@
              class="product-title text-bold my-3 text-start"
              th:text="'Информацията за обем на водата е от : ' + ${#temporals.format(info.addedDate, 'dd.MM.yyyy')}">
         </div>
+        <div th:if="${info != null}"
+             class="product-title text-bold my-3 text-start"
+             th:text="'Източник: МОСВ'">
+        </div>
         <div class="row">
             <div class="product-details my-4 col-md-12">
                 <p class="details-title text-color mb-1" th:text="'Информация за яз. ' + *{name}"></p>
