@@ -65,7 +65,6 @@ class ContactServiceImplTest {
         when(modelMapper.map(contactDTO, Contact.class)).thenReturn(contact);
         when(contactRepository.save(contact)).thenReturn(contact);
         contactService.saveContact(contactDTO);
-//        verify(logger, times(1)).info("Successful added new CONTACT");
         verify(logger, times(1)).info("Successful added new CONTACT");
     }
 }
