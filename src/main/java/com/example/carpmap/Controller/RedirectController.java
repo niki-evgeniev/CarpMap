@@ -33,7 +33,7 @@
 //        }
 //
 //        String host = request.getHeader("Host");
-//        if (host != null && host.contains("carpmap.online")) {
+//        if (host != null && host.contains("carpmap.bg")) {
 //            String newUrl = "https://carpmap.bg" + requestUri;
 //            return ResponseEntity.status(HttpStatus.MOVED_PERMANENTLY)
 //                    .header("Location", newUrl)

@@ -4,7 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html">
 <head>
     <link href="/css/style3.css" rel="stylesheet">
-    <title th:text="'Информация за рибата ' + ${fishDetailsDTO.name} + ' - CarpMap'">Детайли- CarpMap</title>
+    <title th:text="'Информация за рибата ' + ${fishDetailsDTO.name} + ' - Carpmap.bg'">Детайли- Carpmap.bg</title>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="keywords" content="website"
@@ -17,23 +17,22 @@
     <meta property="og:title" th:content="'Всичко за рибата ' + ${fishDetailsDTO.name}">
     <meta property="og:description" th:content="'Научете повече за рибата ' + ${fishDetailsDTO.name}">
     <meta property="og:url"
-          th:content="@{https://carpmap.online/fish-list-type/{urlName}(urlName = *{fishDetailsDTO.urlName})}">
+          th:content="@{https://carpmap.bg/fish-list-type/{urlName}(urlName = *{fishDetailsDTO.urlName})}">
     <meta property="og:type" content="website">
     <meta property="og:locate" content="bg_BG">
-<!--    <meta property="og:image" th:content="${'https://carpmap.online' + fishDetailsDTO.imageUrl}">    -->
-    <meta property="og:image" th:content="'https://carpmap.online' + ${fishDetailsDTO.imageUrl}">
+    <meta property="og:image" th:content="'https://carpmap.bg' + ${fishDetailsDTO.imageUrl}">
 
     <!-- Twitter Card тагове -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" th:content="'Всичко за рибата ' + ${fishDetailsDTO.name}">
     <meta name="twitter:description" th:content="'Научете повече за рибата ' + ${fishDetailsDTO.name} ">
     <meta name="twitter:url"
-          th:content="@{https://carpmap.online/fish-list-type/{urlName}(urlName = *{fishDetailsDTO.urlName})}">
+          th:content="@{https://carpmap.bg/fish-list-type/{urlName}(urlName = *{fishDetailsDTO.urlName})}">
     <meta name="twitter:image"
           th:content="${fishDetailsDTO.urlName}">
     <link rel="canonical"
-          th:href="@{https://carpmap.online/fish-list-type/{urlName}(urlName = *{fishDetailsDTO.urlName})}"/>
-    <meta property="og:site_name" content="CarpMap">
+          th:href="@{https://carpmap.bg/fish-list-type/{urlName}(urlName = *{fishDetailsDTO.urlName})}"/>
+    <meta property="og:site_name" content="Carpmap.bg">
     <meta property="og:locale" content="bg_BG">
     <th:block th:replace="~{fragments/head}"></th:block>
 </head>

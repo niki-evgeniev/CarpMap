@@ -4,8 +4,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <link href="/css/style3.css" rel="stylesheet">
-<!--    <title th:text="'Информация за Язовир ' + ${details.name} + ' - CarpMap'">Детайли - CarpMap</title>-->
-    <title th:text="'Язовир ' + ${details.name} + ' - CarpMap'">Детайли - CarpMap</title>
+    <title th:text="'Язовир ' + ${details.name} + ' - Carpmap.bg'">Детайли - Carpmap.bg</title>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="keywords" content="website"
@@ -18,7 +17,7 @@
     <!-- Open Graph тагове за социални мрежи -->
     <meta property="og:title" th:content="'Язовир ' + ${details.name}">
     <meta property="og:description" th:content="'Информация за язовир ' + ${details.name}">
-    <meta property="og:url" th:content="@{https://carpmap.online/reservoirs/{id}(id = *{details.urlName})}">
+    <meta property="og:url" th:content="@{https://carpmap.bg/reservoirs/{id}(id = *{details.urlName})}">
     <meta property="og:type" content="website">
     <meta property="og:locate" content="bg_BG">
     <meta property="og:image" th:content="${details.urlImage}">
@@ -27,11 +26,11 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" th:content="'Язовир ' + ${details.name}">
     <meta name="twitter:description" th:content="'Информация за язовир ' + ${details.name}">
-    <meta name="twitter:url" th:content="@{https://carpmap.online/reservoirs/{id}(id = *{details.urlName})}">
+    <meta name="twitter:url" th:content="@{https://carpmap.bg/reservoirs/{id}(id = *{details.urlName})}">
     <meta name="twitter:image"
           th:content="${details.urlImage}">
-    <link rel="canonical" th:href="@{https://carpmap.online/reservoirs/{id}(id = *{details.urlName})}"/>
-    <meta property="og:site_name" content="CarpMap">
+    <link rel="canonical" th:href="@{https://carpmap.bg/reservoirs/{id}(id = *{details.urlName})}"/>
+    <meta property="og:site_name" content="Carpmap.bg">
     <meta property="og:locale" content="bg_BG">
     <th:block th:replace="~{fragments/head}"></th:block>
 </head>

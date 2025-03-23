@@ -2,7 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Язовири и водоеми в България - CarpMap</title>
+    <title>Язовири и водоеми в България - Carpmap.bg</title>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="keywords" content="website"
@@ -16,7 +16,7 @@
     <meta property="og:title" content="Язовири и водоемите в България">
     <meta property="og:description"
           content="Всички язовири в България и водоеми. Намерете информация,снимки, видове риба, локация, местоположение за различните язовири и водоеми">
-    <meta property="og:url" content="https://carpmap.online/reservoirs/reservoirsByType/reservoirs">
+    <meta property="og:url" content="https://carpmap.bg/reservoirs/reservoirsByType/reservoirs">
     <meta property="og:type" content="website">
     <meta property="og:image"
           content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
@@ -25,10 +25,10 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Язовири">
     <meta name="twitter:description" content="Всички язовири в България. Намерете информация за различните язовири">
-    <meta name="twitter:url" content="https://carpmap.online/reservoirs/reservoirsByType/reservoirs">
+    <meta name="twitter:url" content="https://carpmap.bg/reservoirs/reservoirsByType/reservoirs">
     <meta name="twitter:image"
           content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
-    <link rel="canonical" href="https://carpmap.online/reservoirs/reservoirsByType/reservoirs"/>
+    <link rel="canonical" href="https://carpmap.bg/reservoirs/reservoirsByType/reservoirs"/>
     <meta property="og:type" content="website">
     <meta property="og:locate" content="bg_BG">
     <th:block th:replace="~{fragments/head}"></th:block>
@@ -47,7 +47,7 @@
             <h2 class="text-center text-white reservoirH2Tag" th:case="'private_reservoir'">Всички частни язовири</h2>
             <h2 class="text-center text-white reservoirH2Tag" th:case="'free_reservoir'">Всички държавни язовири</h2>
             <h2 class="text-center text-white reservoirH2Tag" th:case="'countVisitors'">Най-посещавани язовири</h2>
-            <h2 class="text-center text-white reservoirH2Tag" th:case="*">CarpMap</h2>
+            <h2 class="text-center text-white reservoirH2Tag" th:case="*">Carpmap.bg</h2>
         </div>
     </div>
 </div>
@@ -85,7 +85,7 @@
             <p th:if="${allReservoir.isEmpty()}"
                class="text-center fw-bold py-5">НЕ СА ОТКРИТИ РЕЗУЛТАТИ</p>
             <p th:unless="${allReservoir.isEmpty()}"
-               class="text-center">Тук ще намерите всички добавени язовири в CarpMap</p>
+               class="text-center">Тук ще намерите всички добавени язовири - Carpmap.bg</p>
         </div><!--/.section-header-->
         <div class="tab-class text-center">
             <ul class="nav nav-pills d-inline-flex justify-content-center mb-1">

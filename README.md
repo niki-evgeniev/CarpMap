@@ -6,7 +6,7 @@ detailed reservoir information, fish type, blog posts, and more.
 
 ### **Live Demo**
 
-Visit the home page: [CarpMap Online](https://carpmap.online)
+Visit the home page: [CarpMap Online](https://carpmap.bg)
 
 ---
 
@@ -105,4 +105,4 @@ We welcome contributions! Feel free to fork the repository and submit pull reque
 
 ## **Contact**
 
-For any questions, feel free to reach out via the [contact form](https://carpmap.online/contact).  
+For any questions, feel free to reach out via the [contact form](https://carpmap.bg/contact).  

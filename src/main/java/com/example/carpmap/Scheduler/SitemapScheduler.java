@@ -38,11 +38,11 @@ public class SitemapScheduler {
         createFolderForSitemap();
 
         WebSitemapGenerator webSitemapGenerator = WebSitemapGenerator.
-                builder("https://carpmap.online/", new File("./sitemap")).build();
+                builder("https://carpmap.bg/", new File("./sitemap")).build();
         String day = LocalDate.now().toString();
 
         WebSitemapUrl webSitemapUrlCarpMap = new WebSitemapUrl
-                .Options("https://carpmap.online/")
+                .Options("https://carpmap.bg/")
                 .lastMod(day)
                 .changeFreq(ChangeFreq.DAILY)
                 .priority(1.0)
@@ -50,7 +50,7 @@ public class SitemapScheduler {
         webSitemapGenerator.addUrl(webSitemapUrlCarpMap);
 
         WebSitemapUrl webSitemapUrlAnnounced = new WebSitemapUrl
-                .Options("https://carpmap.online/announced")
+                .Options("https://carpmap.bg/announced")
                 .lastMod(day)
                 .changeFreq(ChangeFreq.DAILY)
                 .priority(1.0)
@@ -58,14 +58,14 @@ public class SitemapScheduler {
         webSitemapGenerator.addUrl(webSitemapUrlAnnounced);
 
         WebSitemapUrl webSitemapUrlReservoirs = new WebSitemapUrl
-                .Options("https://carpmap.online/reservoirs/reservoirsByType/reservoirs")
+                .Options("https://carpmap.bg/reservoirs/reservoirsByType/reservoirs")
                 .lastMod(day)
                 .changeFreq(ChangeFreq.DAILY)
                 .priority(1.0)
                 .build();
         webSitemapGenerator.addUrl(webSitemapUrlReservoirs);
         WebSitemapUrl webSitemapUrlInformation = new WebSitemapUrl
-                .Options("https://carpmap.online/info")
+                .Options("https://carpmap.bg/info")
                 .lastMod(day)
                 .changeFreq(ChangeFreq.DAILY)
                 .priority(1.0)
@@ -73,7 +73,7 @@ public class SitemapScheduler {
         webSitemapGenerator.addUrl(webSitemapUrlInformation);
 
         WebSitemapUrl webSitemapUrlBlog = new WebSitemapUrl
-                .Options("https://carpmap.online/blog")
+                .Options("https://carpmap.bg/blog")
                 .lastMod(day)
                 .changeFreq(ChangeFreq.DAILY)
                 .priority(1.0)
@@ -82,7 +82,7 @@ public class SitemapScheduler {
 
 
         WebSitemapUrl webSitemapUrlAbout = new WebSitemapUrl
-                .Options("https://carpmap.online/about")
+                .Options("https://carpmap.bg/about")
                 .lastMod(day)
                 .changeFreq(ChangeFreq.DAILY)
                 .priority(1.0)
@@ -90,7 +90,7 @@ public class SitemapScheduler {
         webSitemapGenerator.addUrl(webSitemapUrlAbout);
 
         WebSitemapUrl webSitemapUrlContact = new WebSitemapUrl
-                .Options("https://carpmap.online/contact")
+                .Options("https://carpmap.bg/contact")
                 .lastMod(day)
                 .changeFreq(ChangeFreq.DAILY)
                 .priority(1.0)
@@ -98,7 +98,7 @@ public class SitemapScheduler {
         webSitemapGenerator.addUrl(webSitemapUrlContact);
 
         WebSitemapUrl webSitemapUrlCountVisitors = new WebSitemapUrl
-                .Options("https://carpmap.online/reservoirs/reservoirsByType/countVisitors")
+                .Options("https://carpmap.bg/reservoirs/reservoirsByType/countVisitors")
                 .lastMod(day)
                 .changeFreq(ChangeFreq.DAILY)
                 .priority(0.8)
@@ -106,7 +106,7 @@ public class SitemapScheduler {
         webSitemapGenerator.addUrl(webSitemapUrlCountVisitors);
 
         WebSitemapUrl webSitemapUrlCountry = new WebSitemapUrl
-                .Options("https://carpmap.online/reservoirs/reservoirsByType/private_reservoir")
+                .Options("https://carpmap.bg/reservoirs/reservoirsByType/private_reservoir")
                 .lastMod(day)
                 .changeFreq(ChangeFreq.DAILY)
                 .priority(0.8)
@@ -114,7 +114,7 @@ public class SitemapScheduler {
         webSitemapGenerator.addUrl(webSitemapUrlCountry);
 
         WebSitemapUrl webSitemapUrlFree = new WebSitemapUrl
-                .Options("https://carpmap.online/reservoirs/reservoirsByType/free_reservoir")
+                .Options("https://carpmap.bg/reservoirs/reservoirsByType/free_reservoir")
                 .lastMod(day)
                 .changeFreq(ChangeFreq.DAILY)
                 .priority(0.8)
@@ -124,7 +124,7 @@ public class SitemapScheduler {
         List<Reservoir> all = reservoirRepository.findAll();
         for (Reservoir reservoir : all) {
             WebSitemapUrl webSitemapUrlReservoir = new WebSitemapUrl
-                    .Options("https://carpmap.online/reservoirs/" + reservoir.getUrlName())
+                    .Options("https://carpmap.bg/reservoirs/" + reservoir.getUrlName())
                     .lastMod(day)
                     .changeFreq(ChangeFreq.DAILY)
                     .priority(1.0)
@@ -135,7 +135,7 @@ public class SitemapScheduler {
         List<FishList> allFishList = fishListRepository.findAll();
         for (FishList fishList : allFishList) {
             WebSitemapUrl webSitemapUrlFishList = new WebSitemapUrl
-                    .Options("https://carpmap.online/fish-list-type/" + fishList.getUrlName())
+                    .Options("https://carpmap.bg/fish-list-type/" + fishList.getUrlName())
                     .lastMod(day)
                     .changeFreq(ChangeFreq.DAILY)
                     .priority(1.0)

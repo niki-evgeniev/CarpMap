@@ -9,4 +9,4 @@ Disallow: /checkout/
 Disallow: /user/
 Disallow: /secret-page.html
 
-Sitemap: https://carpmap.online/sitemap.xml
+Sitemap: https://carpmap.bg/sitemap.xml
