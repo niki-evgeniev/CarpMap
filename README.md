@@ -6,7 +6,7 @@ detailed reservoir information, fish type, blog posts, and more.
 
 ### **Live Demo**
 
-Visit the home page: [CarpMap Online](https://carpmap.bg)
+Visit the home page: [Carpmap.bg ](https://carpmap.bg)
 
 ---
 
