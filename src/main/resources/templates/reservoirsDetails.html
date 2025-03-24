@@ -3,7 +3,6 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
-    <link href="/css/style3.css" rel="stylesheet">
     <title th:text="'Язовир ' + ${details.name} + ' - Carpmap.bg'">Детайли - Carpmap.bg</title>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -11,7 +10,7 @@
           th:content="'язовир, информация за язовир, обем, наличен обем ,места за риболов в българия, водоеми, '
           +  ${details.name}">
     <meta name="title" th:content="'Язовир ' + ${details.name}">
-    <meta name="description" th:content="'Информация за язовир ' + ${details.name} ">
+    <meta name="description" th:content="'Открийте язовир ' + ${details.name} + '! Разгледайте наличен обем вода, карта, риболовни условия, налични видове риби и галерия от снимки. Планирайте своето следващо приключение тук!'">
     <meta name="author" content="Nikolay">
     <meta name="robots" content="index, follow">
     <!-- Open Graph тагове за социални мрежи -->
@@ -32,6 +31,7 @@
     <link rel="canonical" th:href="@{https://carpmap.bg/reservoirs/{id}(id = *{details.urlName})}"/>
     <meta property="og:site_name" content="Carpmap.bg">
     <meta property="og:locale" content="bg_BG">
+    <link href="/css/style3.css" rel="stylesheet">
     <th:block th:replace="~{fragments/head}"></th:block>
     <th:block th:replace="~{fragments/analytics}"></th:block>
 </head>
@@ -160,14 +160,15 @@
         </div>
         <div class="row">
             <div class="product-details my-4 col-md-12">
-                <p class="details-title text-color mb-1" th:text="'Информация за яз. ' + *{name}"></p>
+                <h2 class="details-title text-color mb-1" th:text="'Информация за яз. ' + *{name}"></h2>
                 <p class="description" th:text="*{description}"></p>
             </div>
         </div>
         <div th:unless="*{iFrameMap} == null or *{iFrameMap.isEmpty()}"
              class="col-12">
             <div class="rounded">
-                <p class="details-title text-color mb-1">Карта</p>
+<!--                <p class="details-title text-color mb-1">Карта</p>-->
+                <h2 class="details-title text-color mb-1">Карта</h2>
                 <br>
                 <iframe class="rounded w-100"
                         th:src="*{iFrameMap}"
@@ -184,8 +185,9 @@
 
         max-width: 900px;">
             <h5 class="section-title px-3">Gallery</h5>
-            <h1 class="mb-4">Галерия</h1>
-            <p class="mb-0" th:text="'Галерия от най-популярните снимки на язовир ' + ${details.name}"></p>
+            <h1  class="mb-4">Галерия</h1>
+<!--            <p class="mb-0" th:text="'Галерия от най-популярните снимки на язовир ' + ${details.name}"></p>-->
+            <h2 class="details-title text-color mb-1" th:text="'Галерия от най-популярните снимки на язовир ' + ${details.name}"></h2>
         </div>
         <div class="tab-class text-center">
             <div class="tab-content">
