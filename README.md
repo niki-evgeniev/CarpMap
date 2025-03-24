@@ -78,6 +78,7 @@ Visit the home page: [Carpmap.bg ](https://carpmap.bg)
 - Google Analytics – tracking traffic and user behavior
 - Google Search Console – indexing pages, detecting SEO errors, and improving visibility
       
+---
 
 ## **Technologies Used**
 
