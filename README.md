@@ -72,14 +72,12 @@ Visit the home page: [Carpmap.bg ](https://carpmap.bg)
     - SSD usage and free space
     - Network details
       
----
 
 ### **SEO & Analytics**
 
 - Google Analytics – tracking traffic and user behavior
 - Google Search Console – indexing pages, detecting SEO errors, and improving visibility
       
----
 
 ## **Technologies Used**
 
