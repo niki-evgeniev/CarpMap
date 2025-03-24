@@ -74,10 +74,10 @@ Visit the home page: [Carpmap.bg ](https://carpmap.bg)
       
 ---
 
-### **Server Monitoring**
-- SEO & Analytics
-    - Google Analytics
-    - Google Search Console
+### **SEO & Analytics**
+
+- Google Analytics – tracking traffic and user behavior
+- Google Search Console – indexing pages, detecting SEO errors, and improving visibility
       
 ---
 
