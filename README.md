@@ -71,6 +71,11 @@ Visit the home page: [Carpmap.bg ](https://carpmap.bg)
     - Registered reservoir and user counters
     - SSD usage and free space
     - Network details
+      
+---
+
+### **Server Monitoring**
+- SEO & Analytics
     - Google Analytics
     - Google Search Console
       
