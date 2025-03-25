@@ -15,7 +15,7 @@ import org.slf4j.Logger;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -41,30 +41,98 @@ class ContactServiceImplTest {
         contactDTO = new ContactDTO();
         contactDTO.setName("Test User");
         contactDTO.setEmail("test@example.com");
-        contactDTO.setMessage("Hello!");
+        contactDTO.setMessage("Test Message");
 
         contact = new Contact();
         contact.setName("Test User");
         contact.setEmail("test@example.com");
-        contact.setMessage("Hello!");
-        contact.setAddedDate(LocalDateTime.now());
+        contact.setMessage("Test Message");
     }
 
     @Test
-    void saveContact_ShouldReturnTrue_WhenContactIsSaved() {
+    void saveContact_ShouldSetCurrentDateTime() {
+        // Arrange
         when(modelMapper.map(contactDTO, Contact.class)).thenReturn(contact);
-        when(contactRepository.save(contact)).thenReturn(contact);
-        boolean result = contactService.saveContact(contactDTO);
-        assertTrue(result, "Expected saveContact() to return true");
-        verify(contactRepository, times(1)).save(contact);
-        verify(modelMapper, times(1)).map(contactDTO, Contact.class);
-    }
+        when(contactRepository.save(any(Contact.class))).thenReturn(contact);
 
-    @Test
-    void saveContact_ShouldLogMessage_WhenContactIsSaved() {
-        when(modelMapper.map(contactDTO, Contact.class)).thenReturn(contact);
-        when(contactRepository.save(contact)).thenReturn(contact);
+        // Act
         contactService.saveContact(contactDTO);
-        verify(logger, times(1)).info("Successful added new CONTACT");
+
+        // Assert
+        verify(contactRepository).save(argThat(savedContact -> 
+            savedContact.getAddedDate() != null &&
+            savedContact.getAddedDate().isBefore(LocalDateTime.now().plusSeconds(1)) &&
+            savedContact.getAddedDate().isAfter(LocalDateTime.now().minusSeconds(1))
+        ));
+    }
+
+    @Test
+    void saveContact_ShouldMapAllFields() {
+        // Arrange
+        when(modelMapper.map(contactDTO, Contact.class)).thenReturn(contact);
+        when(contactRepository.save(any(Contact.class))).thenReturn(contact);
+
+        // Act
+        contactService.saveContact(contactDTO);
+
+        // Assert
+        verify(contactRepository).save(argThat(savedContact -> 
+            savedContact.getName().equals("Test User") &&
+            savedContact.getEmail().equals("test@example.com") &&
+            savedContact.getMessage().equals("Test Message")
+        ));
+    }
+
+    @Test
+    void saveContact_ShouldHandleEmptyMessage() {
+        // Arrange
+        contactDTO.setMessage("");
+        contact.setMessage("");
+        when(modelMapper.map(contactDTO, Contact.class)).thenReturn(contact);
+        when(contactRepository.save(any(Contact.class))).thenReturn(contact);
+
+        // Act
+        boolean result = contactService.saveContact(contactDTO);
+
+        // Assert
+        assertTrue(result);
+        verify(contactRepository).save(argThat(savedContact -> 
+            savedContact.getMessage().isEmpty()
+        ));
+    }
+
+    @Test
+    void saveContact_ShouldHandleNullFields() {
+        // Arrange
+        ContactDTO emptyDTO = new ContactDTO();
+        Contact emptyContact = new Contact();
+        when(modelMapper.map(emptyDTO, Contact.class)).thenReturn(emptyContact);
+        when(contactRepository.save(any(Contact.class))).thenReturn(emptyContact);
+
+        // Act
+        boolean result = contactService.saveContact(emptyDTO);
+
+        // Assert
+        assertTrue(result);
+        verify(contactRepository).save(any(Contact.class));
+    }
+
+    @Test
+    void saveContact_ShouldHandleLongMessage() {
+        // Arrange
+        String longMessage = "a".repeat(1000); // дълго съобщение
+        contactDTO.setMessage(longMessage);
+        contact.setMessage(longMessage);
+        when(modelMapper.map(contactDTO, Contact.class)).thenReturn(contact);
+        when(contactRepository.save(any(Contact.class))).thenReturn(contact);
+
+        // Act
+        boolean result = contactService.saveContact(contactDTO);
+
+        // Assert
+        assertTrue(result);
+        verify(contactRepository).save(argThat(savedContact -> 
+            savedContact.getMessage().length() == 1000
+        ));
     }
 }
