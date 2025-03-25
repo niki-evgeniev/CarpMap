@@ -113,14 +113,122 @@ class IpAddressServiceImplTest {
 
     @Test
     void findByIpAddress_ShouldReturnMatchingIps() {
+        // Arrange
         SearchIpDTO searchIpDTO = new SearchIpDTO();
         searchIpDTO.setAddress("192.168.0.1");
+        
+        IpAddress ipAddress = new IpAddress();
+        ipAddress.setAddress("192.168.0.1");
+        ipAddress.setBanned(false);
+        
+        AllIpDTO allIpDTO = new AllIpDTO();
+        allIpDTO.setAddress("192.168.0.1");
+        
         Page<IpAddress> page = new PageImpl<>(List.of(ipAddress));
         when(ipAddressRepository.findAllByAddress(any(Pageable.class), eq("192.168.0.1"))).thenReturn(page);
+        when(modelMapper.map(any(IpAddress.class), eq(AllIpDTO.class))).thenReturn(allIpDTO);
 
+        // Act
         Page<AllIpDTO> result = ipAddressService.findByIpAddress(Pageable.unpaged(), searchIpDTO);
 
+        // Assert
         assertFalse(result.isEmpty());
-        verify(ipAddressRepository, times(1)).findAllByAddress(any(Pageable.class), eq("192.168.0.1"));
+        assertEquals("192.168.0.1", result.getContent().get(0).getAddress());
+        verify(ipAddressRepository).findAllByAddress(any(Pageable.class), eq("192.168.0.1"));
+    }
+
+    @Test
+    void getAllIpsAddress_ShouldReturnPageOfIps() {
+        // Arrange
+        IpAddress ipAddress = new IpAddress();
+        ipAddress.setAddress("192.168.0.1");
+        
+        AllIpDTO allIpDTO = new AllIpDTO();
+        allIpDTO.setAddress("192.168.0.1");
+        
+        Page<IpAddress> page = new PageImpl<>(List.of(ipAddress));
+        when(ipAddressRepository.findAll(any(Pageable.class))).thenReturn(page);
+        when(modelMapper.map(any(IpAddress.class), eq(AllIpDTO.class))).thenReturn(allIpDTO);
+
+        // Act
+        Page<AllIpDTO> result = ipAddressService.getAllIpsAddress(Pageable.unpaged());
+
+        // Assert
+        assertFalse(result.isEmpty());
+        assertEquals("192.168.0.1", result.getContent().get(0).getAddress());
+    }
+
+    @Test
+    void findLastDayVisitor_ShouldReturnCount() {
+        // Arrange
+        doReturn(5L).when(ipAddressRepository)
+                .countByLastSeenDateTime(any(LocalDateTime.class), any(LocalDateTime.class));
+
+        // Act
+        Long result = ipAddressService.findLastDayVisitor();
+
+        // Assert
+        assertEquals(5L, result);
+    }
+
+    @Test
+    void checkIpAddressAndAddToDB_NewIp_ShouldSaveIp() {
+        // Arrange
+        String newIp = "192.168.0.2";
+        when(ipAddressRepository.findByAddress(newIp)).thenReturn(Optional.empty());
+
+        // Act
+        ipAddressService.checkIpAddressAndAddToDB(newIp);
+
+        // Assert
+        verify(ipAddressRepository).save(argThat(ip -> 
+            ip.getAddress().equals(newIp) && 
+            ip.getCountVisits() == 1L &&
+            !ip.getBanned()
+        ));
+    }
+
+    @Test
+    void findAllBanned_ShouldReturnBannedIps() {
+        // Arrange
+        IpAddress bannedIp = new IpAddress();
+        bannedIp.setAddress("192.168.0.1");
+        bannedIp.setBanned(true);
+        
+        AllIpDTO allIpDTO = new AllIpDTO();
+        allIpDTO.setAddress("192.168.0.1");
+        
+        Page<IpAddress> page = new PageImpl<>(List.of(bannedIp));
+        when(ipAddressRepository.findAllByIsBannedIs(eq(true), any(Pageable.class))).thenReturn(page);
+        when(modelMapper.map(any(IpAddress.class), eq(AllIpDTO.class))).thenReturn(allIpDTO);
+
+        // Act
+        Page<AllIpDTO> result = ipAddressService.findAllBanned(Pageable.unpaged(), "banned");
+
+        // Assert
+        assertFalse(result.isEmpty());
+        assertEquals("192.168.0.1", result.getContent().get(0).getAddress());
+    }
+
+    @Test
+    void findOnlyUsedByUser_ShouldReturnUserIps() {
+        // Arrange
+        IpAddress userIp = new IpAddress();
+        userIp.setAddress("192.168.0.1");
+        userIp.setUser(user);
+        
+        AllIpDTO allIpDTO = new AllIpDTO();
+        allIpDTO.setAddress("192.168.0.1");
+        
+        Page<IpAddress> page = new PageImpl<>(List.of(userIp));
+        when(ipAddressRepository.findAllByUserIsNotNull(any(Pageable.class))).thenReturn(page);
+        when(modelMapper.map(any(IpAddress.class), eq(AllIpDTO.class))).thenReturn(allIpDTO);
+
+        // Act
+        Page<AllIpDTO> result = ipAddressService.findOnlyUsedByUser(Pageable.unpaged(), "user");
+
+        // Assert
+        assertFalse(result.isEmpty());
+        assertEquals("192.168.0.1", result.getContent().get(0).getAddress());
     }
 }
