@@ -1,3 +1,4 @@
+package com.example.carpmap.Service.Impl;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -136,5 +137,86 @@ class ReservoirsServiceImplTest {
         when(reservoirRepository.findByName("Язовир Тест")).thenReturn(Optional.of(testReservoir));
         boolean exists = reservoirsService.checkNameExisting("Язовир Тест");
         assertTrue(exists);
+    }
+
+    @Test
+    void testAddReservoirs_WithInvalidCountry() {
+        // Arrange
+        ReservoirsAddDTO invalidCountryDTO = new ReservoirsAddDTO();
+        invalidCountryDTO.setName("Test Reservoir");
+        invalidCountryDTO.setDescription("Test Description");
+        invalidCountryDTO.setCountry("България");
+        invalidCountryDTO.setFishName(new String[]{"Шаран", "Сом"}); // Задаваме масив с риби
+        invalidCountryDTO.setUrlImage2("test2.jpg");
+        invalidCountryDTO.setUrlImage3("test3.jpg");
+        invalidCountryDTO.setUrlImage4("test4.jpg");
+        
+        lenient().when(countryRepository.findByCountry("България")).thenReturn(Optional.empty());
+        
+        // Act
+        boolean result = reservoirsService.addReservoirs(invalidCountryDTO, mockUserDetails);
+        
+        // Assert
+        assertFalse(result);
+        
+        // Verify
+        verify(countryRepository).findByCountry("България");
+        verify(userRepository, never()).findByUsername(anyString());
+    }
+
+    @Test
+    void testAddReservoirs_WithInvalidUser() {
+        // Arrange
+        when(countryRepository.findByCountry("България")).thenReturn(Optional.of(testCountry));
+        when(userRepository.findByUsername("testUser")).thenReturn(Optional.empty());
+        when(mockUserDetails.getUsername()).thenReturn("testUser");
+        when(modelMapper.map(any(ReservoirsAddDTO.class), eq(Reservoir.class)))
+            .thenReturn(testReservoir);
+        
+        // Act & Assert
+        assertFalse(reservoirsService.addReservoirs(testReservoirDTO, mockUserDetails));
+    }
+
+    @Test
+    void testGetAllReservoirs_EmptyResult() {
+        // Arrange
+        Pageable pageable = PageRequest.of(0, 10);
+        Page<Reservoir> emptyPage = new PageImpl<>(Collections.emptyList());
+        when(reservoirRepository.findAll(pageable)).thenReturn(emptyPage);
+        
+        // Act
+        Page<ReservoirAllDTO> result = reservoirsService.getAllReservoirs(pageable);
+        
+        // Assert
+        assertTrue(result.getContent().isEmpty());
+    }
+
+    @Test
+    void testDeleteReservoir_NonExistingReservoir() {
+        // Arrange
+        Long nonExistingId = 999L;
+        when(reservoirRepository.findById(nonExistingId))
+            .thenThrow(new RuntimeException("Reservoir with not found and cant be DELETE"));
+        
+        // Act & Assert
+        RuntimeException exception = assertThrows(RuntimeException.class, 
+            () -> reservoirsService.deleteReservoir(nonExistingId));
+        
+        assertEquals("Reservoir with not found and cant be DELETE", exception.getMessage());
+        verify(reservoirRepository).findById(nonExistingId);
+        verify(pictureService, never()).deleteAllListOfPicture(anyLong());
+        verify(reservoirRepository, never()).deleteById(anyLong());
+    }
+
+    @Test
+    void testCheckNameExisting_False() {
+        // Arrange
+        when(reservoirRepository.findByName("Несъществуващ язовир")).thenReturn(Optional.empty());
+        
+        // Act
+        boolean exists = reservoirsService.checkNameExisting("Несъществуващ язовир");
+        
+        // Assert
+        assertFalse(exists);
     }
 }
