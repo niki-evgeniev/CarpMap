@@ -17,7 +17,6 @@ import com.example.carpmap.Utility.ConvertorBgToEn;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -103,11 +102,7 @@ class ReservoirsServiceImplTest {
         when(fishRepository.findByFishName("Шаран")).thenReturn(Optional.of(testFish1));
         when(fishRepository.findByFishName("Сом")).thenReturn(Optional.of(testFish2));
         when(reservoirRepository.save(any(Reservoir.class))).thenReturn(testReservoir);
-
-        // Act
         boolean result = reservoirsService.addReservoirs(testReservoirDTO, mockUserDetails);
-
-        // Assert
         assertTrue(result);
         verify(reservoirRepository).save(any(Reservoir.class));
         verify(pictureService).saveImages(anyList(), any(Reservoir.class));
@@ -115,7 +110,6 @@ class ReservoirsServiceImplTest {
 
     @Test
     void testGetAllReservoirs_WithData() {
-        // Arrange
         Pageable pageable = PageRequest.of(0, 10);
         Page<Reservoir> reservoirPage = new PageImpl<>(List.of(testReservoir));
         ReservoirAllDTO reservoirAllDTO = new ReservoirAllDTO();
@@ -123,38 +117,24 @@ class ReservoirsServiceImplTest {
         when(reservoirRepository.findAll(pageable)).thenReturn(reservoirPage);
         when(modelMapper.map(any(Reservoir.class), eq(ReservoirAllDTO.class)))
                 .thenReturn(reservoirAllDTO);
-
-        // Act
         Page<ReservoirAllDTO> result = reservoirsService.getAllReservoirs(pageable);
-
-        // Assert
         assertNotNull(result);
         assertFalse(result.getContent().isEmpty());
     }
 
     @Test
     void testDeleteReservoir_Success() {
-        // Arrange
         when(reservoirRepository.findById(1L)).thenReturn(Optional.of(testReservoir));
         doNothing().when(pictureService).deleteAllListOfPicture(1L);
-
-        // Act
         reservoirsService.deleteReservoir(1L);
-
-        // Assert
         verify(reservoirRepository).deleteById(1L);
         verify(pictureService).deleteAllListOfPicture(1L);
     }
 
     @Test
     void testCheckNameExisting_True() {
-        // Arrange
         when(reservoirRepository.findByName("Язовир Тест")).thenReturn(Optional.of(testReservoir));
-
-        // Act
         boolean exists = reservoirsService.checkNameExisting("Язовир Тест");
-
-        // Assert
         assertTrue(exists);
     }
 }
