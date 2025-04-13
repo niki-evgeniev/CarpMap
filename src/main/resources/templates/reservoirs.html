@@ -137,7 +137,9 @@
                                     th:href="@{/reservoirs/{urlName}(urlName = *{urlName})}"
                                     th:text="'Язовир ' + *{name}"></a></h1>
                             <p class="explore-rating-price">
+
                                 <span class="explore-rating">5.0</span>
+
                                 <a th:href="@{/reservoirs/{urlName}(urlName = *{urlName})}"
                                    th:text="*{countVisitors != null ? countVisitors + ' Посетен' : 0 + ' Посетен'}"> 10
                                     ratings</a>
