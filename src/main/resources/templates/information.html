@@ -90,13 +90,13 @@
                 <th:block th:replace="~{fragments/scale}"></th:block>
 
                 <div class="product-title text-bold my-3 text-start"
-                     th:text="'Максимален обем : ' + *{totalVolume} + ' млн.м³'">
+                     th:text="'Максимален обем : ' + *{totalVolume + ' млн.м³'}">
                 </div>
                 <div class="product-title text-bold my-3 text-start"
-                     th:text="'Наличен полезен обем :  ' + *{availableVolume} + ' млн.м³'">
+                     th:text="'Наличен полезен обем :  ' + *{availableVolume + ' млн.м³'}">
                 </div>
                 <div class="product-title text-bold my-3 text-start"
-                     th:text="'Санитарен обем : ' + *{minimumFlowVolume} + ' млн.м³'">
+                     th:text="'Санитарен обем : ' + *{minimumFlowVolume + ' млн.м³'}">
                 </div>
                 <div class="product-title text-bold my-3 text-start"
                      th:text="'Информацията е от : '+ *{#temporals.format(addedDate, 'dd.MM.yyyy')}">

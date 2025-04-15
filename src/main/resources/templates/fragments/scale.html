@@ -1,8 +1,7 @@
-
 <div class="scale">
     <h6>Наличен Обем Вода</h6>
     <div class="bar-container">
         <div class="bar" th:style="'width: ' + *{fillPercentage} + '%'"></div>
     </div>
-    <p class="percentage text-center" th:text="*{fillPercentage} + '%'"></p>
+    <p class="percentage text-center" th:text="*{fillPercentage + '%'}"></p>
 </div>
