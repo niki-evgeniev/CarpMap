@@ -20,7 +20,6 @@
                     <div class="card">
                         <div class="card-body">
                             <h2 class="card-title text-center">Edit Gallery</h2>
-                            <!-- General Form Elements -->
                             <div class="row mb-3" th:each="imas, iterStat : ${reservoirEditGalleryDTO}">
                                 <label for="imageUrl"
                                        class="col-sm-2 col-form-label">Change Main Image</label>
@@ -59,7 +58,6 @@
                                     <button type="submit" class="btn btn-primary">Save Images</button>
                                 </div>
                             </div>
-                            <!-- End General Form Elements -->
                         </div>
                     </div>
                 </form>
@@ -67,12 +65,11 @@
         </div>
     </section>
 </div>
-<!-- Footer Start -->
-<th:block th:replace="~{fragments/footer}"></th:block>
-<!-- Footer End -->
-<!-- JavaScript Libraries -->
+<footer>
+    <th:block th:replace="~{fragments/footer}"></th:block>
+</footer>
+
 <th:block th:replace="~{fragments/js}"></th:block>
-<!-- Back to Top -->
 <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>
 </body>
 </html>

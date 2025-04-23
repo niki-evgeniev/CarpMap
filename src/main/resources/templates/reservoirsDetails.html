@@ -167,7 +167,6 @@
         <div th:unless="*{iFrameMap} == null or *{iFrameMap.isEmpty()}"
              class="col-12">
             <div class="rounded">
-<!--                <p class="details-title text-color mb-1">Карта</p>-->
                 <h2 class="details-title text-color mb-1">Карта</h2>
                 <br>
                 <iframe class="rounded w-100"
@@ -186,7 +185,6 @@
         max-width: 900px;">
             <h5 class="section-title px-3">Gallery</h5>
             <h1  class="mb-4">Галерия</h1>
-<!--            <p class="mb-0" th:text="'Галерия от най-популярните снимки на язовир ' + ${details.name}"></p>-->
             <h2 class="details-title text-color mb-1" th:text="'Галерия от най-популярните снимки на язовир ' + ${details.name}"></h2>
         </div>
         <div class="tab-class text-center">
@@ -207,7 +205,6 @@
             </div>
         </div>
     </div>
-    <!-- Gallery End -->
     <div class="col-sm-12 text-center"
          sec:authorize="hasRole('ADMIN') or hasRole('MODERATOR')"
          th:object="${details}">
@@ -232,13 +229,9 @@
     </div>
 
 </main>
-<!-- Footer Start -->
 <footer>
     <th:block th:replace="~{fragments/footer}"></th:block>
 </footer>
-<!-- Footer End -->
-
-<!-- JavaScript Libraries -->
 <div>
     <th:block th:replace="~{fragments/js}"></th:block>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -261,7 +254,6 @@
         }
     </script>
 </div>
-<!-- Back to Top -->
 <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i
         class="fa fa-arrow-up"></i></a>
 </body>

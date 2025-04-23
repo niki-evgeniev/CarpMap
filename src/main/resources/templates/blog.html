@@ -11,14 +11,12 @@
     <meta name="description" content="Нашия Блог. Тук ще намерите нашите излети на язовири от Carpoholics">
     <meta name="author" content="Nikolay">
     <meta name="robots" content="index, follow">
-    <!-- Open Graph тагове за социални мрежи -->
     <meta property="og:title" content="Нашия Блог">
     <meta property="og:description" content="Нашия Блог. Тук ще намерите нашите излети на язовири от Carpoholics">
     <meta property="og:url" content="https://carpmap.bg/blog">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1716244110/Carp/blog/apflstxyrmvayqmm3d4d.jpg">
-
-    <!-- Twitter Card тагове -->
+    <meta property="og:image"
+          content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1716244110/Carp/blog/apflstxyrmvayqmm3d4d.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Нашия Блог">
     <meta name="twitter:description" content="Нашия Блог. Тук ще намерите нашите излети на язовири от Carpoholics">
@@ -26,22 +24,19 @@
     <meta name="twitter:image"
           content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
     <meta property="og:type" content="website">
-    <meta property="og:locate" content="bg_BG">
+    <meta property="og:locale" content="bg_BG">
     <th:block th:replace="~{fragments/head}"></th:block>
     <th:block th:replace="~{fragments/analytics}"></th:block>
 </head>
 <body>
 <th:block th:replace="~{fragments/topbar}"></th:block>
 <th:block th:replace="~{fragments/navbar}"></th:block>
-<!-- Header Start -->
 <main>
     <div class="container-fluid bg-breadcrumb">
         <div class="container text-center py-5" style="max-width: 900px;">
             <h1 class="text-white display-3 mb-4 blogH1Tag">Блог</h1>
         </div>
     </div>
-    <!-- Header End -->
-    <!-- Blog Start -->
     <div class="container-fluid blog py-1">
         <div class="container py-5">
             <div class="mx-auto text-center mb-5" style="max-width: 900px;">
@@ -99,25 +94,15 @@
                 </div>
             </div>
         </div>
-        <!-- Blog End -->
     </div>
-    <!-- Subscribe Start -->
     <div>
         <th:block th:replace="~{fragments/subscribe}"></th:block>
     </div>
-    <!-- Subscribe End -->
 </main>
-<!-- Footer Start -->
 <footer>
     <th:block th:replace="~{fragments/footer}"></th:block>
 </footer>
-<!-- Footer End -->
-<!-- JavaScript Libraries -->
-<div>
-    <th:block th:replace="~{fragments/js}"></th:block>
-</div>
-
-<!-- Back to Top -->
+<th:block th:replace="~{fragments/js}"></th:block>
 <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>
 
 </body>

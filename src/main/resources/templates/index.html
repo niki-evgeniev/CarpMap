@@ -10,7 +10,6 @@
     <meta name="description" content="Всички язовири и водоеми в България">
     <meta name="author" content="Nikolay">
     <meta name="robots" content="index, follow">
-    <!-- Open Graph тагове за социални мрежи -->
     <meta property="og:title" content="Открийте най-добрите места на язовирите и водоемите в България - Carpmap.bg">
     <meta property="og:description"
           content="Информация за всички язовири и водоеми в България, видове риба в водоемите, локация, местоположение и снимки">
@@ -20,7 +19,6 @@
     <meta property="og:image"
           content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/vpu9kh8vrmrwhpr8wi2x.jpg">
 
-    <!-- Twitter Card тагове -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Язовирите в България - Carpmap.bg">
     <meta name="twitter:description"
@@ -28,6 +26,8 @@
     <meta name="twitter:url" content="https://carpmap.bg/">
     <meta name="twitter:image"
           content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
+    <meta property="og:site_name" content="Carpmap.bg">
+    <meta property="og:locale" content="bg_BG">
     <th:block th:replace="~{fragments/head}"></th:block>
     <th:block th:replace="~{fragments/analytics}"></th:block>
 </head>
@@ -36,12 +36,8 @@
 <th:block th:replace="~{fragments/navbar}"></th:block>
 <body>
 <main>
-    <!-- Carousel Start for now is disabled-->
     <!--            <th:block th:replace="~{fragments/carousel}"></th:block>-->
-    <!-- Carousel End -->
-    <!-- Carousel video start -->
     <th:block th:replace="~{fragments/video}"></th:block>
-    <!-- Carousel video end -->
     <div class="container-fluid search-bar position-relative" style="top: -50%; transform: translateY(-50%);">
         <div class="container info-server">
             <form th:method="GET"
@@ -73,15 +69,12 @@
             Ако имате проблеми може да ни пишете на : info@carpmap.bg <br> или да се свържете от тук :
             <a th:href="@{/contact}"> Контакти </a>
         </h1>
-<br>
-<br>
-<br>
+        <br>
+        <br>
+        <br>
     </div>
-    <!-- Navbar & Hero End -->
-    <!-- Gallery Start -->
     <th:block th:replace="~{fragments/gallery}"></th:block>
-    <!-- Gallery End -->
-    <!-- Packages Start -->
+
     <div class="container-fluid packages">
         <div class="container package">
             <div class="mx-auto text-center mb-5" style="max-width: 900px;">
@@ -116,37 +109,14 @@
             </div>
         </div>
     </div>
-    <!-- Packages End -->
-    <!-- Subscribe Start -->
     <div>
         <th:block th:replace="~{fragments/subscribe}"></th:block>
     </div>
-    <!-- Subscribe End -->
-
 </main>
-<!-- Footer Start -->
 <footer>
     <th:block th:replace="~{fragments/footer}"></th:block>
 </footer>
-<!-- Footer End -->
-<div>
-    <th:block th:replace="~{fragments/js}"></th:block>
-</div>
-
-<div id="cookieBackdrop" class="cookie-backdrop"></div>
-
-<!-- Cookie Consent Popup -->
-<div id="cookieConsent" class="cookie-consent">
-    <div class="cookie-message">
-        <p>Този сайт използва "бисквитки" за подобряване на потребителското изживяване. Прочетете нашата
-            <a th:href="@{/cookiePolicy}" target="_blank">политика за бисквитките</a>.
-        </p>
-        <button id="acceptCookies">Приемам</button>
-    </div>
-</div>
-
-<script th:src="@{/js/cookie.js}"></script>
-<!-- Back to Top -->
+<th:block th:replace="~{fragments/js}"></th:block>
 <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i
         class="fa fa-arrow-up"></i></a>
 </body>

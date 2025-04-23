@@ -7,15 +7,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="язовири, информация за язовири,  водоеми,
-        състоянието на язовирите, наличен обем вада, състояние нивата на вода на язовирите">
+        състоянието на язовирите, наличен обем вада, състояние нивата на вода на язовирите, ниво на водата на язовирите, налична вода в язовирите">
     <meta name="description" content="Актуален списък на язовирите с информация за ниво на водата, наличен и максимален обем, санитарен обем и снимка. Разгледайте детайлни данни за всеки водоем.">
     <meta name="author" content="Nikolay">
     <meta name="robots" content="index, follow">
-    <!-- Open Graph -->
     <meta property="og:title" content="Състояние на язовирите - Carpmap.bg">
     <meta property="og:description" content="Разгледайте информация за различни язовири и тяхното състояние.">
     <meta property="og:type" content="website">
-    <meta property="og:locate" content="bg_BG">
+    <meta property="og:locale" content="bg_BG">
     <th:block th:replace="~{fragments/head}"></th:block>
     <th:block th:replace="~{fragments/analytics}"></th:block>
 </head>
@@ -122,42 +121,35 @@
      class="d-flex justify-content-center mt-4">
     <ul th:fragment="ALL" class="pagination text-center">
 
-        <!-- Previous Page Button -->
         <li th:class="${infoReservoirsDetails.hasPrevious()} ? 'page-item' : 'page-item disabled'">
             <a class="page-link" th:if="${infoReservoirsDetails.hasPrevious()}"
                th:href="@{/info(page=${infoReservoirsDetails.previousPageable().pageNumber})}"><-</a>
         </li>
 
-        <!-- First Page -->
         <li th:class="${infoReservoirsDetails.number == 0} ? 'page-item active' : 'page-item'">
             <a class="page-link" th:href="@{/info(page=0)}" th:text="1"></a>
         </li>
 
-        <!-- Dots before the current page if needed -->
         <li th:if="${infoReservoirsDetails.number > 2}">
             <span class="page-link">...</span>
         </li>
 
-        <!-- Pages around the current page -->
         <li th:each="i : ${#numbers.sequence(infoReservoirsDetails.number - 1, infoReservoirsDetails.number + 1)}"
             th:if="${i > 0 && i < infoReservoirsDetails.totalPages - 1}"
             th:class="${i == infoReservoirsDetails.number} ? 'page-item active' : 'page-item'">
             <a class="page-link" th:href="@{/info(page=${i})}" th:text="${i + 1}"></a>
         </li>
 
-        <!-- Dots after the current page if needed -->
         <li th:if="${infoReservoirsDetails.number < infoReservoirsDetails.totalPages - 3}">
             <span class="page-link">...</span>
         </li>
 
-        <!-- Last Page -->
         <li th:if="${infoReservoirsDetails.totalPages > 1}"
             th:class="${infoReservoirsDetails.totalPages - 1 == infoReservoirsDetails.number} ? 'page-item active' : 'page-item'">
             <a class="page-link" th:href="@{/info(page=${infoReservoirsDetails.totalPages - 1})}"
                th:text="${infoReservoirsDetails.totalPages}"></a>
         </li>
 
-        <!-- Next Page Button -->
         <li th:class="${infoReservoirsDetails.hasNext()} ? 'page-item' : 'page-item disabled'">
             <a class="page-link" th:if="${infoReservoirsDetails.hasNext()}"
                th:href="@{/info(page=${infoReservoirsDetails.nextPageable().pageNumber})}">-></a>
@@ -167,9 +159,6 @@
 <footer>
     <th:block th:replace="~{fragments/footer}"></th:block>
 </footer>
-<!-- Footer End -->
-
-<!-- JavaScript Libraries -->
 <div>
     <th:block th:replace="~{fragments/js}"></th:block>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -187,7 +176,6 @@
             crossorigin="anonymous">
     </script>
 </div>
-<!-- Back to Top -->
 <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i
         class="fa fa-arrow-up"></i></a>
 </body>

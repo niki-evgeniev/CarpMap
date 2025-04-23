@@ -12,7 +12,6 @@
           content="Всички видове риби България. Намерете информация и снимки за видовете риби в България">
     <meta name="author" content="Nikolay">
     <meta name="robots" content="index, follow">
-    <!-- Open Graph тагове за социални мрежи -->
     <meta property="og:title" content="Всичкo за рибата в България">
     <meta property="og:description"
           content="Всички видове риби България. Намерете информация и снимки за видовете риби в България">
@@ -20,8 +19,6 @@
     <meta property="og:type" content="website">
     <meta property="og:image"
           content="https://carpmap.bg/imagesApp/fishList/niki.evgeniev/064dde06-7607-4dfa-8c78-169a7f2372ae.jpg">
-
-    <!-- Twitter Card тагове -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Всички за рибата в България">
     <meta name="twitter:description"
@@ -29,6 +26,10 @@
     <meta name="twitter:url" content="https://carpmap.bg/fish-list-type/fishing-type">
     <meta name="twitter:image"
           content="https://carpmap.bg/imagesApp/fishList/niki.evgeniev/064dde06-7607-4dfa-8c78-169a7f2372ae.jpg">
+    <meta property="og:site_name" content="Carpmap.bg">
+    <meta property="og:locale" content="bg_BG">
+    <meta property="og:site_name" content="Carpmap.bg">
+    <meta property="og:locale" content="bg_BG">
     <link rel="canonical" href="https://carpmap.bg/fish-list-type/fishing-type"/>
     <th:block th:replace="~{fragments/head}"></th:block>
     <th:block th:replace="~{fragments/analytics}"></th:block>
@@ -41,7 +42,6 @@
         <h1 class="text-white display-3 mb-4 fishH1Tag">Всички видове риби в България</h1>
     </div>
 </div>
-<!--START-->
 <section id="explore" class="explore">
     <div class="container-fluid  position-relative pb-5">
         <div class="container">
@@ -127,43 +127,35 @@
      aria-label="Page navigation "
      class="d-flex justify-content-center mt-4">
     <ul th:fragment="ALL" class="pagination text-center">
-
-        <!-- Previous Page Button -->
         <li th:class="${allFishList.hasPrevious()} ? 'page-item' : 'page-item disabled'">
             <a class="page-link" th:if="${allFishList.hasPrevious()}"
                th:href="@{/fish-list-type/fishing-type(page=${allFishList.previousPageable().pageNumber})}"><-</a>
         </li>
 
-        <!-- First Page -->
         <li th:class="${allFishList.number == 0} ? 'page-item active' : 'page-item'">
             <a class="page-link" th:href="@{/fish-list-type/fishing-type(page=0)}" th:text="1"></a>
         </li>
 
-        <!-- Dots before the current page if needed -->
         <li th:if="${allFishList.number > 2}">
             <span class="page-link">...</span>
         </li>
 
-        <!-- Pages around the current page -->
         <li th:each="i : ${#numbers.sequence(allFishList.number - 1, allFishList.number + 1)}"
             th:if="${i > 0 && i < allFishList.totalPages - 1}"
             th:class="${i == allFishList.number} ? 'page-item active' : 'page-item'">
             <a class="page-link" th:href="@{/fish-list-type/fishing-type(page=${i})}" th:text="${i + 1}"></a>
         </li>
 
-        <!-- Dots after the current page if needed -->
         <li th:if="${allFishList.number < allFishList.totalPages - 3}">
             <span class="page-link">...</span>
         </li>
 
-        <!-- Last Page -->
         <li th:if="${allFishList.totalPages > 1}"
             th:class="${allFishList.totalPages - 1 == allFishList.number} ? 'page-item active' : 'page-item'">
             <a class="page-link" th:href="@{/fish-list-type/fishing-type(page=${allFishList.totalPages - 1})}"
                th:text="${allFishList.totalPages}"></a>
         </li>
 
-        <!-- Next Page Button -->
         <li th:class="${allFishList.hasNext()} ? 'page-item' : 'page-item disabled'">
             <a class="page-link" th:if="${allFishList.hasNext()}"
                th:href="@{/fish-list-type/fishing-type(page=${allFishList.nextPageable().pageNumber})}">-></a>
@@ -171,11 +163,10 @@
     </ul>
 </nav>
 <br>
-<!--END-->
 <footer>
     <th:block th:replace="~{fragments/footer}"></th:block>
-    <th:block th:replace="~{fragments/js}"></th:block>
 </footer>
+<th:block th:replace="~{fragments/js}"></th:block>
 </body>
 
 </html>

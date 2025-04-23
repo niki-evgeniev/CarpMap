@@ -9,14 +9,13 @@
     <meta name="description" content="Информация за нас Carpmap.bg">
     <meta name="author" content="Nikolay">
     <meta name="robots" content="index, follow">
-    <!-- Open Graph тагове за социални мрежи -->
     <meta property="og:title" content="Информация за нас Carpmap.bg">
     <meta property="og:description" content="Информация за нас Carpmap.bg">
     <meta property="og:url" content="https://carpmap.bg//about">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1712865487/Carp/about/vg3rri1sgcscizpy1wia.jpg">
+    <meta property="og:image"
+          content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1712865487/Carp/about/vg3rri1sgcscizpy1wia.jpg">
 
-    <!-- Twitter Card тагове -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Язовирите в България - Carpmap.bg">
     <meta name="twitter:description" content="Всички язовири в България">
@@ -24,7 +23,7 @@
     <meta name="twitter:image"
           content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
     <meta property="og:type" content="website">
-    <meta property="og:locate" content="bg_BG">
+    <meta property="og:locale" content="bg_BG">
     <th:block th:replace="~{fragments/head}"></th:block>
     <th:block th:replace="~{fragments/analytics}"></th:block>
 </head>
@@ -37,7 +36,6 @@
         <h1 class="text-white display-3 mb-4 aboutUsh1Tag">Кои сме ние ?</h1>
     </div>
 </div>
-<!-- About Start -->
 <main>
     <div class="container-fluid about py-5">
         <div class="container py-5">
@@ -82,8 +80,6 @@
             </div>
         </div>
     </div>
-    <!-- About End -->
-    <!-- Travel Guide Start -->
     <div class="container-fluid guide py-5">
         <div class="container py-2">
             <div class="mx-auto text-center mb-5" style="max-width: 900px;">
@@ -129,18 +125,6 @@
                                      class="img-fluid w-100 rounded-top" alt="Image">
                             </div>
                             <div class="guide-icon rounded-pill p-2">
-<!--                                <a class="btn btn-square btn-primary rounded-circle mx-1"-->
-<!--                                   href="https://www.facebook.com/profile.php?id=100003272222702/"><i-->
-<!--                                        class="fab fa-facebook-f"></i></a>-->
-<!--                                <a class="btn btn-square btn-primary rounded-circle mx-1"-->
-<!--                                   href=""><i-->
-<!--                                        class="fab fa-twitter"></i></a>-->
-<!--                                <a class="btn btn-square btn-primary rounded-circle mx-1"-->
-<!--                                   href=""><i-->
-<!--                                        class="fab fa-instagram"></i></a>-->
-<!--                                <a class="btn btn-square btn-primary rounded-circle mx-1"-->
-<!--                                   href=""><i-->
-<!--                                        class="fab fa-linkedin-in"></i></a>-->
                             </div>
                         </div>
                         <div class="guide-title text-center rounded-bottom p-4">
@@ -214,24 +198,14 @@
             </div>
         </div>
     </div>
-    <!-- Travel Guide End -->
-    <!-- Subscribe Start -->
     <div>
         <th:block th:replace="~{fragments/subscribe}"></th:block>
     </div>
-    <!-- Subscribe End -->
 </main>
-<!-- Footer Start -->
 <footer>
     <th:block th:replace="~{fragments/footer}"></th:block>
 </footer>
-<!-- Footer End -->
-
-<!-- JavaScript Libraries -->
-<div>
-    <th:block th:replace="~{fragments/js}"></th:block>
-</div>
-<!-- Back to Top -->
+<th:block th:replace="~{fragments/js}"></th:block>
 <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>
 </body>
 </html>

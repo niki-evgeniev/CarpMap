@@ -12,7 +12,6 @@
           content="Намерете информация за всички язовири и водоеми в България. Вижте снимки, видове риба, локации и други полезни детайли.">
     <meta name="author" content="Nikolay">
     <meta name="robots" content="index, follow">
-    <!-- Open Graph тагове за социални мрежи -->
     <meta property="og:title" content="Язовири и водоемите в България">
     <meta property="og:description"
           content="Всички язовири в България и водоеми. Намерете информация,снимки, видове риба, локация, местоположение за различните язовири и водоеми">
@@ -20,8 +19,6 @@
     <meta property="og:type" content="website">
     <meta property="og:image"
           content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
-
-    <!-- Twitter Card тагове -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Язовири">
     <meta name="twitter:description" content="Всички язовири в България. Намерете информация за различните язовири">
@@ -30,11 +27,10 @@
           content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
     <link rel="canonical" href="https://carpmap.bg/reservoirs/reservoirsByType/reservoirs"/>
     <meta property="og:type" content="website">
-    <meta property="og:locate" content="bg_BG">
+    <meta property="og:locale" content="bg_BG">
     <th:block th:replace="~{fragments/head}"></th:block>
     <th:block th:replace="~{fragments/analytics}"></th:block>
 </head>
-
 <body>
 <th:block th:replace="~{fragments/topbar}"></th:block>
 <th:block th:replace="~{fragments/navbar}"></th:block>
@@ -52,7 +48,6 @@
         </div>
     </div>
 </div>
-
 <section id="explore" class="explore">
     <div class="container-fluid  position-relative pb-5">
         <div class="container">
@@ -79,7 +74,6 @@
             </form>
         </div>
     </div>
-
     <div class="container products">
         <link rel="stylesheet" href="/css/style2.css">
         <div>
@@ -173,30 +167,26 @@
                 </div>
             </div>
         </div>
-    </div><!--/.container-->
-</section><!--/.explore-->
+    </div>
+</section>
 <nav th:unless="${allReservoir.isEmpty()}"
      aria-label="Page navigation "
      class="d-flex justify-content-center mt-4">
     <ul th:fragment="ALL" class="pagination text-center">
 
-        <!-- Previous Page Button -->
         <li th:class="${allReservoir.hasPrevious()} ? 'page-item' : 'page-item disabled'">
             <a class="page-link" th:if="${allReservoir.hasPrevious()}"
                th:href="@{/reservoirs/reservoirsByType/{type}(type=${type},page=${allReservoir.previousPageable().pageNumber})}"><-</a>
         </li>
 
-        <!-- First Page -->
         <li th:class="${allReservoir.number == 0} ? 'page-item active' : 'page-item'">
             <a class="page-link" th:href="@{/reservoirs/reservoirsByType/{type}(type=${type},page=0)}" th:text="1"></a>
         </li>
 
-        <!-- Dots before the current page if needed -->
         <li th:if="${allReservoir.number > 2}">
             <span class="page-link">...</span>
         </li>
 
-        <!-- Pages around the current page -->
         <li th:each="i : ${#numbers.sequence(allReservoir.number - 1, allReservoir.number + 1)}"
             th:if="${i > 0 && i < allReservoir.totalPages - 1}"
             th:class="${i == allReservoir.number} ? 'page-item active' : 'page-item'">
@@ -204,12 +194,10 @@
                th:text="${i + 1}"></a>
         </li>
 
-        <!-- Dots after the current page if needed -->
         <li th:if="${allReservoir.number < allReservoir.totalPages - 3}">
             <span class="page-link">...</span>
         </li>
 
-        <!-- Last Page -->
         <li th:if="${allReservoir.totalPages > 1}"
             th:class="${allReservoir.totalPages - 1 == allReservoir.number} ? 'page-item active' : 'page-item'">
             <a class="page-link"
@@ -217,7 +205,6 @@
                th:text="${allReservoir.totalPages}"></a>
         </li>
 
-        <!-- Next Page Button -->
         <li th:class="${allReservoir.hasNext()} ? 'page-item' : 'page-item disabled'">
             <a class="page-link" th:if="${allReservoir.hasNext()}"
                th:href="@{/reservoirs/reservoirsByType/{type}(type=${type},page=${allReservoir.nextPageable().pageNumber})}">-></a>
@@ -228,12 +215,8 @@
 <footer>
     <th:block th:replace="~{fragments/footer}"></th:block>
 </footer>
-<div>
-    <th:block th:replace="~{fragments/js}"></th:block>
-</div>
-<!-- Back to Top -->
+<th:block th:replace="~{fragments/js}"></th:block>
 <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i
         class="fa fa-arrow-up"></i></a>
 </body>
-
 </html>

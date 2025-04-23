@@ -10,10 +10,10 @@
     <meta name="keywords" content="website"
           th:content="'риба, информация за риба, срещани риби в българия, видове риби, ' + ${fishDetailsDTO.name}">
     <meta name="title" th:content="'Всичко за рибата ' + ${fishDetailsDTO.name}">
-    <meta name="description" th:content="'Всичко за рибата ' + ${fishDetailsDTO.name} + '! Вижте снимки, местообитание, хранителни навици и други интересни факти.'">
+    <meta name="description"
+          th:content="'Всичко за рибата ' + ${fishDetailsDTO.name} + '! Вижте снимки, местообитание, хранителни навици и други интересни факти.'">
     <meta name="author" content="Nikolay">
     <meta name="robots" content="index, follow">
-    <!-- Open Graph тагове за социални мрежи -->
     <meta property="og:title" th:content="'Всичко за рибата ' + ${fishDetailsDTO.name}">
     <meta property="og:description" th:content="'Научете повече за рибата ' + ${fishDetailsDTO.name}">
     <meta property="og:url"
@@ -21,8 +21,6 @@
     <meta property="og:type" content="website">
     <meta property="og:locate" content="bg_BG">
     <meta property="og:image" th:content="'https://carpmap.bg' + ${fishDetailsDTO.imageUrl}">
-
-    <!-- Twitter Card тагове -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" th:content="'Всичко за рибата ' + ${fishDetailsDTO.name}">
     <meta name="twitter:description" th:content="'Научете повече за рибата ' + ${fishDetailsDTO.name} ">
@@ -52,7 +50,6 @@
            class="btn-hover-bg btn btn-primary rounded-pill text-white  py-2 px-5">BACK</a>
     </div>
 </header>
-<!--$%adsense%$-->
 <main class="cd__main">
     <div class="container my-5">
         <div class="row" th:object="${fishDetailsDTO}">
@@ -128,13 +125,9 @@
         </form>
     </div>
 </main>
-<!-- Footer Start -->
 <footer>
     <th:block th:replace="~{fragments/footer}"></th:block>
 </footer>
-<!-- Footer End -->
-
-<!-- JavaScript Libraries -->
 <div>
     <th:block th:replace="~{fragments/js}"></th:block>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -157,7 +150,6 @@
         }
     </script>
 </div>
-<!-- Back to Top -->
 <a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i
         class="fa fa-arrow-up"></i></a>
 </body>
