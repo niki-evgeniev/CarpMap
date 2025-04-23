@@ -1,118 +1,113 @@
-<!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
-<body>
-    <div class="container-fluid footer py-1">
-        <div class="container py-4">
-            <div class="row g-5">
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="footer-item d-flex flex-column">
-                        <h4 class="mb-4 text-white">Свържи се с Carpmap.bg</h4>
-                        <a style="pointer-events: none" href=""><i class="fas fa-home me-2"></i> Горна Оряховица ,
-                            България</a>
-                        <a href="mailto:info@carpmap.bg"><i class="fas fa-envelope me-2"></i> info@carpmap.bg</a>
-                        <a href="tel:+359899287088"><i class="fas fa-phone me-2"></i> +359 899 28 70 88</a>
-                        <a href="tel:+359899524251"><i class="fas fa-phone me-2"></i> +359 899 52 42 51</a>
-                        <div class="d-flex align-items-center">
-                            <i class="fas fa-share fa-2x text-white me-2"></i>
-                            <a class="btn-square btn btn-primary rounded-circle mx-1"
-                               target="_blank"
-                               href="https://www.facebook.com/Carpoholics"><i
-                                    class="fab fa-facebook-f"></i></a>
-                            <a class="btn-square btn btn-primary rounded-circle mx-1"
-                               href=""><i
-                                    class="fab fa-instagram"></i></a>
-                            <a class="btn-square btn btn-primary rounded-circle mx-1"
-                               target="_blank"
-                               href="https://www.youtube.com/@carpoholics_bg"><i
-                                    class="fab fa-youtube fw-normal"></i></a>
+<div class="container-fluid footer py-1">
+    <div class="container py-4">
+        <div class="row g-5">
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="footer-item d-flex flex-column">
+                    <h4 class="mb-4 text-white">Свържи се с Carpmap.bg</h4>
+                    <a style="pointer-events: none" href=""><i class="fas fa-home me-2"></i> Горна Оряховица ,
+                        България</a>
+                    <a href="mailto:info@carpmap.bg"><i class="fas fa-envelope me-2"></i> info@carpmap.bg</a>
+                    <a href="tel:+359899287088"><i class="fas fa-phone me-2"></i> +359 899 28 70 88</a>
+                    <a href="tel:+359899524251"><i class="fas fa-phone me-2"></i> +359 899 52 42 51</a>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-share fa-2x text-white me-2"></i>
+                        <a class="btn-square btn btn-primary rounded-circle mx-1"
+                           target="_blank"
+                           href="https://www.facebook.com/Carpoholics"><i
+                                class="fab fa-facebook-f"></i></a>
+                        <a class="btn-square btn btn-primary rounded-circle mx-1"
+                           href=""><i
+                                class="fab fa-instagram"></i></a>
+                        <a class="btn-square btn btn-primary rounded-circle mx-1"
+                           target="_blank"
+                           href="https://www.youtube.com/@carpoholics_bg"><i
+                                class="fab fa-youtube fw-normal"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="footer-item d-flex flex-column">
+                    <h4 class="mb-4 text-white">За сайта</h4>
+                    <a th:href="@{/about}"><i class="fas fa-angle-right me-2"></i> За нас</a>
+                    <a th:href="@{/reservoirs/reservoirsByType/{type}(type = reservoirs)}">
+                        <i class="fas fa-angle-right me-2"></i> Язовири</a>
+                    <a th:href="@{/fish-list-type/fishing-type}">
+                        <i class="fas fa-angle-right me-2"></i> Видове Риби</a>
+                    <a th:href="@{/blog}"><i class="fas fa-angle-right me-2"></i> Блог</a>
+                    <a style="pointer-events: none" href=""><i class="fas fa-angle-right me-2"></i> Магазини</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="footer-item d-flex flex-column">
+                    <h4 class="mb-4 text-white">Партньори</h4>
+                    <a href="https://carsafeandsound.bg"><i class="fas fa-globe me-2"></i>CarSafeAndSound</a>
+                    <a href="https://www.facebook.com/profile.php?id=61554981885036"><i
+                            class="fas fa-globe me-2"></i>VibroFiltr Bulgaria </a>
+                    <a href="https://carpmap.online"><i class="fas fa-globe me-2"></i>Carpmap.online</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="footer-item d-flex flex-column">
+                    <h4 class="mb-4 text-white">Поддръжка</h4>
+                    <a th:href="@{/contact}"><i class="fas fa-angle-right me-2"></i> Контакти </a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Политика за поверителност </a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Правила и условия </a>
+                    <a href=""><i class="fas fa-angle-right me-2"></i> Карта на сайта </a>
+                    <a th:href="@{/cookiePolicy}"><i class="fas fa-angle-right me-2"></i> Политика за бисквитки </a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="footer-item">
+                    <h4 class="text-white mb-3">Ако искате да подкрепите проекта</h4>
+                    <div class="footer-bank-card">
+                        <!--                        <a href="#" class="text-white me-2"><i class="fab fa-cc-amex fa-2x"></i></a>-->
+                        <a th:href="@{/donate}" class="text-white me-2"><i class="fab fa-bitcoin fa-2x"></i></a>
+                        <a th:href="@{/donate}" class="text-white me-2"><i class="fab fa-ethereum fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="footer-item">
+                    <div class="row gy-3 gx-2 mb-4">
+                        <div class="col-xl-6">
+                            <form>
+                                <div class="form-floating">
+                                    <select class="form-select bg-dark border" id="select1">
+                                        <option value="1">Български</option>
+                                    </select>
+                                    <label for="select1">ЕЗИК</label>
+                                </div>
+                            </form>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="footer-item d-flex flex-column">
-                        <h4 class="mb-4 text-white">За сайта</h4>
-                        <a th:href="@{/about}"><i class="fas fa-angle-right me-2"></i> За нас</a>
-                        <a th:href="@{/reservoirs/reservoirsByType/{type}(type = reservoirs)}">
-                            <i class="fas fa-angle-right me-2"></i> Язовири</a>
-                        <a th:href="@{/fish-list-type/fishing-type}">
-                            <i class="fas fa-angle-right me-2"></i> Видове Риби</a>
-                        <a th:href="@{/blog}"><i class="fas fa-angle-right me-2"></i> Блог</a>
-                        <a  style="pointer-events: none" href=""><i class="fas fa-angle-right me-2"></i> Магазини</a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="footer-item d-flex flex-column">
-                        <h4 class="mb-4 text-white">Партньори</h4>
-                        <a href="https://carsafeandsound.bg"><i class="fas fa-globe me-2"></i>CarSafeAndSound</a>
-                        <a href="https://www.facebook.com/profile.php?id=61554981885036"><i
-                                class="fas fa-globe me-2"></i>VibroFiltr Bulgaria </a>
-                        <a href="https://carpmap.online"><i class="fas fa-globe me-2"></i>Carpmap.online</a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="footer-item d-flex flex-column">
-                        <h4 class="mb-4 text-white">Поддръжка</h4>
-                        <a th:href="@{/contact}"><i class="fas fa-angle-right me-2"></i> Контакти </a>
-                        <a href=""><i class="fas fa-angle-right me-2"></i> Политика за поверителност </a>
-                        <a href=""><i class="fas fa-angle-right me-2"></i> Правила и условия </a>
-                        <a href=""><i class="fas fa-angle-right me-2"></i> Карта на сайта </a>
-                        <a th:href="@{/cookiePolicy}"><i class="fas fa-angle-right me-2"></i> Политика за бисквитки </a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="footer-item">
-                        <h4 class="text-white mb-3">Ако искате да подкрепите проекта</h4>
-                        <div class="footer-bank-card">
-                            <!--                        <a href="#" class="text-white me-2"><i class="fab fa-cc-amex fa-2x"></i></a>-->
-                            <a th:href="@{/donate}" class="text-white me-2"><i class="fab fa-bitcoin fa-2x"></i></a>
-                            <a th:href="@{/donate}" class="text-white me-2"><i class="fab fa-ethereum fa-2x"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="footer-item">
-                        <div class="row gy-3 gx-2 mb-4">
-                            <div class="col-xl-6">
-                                <form>
-                                    <div class="form-floating">
-                                        <select class="form-select bg-dark border" id="select1">
-                                            <option value="1">Български</option>
-                                        </select>
-                                        <label for="select1">ЕЗИК</label>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="col-xl-6" style="display: none;">
-                                <form>
-                                    <div class="form-floating">
-                                        <select class="form-select bg-dark border" id="select2">
-                                            <option value="1">BGN</option>
-                                            <option value="2">EUR</option>
-                                        </select>
-                                        <label for="select1">ВАЛУТИ</label>
-                                    </div>
-                                </form>
-                            </div>
+                        <div class="col-xl-6" style="display: none;">
+                            <form>
+                                <div class="form-floating">
+                                    <select class="form-select bg-dark border" id="select2">
+                                        <option value="1">BGN</option>
+                                        <option value="2">EUR</option>
+                                    </select>
+                                    <label for="select1">ВАЛУТИ</label>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container-fluid copyright text-body py-3">
-        <div class="container">
-            <div class="row g-6 align-items-center">
-                <div class="col-md-6 text-center text-md-end mb-md-0">
-                    <i class="fas fa-copyright me-2"></i><a class="text-white" href="#">Carpmap.bg 2024 - 2025</a>, All right
-                    reserved.
-                </div>
-                <div class="col-md-6 text-center text-md-start">
-                    Created by: <a class="text-white" href="https://www.facebook.com/Psyhopath/">Nikolay Ivanov</a>
-                </div>
+</div>
+<div class="container-fluid copyright text-body py-3">
+    <div class="container">
+        <div class="row g-6 align-items-center">
+            <div class="col-md-6 text-center text-md-end mb-md-0">
+                <i class="fas fa-copyright me-2"></i><a class="text-white" href="#">Carpmap.bg 2024 - 2025</a>, All
+                right
+                reserved.
+            </div>
+            <div class="col-md-6 text-center text-md-start">
+                Created by: <a class="text-white" href="https://www.facebook.com/Psyhopath/">Nikolay Ivanov</a>
             </div>
         </div>
     </div>
-
-</body>
-</html>
+</div>
+<th:block th:replace="~{fragments/cookiePopUp}"></th:block>
