@@ -71,7 +71,7 @@ public class SearchController {
             return modelAndView;
         }
         String req = request.getHeader("referer");
-        if (req.contains("/reservoirs/reservoirsByType")) {
+        if (req != null && req.contains("/reservoirs/reservoirsByType")) {
             String type = req;
             Pattern pattern = Pattern.compile("/reservoirs/reservoirsByType/(.+)");
             Matcher matcher = pattern.matcher(type);

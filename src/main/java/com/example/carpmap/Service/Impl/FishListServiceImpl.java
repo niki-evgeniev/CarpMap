@@ -149,7 +149,11 @@ public class FishListServiceImpl implements FishListService {
 
     @Override
     public Page<FishListAllDTO> searchFish(String fishType, Pageable pageable) {
-        String fishName = fishType.trim();
+        String fishName = "";
+        if (fishType != null) {
+            fishName = fishType.trim();
+        }
+
         Page<FishList> allByUrlName = fishListRepository.findAllByNameContaining(fishName, pageable);
         if (allByUrlName.isEmpty()){
             allByUrlName = fishListRepository.findAllByUrlNameContaining(fishName, pageable);
@@ -167,8 +171,3 @@ public class FishListServiceImpl implements FishListService {
         return searchingFish;
     }
 }
-
-
-
-
-

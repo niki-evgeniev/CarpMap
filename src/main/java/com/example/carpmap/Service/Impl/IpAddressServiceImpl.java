@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
@@ -139,7 +140,12 @@ public class IpAddressServiceImpl implements IpAddressService {
             }
         }
 
-        ipAddressRepository.save(ipAddressEntity);
+//        ipAddressRepository.save(ipAddressEntity);
+        try {
+            ipAddressRepository.save(ipAddressEntity);
+        } catch (DataIntegrityViolationException e) {
+            System.out.println("Duplicate IP caught on save: " + ipAddress);
+        }
     }
 
     @Override
