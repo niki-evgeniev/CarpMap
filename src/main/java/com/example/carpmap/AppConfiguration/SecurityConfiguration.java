@@ -3,6 +3,7 @@ package com.example.carpmap.AppConfiguration;
 import com.example.carpmap.Models.Enums.RoleType;
 import com.example.carpmap.Repository.UserRepository;
 import com.example.carpmap.Service.Impl.CarpUserService;
+import com.example.carpmap.Utility.IpExtractor;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -22,10 +23,12 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfiguration {
 
     private final String rememberMeKey;
+    private final IpExtractor ipExtractor;
 
     public SecurityConfiguration(@Value("${carpmap.remember.me.key}")
-                                 String rememberMeKey) {
+                                 String rememberMeKey, IpExtractor ipExtractor) {
         this.rememberMeKey = rememberMeKey;
+        this.ipExtractor = ipExtractor;
     }
 
     @Bean
@@ -71,11 +74,12 @@ public class SecurityConfiguration {
         ).exceptionHandling(
                 exceptionHandling -> exceptionHandling
                         .authenticationEntryPoint((request, response, authException) -> {
+                            String ip = ipExtractor.extractIp(request);
                             if (request.getRequestURI().startsWith("/error")) {
                                 response.sendError(HttpServletResponse.SC_NOT_FOUND);
                             } else {
                                 System.out.println("Redirecting to login due to unauthorized access: " +
-                                        request.getRequestURI() + " " + request.getRemoteAddr());
+                                        request.getRequestURI() + " " + request.getRemoteAddr() + " or " + ip);
                                 response.sendRedirect("/users/login");
                             }
                         })

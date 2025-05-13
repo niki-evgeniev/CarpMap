@@ -72,15 +72,18 @@
                         </div>
                         <div class="blog-content border border-top-0 rounded-bottom p-4">
                             <p th:text="'Публикувано от : ' + *{authorName}"
-                               class="mb-3"></p>
-                            <a th:text="*{titleBlog}"
+                               class="mb-3 text-end"></p>
+                            <h1 th:text="*{titleBlog}"
                                th:href="*{urlVideo}"
-                               class="h4"></a>
+                               class="h4 text-center"></h1>
                             <p th:text="*{description}"
-                               class="my-3"></p>
-                            <a th:href="*{urlVideo}"
-                               target="_blank"
-                               class="btn btn-primary rounded-pill py-2 px-4">Виж Видео</a>
+                               class="my-3 text-start"></p>
+                            <br>
+                            <div class="text-center">
+                                <a th:href="*{urlVideo}"
+                                   target="_blank"
+                                   class="btn btn-primary rounded-pill py-2 px-4">Виж Видео</a>
+                            </div>
                             <form sec:authorize="hasRole('ADMIN')"
                                   th:method="DELETE"
                                   th:action="@{/reservoirs/delete/{id}(id = *{id})}"
