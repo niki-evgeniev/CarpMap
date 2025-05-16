@@ -1,9 +1,11 @@
 package com.example.carpmap.Repository;
 
 import com.example.carpmap.Models.Entity.IpAddress;
+import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -52,5 +54,27 @@ public interface IpAddressRepository extends JpaRepository<IpAddress, Long> {
     Page<IpAddress> findAllByIsBannedIs(Boolean isBanned, Pageable pageable);
 
     Page<IpAddress> findAllByAddress(Pageable pageable, String ipAddress);
+
+// Work only for field timeToAdd
+//    @Transactional
+//    @Modifying
+//    @Query("DELETE FROM IpAddress ip WHERE ip.timeToAdd < :cutoffDate AND ip.isBanned = false")
+//    void deleteOldIps(@Param("cutoffDate") LocalDateTime cutoffDate);
+
+    @Transactional
+    @Modifying
+    @Query("""
+    DELETE FROM IpAddress ip 
+    WHERE (ip.lastSeen < :cutoffDate)
+    AND ip.isBanned = false """)
+    void deleteOldIps(@Param("cutoffDate") LocalDateTime cutoffDate);
+
+    @Transactional
+    @Modifying
+    @Query("""
+    DELETE FROM IpAddress ip
+    WHERE (ip.timeToAdd < :cutoffDate OR ip.lastSeen IS NULL)
+    AND ip.isBanned = false""")
+    void deleteOldIpsOrIpIsNull(@Param("cutoffDate") LocalDateTime cutoffDate);
 
 }
