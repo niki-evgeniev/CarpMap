@@ -8,9 +8,12 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.Optional;
 
 import static com.example.carpmap.Cammon.ErrorMessages.ERROR_MAIL_WITH_ID_NOT_FOUND;
@@ -30,7 +33,12 @@ public class MailServiceImpl implements MailService {
 
     @Override
     public Page<MailDetailsDTO> getAllContactMail(Pageable pageable) {
+
+//        Pageable sortedPageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(),
+//                Sort.by(Sort.Direction.DESC, "id"));
+
         Page<Contact> findAllContact = contactRepository.findAll(pageable);
+//        findAllContact.stream().sorted(Comparator.comparing(Contact::getId).reversed());
         Page<MailDetailsDTO> allContact = findAllContact.map(contact -> {
             return modelMapper.map(contact, MailDetailsDTO.class);
         });
