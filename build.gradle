@@ -1,11 +1,11 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.3.5'
-    id 'io.spring.dependency-management' version '1.1.6'
+    id 'org.springframework.boot' version '3.5.0'
+    id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'com.example'
-version = '2.0.55'
+version = '2.1.0'
 
 java {
     toolchain {
@@ -16,6 +16,7 @@ java {
 repositories {
     mavenCentral()
 }
+
 bootJar {
     manifest {
         attributes(
@@ -25,21 +26,26 @@ bootJar {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:3.3.5'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.3.5'
-    implementation 'org.springframework.boot:spring-boot-starter-web:3.3.5'
-    implementation 'org.springframework.boot:spring-boot-starter-validation:3.3.5'
-    implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.2.1'
-    implementation 'org.springframework.boot:spring-boot-starter-security:3.3.5'
-    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.2.RELEASE'
+    // Spring Boot starters (без версии – идват от BOM на Spring Boot 3.5.0)
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
-// https://mvnrepository.com/artifact/com.google.code/sitemapgen4j
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // Допълнителни библиотеки
+    implementation 'org.modelmapper:modelmapper:3.2.1'
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.2.RELEASE'
     implementation 'com.google.code:sitemapgen4j:1.0.1'
-//    implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'com.github.oshi:oshi-core:6.6.1'
-    testImplementation 'org.springframework.security:spring-security-test'
+
+    // MySQL driver
     runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // Тестване
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
 }
 
 tasks.named('test') {
