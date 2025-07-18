@@ -131,7 +131,6 @@ public class IpAddressServiceImpl implements IpAddressService {
             ipAddressEntity.setCountVisits(ipAddressEntity.getCountVisits() + 1L);
             ipAddressEntity.setLastSeen(LocalDateTime.now());
         } else {
-            // DOUBLE CHECK FOR RACE CONDITION
             Optional<IpAddress> doubleCheck = ipAddressRepository.findByAddress(ipAddress);
             if (doubleCheck.isPresent()) {
                 ipAddressEntity = doubleCheck.get();
