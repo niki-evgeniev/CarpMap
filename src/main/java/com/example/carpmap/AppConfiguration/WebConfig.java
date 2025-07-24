@@ -23,7 +23,8 @@ public class WebConfig implements WebMvcConfigurer {
                .addResourceLocations("file:./imagesApp/");
 
         registry.addResourceHandler("/sitemap.xml")
-                .addResourceLocations("file:./sitemap/sitemap.xml");
+//                .addResourceLocations("file:./sitemap/sitemap.xml");
+                .addResourceLocations("file:./sitemap/");
 
         registry.addResourceHandler("/videoApp/**")
                 .addResourceLocations("file:./videoApp/");
