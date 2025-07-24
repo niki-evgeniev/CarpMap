@@ -15,7 +15,7 @@ Visit the home page: [Carpmap.bg ](https://carpmap.bg)
 ### **Reservoir Management**
 
 - Add new reservoirs
-- View all reservoirs in Bulgaria
+- View a list of all reservoirs in Bulgaria
 - Detailed reservoir information
 - Search reservoirs by name or type
 - Edit reservoirs:
@@ -24,7 +24,7 @@ Visit the home page: [Carpmap.bg ](https://carpmap.bg)
     - Remove reservoirs
 
 ### **Level and volume**
- - Check the status of reservoirs in Bulgaria
+ - Monitor current water levels and volume data for reservoirsa
 
 ### **Fish Type Management**
 
@@ -75,7 +75,7 @@ Visit the home page: [Carpmap.bg ](https://carpmap.bg)
 ### **SEO & Analytics**
 
 - Google Analytics – tracking traffic and user behavior
-- Google Search Console – indexing pages, detecting SEO errors, and improving visibility
+- Google Search Console – page indexing, SEO error detection, and visibility optimization
       
 ---
 
