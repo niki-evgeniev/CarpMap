@@ -176,6 +176,15 @@
             </div>
             <br>
         </div>
+        <div th:if="*{iFrameMap} == null or *{iFrameMap.isEmpty()}"
+             class="col-12">
+            <div class="rounded">
+                <h2 class="details-title text-color mb-1">Карта</h2>
+                <br>
+                <h2 class="details-title text-color mb-1">Нямаме информация за местоположението на язовира.</h2>
+            </div>
+            <br>
+        </div>
 
     </div>
     <!-- Gallery Start -->
