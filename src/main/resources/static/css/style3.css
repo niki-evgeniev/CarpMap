@@ -103,3 +103,69 @@ text-color {
     }
 
 }
+
+/* ========== Cards for reservoirs  NEW ========== */
+.reservoir-card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+.reservoir-card:hover {
+    transform: scale(1.01);
+}
+
+/* Заглавие */
+.reservoir-card .category {
+    color: #0077b6;
+    font-size: 22px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Снимка */
+.reservoir-card .img-detail {
+    border-radius: 6px;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+}
+
+/* Текстовите блокове */
+.reservoir-card .product-title {
+    font-size: 16px;
+    color: #333;
+    margin: 10px 0;
+}
+
+/* Информация бутон */
+/*.reservoir-card .btn {*/
+/*    background-color: #0077b6;*/
+/*    border: none;*/
+/*}*/
+
+/*.reservoir-card .btn:hover {*/
+/*    background-color: #0093c4;*/
+/*}*/
+
+/* Търсачка */
+.searchIp input.form-control {
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+}
+
+.searchIp .btn-primary {
+    background-color: #0077b6;
+    border: none;
+}
+
+.searchIp .btn-primary:hover {
+    background-color: #0093c4;
+}
+
+/*RESERVOIR DETAILS */
+
+

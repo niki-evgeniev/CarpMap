@@ -1747,29 +1747,200 @@ body > main > div.container-fluid.packages.py-5 {
     margin-top: -3%;
 }
 
-/*SCALE */
+/*OLD SCALE */
+/*.scale {*/
+/*    width: 80%;*/
+/*    max-width: 500px;*/
+/*    !*margin: auto;*!*/
+/*}*/
+/*.bar-container {*/
+/*    width: 100%;*/
+/*    height: 15px;*/
+/*    background-color: #ddd;*/
+/*    border-radius: 5px;*/
+/*    overflow: hidden;*/
+/*    position: relative;*/
+/*}*/
+/*.bar {*/
+/*    height: 100%;*/
+/*    background-color: #0093c4;*/
+/*    !*background-color: #4CAF50;*!*/
+/*    transition: width 0.5s ease-in-out;*/
+/*}*/
+/*.percentage {*/
+/*    margin-top: 10px;*/
+/*    font-size: 18px;*/
+/*    font-weight: bold;*/
+/*}*/
+/* OLD SCALE END */
+
+/*NEW SCALE */
+/*.scale {*/
+/*    width: 80%;*/
+/*    max-width: 500px;*/
+/*    margin: 20px auto;*/
+/*    text-align: center;*/
+/*    padding: 0;*/
+/*    background: none;       !* Прозрачен фон *!*/
+/*    box-shadow: none;       !* Без сянка *!*/
+/*    border: none;           !* Без рамка *!*/
+/*}*/
+
+/*.scale-title {*/
+/*    font-size: 18px;*/
+/*    margin-bottom: 10px;*/
+/*    color: #333;*/
+/*}*/
+
+/*.bar-container {*/
+/*    width: 100%;*/
+/*    height: 15px;*/
+/*    background-color: #e0e0e0;  !* Цветът на контейнера (можеш и него да махнеш, ако искаш напълно прозрачно) *!*/
+/*    border-radius: 0;            !* Без заобляне *!*/
+/*    overflow: hidden;*/
+/*    position: relative;*/
+/*}*/
+
+/*.bar {*/
+/*    height: 100%;*/
+/*    background: linear-gradient(90deg, #00c6ff, #0072ff);  !* Градиентен цвят *!*/
+/*    transition: width 1s ease-in-out;*/
+/*    position: relative;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: flex-end;*/
+/*    padding-right: 5px;*/
+/*    border-radius: 0;            !* Без заобляне *!*/
+/*}*/
+
+/*.bar-label {*/
+/*    color: white;*/
+/*    font-size: 14px;*/
+/*    font-weight: bold;*/
+/*    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);*/
+/*}*/
+
+/*!* Скриване на етикета при много малки стойности *!*/
+/*.bar[style*="width: 0%"] .bar-label,*/
+/*.bar[style*="width: 1%"] .bar-label,*/
+/*.bar[style*="width: 2%"] .bar-label {*/
+/*    display: none;*/
+/*}*/
+/*NEW SCALE END*/
+
+/*NEW 2 SCALE */
 .scale {
     width: 80%;
     max-width: 500px;
-    /*margin: auto;*/
+    margin: 20px auto;
+    text-align: center;
 }
+
+.scale-title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
 .bar-container {
     width: 100%;
-    height: 15px;
-    background-color: #ddd;
-    border-radius: 5px;
+    height: 18px;
+    background-color: transparent;
     overflow: hidden;
     position: relative;
 }
+
+/* Базов стил + общи анимации */
 .bar {
     height: 100%;
-    background-color: #0093c4;
-    /*background-color: #4CAF50;*/
-    transition: width 0.5s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 6px;
+    border-radius: 0;
+    transition: width 1s ease-in-out;
+    background-size: 200% 100%;
+    animation: gradientShift 4s ease infinite;
+    position: relative;
+    animation-delay: 0.3s;
 }
-.percentage {
-    margin-top: 10px;
-    font-size: 18px;
+
+/* Цветови класове с градиент и пулсация */
+.bar.low {
+    background: linear-gradient(270deg, #ff4e50, #f9d423);
+    animation: gradientShift 5s ease infinite, pulse 2.5s ease-in-out infinite;
+}
+
+.bar.medium {
+    background: linear-gradient(270deg, #fceabb, #f8b500);
+    animation: gradientShift 5s ease infinite, pulse 2.5s ease-in-out infinite;
+}
+
+.bar.high {
+    background: linear-gradient(270deg, #00c6ff, #0072ff);
+    animation: gradientShift 5s ease infinite, pulse 2.5s ease-in-out infinite;
+}
+
+/* Анимация на градиента */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+@keyframes pulse {
+    0%, 100% {
+        transform: scaleY(1);
+    }
+    50% {
+        transform: scaleY(1.03);
+    }
+}
+.bar-label {
+    color: white;
+    font-size: 14px;
     font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    position: relative;
+    cursor: default;
 }
-/*SCALE END */
+.bar-label::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.bar-label:hover::after {
+    opacity: 1;
+}
+
+/* Скриване на текста при малки стойности */
+.bar[style*="width: 0%"] .bar-label,
+.bar[style*="width: 1%"] .bar-label,
+.bar[style*="width: 2%"] .bar-label {
+    display: none;
+}
+
+.bar.medium .bar-label {
+    color: #222;
+    text-shadow: none;
+}
+
+/*NEW SCALE END*/
