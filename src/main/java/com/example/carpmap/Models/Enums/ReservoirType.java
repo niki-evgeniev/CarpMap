@@ -6,5 +6,7 @@ public enum ReservoirType {
 
     СВОБОДЕН,
 
+    ЗАБРАНЕН,
+
     ВСИЧКИ
 }
