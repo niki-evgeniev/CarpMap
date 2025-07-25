@@ -1493,7 +1493,7 @@ body > main > div.container-fluid.packages.py-5 {
 
 /*NOT SURE END*/
 
-@media (min-width: 768px){
+@media (min-width: 768px) {
     .table tbody td:nth-child(odd) {
         background: #f4f6fc;
         border-bottom: 2px solid #eceffa;
@@ -1505,6 +1505,7 @@ body > main > div.container-fluid.packages.py-5 {
         display: none;
         margin-top: 35%;
     }
+
     .gallery {
         margin-top: 8rem;
     }
@@ -1747,88 +1748,8 @@ body > main > div.container-fluid.packages.py-5 {
     margin-top: -3%;
 }
 
-/*OLD SCALE */
-/*.scale {*/
-/*    width: 80%;*/
-/*    max-width: 500px;*/
-/*    !*margin: auto;*!*/
-/*}*/
-/*.bar-container {*/
-/*    width: 100%;*/
-/*    height: 15px;*/
-/*    background-color: #ddd;*/
-/*    border-radius: 5px;*/
-/*    overflow: hidden;*/
-/*    position: relative;*/
-/*}*/
-/*.bar {*/
-/*    height: 100%;*/
-/*    background-color: #0093c4;*/
-/*    !*background-color: #4CAF50;*!*/
-/*    transition: width 0.5s ease-in-out;*/
-/*}*/
-/*.percentage {*/
-/*    margin-top: 10px;*/
-/*    font-size: 18px;*/
-/*    font-weight: bold;*/
-/*}*/
-/* OLD SCALE END */
+/* SCALE */
 
-/*NEW SCALE */
-/*.scale {*/
-/*    width: 80%;*/
-/*    max-width: 500px;*/
-/*    margin: 20px auto;*/
-/*    text-align: center;*/
-/*    padding: 0;*/
-/*    background: none;       !* Прозрачен фон *!*/
-/*    box-shadow: none;       !* Без сянка *!*/
-/*    border: none;           !* Без рамка *!*/
-/*}*/
-
-/*.scale-title {*/
-/*    font-size: 18px;*/
-/*    margin-bottom: 10px;*/
-/*    color: #333;*/
-/*}*/
-
-/*.bar-container {*/
-/*    width: 100%;*/
-/*    height: 15px;*/
-/*    background-color: #e0e0e0;  !* Цветът на контейнера (можеш и него да махнеш, ако искаш напълно прозрачно) *!*/
-/*    border-radius: 0;            !* Без заобляне *!*/
-/*    overflow: hidden;*/
-/*    position: relative;*/
-/*}*/
-
-/*.bar {*/
-/*    height: 100%;*/
-/*    background: linear-gradient(90deg, #00c6ff, #0072ff);  !* Градиентен цвят *!*/
-/*    transition: width 1s ease-in-out;*/
-/*    position: relative;*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: flex-end;*/
-/*    padding-right: 5px;*/
-/*    border-radius: 0;            !* Без заобляне *!*/
-/*}*/
-
-/*.bar-label {*/
-/*    color: white;*/
-/*    font-size: 14px;*/
-/*    font-weight: bold;*/
-/*    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);*/
-/*}*/
-
-/*!* Скриване на етикета при много малки стойности *!*/
-/*.bar[style*="width: 0%"] .bar-label,*/
-/*.bar[style*="width: 1%"] .bar-label,*/
-/*.bar[style*="width: 2%"] .bar-label {*/
-/*    display: none;*/
-/*}*/
-/*NEW SCALE END*/
-
-/*NEW 2 SCALE */
 .scale {
     width: 80%;
     max-width: 500px;
@@ -1842,6 +1763,13 @@ body > main > div.container-fluid.packages.py-5 {
     color: #333;
 }
 
+.bar-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+}
+
 .bar-container {
     width: 100%;
     height: 18px;
@@ -1850,7 +1778,6 @@ body > main > div.container-fluid.packages.py-5 {
     position: relative;
 }
 
-/* Базов стил + общи анимации */
 .bar {
     height: 100%;
     display: flex;
@@ -1861,13 +1788,12 @@ body > main > div.container-fluid.packages.py-5 {
     transition: width 1s ease-in-out;
     background-size: 200% 100%;
     animation: gradientShift 4s ease infinite;
-    position: relative;
     animation-delay: 0.3s;
+    position: relative;
 }
 
-/* Цветови класове с градиент и пулсация */
 .bar.low {
-    background: linear-gradient(270deg, #ff4e50, #f9d423);
+    background: linear-gradient(270deg, #FF6347, #8B0000);
     animation: gradientShift 5s ease infinite, pulse 2.5s ease-in-out infinite;
 }
 
@@ -1881,7 +1807,7 @@ body > main > div.container-fluid.packages.py-5 {
     animation: gradientShift 5s ease infinite, pulse 2.5s ease-in-out infinite;
 }
 
-/* Анимация на градиента */
+/* Анимации */
 @keyframes gradientShift {
     0% {
         background-position: 0% 50%;
@@ -1893,6 +1819,7 @@ body > main > div.container-fluid.packages.py-5 {
         background-position: 0% 50%;
     }
 }
+
 @keyframes pulse {
     0%, 100% {
         transform: scaleY(1);
@@ -1901,14 +1828,23 @@ body > main > div.container-fluid.packages.py-5 {
         transform: scaleY(1.03);
     }
 }
+
+/* Текст в лентата */
 .bar-label {
     color: white;
     font-size: 14px;
     font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
     position: relative;
     cursor: default;
 }
+
+.bar.medium .bar-label {
+    color: #222;
+    text-shadow: none;
+}
+
+/* Tooltip */
 .bar-label::after {
     content: attr(data-tooltip);
     position: absolute;
@@ -1931,16 +1867,82 @@ body > main > div.container-fluid.packages.py-5 {
     opacity: 1;
 }
 
-/* Скриване на текста при малки стойности */
 .bar[style*="width: 0%"] .bar-label,
 .bar[style*="width: 1%"] .bar-label,
 .bar[style*="width: 2%"] .bar-label {
     display: none;
 }
 
-.bar.medium .bar-label {
-    color: #222;
+.bar-label.edge-label {
+    position: absolute;
+    right: -10px;
+    transform: translateX(100%);
+    color: #ff0000;
     text-shadow: none;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
 }
 
-/*NEW SCALE END*/
+/* 🟡 Жълта иконка при умерено ниско */
+.warning-icon.yellow {
+    color: #f0c000;
+}
+
+/* 🔴 Червена при критично */
+.warning-icon.red {
+    color: #cc0000;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.warning-icon {
+    font-size: 16px;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: #fff;
+}
+
+/* Жълт фон */
+.warning-icon.bg-yellow {
+    background-color: #f0c000;
+}
+
+/* Червен фон */
+.warning-icon.bg-red {
+    background-color: #cc0000;
+}
+
+/* ☠️ Критично – без фон, мига */
+.warning-icon.critical {
+    color: #8B0000;
+    animation: blink 1s infinite;
+}
+
+.fa-warning {
+    font-size: 18px;
+    margin-right: 4px;
+}
+
+/* Жълт триъгълник */
+.fa-warning.yellow {
+    color: #f0c000;
+}
+
+/* Червен триъгълник */
+.fa-warning.red {
+    color: #cc0000;
+}
+
+/* Череп */
+.critical {
+    color: #8B0000;
+    animation: blink 1s infinite;
+}
+
+
+/* SCALE END */

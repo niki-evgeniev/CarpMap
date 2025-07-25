@@ -1,7 +1,47 @@
+<!-- SCALE -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
 <div class="scale">
-    <h6>Наличен Обем Вода</h6>
-    <div class="bar-container">
-        <div class="bar" th:style="'width: ' + *{fillPercentage} + '%'"></div>
+    <h6 class="scale-title">Наличен Обем Вода</h6>
+
+    <div class="bar-wrapper">
+
+        <!-- Жълт предупреждаващ знак -->
+        <i class="fa-solid fa-triangle-exclamation fa-warning yellow" th:if="*{fillPercentage} &lt; 50 and *{fillPercentage} &gt;= 35"></i>
+
+        <!-- Червен предупреждаващ знак -->
+        <i class="fa-solid fa-triangle-exclamation fa-warning red" th:if="*{fillPercentage} &lt; 35 and *{fillPercentage} &gt;= 25"></i>
+
+        <!-- Череп при критично -->
+        <i class="fa-solid fa-skull critical" th:if="*{fillPercentage} &lt; 25"></i>
+
+
+
+        <div class="bar-container">
+            <div class="bar"
+                 th:style="'width: ' + *{fillPercentage} + '%'"
+                 th:classappend="*{fillPercentage} &lt;= 30 ? 'low' : (*{fillPercentage} &lt;= 70 ? 'medium' : 'high')">
+
+                <!-- Под 25% – стойност в края на запълнената част -->
+                <span class="bar-label edge-label"
+                      th:if="*{fillPercentage} &lt; 25"
+                      th:text="*{fillPercentage + '%'}"
+                      th:attr="data-tooltip=*{fillPercentage + '%'}"></span>
+
+                <!-- Нормално вътре -->
+                <span class="bar-label"
+                      th:unless="*{fillPercentage} &lt; 25"
+                      th:text="*{fillPercentage + '%'}"
+                      th:attr="data-tooltip=*{fillPercentage + '%'}"></span>
+            </div>
+        </div>
+
     </div>
-    <p class="percentage text-center" th:text="*{fillPercentage + '%'}"></p>
 </div>
+
+<!-- SCALE END -->
+
+
+
+
+
