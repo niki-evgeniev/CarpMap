@@ -17,11 +17,11 @@ public class CleanIpScheduler {
     }
 
 //    @Scheduled(cron = "0 0 3 1 * ?")
-        @Scheduled(cron = "0 */1 * * * *")
-    public void cleanOldIpsByLastSeen() {
-        LocalDateTime cutoffDate = LocalDateTime.now().minusYears(10);
-        ipAddressRepository.deleteOldIps(cutoffDate);
-        System.out.println("method cleanOldIpsByLastSeen : Old ip is cleaned " + cutoffDate);
+//        @Scheduled(cron = "0 */1 * * * *")
+//    public void cleanOldIpsByLastSeen() {
+//        LocalDateTime cutoffDate = LocalDateTime.now().minusYears(10);
+//        ipAddressRepository.deleteOldIps(cutoffDate);
+//        System.out.println("method cleanOldIpsByLastSeen : Old ip is cleaned " + cutoffDate);
     }
 // IN TESTING
 //    @Scheduled(cron = "0 0 23 31 12 ?")
@@ -30,4 +30,4 @@ public class CleanIpScheduler {
 //        ipAddressRepository.deleteOldIpsOrIpIsNull(cutoffDate);
 //        System.out.println("method cleanIpsWithNullLastSeenOrOldTimeToAdd: Old ip or null is cleaned " + cutoffDate);
 //    }
-}
+//}
