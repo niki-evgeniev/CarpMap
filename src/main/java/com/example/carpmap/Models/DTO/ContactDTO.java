@@ -7,21 +7,21 @@ import jakarta.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 public class ContactDTO {
-    @NotEmpty(message = "Въведете име на язовир")
+    @NotEmpty(message = "Въведете име на име")
     @Size(min = 3, max = 50, message = "Може да въвеждате максимално 50 символа и минимално 3")
     private String name;
 
-    @NotEmpty(message = "Въведете име на язовир")
+    @NotEmpty(message = "Въведете име на поща")
     @Size(min = 3, max = 50, message = "Може да въвеждате максимално 50 символа и минимално 3")
     @Email
     private String email;
 
-    @NotEmpty(message = "Въведете име на язовир")
-    @Size(min = 3, max = 100, message = "Може да въвеждате максимално 50 символа и минимално 3")
+    @NotEmpty(message = "Въведете име на тема")
+    @Size(min = 3, max = 200, message = "Може да въвеждате максимално 200 символа и минимално 3")
     private String subject;
 
-    @NotEmpty(message = "Въведете име на язовир")
-    @Size(min = 3, max = 255, message = "Може да въвеждате максимално 50 символа и минимално 3")
+    @NotEmpty(message = "Въведете име на събощение")
+    @Size(min = 3, max = 2000, message = "Може да въвеждате максимално 250 символа и минимално 3")
     private String message;
 
     private LocalDateTime addedDate;
