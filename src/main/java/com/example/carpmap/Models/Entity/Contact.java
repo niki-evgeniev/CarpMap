@@ -19,7 +19,7 @@ public class Contact extends BaseEntity {
     @Column(name = "subject", nullable = false)
     private String subject;
 
-    @Column(name = "message", nullable = false)
+    @Column(name = "message", nullable = false, columnDefinition = "TEXT")
     private String message;
 
     @Column(name = "added_date", nullable = false)
