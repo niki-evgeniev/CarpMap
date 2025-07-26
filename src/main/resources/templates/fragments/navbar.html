@@ -1,8 +1,6 @@
-<html
-        xmlns:th="http://www.thymeleaf.org"
-        xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<body>
-<div class="container-fluid position-relative p-0">
+<div class="container-fluid position-relative p-0"
+     xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <nav th:classappend="${navbar == 'navbar'}
                              ? ''
                              : 'navUsers'"
@@ -79,5 +77,3 @@
         </div>
     </nav>
 </div>
-</body>
-</html>
