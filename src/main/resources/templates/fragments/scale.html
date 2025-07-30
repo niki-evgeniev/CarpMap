@@ -7,13 +7,16 @@
     <div class="bar-wrapper">
 
         <!-- Жълт предупреждаващ знак -->
-        <i class="fa-solid fa-triangle-exclamation fa-warning yellow" th:if="*{fillPercentage} &lt; 50 and *{fillPercentage} &gt;= 35"></i>
+        <i class="fa-solid fa-triangle-exclamation fa-warning yellow"
+           th:if="*{fillPercentage} &lt; 50 and *{fillPercentage} &gt;= 35"></i>
 
         <!-- Червен предупреждаващ знак -->
-        <i class="fa-solid fa-triangle-exclamation fa-warning red" th:if="*{fillPercentage} &lt; 35 and *{fillPercentage} &gt;= 25"></i>
+        <i class="fa-solid fa-triangle-exclamation fa-warning red"
+           th:if="*{fillPercentage} &lt; 35 and *{fillPercentage} &gt;= 25"></i>
 
         <!-- Череп при критично -->
-        <i class="fa-solid fa-skull critical" th:if="*{fillPercentage} &lt; 25"></i>
+        <i class="fa-solid fa-skull critical"
+           th:if="*{fillPercentage} &lt; 25"></i>
 
 
 

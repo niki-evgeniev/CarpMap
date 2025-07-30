@@ -119,8 +119,7 @@
         <div class="explore-content">
             <div class="row">
                 <div class="cardres col-md-4 col-sm-6"
-                     th:each="res : ${allReservoir.getContent()}"
-                     th:object="${res}">
+                     >
                     <div class="single-explore-item">
                         <div class="single-explore-img">
                             <a class="image-all-reservoir" th:href="@{/reservoirs/{urlName}(urlName = *{urlName})}">

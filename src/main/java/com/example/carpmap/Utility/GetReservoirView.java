@@ -20,7 +20,7 @@ public class GetReservoirView {
 
     public ModelAndView getReservoirs(String type, Pageable pageable, HttpServletRequest request ) {
         ModelAndView modelAndView = new ModelAndView("reservoirs");
-        Page<ReservoirAllDTO> allReservoirByType = reservoirsService.getReservoirsByType(type, pageable);
+                Page<ReservoirAllDTO> allReservoirByType = reservoirsService.getReservoirsByType(type, pageable);
         if (allReservoirByType == null) {
             return new ModelAndView("errors/errorFindPage404");
         }
