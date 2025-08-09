@@ -37,7 +37,7 @@
 </div>
 <div th:if="${!infoReservoirsDetails.isEmpty()}"
         class="container-fluid  position-relative mb-2 " >
-    <div class="container">
+    <div class="container" >
         <form th:method="GET"
               th:action="@{/searchReservoir}"
               th:object="${searchDTO}">
@@ -84,8 +84,6 @@
         </div>
         <div class="col-md-6">
             <div class="main-description px-2">
-                <br>
-                <br>
                 <th:block th:replace="~{fragments/scale}"></th:block>
 
                 <div class="product-title text-bold my-3 text-start"

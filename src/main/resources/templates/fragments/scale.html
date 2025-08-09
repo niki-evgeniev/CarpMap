@@ -5,46 +5,80 @@
     <h6 class="scale-title">Наличен Обем Вода</h6>
 
     <div class="bar-wrapper">
+        <i class="fa-solid fa-triangle-exclamation warn yellow"
+           th:if="*{fillPercentage} < 50 and *{fillPercentage} >= 35"></i>
 
-        <!-- Жълт предупреждаващ знак -->
-        <i class="fa-solid fa-triangle-exclamation fa-warning yellow"
-           th:if="*{fillPercentage} &lt; 50 and *{fillPercentage} &gt;= 35"></i>
+        <i class="fa-solid fa-triangle-exclamation warn red"
+           th:if="*{fillPercentage} < 35 and *{fillPercentage} >= 25"></i>
 
-        <!-- Червен предупреждаващ знак -->
-        <i class="fa-solid fa-triangle-exclamation fa-warning red"
-           th:if="*{fillPercentage} &lt; 35 and *{fillPercentage} &gt;= 25"></i>
+        <i class="fa-solid fa-skull crit" th:if="*{fillPercentage} < 25"></i>
 
-        <!-- Череп при критично -->
-        <i class="fa-solid fa-skull critical"
-           th:if="*{fillPercentage} &lt; 25"></i>
-
-
-
-        <div class="bar-container">
+        <div class="bar-container" role="progressbar"
+             aria-valuemin="0" aria-valuemax="100"
+             th:aria-valuenow="*{fillPercentage}">
             <div class="bar"
-                 th:style="'width: ' + *{fillPercentage} + '%'"
-                 th:classappend="*{fillPercentage} &lt;= 30 ? 'low' : (*{fillPercentage} &lt;= 70 ? 'medium' : 'high')">
-
-                <!-- Под 25% – стойност в края на запълнената част -->
-                <span class="bar-label edge-label"
-                      th:if="*{fillPercentage} &lt; 25"
-                      th:text="*{fillPercentage + '%'}"
-                      th:attr="data-tooltip=*{fillPercentage + '%'}"></span>
-
-                <!-- Нормално вътре -->
-                <span class="bar-label"
-                      th:unless="*{fillPercentage} &lt; 25"
-                      th:text="*{fillPercentage + '%'}"
-                      th:attr="data-tooltip=*{fillPercentage + '%'}"></span>
+                 th:style="'width:' + *{fillPercentage} + '%'"
+                 th:classappend="*{fillPercentage} <= 30 ? 'low' : (*{fillPercentage} <= 70 ? 'medium' : 'high')">
+        <span class="bar-pill"
+              th:classappend="*{fillPercentage} < 14 ? ' outside' : ''"
+              th:text="*{fillPercentage + '%'}"></span>
             </div>
         </div>
-
     </div>
 </div>
 
+<hr style="margin:0">
+
+<div class="scale">
+    <h6 class="scale-title">Наличен Полезен Обем Вода</h6>
+
+    <div class="bar-wrapper">
+        <i class="fa-solid fa-triangle-exclamation warn yellow"
+           th:if="*{volumePercentage} < 50 and *{volumePercentage} >= 35"></i>
+
+        <i class="fa-solid fa-triangle-exclamation warn red"
+           th:if="*{volumePercentage} < 35 and *{volumePercentage} >= 25"></i>
+
+        <i class="fa-solid fa-skull crit" th:if="*{volumePercentage} < 25"></i>
+
+        <div class="bar-container" role="progressbar"
+             aria-valuemin="0" aria-valuemax="100"
+             th:aria-valuenow="*{volumePercentage}">
+            <div class="bar"
+                 th:style="'width:' + *{volumePercentage} + '%'"
+                 th:classappend="*{volumePercentage} <= 30 ? 'low' : (*{volumePercentage} <= 70 ? 'medium' : 'high')">
+        <span class="bar-pill"
+              th:classappend="*{volumePercentage} < 24 ? ' outside' : ''"
+              th:text="*{volumePercentage + '%'}"></span>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- SCALE END -->
+<div class="flow-row my-4"
+     th:if="*{inflow_m3s != null or outflow_m3s != null}">
+    <div class="chip inflow"
+         th:if="*{inflow_m3s} != null"
+         th:with="val=*{inflow_m3s}">
+        <i class="fa-solid fa-arrow-down"></i>
+        <span th:text="|приток : *{inflow_m3s}|"></span>
+        <small> м³/сек</small>
+    </div>
 
+    <div class="chip outflow"
+         th:if="*{outflow_m3s} != null"
+         th:with="val=${outflow_m3s}">
+        <i class="fa-solid fa-arrow-up"></i>
+        <span th:text="|разход : *{outflow_m3s}|"></span>
+        <small> м³/сек</small>
+    </div>
 
+<!--    <div class="chip net"-->
+<!--         th:with="net=${(inflow_m3s != null ? inflow_m3s : 0) - (outflow_m3s != null ? outflow_m3s : 0)}"-->
+<!--         th:classappend="${net >= 0} ? ' pos' : ' neg'">-->
+<!--        <i class="fa-solid" th:classappend="${net >= 0} ? ' fa-arrow-trend-up' : ' fa-arrow-trend-down'"></i>-->
+<!--        <span th:text="${#numbers.formatDecimal(net, 1, 2)}"></span>-->
+<!--        <small> м³/с</small>-->
+<!--    </div>-->
 
-
-
+</div>

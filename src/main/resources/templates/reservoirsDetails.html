@@ -51,7 +51,7 @@
 </header>
 <!--$%adsense%$-->
 <main class="cd__main">
-    <div class="container my-5">
+    <div class="container my-3">
         <div class="row" th:object="${details}">
             <div class="col-md-7">
                 <div class="main-img">
@@ -139,16 +139,21 @@
             </div>
         </div>
     </div>
-    <div class="container my-5" th:object="${details}">
+    <div class="container my-3" th:object="${details}">
         <div th:if="${info != null}"
                 th:object="${info}">
             <th:block th:replace="~{fragments/scale}"></th:block>
         </div>
         <script>
-            document.querySelector(".scale").style.maxWidth= "100%";
-            document.querySelector(".scale").style.width= "100%";
-            document.querySelector(".bar-container").style.height= "30px";
-            document.querySelector(".scale").style.textAlign = "center";
+            document.querySelectorAll(".scale").forEach(el => {
+                el.style.maxWidth = "100%";
+                el.style.width = "100%";
+                el.style.textAlign = "center";
+            });
+
+            document.querySelectorAll(".bar-container").forEach(el => {
+                el.style.height = "30px";
+            });
         </script>
         <div th:if="${info != null}"
              class="product-title text-bold my-3 text-start"
@@ -188,7 +193,7 @@
 
     </div>
     <!-- Gallery Start -->
-    <div class="container-fluid gallery py-5 my-5">
+    <div class="container-fluid gallery py-5 my-3">
         <div class="mx-auto text-center mb-5" style="
 
         max-width: 900px;">
