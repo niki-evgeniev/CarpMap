@@ -25,6 +25,10 @@ public class ReservoirInfoDTO {
 
     private LocalDate addedDate;
 
+    private double inflow_m3s;
+
+    private double outflow_m3s;
+
     public ReservoirInfoDTO() {
     }
 
@@ -106,5 +110,21 @@ public class ReservoirInfoDTO {
 
     public void setAddedDate(LocalDate addedDate) {
         this.addedDate = addedDate;
+    }
+
+    public double getInflow_m3s() {
+        return inflow_m3s;
+    }
+
+    public void setInflow_m3s(double inflow_m3s) {
+        this.inflow_m3s = inflow_m3s;
+    }
+
+    public double getOutflow_m3s() {
+        return outflow_m3s;
+    }
+
+    public void setOutflow_m3s(double outflow_m3s) {
+        this.outflow_m3s = outflow_m3s;
     }
 }
