@@ -1605,52 +1605,173 @@ body > main > div.container-fluid.packages.py-5 {
 }
 
 /*END video index*/
+/* Cookie Consent Popup */
 
-.cookie-consent {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    padding: 30px;
-    z-index: 1000;
-    display: none;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    max-width: 400px;
-    text-align: center;
-}
+/*.cookie-consent {*/
+/*    position: fixed;*/
+/*    top: 50%;*/
+/*    left: 50%;*/
+/*    transform: translate(-50%, -50%);*/
+/*    background-color: rgba(0, 0, 0, 0.7);*/
+/*    color: white;*/
+/*    padding: 30px;*/
+/*    z-index: 1000;*/
+/*    display: none;*/
+/*    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);*/
+/*    border-radius: 8px;*/
+/*    max-width: 400px;*/
+/*    text-align: center;*/
+/*}*/
 
-.cookie-consent .cookie-message {
-    display: inline-block;
-}
+/*.cookie-consent .cookie-message {*/
+/*    display: inline-block;*/
+/*}*/
 
-.cookie-consent button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-left: 20px;
-    cursor: pointer;
-}
+/*.cookie-consent button {*/
+/*    background-color: #4CAF50;*/
+/*    color: white;*/
+/*    border: none;*/
+/*    padding: 10px 20px;*/
+/*    margin-left: 20px;*/
+/*    cursor: pointer;*/
+/*}*/
 
-.cookie-consent button:hover {
-    background-color: #45a049;
-}
+/*.cookie-consent button:hover {*/
+/*    background-color: #45a049;*/
+/*}*/
 
-.cookie-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-    display: none;
-}
+/*.cookie-backdrop {*/
+/*    position: fixed;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background-color: rgba(0, 0, 0, 0.5);*/
+/*    z-index: 999;*/
+/*    display: none;*/
+/*}*/
 
 /* Cookie Consent Popup END */
+/* Cookie Consent Popup 2 */
+/* ===== Cookie Consent (toast style) ===== */
+:root{
+    --cc-bg: #ffffff;
+    --cc-text: #1f2937;
+    --cc-link: #0ea5e9;
+    --cc-border: #e5e7eb;
+    --cc-shadow: 0 12px 40px rgba(0,0,0,.18);
+    --cc-radius: 16px;
+}
+
+.cookie-backdrop{
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.35);
+    backdrop-filter: blur(2px);
+    z-index: 999;
+    display: none;
+    opacity: 0;
+    transition: opacity .3s ease;
+}
+.cookie-backdrop.show{ display:block; opacity:1; }
+
+.cookie-consent{
+    position: fixed; left: 50%; bottom: 20px;
+    transform: translate(-50%, calc(100% + 20px));
+    width: min(720px, 92vw);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--cc-bg);
+    color: var(--cc-text);
+    border: 1px solid var(--cc-border);
+    border-radius: var(--cc-radius);
+    box-shadow: var(--cc-shadow);
+    z-index: 1000;
+    opacity: 0;
+    transition: transform .45s cubic-bezier(.22,.8,.25,1), opacity .3s ease;
+}
+.cookie-consent.show{
+    transform: translate(-50%, 0);
+    opacity: 1;
+}
+
+/* иконка */
+.cookie-icon{
+    align-self: start;
+    display:grid; place-items:center;
+    width: 42px; height: 42px;
+    border-radius: 12px;
+    background: #fff7ed;
+    border: 1px solid #ffe4d6;
+}
+.cookie-icon i{ font-size: 20px; color: #f59e0b; }
+
+/* текст */
+.cookie-content h6{
+    margin: 0 0 6px; font-size: 16px; font-weight: 700;
+}
+.cookie-content p{
+    margin: 0 0 10px; font-size: 14px; line-height: 1.45;
+}
+.cookie-content a{ color: var(--cc-link); text-decoration: underline; }
+
+/* бутони */
+.cookie-actions{ display:flex; gap:8px; flex-wrap:wrap; }
+.cookie-consent .btn{
+    appearance: none;
+    border: 1px solid transparent;
+    cursor:pointer;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 14px;
+    transition: transform .05s ease, background .2s ease, border-color .2s ease;
+}
+.btn:active{ transform: translateY(1px); }
+.btn.primary{
+    background: #2563eb; color: #fff;
+}
+.btn.primary:hover{ background:#1e4fd6; }
+.btn.ghost{
+    background:#fff; color:#111827; border-color:#e5e7eb;
+}
+.btn.ghost:hover{ border-color:#cfd3da; }
+
+/* close */
+.cookie-close{
+    background: transparent; border: none; cursor: pointer;
+    align-self: start; padding: 6px; border-radius: 8px;
+    color: #6b7280;
+}
+.cookie-close:hover{ background: #f3f4f6; }
+
+/* responsive */
+@media (max-width: 520px){
+    .cookie-consent{
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+      "icon close"
+      "content content";
+        gap: 10px;
+    }
+    .cookie-icon{ grid-area: icon; }
+    .cookie-content{ grid-column: 1 / -1; }
+    .cookie-close{ grid-area: close; }
+}
+
+/* dark mode (по желание) */
+@media (prefers-color-scheme: dark){
+    :root{
+        --cc-bg:#0b1220; --cc-text:#e5e7eb; --cc-border:#1f2a44;
+        --cc-shadow: 0 12px 40px rgba(0,0,0,.5);
+    }
+    .cookie-icon{ background:#1b2233; border-color:#273045; }
+    .btn.ghost{ background:#0b1220; color:#e5e7eb; border-color:#273045; }
+    .btn.ghost:hover{ border-color:#3a4663; }
+}
+
+/* Cookie Consent Popup 2 END */
 
 .contactMail {
     max-width: 100%;
@@ -1750,199 +1871,340 @@ body > main > div.container-fluid.packages.py-5 {
 
 /* SCALE */
 
-.scale {
-    width: 80%;
-    max-width: 500px;
-    margin: 20px auto;
-    text-align: center;
+/*.scale {*/
+/*    width: 80%;*/
+/*    max-width: 500px;*/
+/*    margin: 15px auto;*/
+/*    text-align: center;*/
+/*}*/
+
+/*.scale-title {*/
+/*    font-size: 18px;*/
+/*    margin-bottom: 10px;*/
+/*    color: #333;*/
+/*}*/
+
+/*.bar-wrapper {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    gap: 6px;*/
+/*    position: relative;*/
+/*}*/
+
+/*.bar-container {*/
+/*    width: 100%;*/
+/*    height: 18px;*/
+/*    background-color: transparent;*/
+/*    overflow: hidden;*/
+/*    position: relative;*/
+/*}*/
+
+/*.bar {*/
+/*    height: 100%;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: flex-end;*/
+/*    padding-right: 6px;*/
+/*    border-radius: 0;*/
+/*    transition: width 1s ease-in-out;*/
+/*    background-size: 200% 100%;*/
+/*    animation: gradientShift 4s ease infinite;*/
+/*    animation-delay: 0.3s;*/
+/*    position: relative;*/
+/*}*/
+
+/*.bar.low {*/
+/*    background: linear-gradient(270deg, #FF6347, #8B0000);*/
+/*    animation: gradientShift 5s ease infinite, pulse 2.5s ease-in-out infinite;*/
+/*}*/
+
+/*.bar.medium {*/
+/*    background: linear-gradient(270deg, #fceabb, #f8b500);*/
+/*    animation: gradientShift 5s ease infinite, pulse 2.5s ease-in-out infinite;*/
+/*}*/
+
+/*.bar.high {*/
+/*    background: linear-gradient(270deg, #00c6ff, #0072ff);*/
+/*    animation: gradientShift 5s ease infinite, pulse 2.5s ease-in-out infinite;*/
+/*}*/
+
+/*!* Анимации *!*/
+/*@keyframes gradientShift {*/
+/*    0% {*/
+/*        background-position: 0% 50%;*/
+/*    }*/
+/*    50% {*/
+/*        background-position: 100% 50%;*/
+/*    }*/
+/*    100% {*/
+/*        background-position: 0% 50%;*/
+/*    }*/
+/*}*/
+
+/*@keyframes pulse {*/
+/*    0%, 100% {*/
+/*        transform: scaleY(1);*/
+/*    }*/
+/*    50% {*/
+/*        transform: scaleY(1.03);*/
+/*    }*/
+/*}*/
+
+/*!* Текст в лентата *!*/
+/*.bar-label {*/
+/*    color: white;*/
+/*    font-size: 14px;*/
+/*    font-weight: bold;*/
+/*    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);*/
+/*    position: relative;*/
+/*    cursor: default;*/
+/*}*/
+
+/*.bar.medium .bar-label {*/
+/*    color: #222;*/
+/*    text-shadow: none;*/
+/*}*/
+
+/*!* Tooltip *!*/
+/*.bar-label::after {*/
+/*    content: attr(data-tooltip);*/
+/*    position: absolute;*/
+/*    bottom: 120%;*/
+/*    left: 50%;*/
+/*    transform: translateX(-50%);*/
+/*    background: #333;*/
+/*    color: white;*/
+/*    padding: 4px 8px;*/
+/*    border-radius: 4px;*/
+/*    font-size: 12px;*/
+/*    white-space: nowrap;*/
+/*    opacity: 0;*/
+/*    pointer-events: none;*/
+/*    transition: opacity 0.3s ease;*/
+/*    z-index: 10;*/
+/*}*/
+
+/*.bar-label:hover::after {*/
+/*    opacity: 1;*/
+/*}*/
+
+/*.bar[style*="width: 0%"] .bar-label,*/
+/*.bar[style*="width: 1%"] .bar-label,*/
+/*.bar[style*="width: 2%"] .bar-label {*/
+/*    display: none;*/
+/*}*/
+
+/*.bar-label.edge-label {*/
+/*    position: absolute;*/
+/*    right: -10px;*/
+/*    transform: translateX(100%);*/
+/*    color: #ff0000;*/
+/*    text-shadow: none;*/
+/*    font-size: 14px;*/
+/*    font-weight: bold;*/
+/*    white-space: nowrap;*/
+/*}*/
+
+/*!* 🟡 Жълта иконка при умерено ниско *!*/
+/*.warning-icon.yellow {*/
+/*    color: #f0c000;*/
+/*}*/
+
+/*!* 🔴 Червена при критично *!*/
+/*.warning-icon.red {*/
+/*    color: #cc0000;*/
+/*}*/
+
+/*@keyframes blink {*/
+/*    0%, 100% { opacity: 1; }*/
+/*    50% { opacity: 0; }*/
+/*}*/
+
+/*.warning-icon {*/
+/*    font-size: 16px;*/
+/*    font-weight: bold;*/
+/*    padding: 2px 6px;*/
+/*    border-radius: 4px;*/
+/*    color: #fff;*/
+/*}*/
+
+/*!* Жълт фон *!*/
+/*.warning-icon.bg-yellow {*/
+/*    background-color: #f0c000;*/
+/*}*/
+
+/*!* Червен фон *!*/
+/*.warning-icon.bg-red {*/
+/*    background-color: #cc0000;*/
+/*}*/
+
+/*!* ☠️ Критично – без фон, мига *!*/
+/*.warning-icon.critical {*/
+/*    color: #8B0000;*/
+/*    animation: blink 1s infinite;*/
+/*}*/
+
+/*.fa-warning {*/
+/*    font-size: 18px;*/
+/*    margin-right: 4px;*/
+/*}*/
+
+/*!* Жълт триъгълник *!*/
+/*.fa-warning.yellow {*/
+/*    color: #f0c000;*/
+/*}*/
+
+/*!* Червен триъгълник *!*/
+/*.fa-warning.red {*/
+/*    color: #cc0000;*/
+/*}*/
+
+/*!* Череп *!*/
+/*.critical {*/
+/*    color: #8B0000;*/
+/*    animation: blink 1s infinite;*/
+/*}*/
+
+
+/* SCALE END */
+/* SCALE new */
+:root{
+    --meter-height: 20px;
+    --radius: 999px;
+    --track-bg: #ffffff; /* бял фон за празната част */
+    --track-border: #e6e8ee;
+    --shadow-inset: 0 1px 2px rgba(0,0,0,.08) inset;
 }
 
-.scale-title {
-    font-size: 18px;
-    margin-bottom: 10px;
-    color: #333;
+/* Контейнер */
+.scale{
+    width: 92%;
+    max-width: 720px;
+    margin: 16px auto;
+}
+.scale-title{
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: #1f2937;
 }
 
-.bar-wrapper {
+/* Лента */
+.bar-wrapper{
     display: flex;
     align-items: center;
-    gap: 6px;
-    position: relative;
+    gap: 10px;
 }
-
-.bar-container {
-    width: 100%;
-    height: 18px;
-    background-color: transparent;
+.bar-container{
+    position: relative;
+    flex: 1;
+    height: var(--meter-height);
+    background: var(--track-bg);
+    border: 1px solid var(--track-border);
+    border-radius: var(--radius);
     overflow: hidden;
-    position: relative;
+    box-shadow: var(--shadow-inset);
 }
 
-.bar {
+.bar{
     height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding-right: 6px;
-    border-radius: 0;
-    transition: width 1s ease-in-out;
-    background-size: 200% 100%;
-    animation: gradientShift 4s ease infinite;
-    animation-delay: 0.3s;
+    border-radius: var(--radius);
     position: relative;
+    transition: width .7s ease;
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,.4);
+}
+.bar::after{
+    /* лек гланц */
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(255,255,255,.4), rgba(255,255,255,0) 60%);
+    pointer-events:none;
 }
 
-.bar.low {
-    background: linear-gradient(270deg, #FF6347, #8B0000);
-    animation: gradientShift 5s ease infinite, pulse 2.5s ease-in-out infinite;
+/* Цветове */
+.bar.low{
+    background: linear-gradient(90deg, #ff7a6a, #c91d1d);
+}
+.bar.medium{
+    background: linear-gradient(90deg, #ffe08a, #f6b100);
+}
+.bar.high{
+    background: linear-gradient(90deg, #52d6ff, #0072ff);
 }
 
-.bar.medium {
-    background: linear-gradient(270deg, #fceabb, #f8b500);
-    animation: gradientShift 5s ease infinite, pulse 2.5s ease-in-out infinite;
+/* Процент без pill */
+.bar span{
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 0 3px rgba(0,0,0,0.4);
 }
-
-.bar.high {
-    background: linear-gradient(270deg, #00c6ff, #0072ff);
-    animation: gradientShift 5s ease infinite, pulse 2.5s ease-in-out infinite;
-}
-
-/* Анимации */
-@keyframes gradientShift {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-@keyframes pulse {
-    0%, 100% {
-        transform: scaleY(1);
-    }
-    50% {
-        transform: scaleY(1.03);
-    }
-}
-
-/* Текст в лентата */
-.bar-label {
-    color: white;
-    font-size: 14px;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-    position: relative;
-    cursor: default;
-}
-
-.bar.medium .bar-label {
+.bar.medium span{
     color: #222;
     text-shadow: none;
 }
 
-/* Tooltip */
-.bar-label::after {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: 120%;
-    left: 50%;
-    transform: translateX(-50%);
-    background: #333;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-    z-index: 10;
+/* Иконки за предупреждение */
+.warn{ font-size: 18px; }
+.warn.yellow{ color: #f0c000; }
+.warn.red{ color: #cc0000; }
+
+/* Критично */
+.crit{
+    color: #8B0000;
+    animation: blink 1s infinite;
+}
+@keyframes blink{
+    0%,100%{ opacity: 1; }
+    50%{ opacity: 0; }
 }
 
-.bar-label:hover::after {
-    opacity: 1;
+/* SCALE new END */
+.flow-row{
+    display:flex; align-items:center; gap:8px; margin-top:8px; flex-wrap:wrap;
+}
+.chip{
+    display:inline-flex; align-items:center; gap:6px;
+    padding:4px 8px; border-radius:999px; font-weight:600; font-size:13px;
+    background:#fff; border:1px solid #e6e8ee;
+}
+.chip i{ font-size:13px; opacity:.9; }
+
+.chip.inflow{ background:#f0f7ff; border-color:#d6e8ff; }
+.chip.inflow i{ color:#0072ff; }
+
+.chip.outflow{ background:#fff4ec; border-color:#ffe1c9; }
+.chip.outflow i{ color:#d66a00; }
+
+.chip.net{ background:#f6fff6; border-color:#d8f2d8; }
+.chip.net.pos i{ color:#1a7f37; }
+.chip.net.neg{ background:#fff5f5; border-color:#ffdada; }
+.chip.net.neg i{ color:#b42318; }
+
+.flow-meta{
+    margin-left:auto; display:flex; align-items:center; gap:6px;
+    color:#6b7280; font-size:12px;
 }
 
-.bar[style*="width: 0%"] .bar-label,
-.bar[style*="width: 1%"] .bar-label,
-.bar[style*="width: 2%"] .bar-label {
-    display: none;
+.flow-row {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* центрира по хоризонтала */
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
 }
-
-.bar-label.edge-label {
-    position: absolute;
-    right: -10px;
-    transform: translateX(100%);
-    color: #ff0000;
+/* при много малки стойности показвай процента извън лентата, вдясно */
+.bar span.outside{
+    right: -8px;                 /* излиза отдясно на запълнената част */
+    transform: translate(100%,-50%);
+    color: #b42318;              /* четимо червено, без сянка */
     text-shadow: none;
-    font-size: 14px;
-    font-weight: bold;
-    white-space: nowrap;
 }
 
-/* 🟡 Жълта иконка при умерено ниско */
-.warning-icon.yellow {
-    color: #f0c000;
-}
-
-/* 🔴 Червена при критично */
-.warning-icon.red {
-    color: #cc0000;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
-.warning-icon {
-    font-size: 16px;
-    font-weight: bold;
-    padding: 2px 6px;
-    border-radius: 4px;
-    color: #fff;
-}
-
-/* Жълт фон */
-.warning-icon.bg-yellow {
-    background-color: #f0c000;
-}
-
-/* Червен фон */
-.warning-icon.bg-red {
-    background-color: #cc0000;
-}
-
-/* ☠️ Критично – без фон, мига */
-.warning-icon.critical {
-    color: #8B0000;
-    animation: blink 1s infinite;
-}
-
-.fa-warning {
-    font-size: 18px;
-    margin-right: 4px;
-}
-
-/* Жълт триъгълник */
-.fa-warning.yellow {
-    color: #f0c000;
-}
-
-/* Червен триъгълник */
-.fa-warning.red {
-    color: #cc0000;
-}
-
-/* Череп */
-.critical {
-    color: #8B0000;
-    animation: blink 1s infinite;
-}
-
-
-/* SCALE END */
+/* по желание: за да има „точка“, дори при 0% */
+.bar{ min-width: 1px; }

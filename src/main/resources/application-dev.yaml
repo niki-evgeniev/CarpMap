@@ -4,12 +4,12 @@ spring:
     #    url: "jdbc:mysql://localhost:3306/carpmap?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
     #    username: root
     #    password: 12345
-#    url: "jdbc:mysql://192.168.0.120:3306/carpmap?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=Europe/Sofia"
-#    username: test
-#    password: 12345
-    url: "jdbc:mysql://localhost:3306/carpmap?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=Europe/Sofia"
-    username: root
+    url: "jdbc:mysql://192.168.0.120:3306/carpmap?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=Europe/Sofia"
+    username: test
     password: 12345
+#    url: "jdbc:mysql://localhost:3306/carpmap?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=Europe/Sofia"
+#    username: root
+#    password: 12345
   servlet:
     multipart:
       max-file-size: 5MB
@@ -70,6 +70,7 @@ logging:
     #    org.hibernate.SQL: DEBUG
     org.hibernate.orm.jdbc.bind: INFO
     org.springframework.security: INFO
+#    org.thymeleaf: DEBUG
 #    org.apache.coyote.http11.Http11Processor: DEBUG
 #    org.apache.tomcat.util.net: DEBUG
 server:

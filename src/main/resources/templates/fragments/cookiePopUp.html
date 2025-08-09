@@ -1,10 +1,38 @@
+<!--<div id="cookieBackdrop" class="cookie-backdrop"></div>-->
+<!--<div id="cookieConsent" class="cookie-consent">-->
+<!--    <div class="cookie-message">-->
+<!--        <p>Този сайт използва "бисквитки" за подобряване на потребителското изживяване. Прочетете нашата-->
+<!--            <a th:href="@{/cookiePolicy}" target="_blank">политика за бисквитките</a>.-->
+<!--        </p>-->
+<!--        <button id="acceptCookies">Приемам</button>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<script th:src="@{/js/cookie.js}"></script>-->
+
 <div id="cookieBackdrop" class="cookie-backdrop"></div>
-<div id="cookieConsent" class="cookie-consent">
-    <div class="cookie-message">
-        <p>Този сайт използва "бисквитки" за подобряване на потребителското изживяване. Прочетете нашата
-            <a th:href="@{/cookiePolicy}" target="_blank">политика за бисквитките</a>.
+
+<div id="cookieConsent"
+     class="cookie-consent"
+     role="dialog"
+     aria-live="polite"
+     aria-labelledby="cookieTitle"
+     aria-describedby="cookieDesc">
+
+    <div class="cookie-content">
+        <h6 id="cookieTitle">Бисквитки</h6>
+        <p id="cookieDesc">
+            Използваме бисквитки за по-добро изживяване и анализ. Виж <a th:href="@{/cookiePolicy}" target="_blank">Политика за бисквитките</a>.
         </p>
-        <button id="acceptCookies">Приемам</button>
+
+        <div class="cookie-actions">
+            <button id="acceptCookies" class="btn primary">Приемам всички</button>
+            <button id="rejectCookies" class="btn ghost">Само необходими</button>
+        </div>
     </div>
+
+    <button class="cookie-close" aria-label="Затвори уведомлението">
+        <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+    </button>
 </div>
+
 <script th:src="@{/js/cookie.js}"></script>
