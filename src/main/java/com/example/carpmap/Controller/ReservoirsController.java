@@ -74,7 +74,6 @@ public class ReservoirsController {
                 return modelAndView;
             }
         }
-
         return getReservoirView.getReservoirs(type, pageable, request);
     }
 
