@@ -2,7 +2,9 @@ package com.example.carpmap.Controller;
 
 import com.example.carpmap.Models.DTO.Users.ErrorRegister;
 import com.example.carpmap.Models.DTO.Users.RegisterDTO;
+import com.example.carpmap.Service.IpAddressService;
 import com.example.carpmap.Service.UsersService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -22,13 +24,16 @@ import static com.example.carpmap.Cammon.UsersMessages.ERROR_LOGIN;
 public class UserController {
 
     private final UsersService usersService;
+    private final IpAddressService ipAddressService;
 
-    public UserController(UsersService usersService) {
+    public UserController(UsersService usersService, IpAddressService ipAddressService) {
         this.usersService = usersService;
+        this.ipAddressService = ipAddressService;
     }
 
     @GetMapping("login")
-    public ModelAndView login() {
+    public ModelAndView login(HttpServletRequest request) {
+        ipAddressService.checkIpAddressAndAddToDB(request.getRemoteAddr());
         System.out.println("LOGIN type opening");
         return new ModelAndView("login");
     }

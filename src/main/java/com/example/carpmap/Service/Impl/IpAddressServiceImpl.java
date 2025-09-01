@@ -45,16 +45,6 @@ public class IpAddressServiceImpl implements IpAddressService {
         this.modelMapper = modelMapper;
     }
 
-    //
-//    @Override
-//    public String getIp() {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//
-//        if (authentication != null && authentication.getDetails() instanceof WebAuthenticationDetails details) {
-//            return details.getRemoteAddress();
-//        }
-//        return "Cant detect ip";
-//    }
     @Override
     public String getIp() {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
@@ -113,7 +103,8 @@ public class IpAddressServiceImpl implements IpAddressService {
         StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
         for (StackTraceElement element : stackTrace) {
             if (element.getClassName().contains("Controller")) {
-                System.out.println("Called from Controller: " + element.getClassName() + " -> " + element.getMethodName());
+                System.out.println("Called from Controller: " + element.getClassName() +
+                        " -> " + element.getMethodName());
             }
         }
 
@@ -139,9 +130,9 @@ public class IpAddressServiceImpl implements IpAddressService {
             }
         }
 
-//        ipAddressRepository.save(ipAddressEntity);
         try {
             ipAddressRepository.save(ipAddressEntity);
+            System.out.println("Successful add ip " + ipAddress);
         } catch (DataIntegrityViolationException e) {
             System.out.println("Duplicate IP caught on save: " + ipAddress);
         }
