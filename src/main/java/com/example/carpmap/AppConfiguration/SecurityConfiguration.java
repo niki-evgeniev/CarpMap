@@ -63,7 +63,7 @@ public class SecurityConfiguration {
                         .hasAnyRole(RoleType.MODERATOR.name())
                         .requestMatchers("/profile/profiles")
                         .hasAnyRole(RoleType.ADMIN.name())
-                        .requestMatchers("/reservoirs/gallery/{id}")
+                        .requestMatchers("/reservoirs/gallery/{id}", "/sendMail")
                         .hasAnyRole(RoleType.ADMIN.name())
                         .requestMatchers("/admin/ip/all", "/admin/ip/findByUser", "/admin/ip/lastDay",
                                 "/admin/ip/thirtyDaysAgo", "/admin/ip/newForToday", "/admin/profiles",
