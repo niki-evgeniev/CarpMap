@@ -42,12 +42,11 @@ public class ContactController {
         if (bindingResult.hasErrors()) {
             return new ModelAndView("contact");
         }
-        //TODO
-        if (contactDTO.getEmail().equals("amandaEvarma3@gmail.com")) {
-            return new ModelAndView("redirect:/");
-        }
         boolean isSavedContact = contactService.saveContact(contactDTO);
-        return new ModelAndView("redirect:/");
+        ModelAndView modelAndView = new ModelAndView("message/message");
+        String message = "Успешно изпратихте запитване към Carpmap.bg. Ще ви върнем съобщение най-скоро";
+        modelAndView.addObject("message", message);
+        return modelAndView;
     }
 
     @ModelAttribute
