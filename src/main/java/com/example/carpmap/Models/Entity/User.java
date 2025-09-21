@@ -69,6 +69,9 @@ public class User extends BaseEntity {
     @ManyToOne
     private Contact contact;
 
+    @ManyToOne
+    private SendEmail sendEmail;
+
     public User() {
     }
 
