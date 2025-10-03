@@ -42,6 +42,45 @@
         <h1 class="text-white display-3 mb-4 fishH1Tag">Всички видове риби в България</h1>
     </div>
 </div>
+<nav th:unless="${allFishList.isEmpty()}"
+     aria-label="Page navigation "
+     class="d-flex justify-content-center mt-4">
+    <ul th:fragment="ALL" class="pagination text-center">
+        <li th:class="${allFishList.hasPrevious()} ? 'page-item' : 'page-item disabled'">
+            <a class="page-link" th:if="${allFishList.hasPrevious()}"
+               th:href="@{/fish-list-type/fishing-type(page=${allFishList.previousPageable().pageNumber})}"><-</a>
+        </li>
+
+        <li th:class="${allFishList.number == 0} ? 'page-item active' : 'page-item'">
+            <a class="page-link" th:href="@{/fish-list-type/fishing-type(page=0)}" th:text="1"></a>
+        </li>
+
+        <li th:if="${allFishList.number > 2}">
+            <span class="page-link">...</span>
+        </li>
+
+        <li th:each="i : ${#numbers.sequence(allFishList.number - 1, allFishList.number + 1)}"
+            th:if="${i > 0 && i < allFishList.totalPages - 1}"
+            th:class="${i == allFishList.number} ? 'page-item active' : 'page-item'">
+            <a class="page-link" th:href="@{/fish-list-type/fishing-type(page=${i})}" th:text="${i + 1}"></a>
+        </li>
+
+        <li th:if="${allFishList.number < allFishList.totalPages - 3}">
+            <span class="page-link">...</span>
+        </li>
+
+        <li th:if="${allFishList.totalPages > 1}"
+            th:class="${allFishList.totalPages - 1 == allFishList.number} ? 'page-item active' : 'page-item'">
+            <a class="page-link" th:href="@{/fish-list-type/fishing-type(page=${allFishList.totalPages - 1})}"
+               th:text="${allFishList.totalPages}"></a>
+        </li>
+
+        <li th:class="${allFishList.hasNext()} ? 'page-item' : 'page-item disabled'">
+            <a class="page-link" th:if="${allFishList.hasNext()}"
+               th:href="@{/fish-list-type/fishing-type(page=${allFishList.nextPageable().pageNumber})}">-></a>
+        </li>
+    </ul>
+</nav>
 <section id="explore" class="explore">
     <div class="container-fluid  position-relative pb-5">
         <div class="container">

@@ -35,6 +35,46 @@
     <br>
     <h1 class="text-center text-bold">The API is currently unavailable. Please try again later.</h1>
 </div>
+<nav th:unless="${infoReservoirsDetails.isEmpty()}"
+     aria-label="Page navigation "
+     class="d-flex justify-content-center mt-4">
+    <ul th:fragment="ALL" class="pagination text-center">
+
+        <li th:class="${infoReservoirsDetails.hasPrevious()} ? 'page-item' : 'page-item disabled'">
+            <a class="page-link" th:if="${infoReservoirsDetails.hasPrevious()}"
+               th:href="@{/info(page=${infoReservoirsDetails.previousPageable().pageNumber})}"><-</a>
+        </li>
+
+        <li th:class="${infoReservoirsDetails.number == 0} ? 'page-item active' : 'page-item'">
+            <a class="page-link" th:href="@{/info(page=0)}" th:text="1"></a>
+        </li>
+
+        <li th:if="${infoReservoirsDetails.number > 2}">
+            <span class="page-link">...</span>
+        </li>
+
+        <li th:each="i : ${#numbers.sequence(infoReservoirsDetails.number - 1, infoReservoirsDetails.number + 1)}"
+            th:if="${i > 0 && i < infoReservoirsDetails.totalPages - 1}"
+            th:class="${i == infoReservoirsDetails.number} ? 'page-item active' : 'page-item'">
+            <a class="page-link" th:href="@{/info(page=${i})}" th:text="${i + 1}"></a>
+        </li>
+
+        <li th:if="${infoReservoirsDetails.number < infoReservoirsDetails.totalPages - 3}">
+            <span class="page-link">...</span>
+        </li>
+
+        <li th:if="${infoReservoirsDetails.totalPages > 1}"
+            th:class="${infoReservoirsDetails.totalPages - 1 == infoReservoirsDetails.number} ? 'page-item active' : 'page-item'">
+            <a class="page-link" th:href="@{/info(page=${infoReservoirsDetails.totalPages - 1})}"
+               th:text="${infoReservoirsDetails.totalPages}"></a>
+        </li>
+
+        <li th:class="${infoReservoirsDetails.hasNext()} ? 'page-item' : 'page-item disabled'">
+            <a class="page-link" th:if="${infoReservoirsDetails.hasNext()}"
+               th:href="@{/info(page=${infoReservoirsDetails.nextPageable().pageNumber})}">-></a>
+        </li>
+    </ul>
+</nav>
 <div th:if="${!infoReservoirsDetails.isEmpty()}"
         class="container-fluid  position-relative mb-2 " >
     <div class="container" >
