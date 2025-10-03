@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <title>Контакти - Carpmap.bg</title>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta name="keywords" content="website">
+    <meta name="author" content="Nikolay">
+    <th:block th:replace="~{fragments/head}"></th:block>
+</head>
+
+<body>
+<th:block th:replace="~{fragments/topbar}"></th:block>
+<th:block th:replace="~{fragments/navbar}"></th:block>
+<!-- Contact Start -->
+<div class="container-fluid contact bg-light py-5">
+    <div class="container py-5">
+        <div class="mx-auto text-center py-5" style="max-width: 900px;">
+            <h5 class="section-title px-3">Изпрати Съобщение</h5>
+            <h1 class="mb-0 ">Изпрати съобщение от : info@carpmap.bg</h1>
+        </div>
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-12">
+                <h3 class="mb-2 text-center">Съобщение</h3>
+                <form th:method="POST"
+                      th:action="@{/sendMail}">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input
+                                        name="toEmail"
+                                        type="text"
+                                        class="form-control border-0"
+                                        id="toEmail"
+                                        placeholder="Email"
+                                        maxlength="50">
+                                <label for="toEmail">Email</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <input
+                                        name="subject"
+                                        type="text"
+                                        class="form-control border-0"
+                                        id="subject"
+                                        placeholder="Subject">
+                                <label for="subject">Тема</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <textarea
+                                        class="form-control border-0"
+                                        placeholder="Leave a message here"
+                                        name="htmlContent"
+                                        id="htmlContent"
+                                        style="height: 300px"
+                                        maxlength="250"></textarea>
+                                <label for="htmlContent">Съобщение</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <a class="btn btn-primary w-100 py-3"
+                               type="submit"
+                               th:href="@{/mail}">Back
+                            </a>
+                        </div>
+                        <div class="col-8">
+                            <button class="btn btn-warning w-100 py-3"
+                                    type="submit">Send
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+<!-- Footer Start -->
+<th:block th:replace="~{fragments/footer}"></th:block>
+<!-- Footer End -->
+<!-- Back to Top -->
+<a href="#" class="btn btn-primary btn-primary-outline-0 btn-md-square back-to-top"><i class="fa fa-arrow-up"></i></a>
+<!-- JavaScript Libraries -->
+<th:block th:replace="~{fragments/js}"></th:block>
+</body>
+</html>
