@@ -55,6 +55,7 @@ Visit the home page: [Carpmap.bg ](https://carpmap.bg)
 
 - Receive and delete messages
 - View message details
+- send message from info@carpmap.bg
 
 ### **Scheduler**
 
