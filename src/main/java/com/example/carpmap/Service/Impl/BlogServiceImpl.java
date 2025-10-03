@@ -37,7 +37,6 @@ public class BlogServiceImpl implements BlogService {
             Optional<User> byId = userRepository.findById(1L);
             long id = 1;
             //ЗЕЛКА 2
-            blog.setId(id);
             blog.setAuthorName(byId.get().getUsername());
             LocalDate now = LocalDate.now();
             blog.setDateAdded(LocalDate.parse("2023-07-25"));
@@ -49,8 +48,6 @@ public class BlogServiceImpl implements BlogService {
             blogRepository.save(blog);
             System.out.printf(SUCCESSFUL_ADD_BLOG, blog.getTitleBlog(), blog.getDescription(), blog.getAuthorName());
             //ЗЕЛКА 1
-            id++;
-            blog.setId(id);
             blog.setAuthorName(byId.get().getUsername());
             blog.setDateAdded(LocalDate.parse("2022-05-23"));
             blog.setDescription("ЗЕЛКА 1 testing blog descriptions ");
@@ -61,8 +58,6 @@ public class BlogServiceImpl implements BlogService {
             blogRepository.save(blog);
             System.out.printf(SUCCESSFUL_ADD_BLOG, blog.getTitleBlog(), blog.getDescription(), blog.getAuthorName());
             //КУЛЕК
-            id++;
-            blog.setId(id);
             blog.setAuthorName(byId.get().getUsername());
             blog.setDateAdded(LocalDate.parse("2022-06-12"));
             blog.setDescription("КУЛЕК testing blog descriptions ");
@@ -73,8 +68,6 @@ public class BlogServiceImpl implements BlogService {
             blogRepository.save(blog);
             System.out.printf(SUCCESSFUL_ADD_BLOG, blog.getTitleBlog(), blog.getDescription(), blog.getAuthorName());
             //КУЛЕК2
-            id++;
-            blog.setId(id);
             blog.setAuthorName(byId.get().getUsername());
             blog.setDateAdded(LocalDate.parse("2021-06-20"));
             blog.setDescription("КУЛЕК2 descriptions ");
@@ -85,8 +78,6 @@ public class BlogServiceImpl implements BlogService {
             blogRepository.save(blog);
             System.out.printf(SUCCESSFUL_ADD_BLOG, blog.getTitleBlog(), blog.getDescription(), blog.getAuthorName());
             //KULEK 3
-            id++;
-            blog.setId(id);
             blog.setAuthorName(byId.get().getUsername());
             blog.setDateAdded(LocalDate.parse("2021-09-28"));
             blog.setDescription(" Кулеков лейк descriptions ");
