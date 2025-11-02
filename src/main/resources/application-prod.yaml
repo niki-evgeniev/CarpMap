@@ -34,6 +34,12 @@ logging:
     org.springframework.security: INFO
 #    org.apache.coyote.http11.Http11Processor: DEBUG
 #    org.apache.tomcat.util.net: DEBUG
+mailjet:
+  api-key: ${MAILJET_API_KEY}
+  secret-key: ${MAILJET_SECRET_KEY}
+  from-email: info@carpmap.bg
+  from-name: Carpmap.bg
+
 
 
 
