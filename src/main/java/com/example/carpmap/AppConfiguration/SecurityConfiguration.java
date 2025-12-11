@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 
 @Configuration
@@ -113,6 +114,9 @@ public class SecurityConfiguration {
                             .http(80).mapsTo(443)
                             .http(8080).mapsTo(443);
                 }
+//        ).csrf(
+//                csrf ->
+//                        csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
         );
 
         return httpSecurity.build();

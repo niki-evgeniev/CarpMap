@@ -1654,28 +1654,35 @@ body > main > div.container-fluid.packages.py-5 {
 /* Cookie Consent Popup END */
 /* Cookie Consent Popup 2 */
 /* ===== Cookie Consent (toast style) ===== */
-:root{
+:root {
     --cc-bg: #ffffff;
     --cc-text: #1f2937;
     --cc-link: #0ea5e9;
     --cc-border: #e5e7eb;
-    --cc-shadow: 0 12px 40px rgba(0,0,0,.18);
+    --cc-shadow: 0 12px 40px rgba(0, 0, 0, .18);
     --cc-radius: 16px;
 }
 
-.cookie-backdrop{
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,.35);
+.cookie-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .35);
     backdrop-filter: blur(2px);
     z-index: 999;
     display: none;
     opacity: 0;
     transition: opacity .3s ease;
 }
-.cookie-backdrop.show{ display:block; opacity:1; }
 
-.cookie-consent{
-    position: fixed; left: 50%; bottom: 20px;
+.cookie-backdrop.show {
+    display: block;
+    opacity: 1;
+}
+
+.cookie-consent {
+    position: fixed;
+    left: 50%;
+    bottom: 20px;
     transform: translate(-50%, calc(100% + 20px));
     width: min(720px, 92vw);
     display: grid;
@@ -1689,86 +1696,151 @@ body > main > div.container-fluid.packages.py-5 {
     box-shadow: var(--cc-shadow);
     z-index: 1000;
     opacity: 0;
-    transition: transform .45s cubic-bezier(.22,.8,.25,1), opacity .3s ease;
+    transition: transform .45s cubic-bezier(.22, .8, .25, 1), opacity .3s ease;
 }
-.cookie-consent.show{
+
+.cookie-consent.show {
     transform: translate(-50%, 0);
     opacity: 1;
 }
 
 /* иконка */
-.cookie-icon{
+.cookie-icon {
     align-self: start;
-    display:grid; place-items:center;
-    width: 42px; height: 42px;
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
     border-radius: 12px;
     background: #fff7ed;
     border: 1px solid #ffe4d6;
 }
-.cookie-icon i{ font-size: 20px; color: #f59e0b; }
+
+.cookie-icon i {
+    font-size: 20px;
+    color: #f59e0b;
+}
 
 /* текст */
-.cookie-content h6{
-    margin: 0 0 6px; font-size: 16px; font-weight: 700;
+.cookie-content h6 {
+    margin: 0 0 6px;
+    font-size: 16px;
+    font-weight: 700;
 }
-.cookie-content p{
-    margin: 0 0 10px; font-size: 14px; line-height: 1.45;
+
+.cookie-content p {
+    margin: 0 0 10px;
+    font-size: 14px;
+    line-height: 1.45;
 }
-.cookie-content a{ color: var(--cc-link); text-decoration: underline; }
+
+.cookie-content a {
+    color: var(--cc-link);
+    text-decoration: underline;
+}
 
 /* бутони */
-.cookie-actions{ display:flex; gap:8px; flex-wrap:wrap; }
-.cookie-consent .btn{
+.cookie-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.cookie-consent .btn {
     appearance: none;
     border: 1px solid transparent;
-    cursor:pointer;
+    cursor: pointer;
     padding: 8px 12px;
     border-radius: 999px;
     font-weight: 700;
     font-size: 14px;
     transition: transform .05s ease, background .2s ease, border-color .2s ease;
 }
-.btn:active{ transform: translateY(1px); }
-.btn.primary{
-    background: #2563eb; color: #fff;
+
+.btn:active {
+    transform: translateY(1px);
 }
-.btn.primary:hover{ background:#1e4fd6; }
-.btn.ghost{
-    background:#fff; color:#111827; border-color:#e5e7eb;
+
+.btn.primary {
+    background: #2563eb;
+    color: #fff;
 }
-.btn.ghost:hover{ border-color:#cfd3da; }
+
+.btn.primary:hover {
+    background: #1e4fd6;
+}
+
+.btn.ghost {
+    background: #fff;
+    color: #111827;
+    border-color: #e5e7eb;
+}
+
+.btn.ghost:hover {
+    border-color: #cfd3da;
+}
 
 /* close */
-.cookie-close{
-    background: transparent; border: none; cursor: pointer;
-    align-self: start; padding: 6px; border-radius: 8px;
+.cookie-close {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    align-self: start;
+    padding: 6px;
+    border-radius: 8px;
     color: #6b7280;
 }
-.cookie-close:hover{ background: #f3f4f6; }
+
+.cookie-close:hover {
+    background: #f3f4f6;
+}
 
 /* responsive */
-@media (max-width: 520px){
-    .cookie-consent{
+@media (max-width: 520px) {
+    .cookie-consent {
         grid-template-columns: 1fr auto;
         grid-template-areas:
       "icon close"
       "content content";
         gap: 10px;
     }
-    .cookie-icon{ grid-area: icon; }
-    .cookie-content{ grid-column: 1 / -1; }
-    .cookie-close{ grid-area: close; }
+
+    .cookie-icon {
+        grid-area: icon;
+    }
+
+    .cookie-content {
+        grid-column: 1 / -1;
+    }
+
+    .cookie-close {
+        grid-area: close;
+    }
 }
 
 /* dark mode (по желание) */
-@media (prefers-color-scheme: dark){
-    :root{
-        --cc-bg:#0b1220; --cc-text:#e5e7eb; --cc-border:#1f2a44;
-        --cc-shadow: 0 12px 40px rgba(0,0,0,.5);
+@media (prefers-color-scheme: dark) {
+    :root {
+        --cc-bg: #0b1220;
+        --cc-text: #e5e7eb;
+        --cc-border: #1f2a44;
+        --cc-shadow: 0 12px 40px rgba(0, 0, 0, .5);
     }
-    .cookie-icon{ background:#1b2233; border-color:#273045; }
-    .btn.ghost{ background:#0b1220; color:#e5e7eb; border-color:#273045; }
-    .btn.ghost:hover{ border-color:#3a4663; }
+
+    .cookie-icon {
+        background: #1b2233;
+        border-color: #273045;
+    }
+
+    .btn.ghost {
+        background: #0b1220;
+        color: #e5e7eb;
+        border-color: #273045;
+    }
+
+    .btn.ghost:hover {
+        border-color: #3a4663;
+    }
 }
 
 /* Cookie Consent Popup 2 END */
@@ -2068,21 +2140,22 @@ body > main > div.container-fluid.packages.py-5 {
 
 /* SCALE END */
 /* SCALE new */
-:root{
+:root {
     --meter-height: 20px;
     --radius: 999px;
     --track-bg: #ffffff; /* бял фон за празната част */
     --track-border: #e6e8ee;
-    --shadow-inset: 0 1px 2px rgba(0,0,0,.08) inset;
+    --shadow-inset: 0 1px 2px rgba(0, 0, 0, .08) inset;
 }
 
 /* Контейнер */
-.scale{
+.scale {
     width: 92%;
     max-width: 720px;
     margin: 16px auto;
 }
-.scale-title{
+
+.scale-title {
     font-size: 16px;
     font-weight: 600;
     margin: 0 0 8px 0;
@@ -2090,12 +2163,13 @@ body > main > div.container-fluid.packages.py-5 {
 }
 
 /* Лента */
-.bar-wrapper{
+.bar-wrapper {
     display: flex;
     align-items: center;
     gap: 10px;
 }
-.bar-container{
+
+.bar-container {
     position: relative;
     flex: 1;
     height: var(--meter-height);
@@ -2106,34 +2180,38 @@ body > main > div.container-fluid.packages.py-5 {
     box-shadow: var(--shadow-inset);
 }
 
-.bar{
+.bar {
     height: 100%;
     border-radius: var(--radius);
     position: relative;
     transition: width .7s ease;
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,.4);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .4);
 }
-.bar::after{
+
+.bar::after {
     /* лек гланц */
-    content:"";
-    position:absolute; inset:0;
-    background: linear-gradient(180deg, rgba(255,255,255,.4), rgba(255,255,255,0) 60%);
-    pointer-events:none;
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255, 255, 255, .4), rgba(255, 255, 255, 0) 60%);
+    pointer-events: none;
 }
 
 /* Цветове */
-.bar.low{
+.bar.low {
     background: linear-gradient(90deg, #ff7a6a, #c91d1d);
 }
-.bar.medium{
+
+.bar.medium {
     background: linear-gradient(90deg, #ffe08a, #f6b100);
 }
-.bar.high{
+
+.bar.high {
     background: linear-gradient(90deg, #52d6ff, #0072ff);
 }
 
 /* Процент без pill */
-.bar span{
+.bar span {
     position: absolute;
     right: 6px;
     top: 50%;
@@ -2141,53 +2219,113 @@ body > main > div.container-fluid.packages.py-5 {
     font-size: 13px;
     font-weight: 700;
     color: #ffffff;
-    text-shadow: 0 0 3px rgba(0,0,0,0.4);
+    text-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
 }
-.bar.medium span{
+
+.bar.medium span {
     color: #222;
     text-shadow: none;
 }
 
 /* Иконки за предупреждение */
-.warn{ font-size: 18px; }
-.warn.yellow{ color: #f0c000; }
-.warn.red{ color: #cc0000; }
+.warn {
+    font-size: 18px;
+}
+
+.warn.yellow {
+    color: #f0c000;
+}
+
+.warn.red {
+    color: #cc0000;
+}
 
 /* Критично */
-.crit{
+.crit {
     color: #8B0000;
     animation: blink 1s infinite;
 }
-@keyframes blink{
-    0%,100%{ opacity: 1; }
-    50%{ opacity: 0; }
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }
 
 /* SCALE new END */
-.flow-row{
-    display:flex; align-items:center; gap:8px; margin-top:8px; flex-wrap:wrap;
+
+
+.flow-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
 }
-.chip{
-    display:inline-flex; align-items:center; gap:6px;
-    padding:4px 8px; border-radius:999px; font-weight:600; font-size:13px;
-    background:#fff; border:1px solid #e6e8ee;
+
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 13px;
+    background: #fff;
+    border: 1px solid #e6e8ee;
 }
-.chip i{ font-size:13px; opacity:.9; }
 
-.chip.inflow{ background:#f0f7ff; border-color:#d6e8ff; }
-.chip.inflow i{ color:#0072ff; }
+.chip i {
+    font-size: 13px;
+    opacity: .9;
+}
 
-.chip.outflow{ background:#fff4ec; border-color:#ffe1c9; }
-.chip.outflow i{ color:#d66a00; }
+.chip.inflow {
+    background: #f0f7ff;
+    border-color: #d6e8ff;
+}
 
-.chip.net{ background:#f6fff6; border-color:#d8f2d8; }
-.chip.net.pos i{ color:#1a7f37; }
-.chip.net.neg{ background:#fff5f5; border-color:#ffdada; }
-.chip.net.neg i{ color:#b42318; }
+.chip.inflow i {
+    color: #0072ff;
+}
 
-.flow-meta{
-    margin-left:auto; display:flex; align-items:center; gap:6px;
-    color:#6b7280; font-size:12px;
+.chip.outflow {
+    background: #fff4ec;
+    border-color: #ffe1c9;
+}
+
+.chip.outflow i {
+    color: #d66a00;
+}
+
+.chip.net {
+    background: #f6fff6;
+    border-color: #d8f2d8;
+}
+
+.chip.net.pos i {
+    color: #1a7f37;
+}
+
+.chip.net.neg {
+    background: #fff5f5;
+    border-color: #ffdada;
+}
+
+.chip.net.neg i {
+    color: #b42318;
+}
+
+.flow-meta {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #6b7280;
+    font-size: 12px;
 }
 
 .flow-row {
@@ -2198,13 +2336,111 @@ body > main > div.container-fluid.packages.py-5 {
     margin-top: 8px;
     flex-wrap: wrap;
 }
+
 /* при много малки стойности показвай процента извън лентата, вдясно */
-.bar span.outside{
-    right: -8px;                 /* излиза отдясно на запълнената част */
-    transform: translate(100%,-50%);
-    color: #b42318;              /* четимо червено, без сянка */
+.bar span.outside {
+    right: -8px; /* излиза отдясно на запълнената част */
+    transform: translate(100%, -50%);
+    color: #b42318; /* четимо червено, без сянка */
     text-shadow: none;
 }
 
 /* по желание: за да има „точка“, дори при 0% */
-.bar{ min-width: 1px; }
+.bar {
+    min-width: 1px;
+}
+
+
+.chart-wrap {
+    margin-top: 8px;
+}
+
+.lc-svg {
+    width: 95%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.lc-card {
+    fill: none;
+    stroke: #e5e7eb;
+    rx: 12;
+    ry: 12;
+}
+
+.lc-grid {
+    stroke: #eef2f7;
+}
+
+.lc-axis {
+    stroke: #e5e7eb;
+}
+
+.line-total {
+    fill: none;
+    stroke: #22c55e;
+    stroke-width: 2.5;
+}
+
+.line-useful {
+    fill: none;
+    stroke: #0ea5e9;
+    stroke-width: 2.5;
+}
+
+.pt.total {
+    fill: #22c55e;
+}
+
+.pt.useful {
+    fill: #0ea5e9;
+}
+
+.val {
+    font-size: 10px;
+    font-weight: 600;
+    pointer-events: none;
+}
+
+.val.total {
+    fill: #22c55e;
+    text-shadow: 0 0 2px #fff;
+}
+
+.val.useful {
+    fill: #0ea5e9;
+    text-shadow: 0 0 2px #fff;
+}
+
+.xlabel {
+    font-size: 10px;
+    fill: #6b7280;
+    pointer-events: none;
+}
+
+.legend {
+    display: flex;
+    align-items: center;
+    /*justify-content: center;*/
+    gap: 18px;
+    margin-bottom: 8px;
+}
+
+.legend .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    display: inline-block;
+}
+
+.dot.total {
+    background: #22c55e;
+}
+
+.dot.useful {
+    background: #0ea5e9;
+}
+
+/* DIAGRAM START NEW END*/
