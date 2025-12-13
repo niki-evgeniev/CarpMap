@@ -18,17 +18,19 @@
     <meta property="og:url" content="https://carpmap.bg/reservoirs/reservoirsByType/reservoirs">
     <meta property="og:type" content="website">
     <meta property="og:image"
-          content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
+          content="https://carpmap.bg/images/seo/p39fszwndstrcyovmpxk.jpg">
+    <th:block th:replace="~{fragments/facebook}"></th:block>
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Язовири">
     <meta name="twitter:description" content="Всички язовири в България. Намерете информация за различните язовири">
     <meta name="twitter:url" content="https://carpmap.bg/reservoirs/reservoirsByType/reservoirs">
     <meta name="twitter:image"
-          content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
+          content="https://carpmap.bg/images/seo/p39fszwndstrcyovmpxk.jpg">
     <link rel="canonical" href="https://carpmap.bg/reservoirs/reservoirsByType/reservoirs"/>
     <meta property="og:type" content="website">
     <meta property="og:locale" content="bg_BG">
     <th:block th:replace="~{fragments/head}"></th:block>
+    <th:block th:replace="~{fragments/facebook}"></th:block>
     <th:block th:replace="~{fragments/analytics}"></th:block>
 </head>
 <body>
@@ -166,7 +168,8 @@
                     <div class="single-explore-item">
                         <div class="single-explore-img">
                             <a class="image-all-reservoir" th:href="@{/reservoirs/{urlName}(urlName = *{urlName})}">
-                                <img th:src="*{urlImage}" alt="explore image"></a>
+                                <img th:src="*{mainUrlFromDisk}"
+                                     th:alt="'Язовир ' + *{name}"></a>
                         </div>
                         <div class="single-explore-txt bg-theme-1">
                             <h1 style="font-size: 2rem"><a

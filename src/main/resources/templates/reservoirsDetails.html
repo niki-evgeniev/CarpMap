@@ -7,31 +7,31 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="keywords" content="website"
-          th:content="'язовир, информация за язовир, обем, наличен обем ,места за риболов в българия, водоеми, '
+          th:content="'язовир, информация за язовир, обем, графика на състоянието на водата, наличен обем ,места за риболов в българия, водоеми, '
           +  ${details.name}">
     <meta name="title" th:content="'Язовир ' + ${details.name}">
-    <meta name="description" th:content="'Открийте язовир ' + ${details.name} + '! Разгледайте наличен обем вода, карта, риболовни условия, налични видове риби и галерия от снимки. Планирайте своето следващо приключение тук!'">
+    <meta name="description"
+          th:content="'Открийте язовир ' + ${details.name} + '! Разгледайте наличен обем вода, карта, риболовни условия, графика на състоянието на водата налични видове риби и галерия от снимки. Планирайте своето следващо приключение тук!'">
     <meta name="author" content="Nikolay">
     <meta name="robots" content="index, follow">
-    <!-- Open Graph тагове за социални мрежи -->
     <meta property="og:title" th:content="'Язовир ' + ${details.name}">
     <meta property="og:description" th:content="'Информация за язовир ' + ${details.name}">
     <meta property="og:url" th:content="@{https://carpmap.bg/reservoirs/{id}(id = *{details.urlName})}">
     <meta property="og:type" content="website">
     <meta property="og:locate" content="bg_BG">
-    <meta property="og:image" th:content="${details.urlImage}">
-
-    <!-- Twitter Card тагове -->
+    <meta property="og:image" th:content="'https://carpmap.bg' + ${details.urlImage}">
+    <th:block th:replace="~{fragments/facebook}"></th:block>
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" th:content="'Язовир ' + ${details.name}">
     <meta name="twitter:description" th:content="'Информация за язовир ' + ${details.name}">
     <meta name="twitter:url" th:content="@{https://carpmap.bg/reservoirs/{id}(id = *{details.urlName})}">
     <meta name="twitter:image"
-          th:content="${details.urlImage}">
+          th:content="'https://carpmap.bg' + ${details.urlImage}">
     <link rel="canonical" th:href="@{https://carpmap.bg/reservoirs/{id}(id = *{details.urlName})}"/>
     <meta property="og:site_name" content="Carpmap.bg">
     <meta property="og:locale" content="bg_BG">
     <link href="/css/style3.css" rel="stylesheet">
+
     <th:block th:replace="~{fragments/head}"></th:block>
     <th:block th:replace="~{fragments/analytics}"></th:block>
 </head>
@@ -59,7 +59,7 @@
                          th:src="*{urlImage}"
                          data-toggle="modal"
                          data-target="#exampleModal"
-                         alt="ProductS">
+                         th:alt="'Язовир ' + *{name}">
                     <div class="modal fade"
                          id="exampleModal"
                          tabindex="-1"
@@ -77,7 +77,8 @@
                                 </div>
                                 <!--Modal body with image-->
                                 <div class="modal-body">
-                                    <img th:src="*{urlImage}"/>
+                                    <img th:src="*{urlImage}"
+                                         th:alt="'Язовир : ' + *{name}"/>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn"
@@ -122,18 +123,18 @@
                         </p>
                     </div>
                     <th:block th:if="${info != null}">
-                    <div class="product-title text-bold my-3 text-start"
-                         th:text="'Общ обем : ' + ${info.totalVolume} + ' млн.м³'">
-                    </div>
-                    <div class="product-title text-bold my-3 text-start"
-                         th:text="'Наличен обем : ' + ${info.allAvailableVolume} + ' млн.м³'">
-                    </div>
-                    <div class="product-title text-bold my-3 text-start"
-                         th:text="'Наличен полезен обем : ' + ${info.availableVolume} + ' млн.м³'">
-                    </div>
-                    <div class="product-title text-bold my-3 text-start"
-                         th:text="'Санитарен обем : ' + ${info.minimumFlowVolume} + ' млн.м³'">
-                    </div>
+                        <div class="product-title text-bold my-3 text-start"
+                             th:text="'Общ обем : ' + ${info.totalVolume} + ' млн.м³'">
+                        </div>
+                        <div class="product-title text-bold my-3 text-start"
+                             th:text="'Наличен обем : ' + ${info.allAvailableVolume} + ' млн.м³'">
+                        </div>
+                        <div class="product-title text-bold my-3 text-start"
+                             th:text="'Наличен полезен обем : ' + ${info.availableVolume} + ' млн.м³'">
+                        </div>
+                        <div class="product-title text-bold my-3 text-start"
+                             th:text="'Санитарен обем : ' + ${info.minimumFlowVolume} + ' млн.м³'">
+                        </div>
                     </th:block>
                 </div>
             </div>
@@ -141,9 +142,25 @@
     </div>
     <div class="container my-3" th:object="${details}">
         <div th:if="${info != null}"
-                th:object="${info}">
+             th:object="${info}">
             <th:block th:replace="~{fragments/scale}"></th:block>
         </div>
+        <div th:if="${info != null}"
+             class="product-title text-bold my-3 text-start"
+             th:text="'Информацията за обем на водата е от : ' + ${#temporals.format(info.addedDate, 'dd.MM.yyyy')}">
+        </div>
+        <div th:if="${diagramInfo != null  and diagramInfo.size() != 0}"
+             class="product-title text-bold my-3 text-start"
+             th:text="'Тримесечна диаграма на нивото на водата. Данните се събират в началото на първия работен ден от всяка седмица.'">
+        </div>
+
+
+        <div th:if="${diagramInfo != null  and diagramInfo.size() != 0}"
+             th:object="${diagramInfo}">
+            <th:block th:replace="~{fragments/diagram}"></th:block>
+        </div>
+
+
         <script>
             document.querySelectorAll(".scale").forEach(el => {
                 el.style.maxWidth = "100%";
@@ -155,10 +172,6 @@
                 el.style.height = "30px";
             });
         </script>
-        <div th:if="${info != null}"
-             class="product-title text-bold my-3 text-start"
-             th:text="'Информацията за обем на водата е от : ' + ${#temporals.format(info.addedDate, 'dd.MM.yyyy')}">
-        </div>
         <div th:if="${info != null}"
              class="product-title text-bold my-3 text-start"
              th:text="'Източник: МОСВ'">
@@ -198,23 +211,32 @@
 
         max-width: 900px;">
             <h5 class="section-title px-3">Gallery</h5>
-            <h1  class="mb-4">Галерия</h1>
-            <h2 class="details-title text-color mb-1" th:text="'Галерия от най-популярните снимки на язовир ' + ${details.name}"></h2>
+            <h1 class="mb-4">Галерия</h1>
+            <h2 class="details-title text-color mb-1"
+                th:text="'Галерия от най-популярните снимки на язовир ' + ${details.name}"></h2>
         </div>
         <div class="tab-class text-center">
             <div class="tab-content">
                 <div id="GalleryTab-1" class="tab-pane fade show p-0 active">
                     <div class="row g-2">
-                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3" th:each="pic : ${pictures}">
+                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3"
+                             th:each="pic, iterStat  : ${pictures}">
                             <div class="gallery-item h-100">
-                                <img th:src="${pic.getImageURL()}" class="img-fluid w-100 h-100 rounded" alt="Image">
+                                <img th:src="${pic.getImageURL()}"
+                                     class="img-fluid w-100 h-100 rounded"
+                                     th:alt="'Галерия : ' + *{details.name} + ' ' +  ${iterStat.index}">
                                 <div class="gallery-plus-icon">
-                                    <a th:href="${pic.getImageURL()}" data-lightbox="gallery-2" class="my-auto">
+                                    <a th:href="${pic.getImageURL()}"
+                                       data-lightbox="gallery-2"
+                                       class="my-auto">
                                         <i class="fas fa-search fa-2x text-white"></i></a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="product-title my-3 text-start text-end"
+                     th:text="'Снимки от различни източници.'">
                 </div>
             </div>
         </div>
