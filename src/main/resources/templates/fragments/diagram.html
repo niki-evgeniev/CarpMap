@@ -1,0 +1,57 @@
+<div class="legend justify-content-center">
+    <span><i class="dot total "></i> Общ обем (%)</span>
+    <span><i class="dot useful"></i> Полезен обем (%)</span>
+</div>
+
+<div class="chart-wrap">
+    <svg class="lc-svg"
+         th:attr="viewBox=|0 0 ${W} ${H}|"
+         preserveAspectRatio="none">
+
+        <rect class="lc-card"
+              th:attr="x=1, y=1, width=${W-2}, height=${H-2}"></rect>
+
+        <g class="lc-grid"
+           th:with="y1=${padT + (H - padT - padB) * 0.25},
+                y2=${padT + (H - padT - padB) * 0.50},
+                y3=${padT + (H - padT - padB) * 0.75}">
+            <line th:attr="x1=${padL}, y1=${y1}, x2=${W-padR}, y2=${y1}"></line>
+            <line th:attr="x1=${padL}, y1=${y2}, x2=${W-padR}, y2=${y2}"></line>
+            <line th:attr="x1=${padL}, y1=${y3}, x2=${W-padR}, y2=${y3}"></line>
+        </g>
+
+        <polyline class="line-total" th:attr="points=${pointsTotal}"></polyline>
+        <polyline class="line-useful" th:attr="points=${pointsUseful}"></polyline>
+
+        <g th:with="n=${#lists.size(diagramInfo)},
+                step=${(W - padL - padR) / (n - 1.0)},
+                height=${H - padT - padB}">
+
+            <g th:each="p, iStat : ${diagramInfo}">
+                <!-- координати -->
+                <g th:with="
+              x=${padL + iStat.index * step},
+              yTotal=${padT + (100 - (p.totalVolume?:0))  * (height / 100.0)},
+              yUseful=${padT + (100 - (p.usefulVolume?:0)) * (height / 100.0)}">
+                    <circle class="pt total" th:attr="cx=${x}, cy=${yTotal}, r=3"></circle>
+                    <text class="val total" th:attr="x=${x}, y=${yTotal - 8}"
+                          th:text="${#numbers.formatDecimal(p.totalVolume?:0,1,1) + '%'}"></text>
+
+                    <circle class="pt useful" th:attr="cx=${x}, cy=${yUseful}, r=3"></circle>
+                    <text class="val useful" th:attr="x=${x}, y=${yUseful + 12}"
+                          th:text="${#numbers.formatDecimal(p.usefulVolume?:0,1,1) + '%'}"></text>
+                </g>
+            </g>
+        </g>
+        <g class="xlabels"
+           th:with="n=${#lists.size(labels)},
+                step=${(W - padL - padR) / (n - 1.0)}">
+            <text class="xlabel"
+                  th:each="lbl, iStat : ${labels}"
+                  text-anchor="middle"
+                  th:attr="x=${padL + iStat.index * step}, y=${H - padB + 18}"
+                  th:text="${lbl}"></text>
+        </g>
+    </svg>
+</div>
+

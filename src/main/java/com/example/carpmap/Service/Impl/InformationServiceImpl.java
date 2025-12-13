@@ -1,8 +1,10 @@
 package com.example.carpmap.Service.Impl;
 
+import com.example.carpmap.Models.DTO.DiagramInfoDTO;
 import com.example.carpmap.Models.DTO.InfoReservoirDTO;
 import com.example.carpmap.Models.DTO.ReservoirInfoDTO;
 import com.example.carpmap.Models.DTO.ReservoirRepositoryDTO;
+import com.example.carpmap.Models.Entity.Reservoir;
 import com.example.carpmap.Repository.ReservoirRepository;
 import com.example.carpmap.Service.InformationService;
 import org.springframework.data.domain.Page;
@@ -13,8 +15,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InformationServiceImpl implements InformationService {
@@ -22,7 +26,6 @@ public class InformationServiceImpl implements InformationService {
     private final WebClient webClient;
     private final ReservoirRepository reservoirRepository;
     private final String apiUrlAddress = "http://localhost:8181/api/info";
-    private final String apiUrlAddressReservoir = "http://localhost:8181/api/";
 
     public InformationServiceImpl(WebClient webClient, ReservoirRepository reservoirRepository) {
         this.webClient = webClient;
@@ -32,8 +35,17 @@ public class InformationServiceImpl implements InformationService {
     @Override
     public Page<ReservoirInfoDTO> getAllInformation(Pageable pageable) {
         List<ReservoirInfoDTO> informationReservoir = getApiInformation();
+        Optional<Reservoir> first = reservoirRepository.findFirstBy();
+        Reservoir reservoir = first.get();
+
         if (!informationReservoir.isEmpty()) {
-            List<ReservoirRepositoryDTO> findAllImages = reservoirRepository.findAllNameAndImageUrl();
+            List<ReservoirRepositoryDTO> findAllImages;
+            if (reservoir.isLoadFromDisk()) {
+                findAllImages = reservoirRepository.findAllNameAndImageUrlFromDisk();
+            } else {
+                findAllImages = reservoirRepository.findAllNameAndImageUrl();
+            }
+//            List<ReservoirRepositoryDTO> findAllImages = reservoirRepository.findAllNameAndImageUrl();
             for (ReservoirInfoDTO infoReservoir : informationReservoir) {
                 String reservoirName = infoReservoir.getName();
                 for (ReservoirRepositoryDTO image : findAllImages) {
@@ -68,6 +80,32 @@ public class InformationServiceImpl implements InformationService {
             infoReservoirDTO.setAllAvailableVolume(String.format("%.2f", allAvailableVolume));
         }
         return infoReservoirDTO;
+    }
+
+    @Override
+    public List<DiagramInfoDTO> getDiagramInformation(String name) {
+        String apiReservoirInfo = "http://localhost:8181/api/getDiagramInfo/" + name;
+        List<DiagramInfoDTO> diag = getDiagramInfoDTOS(apiReservoirInfo);
+        return diag;
+    }
+
+    private List<DiagramInfoDTO> getDiagramInfoDTOS(String apiReservoirInfo) {
+        List<DiagramInfoDTO> diag;
+        try {
+            diag = webClient.get()
+                    .uri(apiReservoirInfo)
+                    .retrieve()
+                    .bodyToFlux(DiagramInfoDTO.class)
+                    .collectList()
+                    .block();
+            return diag;
+        } catch (WebClientResponseException e) {
+            System.err.println("API NOT WORK " + e.getMessage());
+            return null;
+        } catch (Exception e) {
+            System.err.println("Unexpected error: " + e.getMessage());
+            return null;
+        }
     }
 
     private InfoReservoirDTO getApiInfoReservoir(String link) {

@@ -1,5 +1,6 @@
 package com.example.carpmap.Controller;
 
+import com.example.carpmap.Models.DTO.DiagramInfoDTO;
 import com.example.carpmap.Models.DTO.InfoReservoirDTO;
 import com.example.carpmap.Models.DTO.Reservoirs.*;
 import com.example.carpmap.Models.DTO.SearchDTO;
@@ -18,6 +19,8 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -141,13 +144,64 @@ public class ReservoirsController {
         List<ReservoirPicturesDTO> reservoirPicturesList = pictureService.getAllReservoirPictureByName(name);
         if (reservoirPicturesList == null) {
             return new ModelAndView("errors/errorFindPage");
+
         }
         InfoReservoirDTO infoReservoirDTO = informationService.getInfoReservoir(name);
+
+        List<DiagramInfoDTO> diagramInfo = informationService.getDiagramInformation(name);
+
+        if (diagramInfo != null) {
+            int W = 720, H = 260, padL = 40, padR = 50, padT = 12, padB = 36;
+            List<Double> total = diagramInfo.stream().map(DiagramInfoDTO::getTotalVolume).toList();
+            List<Double> useful = diagramInfo.stream().map(DiagramInfoDTO::getUsefulVolume).toList();
+
+            String pointsTotal = buildPolylinePoints(total, W, H, padL, padR, padT, padB);
+            String pointsUseful = buildPolylinePoints(useful, W, H, padL, padR, padT, padB);
+
+            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yy");
+            List<String> labels = diagramInfo.stream()
+                    .map(d -> d.getDate().format(dateTimeFormatter))
+                    .toList();
+
+            modelAndView.addObject("name", name);
+            modelAndView.addObject("diagramInfo", diagramInfo);
+            modelAndView.addObject("labels", labels);
+            modelAndView.addObject("pointsTotal", pointsTotal);
+            modelAndView.addObject("pointsUseful", pointsUseful);
+            modelAndView.addObject("W", W);
+            modelAndView.addObject("H", H);
+            modelAndView.addObject("padL", padL);
+            modelAndView.addObject("padR", padR);
+            modelAndView.addObject("padT", padT);
+            modelAndView.addObject("padB", padB);
+
+        }
+
         modelAndView.addObject("details", reservoirsDetailsDTO);
         modelAndView.addObject("pictures", reservoirPicturesList);
         modelAndView.addObject("info", infoReservoirDTO);
         return modelAndView;
 
+    }
+
+    private static String buildPolylinePoints(List<Double> values,
+                                              int W, int H,
+                                              int padL, int padR, int padT, int padB) {
+        int n = values.size();
+        if (n < 2) return "";
+        double width = W - padL - padR;
+        double height = H - padT - padB;
+        double stepX = width / (n - 1);
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            double v = values.get(i) == null ? 0d : Math.max(0, Math.min(100, values.get(i)));
+            double x = padL + i * stepX;
+            double y = padT + (100 - v) * (height / 100.0); // 0% долу, 100% горе
+            if (i > 0) sb.append(' ');
+            sb.append(String.format(java.util.Locale.US, "%.2f,%.2f", x, y));
+        }
+        return sb.toString();
     }
 
 
