@@ -8,13 +8,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="язовири, информация за язовири,  водоеми,
         състоянието на язовирите, наличен обем вада, състояние нивата на вода на язовирите, ниво на водата на язовирите, налична вода в язовирите">
+    <meta name="title" content="Състояние на язовирите в България - ниво на водата, полезен обем, наличен обем и други">
     <meta name="description" content="Актуален списък на язовирите с информация за ниво на водата, наличен и максимален обем, санитарен обем и снимка. Разгледайте детайлни данни за всеки водоем.">
     <meta name="author" content="Nikolay">
     <meta name="robots" content="index, follow">
     <meta property="og:title" content="Състояние на язовирите - Carpmap.bg">
-    <meta property="og:description" content="Разгледайте информация за различни язовири и тяхното състояние.">
+    <meta property="og:description" content="Актуален списък на язовирите с информация за ниво на водата, наличен и максимален обем, санитарен обем и снимка. Разгледайте детайлни данни за всеки водоем.">
+    <meta property="og:url" content="https://carpmap.bg/info">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="bg_BG">
+    <meta property="og:image"
+          content="https://carpmap.bg/images/seo/p39fszwndstrcyovmpxk.jpg">
+    <th:block th:replace="~{fragments/facebook}"></th:block>
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Нива на водата в язовири">
+    <meta name="twitter:description" content="Състояние на язовирите в България - ниво на водата, полезен обем, наличен обем и други">
+    <meta name="twitter:url" content="https://carpmap.bg/info">
+    <meta name="twitter:image"
+          content="https://carpmap.bg/images/seo/p39fszwndstrcyovmpxk.jpg">
+    <link rel="canonical" href="https://carpmap.bg/info"/>
+
     <th:block th:replace="~{fragments/head}"></th:block>
     <th:block th:replace="~{fragments/analytics}"></th:block>
 </head>
@@ -118,7 +131,7 @@
                      th:src="*{mainUrlImage}"
                      data-toggle="modal"
                      data-target="#exampleModal"
-                     alt="ProductS"
+                     th:alt="'Язовир : ' + *{name}"
                      style="max-width: 636px; max-height: 338px;">
             </div>
         </div>
