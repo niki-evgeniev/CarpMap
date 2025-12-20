@@ -34,6 +34,7 @@ public class UserController {
     @GetMapping("login")
     public ModelAndView login(HttpServletRequest request) {
         ipAddressService.checkIpAddressAndAddToDB(request.getRemoteAddr());
+        request.getSession(true);
         System.out.println("LOGIN type opening");
         return new ModelAndView("login");
     }

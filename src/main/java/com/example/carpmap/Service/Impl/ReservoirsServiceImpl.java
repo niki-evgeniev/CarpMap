@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static com.example.carpmap.Cammon.ErrorMessages.*;
 import static com.example.carpmap.Cammon.SuccessfulMessages.*;
@@ -144,7 +145,11 @@ public class ReservoirsServiceImpl implements ReservoirsService {
 
         Page<ReservoirAllDTO> reservoirByType = allByReservoirType
                 .map(reservoir -> {
-                    return modelMapper.map(reservoir, ReservoirAllDTO.class);
+                    ReservoirAllDTO map = modelMapper.map(reservoir, ReservoirAllDTO.class);
+                    if (reservoir.isLoadFromDisk()){
+                        map.setUrlImage(reservoir.getMainUrlFromDisk());
+                    }
+                    return map;
                 });
         return reservoirByType;
     }
@@ -197,6 +202,9 @@ public class ReservoirsServiceImpl implements ReservoirsService {
         List<FishNameDTO> fihsNameList = new ArrayList<>();
 
         if (findReservoir.isPresent()) {
+            if(findReservoir.get().isLoadFromDisk()){
+                reservoirsDetailsDTO.setUrlImage(findReservoir.get().getMainUrlFromDisk());
+            }
             Reservoir reservoirCount = findReservoir.get();
             if (reservoirCount.getCountVisitors() == null) {
                 reservoirCount.setCountVisitors(Integer.parseInt(String.valueOf(1)));

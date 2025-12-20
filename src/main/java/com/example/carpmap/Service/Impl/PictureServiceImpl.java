@@ -33,6 +33,7 @@ public class PictureServiceImpl implements PictureService {
     @Override
     public List<ReservoirPicturesDTO> getAllReservoirPicture(Long id) {
         List<Picture> allByReservoirId = pictureRepository.findAllByReservoirId(id);
+//        List<Picture> allByReservoirId = pictureRepository.findAllByReservoirIdAndLoadFromDisk(id, true);
         List<ReservoirPicturesDTO> allPicture = allByReservoirId.stream()
                 .map(this::reservoirPicturesDTO)
                 .toList();
@@ -78,14 +79,29 @@ public class PictureServiceImpl implements PictureService {
     @Override
     public List<ReservoirPicturesDTO> getAllReservoirPictureByName(String name) {
         Optional<Reservoir> reservoirByName = reservoirRepository.findByName(name);
+
         if (reservoirByName.isPresent()) {
-            List<Picture> allByReservoirId = pictureRepository.findAllByReservoirId(reservoirByName.get().getId());
-            List<ReservoirPicturesDTO> allPicture = allByReservoirId.stream()
-                    .map(this::reservoirPicturesDTO)
-                    .toList();
-            return allPicture;
+            Long id = reservoirByName.get().getId();
+            List<Picture> allByReservoirId = pictureRepository.findAllByReservoirId(id);
+            Picture picture = allByReservoirId.get(0);
+            if (!picture.isLoadFromDisk()) {
+                List<ReservoirPicturesDTO> allPicture = allByReservoirId.stream()
+                        .map(this::reservoirPicturesDTO)
+                        .toList();
+                return allPicture;
+            } else {
+                List<ReservoirPicturesDTO> allFromDisk = new ArrayList<>();
+                for (Picture pic : allByReservoirId) {
+                    String imageDiskUrl = pic.getImageDiskUrl();
+                    ReservoirPicturesDTO reservoirPicturesDTO = new ReservoirPicturesDTO();
+                    reservoirPicturesDTO.setImageURL(imageDiskUrl);
+                    allFromDisk.add(reservoirPicturesDTO);
+                }
+                return allFromDisk;
+            }
         }
-        System.out.println("Method name: getAllReservoirPictureByName" );
+
+        System.out.println("Method name: getAllReservoirPictureByName");
         return null;
     }
 

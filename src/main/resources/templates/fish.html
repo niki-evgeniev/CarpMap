@@ -7,20 +7,21 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta name="keywords" content="website"
           th:content="'риба, информация за риба, срещани риби в българия, видове риби, '">
-    <meta name="title" content="Всичко за рибата в България">
+    <meta name="title" content="Всичко за рибате в България">
     <meta name="description"
           content="Всички видове риби България. Намерете информация и снимки за видовете риби в България">
     <meta name="author" content="Nikolay">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Всичкo за рибата в България">
+    <meta property="og:title" content="Всичкo за рибате в България">
     <meta property="og:description"
           content="Всички видове риби България. Намерете информация и снимки за видовете риби в България">
     <meta property="og:url" content="https://carpmap.bg/fish-list-type/fishing-type">
     <meta property="og:type" content="website">
     <meta property="og:image"
           content="https://carpmap.bg/imagesApp/fishList/niki.evgeniev/064dde06-7607-4dfa-8c78-169a7f2372ae.jpg">
+    <th:block th:replace="~{fragments/facebook}"></th:block>
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Всички за рибата в България">
+    <meta name="twitter:title" content="Всички за рибате в България">
     <meta name="twitter:description"
           content="Всички видове риби България. Намерете информация и снимки за видовете риби в България">
     <meta name="twitter:url" content="https://carpmap.bg/fish-list-type/fishing-type">
@@ -119,12 +120,12 @@
             <div class="row">
                 <div th:each="fishList : ${allFishList.getContent()}"
                      th:object="${fishList}"
-                     class="cardres col-md-2 col-sm-6">
+                     class="cardres col-md-3 col-sm-6">
                     <div class="single-explore-item">
                         <div class="single-explore-img fish-list">
                             <a class="image-all-reservoir"
                                th:href="@{/fish-list-type/{urlName}(urlName = *{urlName})}">
-                                <img alt="explore image"
+                                <img th:alt="'Риба ' + *{name}"
                                      th:src="*{imageUrl}"></a>
                         </div>
                         <div class="single-explore-txt bg-theme-1">

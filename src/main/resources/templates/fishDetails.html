@@ -21,6 +21,7 @@
     <meta property="og:type" content="website">
     <meta property="og:locate" content="bg_BG">
     <meta property="og:image" th:content="'https://carpmap.bg' + ${fishDetailsDTO.imageUrl}">
+    <th:block th:replace="~{fragments/facebook}"></th:block>
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" th:content="'Всичко за рибата ' + ${fishDetailsDTO.name}">
     <meta name="twitter:description" th:content="'Научете повече за рибата ' + ${fishDetailsDTO.name} ">
@@ -59,7 +60,7 @@
                          th:src="*{imageUrl}"
                          data-toggle="modal"
                          data-target="#exampleModal"
-                         alt="ProductS">
+                         th:alt="'Риба ' + *{name}">
                     <div class="modal fade"
                          id="exampleModal"
                          tabindex="-1"

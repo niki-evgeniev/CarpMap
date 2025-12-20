@@ -18,6 +18,8 @@ public class ReservoirAllDTO {
 
     private String urlImage;
 
+    private String mainUrlFromDisk;
+
     private String countryCode;
 
     private String countVisitors;
@@ -105,5 +107,13 @@ public class ReservoirAllDTO {
 
     public void setReservoirType(ReservoirType reservoirType) {
         this.reservoirType = reservoirType;
+    }
+
+    public String getMainUrlFromDisk() {
+        return mainUrlFromDisk;
+    }
+
+    public void setMainUrlFromDisk(String mainUrlFromDisk) {
+        this.mainUrlFromDisk = mainUrlFromDisk;
     }
 }

@@ -8,9 +8,9 @@
                         България</a>
                     <a href="mailto:info@carpmap.bg"><i class="fas fa-envelope me-2"></i> info@carpmap.bg</a>
                     <a sec:authorize="isAuthenticated() and hasRole('MODERATOR')"
-                            id="phone1" href="tel:+359899287088"><i class="fas fa-phone me-2"></i> +359 899 28 70 88</a>
+                       id="phone1" href="tel:+359899287088"><i class="fas fa-phone me-2"></i> +359 899 28 70 88</a>
                     <a sec:authorize="isAuthenticated() and hasRole('MODERATOR')"
-                            id="phone2" href="tel:+359899524251"><i class="fas fa-phone me-2"></i> +359 899 52 42 51</a>
+                       id="phone2" href="tel:+359899524251"><i class="fas fa-phone me-2"></i> +359 899 52 42 51</a>
                     <div class="d-flex align-items-center">
                         <i class="fas fa-share fa-2x text-white me-2"></i>
                         <a class="btn-square btn btn-primary rounded-circle mx-1"
@@ -100,6 +100,7 @@
         </div>
     </div>
 </div>
+<!--<th:block th:replace="~{fragments/banner}"></th:block>-->
 <div class="container-fluid copyright text-body py-3">
     <div class="container">
         <div class="row g-6 align-items-center">
@@ -109,7 +110,28 @@
                 reserved.
             </div>
             <div class="col-md-6 text-center text-md-start">
-                Created by: <a class="text-white" href="https://www.facebook.com/Psyhopath/">Nikolay Ivanov</a>
+                Created by:
+                <!--                <a class="text-white" href="https://www.facebook.com/Psyhopath/">Nikolay Ivanov</a>-->
+                <a class="text-white force-blank"
+                   href="https://m.facebook.com/Psyhopath/"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    Nikolay Ivanov
+                </a>
+                <script>
+                    document.addEventListener('click', function (e) {
+                        const a = e.target.closest('a.force-blank');
+                        if (!a) return;
+                        e.preventDefault();
+                        e.stopPropagation();
+                        try {
+                            window.open(a.href, '_blank', 'noopener');
+                        } catch (err) {
+                            location.href = a.href;
+                        }
+                    }, true);
+                </script>
+
             </div>
         </div>
     </div>

@@ -1,65 +1,142 @@
-<div class="sponsor-banner">
-    <div class="scrolling-text">
-        🏁 Спонсори:
-        <a href="https://www.carsafeandsound.bg" target="_blank">www.carsafeandsound.bg</a>
-        <a href="https://www.carpmap.online" target="_blank">www.carpmap.online</a>
-        <a href="https://www.stcnc.eu" target="_blank">www.stcnc.eu</a>
+<!--<div class="sponsor-banner" role="region" aria-label="Съобщение">-->
+<!--    <div class="ticker-track">-->
+<!--        <div class="ticker-content">-->
+<!--           Carpmap.bg -  В момента добавяме нови функционалности към сайта. Ако срещнете затруднения или проблеми, моля свържете се с нас :-->
+<!--&lt;!&ndash;            <a th:href="@{/contact}" target="_blank" rel="noopener">Контакти</a>&ndash;&gt;-->
+<!--            <a th:href="@{/contact}"-->
+<!--               th:classappend="${currentUrl != null and currentUrl.startsWith('/contact')} ? ' active'"-->
+<!--               >Контакт</a>-->
+<!--            или-->
+<!--            <a href="mailto:info@carpmap.bg" target="_blank" rel="noopener">info@carpmap.bg</a>-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Дубликат за безшевен скрол &ndash;&gt;-->
+<!--        <div class="ticker-content" aria-hidden="true">-->
+<!--            Carpmap.bg - В момента добавяме нови функционалности към сайта. Ако срещнете затруднения или проблеми, моля свържете се с нас :-->
+<!--            <a th:href="@{/contact}"-->
+<!--               th:classappend="${currentUrl != null and currentUrl.startsWith('/contact')} ? ' active'"-->
+<!--            >Контакт</a>-->
+<!--            или-->
+<!--            <a href="mailto:info@carpmap.bg" target="_blank" rel="noopener">info@carpmap.bg</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<div class="sponsor-banner" role="region" aria-label="Съобщение">
+    <div class="ticker-track">
+        <div class="ticker-content">
+            Carpmap.bg – Един неочакван гост се появи за празниците… зелен е, мрънка и е доста чаровен!
+            Вижте го в OLX:
+            <!--            <a th:href="@{/contact}" target="_blank" rel="noopener">Контакти</a>-->
+            <a href="https://www.olx.bg/d/ad/grinch-grinch-igrachka-CID139-ID9Ts8S.html?bs=olx_pro_listing">
+                <b>Гринч</b>
+            </a>
+        </div>
+        <!-- Дубликат за безшевен скрол -->
+        <div class="ticker-content" aria-hidden="true">
+            Carpmap.bg – Един неочакван гост се появи за празниците… зелен е, мрънка и е доста чаровен!
+            Вижте го в OLX:
+            <a href="https://www.olx.bg/d/ad/grinch-grinch-igrachka-CID139-ID9Ts8S.html?bs=olx_pro_listing">
+                <b>Гринч</b>
+            </a>
+        </div>
     </div>
 </div>
 
 <style>
     .sponsor-banner {
+        --speed: 26s; /* десктоп скорост */
         width: 100%;
-        height: 70px;
-        background-color: #1e1e1e;
+        height: 50px;
+        background: #1e1e1e;
         overflow: hidden;
         display: flex;
         align-items: center;
-        padding: 0 10px;
         box-sizing: border-box;
+        position: relative;
     }
 
-    .scrolling-text {
-        display: inline-block;
+    /* лек градиент по краищата за по-приятно изчезване/поява */
+    .sponsor-banner::before,
+    .sponsor-banner::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 40px;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    .sponsor-banner::before {
+        left: 0;
+        background: linear-gradient(to right, #1e1e1e, transparent);
+    }
+
+    .sponsor-banner::after {
+        right: 0;
+        background: linear-gradient(to left, #1e1e1e, transparent);
+    }
+
+    .ticker-track {
+        display: flex;
+        gap: 4rem; /* разстояние между двете копия */
+        width: max-content; /* ширина колкото съдържанието */
+        will-change: transform;
+        animation: ticker var(--speed) linear infinite;
+    }
+
+    .sponsor-banner:hover .ticker-track,
+    .sponsor-banner:focus-within .ticker-track {
+        animation-play-state: paused; /* пауза при hover/focus */
+    }
+
+    .ticker-content {
+        flex: 0 0 auto; /* не свивай текста */
         white-space: nowrap;
-        font-size: 1.5rem;
-        color: white;
-        font-family: sans-serif;
-        animation: scroll-left 20s linear infinite;
+        font-size: 1.25rem;
+        color: #fff;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
     }
 
-    .sponsor-banner:hover .scrolling-text {
-        animation-play-state: paused;
-    }
-
-    .scrolling-text a {
-        color: #00bfff;
+    .ticker-content a {
+        /*color: #00bfff;*/
+        color: #05f353;;
         text-decoration: none;
         margin: 0 20px;
-        font-weight: bold;
+        font-weight: 700;
     }
 
-    @keyframes scroll-left {
-        0% {
-            transform: translateX(100%);
+    @keyframes ticker {
+        from {
+            transform: translateX(0);
         }
-        100% {
-            transform: translateX(-100%);
+        to {
+            transform: translateX(-50%);
         }
+        /* премести с ширината на първото копие */
     }
 
-    /* Responsive adjustments */
+    /* Мобилен: по-малък шрифт и по-бърза анимация = текстът се вижда веднага и минава по-бързо */
     @media (max-width: 600px) {
-        .scrolling-text {
+        .sponsor-banner {
+            height: 64px;
+            --speed: 20s;
+        }
+
+        .ticker-content {
             font-size: 1rem;
         }
 
-        .sponsor-banner {
-            height: 80px;
+        .ticker-content a {
+            margin: 0 12px;
         }
+    }
 
-        .scrolling-text a {
-            margin: 0 10px;
+    /* Намалено движение: спри анимацията изцяло за достъпност */
+    @media (prefers-reduced-motion: reduce) {
+        .ticker-track {
+            animation: none;
         }
     }
 </style>
+

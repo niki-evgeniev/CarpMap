@@ -33,6 +33,12 @@ public class Reservoir extends BaseEntity {
     @Column(name = "main_url_image")
     private String mainUrlImage;
 
+    @Column(name = "main_url_from_disk")
+    private String mainUrlFromDisk;
+
+    @Column(name = "load_from_disk")
+    private boolean loadFromDisk = true;
+
     @Column(name = "create_date")
     private LocalDateTime createDate;
 
@@ -124,6 +130,22 @@ public class Reservoir extends BaseEntity {
 
     public void setMainUrlImage(String mainUrlImage) {
         this.mainUrlImage = mainUrlImage;
+    }
+
+    public boolean isLoadFromDisk() {
+        return loadFromDisk;
+    }
+
+    public void setLoadFromDisk(boolean loadFromDisk) {
+        this.loadFromDisk = loadFromDisk;
+    }
+
+    public String getMainUrlFromDisk() {
+        return mainUrlFromDisk;
+    }
+
+    public void setMainUrlFromDisk(String mainUrlFromDisk) {
+        this.mainUrlFromDisk = mainUrlFromDisk;
     }
 
     public LocalDateTime getCreateDate() {

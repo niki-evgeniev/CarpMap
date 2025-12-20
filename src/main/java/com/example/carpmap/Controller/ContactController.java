@@ -28,6 +28,7 @@ public class ContactController {
     @GetMapping("/contact")
     public ModelAndView contact(HttpServletRequest request) {
         ipAddressService.checkIpAddressAndAddToDB(request.getRemoteAddr());
+        request.getSession(true);
         ModelAndView modelAndView = new ModelAndView("contact");
         modelAndView.addObject("currentUrl", request.getRequestURI());
         String navbarTransparent = "navbar";

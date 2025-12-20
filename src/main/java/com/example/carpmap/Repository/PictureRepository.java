@@ -10,4 +10,6 @@ import java.util.List;
 public interface PictureRepository extends JpaRepository<Picture, Long> {
 
     List<Picture> findAllByReservoirId(Long id);
+
+        List<Picture> findAllByReservoirIdAndLoadFromDisk(Long id, boolean load);
 }

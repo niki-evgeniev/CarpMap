@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.example'
-version = '3.0.1'
+version = '3.0.8'
 
 java {
     toolchain {
@@ -40,7 +40,7 @@ dependencies {
     implementation 'com.github.oshi:oshi-core:6.6.1'
 
     runtimeOnly 'com.mysql:mysql-connector-j'
-    
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
 }

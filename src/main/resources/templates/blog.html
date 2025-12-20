@@ -16,13 +16,14 @@
     <meta property="og:url" content="https://carpmap.bg/blog">
     <meta property="og:type" content="website">
     <meta property="og:image"
-          content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1716244110/Carp/blog/apflstxyrmvayqmm3d4d.jpg">
+          content="https://carpmap.bg/images/seo/apflstxyrmvayqmm3d4d.jpg">
+    <th:block th:replace="~{fragments/facebook}"></th:block>
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Нашия Блог">
     <meta name="twitter:description" content="Нашия Блог. Тук ще намерите нашите излети на язовири от Carpoholics">
     <meta name="twitter:url" content="https://carpmap.bg/blog">
     <meta name="twitter:image"
-          content="https://res.cloudinary.com/dsy8h2u3x/image/upload/v1713743723/carouse/p39fszwndstrcyovmpxk.jpg">
+          content="https://carpmap.bg/images/seo/p39fszwndstrcyovmpxk.jpg">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="bg_BG">
     <th:block th:replace="~{fragments/head}"></th:block>
@@ -54,7 +55,8 @@
                         <div class="blog-img">
                             <div class="blog-img-inner">
                                 <img class="img-fluid w-100 rounded-top"
-                                     th:src="*{urlImage}" alt="Image">
+                                     th:src="*{urlImage}"
+                                     th:alt="*{titleBlog}">
                                 <div class="blog-icon">
                                     <a th:href="*{urlVideo}" class="my-auto">
                                         <i class="fas fa-link fa-2x text-white"></i></a>

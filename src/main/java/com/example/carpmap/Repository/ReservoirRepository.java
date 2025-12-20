@@ -34,5 +34,10 @@ public interface ReservoirRepository extends JpaRepository<Reservoir, Long> {
     @Query("SELECT new com.example.carpmap.Models.DTO.ReservoirRepositoryDTO(r.name, r.mainUrlImage, r.urlName) FROM Reservoir r" )
     List<ReservoirRepositoryDTO> findAllNameAndImageUrl();
 
+    Optional<Reservoir> findFirstBy();
+
+    @Query("SELECT new com.example.carpmap.Models.DTO.ReservoirRepositoryDTO(r.name, r.mainUrlFromDisk, r.urlName) FROM Reservoir r" )
+    List<ReservoirRepositoryDTO> findAllNameAndImageUrlFromDisk();
+
 }
 
