@@ -1502,7 +1502,7 @@ body > main > div.container-fluid.packages.py-5 {
 
 @media (max-height: 650px), (max-width: 300px) {
     .info-server {
-        display: none;
+        /*display: none;*/
         margin-top: 35%;
     }
 
