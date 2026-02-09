@@ -18,7 +18,7 @@ text-color {
 }
 
 .main-description .category {
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     color: #0093c4;
 }
 
