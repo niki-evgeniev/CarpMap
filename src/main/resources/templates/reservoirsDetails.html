@@ -19,7 +19,6 @@
     <meta property="og:description" th:content="'Информация за язовир ' + ${details.name}">
     <meta property="og:url" th:content="@{https://carpmap.bg/reservoirs/{id}(id = *{details.urlName})}">
     <meta property="og:type" content="website">
-    <meta property="og:locate" content="bg_BG">
     <meta property="og:image" th:content="'https://carpmap.bg' + ${details.urlImage}">
     <th:block th:replace="~{fragments/facebook}"></th:block>
     <meta name="twitter:card" content="summary_large_image">
@@ -155,7 +154,7 @@
         </div>
         <div th:if="${diagramInfo != null  and diagramInfo.size() != 0}"
              class="product-title text-bold my-3 text-start"
-             th:text="'Тримесечна диаграма на нивото на водата. Данните се събират в началото на първия работен ден от всяка седмица.'">
+             th:text="'Тримесечна диаграма на нивото на водата. Данните се събират в началото на първия работен ден от всяка седмица в 20:00ч.'">
         </div>
 
 
