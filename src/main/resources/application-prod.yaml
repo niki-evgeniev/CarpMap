@@ -25,6 +25,12 @@ spring:
       hibernate:
         format_sql: true
     defer-datasource-initialization: true
+  web:
+    resources:
+      cache:
+        cachecontrol:
+          max-age: 30d
+          cache-public: true
 carpmap:
   remember.me.key: ${REMEMBER_ME_KEY}
 logging:
