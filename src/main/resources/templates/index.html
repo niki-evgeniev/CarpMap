@@ -60,6 +60,9 @@
                      th:errors="*{reservoir}">Please, enter your name!
                 </div>
                 <br>
+                <p th:if="${bad_credentials}" class="errors alert alert-danger text-center">
+                   <b> Не е намерен водоем или вид рибва ... </b>
+                </p>
             </form>
         </div>
     </div>

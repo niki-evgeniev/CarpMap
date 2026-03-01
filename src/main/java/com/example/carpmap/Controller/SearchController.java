@@ -58,6 +58,7 @@ public class SearchController {
         }
         String cloudflareIp = request.getRemoteAddr();
         ModelAndView modelAndView = ipUtility.getAllIndexInfo(userDetails, cloudflareIp, request);
+        modelAndView.addObject("bad_credentials", true);
         System.out.println("search type opening by search");
         return modelAndView;
     }
@@ -101,6 +102,9 @@ public class SearchController {
             Page<ReservoirAllDTO> searchReservoirs = reservoirsService.searchReservoirs(reservoirName, pageable);
             if (searchReservoirs.getContent().isEmpty()) {
                 Page<FishListAllDTO> fishListAllDTOS = fishListService.searchFish(reservoirName, pageable);
+                if (fishListAllDTOS.isEmpty()) {
+                    return null;
+                }
                 return getFishView.getFish(pageable, request, fishListAllDTOS);
             }
             String requestURI = request.getRequestURI();
