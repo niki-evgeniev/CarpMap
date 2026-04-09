@@ -312,7 +312,8 @@ public class ReservoirsServiceImpl implements ReservoirsService {
         return "";
     }
 
-    private Reservoir editingReservoir(ReservoirsEditDTO reservoirsEditDTO, UserDetails userDetails, Optional<Reservoir> findReservoir) {
+    private Reservoir editingReservoir(ReservoirsEditDTO reservoirsEditDTO, UserDetails userDetails,
+                                       Optional<Reservoir> findReservoir) {
         Reservoir editReservoir = modelMapper.map(reservoirsEditDTO, Reservoir.class);
 
         if (findReservoir.isPresent()) {
@@ -321,6 +322,7 @@ public class ReservoirsServiceImpl implements ReservoirsService {
             editReservoir.setFish(findReservoir.get().getFish());
             String urlName = convertorBgToEn.convertCyrillicToLatin(reservoirsEditDTO.getName().toLowerCase());
             editReservoir.setUrlName(urlName);
+            editReservoir.setMainUrlFromDisk(findReservoir.get().getMainUrlFromDisk());
             LocalDateTime createDate = findReservoir.get().getCreateDate();
             editReservoir.setCreateDate(createDate);
         }

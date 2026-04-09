@@ -151,7 +151,7 @@ public class ReservoirsController {
         List<DiagramInfoDTO> diagramInfo = informationService.getDiagramInformation(name);
 
         if (diagramInfo != null) {
-            int W = 720, H = 260, padL = 40, padR = 50, padT = 12, padB = 36;
+            int W = 720, H = 280, padL = 40, padR = 50, padT = 20, padB = 36;
             List<Double> total = diagramInfo.stream().map(DiagramInfoDTO::getTotalVolume).toList();
             List<Double> useful = diagramInfo.stream().map(DiagramInfoDTO::getUsefulVolume).toList();
 
