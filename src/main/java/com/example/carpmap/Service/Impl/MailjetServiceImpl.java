@@ -74,16 +74,30 @@ public class MailjetServiceImpl implements MailjetService {
         return "Error in mailjet server";
     }
 
+
     private HttpEntity<Object> mapMailjetEmail(MailSendDTO mailSendDTO, HttpHeaders headers) {
-        mailSendDTO.setTextContent(mailSendDTO.getHtmlContent());
+//        mailSendDTO.setTextContent(mailSendDTO.getHtmlContent());
+        String plainText = mailSendDTO.getHtmlContent() != null
+                ? mailSendDTO.getHtmlContent()
+                .replaceAll("<[^>]*>", " ")  // маха HTML тагове
+                .replaceAll("&nbsp;", " ")
+                .replaceAll("&amp;", "&")
+                .replaceAll("\\s+", " ")      // слива излишни интервали
+                .trim()
+                : "";
+
         Map<String, Object> body = Map.of(
                 "Messages", List.of(
                         Map.of(
                                 "From", Map.of("Email", fromEmail, "Name", fromName),
                                 "To", List.of(Map.of("Email", mailSendDTO.getToEmail(), "Name", mailSendDTO.getToName())),
+                                "Sender", Map.of("Email", fromEmail, "Name", fromName),
                                 "Subject", mailSendDTO.getSubject(),
-                                "TextPart", mailSendDTO.getTextContent(),   // plain text
-                                "HTMLPart", "<div style='font-size:16px;'>" + mailSendDTO.getHtmlContent() + "</div>"    // rich HTML
+                                "TextPart", plainText,   // plain text
+                                "HTMLPart", wrapHtml(mailSendDTO.getHtmlContent())   ,  // rich HTML
+                                "TrackOpens", "disabled",   // ← добави това
+                                "TrackClicks", "disabled"   // ← и това
+
                         )
                 )
         );
@@ -92,5 +106,17 @@ public class MailjetServiceImpl implements MailjetService {
         return request;
     }
 
+    private String wrapHtml(String content) {
+        return """
+                    <div style='font-family:Arial,sans-serif; font-size:16px; line-height:1.6; color:#333; max-width:600px; margin:0 auto; padding:20px;'>
+                        <p>%s</p>
+                        <hr style='border:none; border-top:1px solid #eee; margin:20px 0;'/>
+                        <p style='font-size:12px; color:#999;'>
+                            Това съобщение е изпратено от carpmap.bg<br/>
+                            При въпроси: info@carpmap.bg
+                        </p>
+                    </div>
+                """.formatted(content);
+    }
 }
 
