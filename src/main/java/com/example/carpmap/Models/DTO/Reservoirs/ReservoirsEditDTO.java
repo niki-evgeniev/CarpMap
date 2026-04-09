@@ -42,6 +42,10 @@ public class ReservoirsEditDTO {
     @Size(min = 3, max = 240, message = "URL Image for Reservoirs  length must be between 3 and 20 character!")
     private String mainUrlImage;
 
+    @NotEmpty(message = "Reservoirs URL Image from disk must not be empty")
+    @Size(min = 3, max = 240, message = "URL Image for Reservoirs  length must be between 3 and 20 character!")
+    private String mainUrlFromDisk;
+
     private String urlName;
 
     @NotNull
@@ -130,6 +134,14 @@ public class ReservoirsEditDTO {
 
     public void setMainUrlImage(String mainUrlImage) {
         this.mainUrlImage = mainUrlImage;
+    }
+
+    public String getMainUrlFromDisk() {
+        return mainUrlFromDisk;
+    }
+
+    public void setMainUrlFromDisk(String mainUrlFromDisk) {
+        this.mainUrlFromDisk = mainUrlFromDisk;
     }
 
     public ReservoirType getReservoirType() {

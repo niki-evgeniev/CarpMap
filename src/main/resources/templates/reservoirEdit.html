@@ -167,6 +167,22 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
+                                <label for="mainUrlImage"
+                                       class="col-sm-2 col-form-label">Change Main Image from disk</label>
+                                <div class="col-sm-10">
+                                    <input th:field="*{mainUrlFromDisk}"
+                                           th:errorclass="is-invalid"
+                                           type="text"
+                                           name="mainUrlFromDisk"
+                                           id="mainUrlFromDisk"
+                                           class="form-control">
+                                    <div class="text-primary text-center"
+                                         th:if="${#fields.hasErrors('mainUrlFromDisk')}"
+                                         th:errors="*{mainUrlFromDisk}">Please, enter your name!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
                                 <label for="formFile"
                                        class="col-sm-2 col-form-label">File Upload</label>
                                 <div class="col-sm-10">
