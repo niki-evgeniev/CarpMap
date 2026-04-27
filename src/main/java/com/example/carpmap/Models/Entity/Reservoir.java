@@ -30,6 +30,12 @@ public class Reservoir extends BaseEntity {
     @Column(name = "i_Frame_map", columnDefinition = "TEXT")
     private String iFrameMap;
 
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "facebook_group")
+    private String facebookGroup;
+
     @Column(name = "main_url_image")
     private String mainUrlImage;
 
@@ -122,6 +128,22 @@ public class Reservoir extends BaseEntity {
 
     public void setiFrameMap(String iFrameMap) {
         this.iFrameMap = iFrameMap;
+    }
+
+    public String getFacebookGroup() {
+        return facebookGroup;
+    }
+
+    public void setFacebookGroup(String facebookGroup) {
+        this.facebookGroup = facebookGroup;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getMainUrlImage() {

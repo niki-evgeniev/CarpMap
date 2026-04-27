@@ -320,6 +320,8 @@ public class ReservoirsServiceImpl implements ReservoirsService {
             editReservoir.setCountry(findReservoir.get().getCountry());
             editReservoir.setCountVisitors(findReservoir.get().getCountVisitors());
             editReservoir.setFish(findReservoir.get().getFish());
+            editReservoir.setPhone(reservoirsEditDTO.getPhone());
+            editReservoir.setFacebookGroup(reservoirsEditDTO.getFacebookGroup());
             String urlName = convertorBgToEn.convertCyrillicToLatin(reservoirsEditDTO.getName().toLowerCase());
             editReservoir.setUrlName(urlName);
             editReservoir.setMainUrlFromDisk(findReservoir.get().getMainUrlFromDisk());

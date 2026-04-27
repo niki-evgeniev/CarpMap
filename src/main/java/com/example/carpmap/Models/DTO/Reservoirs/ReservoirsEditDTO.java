@@ -48,6 +48,10 @@ public class ReservoirsEditDTO {
 
     private String urlName;
 
+    private String phone;
+
+    private String facebookGroup;
+
     @NotNull
     private ReservoirType reservoirType;
 
@@ -198,5 +202,21 @@ public class ReservoirsEditDTO {
 
     public void setUrlName(String urlName) {
         this.urlName = urlName;
+    }
+
+    public String getFacebookGroup() {
+        return facebookGroup;
+    }
+
+    public void setFacebookGroup(String facebookGroup) {
+        this.facebookGroup = facebookGroup;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

@@ -182,7 +182,31 @@
         <div class="row">
             <div class="product-details my-4 col-md-12">
                 <h2 class="details-title text-color mb-1" th:text="'Информация за яз. ' + *{name}"></h2>
-                <p class="description" th:text="*{description}"></p>
+                <p style="white-space: pre-line"
+                   class="description"
+                   th:utext="*{description}"></p>
+            </div>
+        </div>
+        <div class="row"
+             th:object="${details}"
+             th:unless="*{phone} == null or *{phone.isEmpty()}">
+            <div class="product-details my-4 col-md-12">
+                <h4 class="details-title text-color mb-1" th:text="'Телефон за връзка '"></h4>
+                <b><a th:href="'tel:' + *{phone}">
+                    <i class="fas fa-phone me-2"></i>
+                    <span th:text="*{phone}"></span>
+                </a></b>
+            </div>
+        </div>
+        <div class="row"
+             th:object="${details}"
+             th:unless="*{facebookGroup} == null or *{facebookGroup.isEmpty()}">
+            <div class="product-details my-4 col-md-12">
+                <h2 class="details-title text-color mb-1" th:text="'Страница в Facebook '"></h2>
+                <b><a th:href="*{facebookGroup}" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-facebook me-2"></i>
+                    <span th:text="*{name}"></span>
+                </a></b>
             </div>
         </div>
         <div th:unless="*{iFrameMap} == null or *{iFrameMap.isEmpty()}"
@@ -213,8 +237,7 @@
         <div class="mx-auto text-center mb-5" style="
 
         max-width: 900px;">
-            <h5 class="section-title px-3">Gallery</h5>
-            <h1 class="mb-4">Галерия</h1>
+            <h2 class="mb-4">Галерия</h2>
             <h2 class="details-title text-color mb-1"
                 th:text="'Галерия от най-популярните снимки на язовир ' + ${details.name}"></h2>
         </div>

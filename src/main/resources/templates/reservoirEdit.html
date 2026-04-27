@@ -183,6 +183,38 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
+                                <label for="phone"
+                                       class="col-sm-2 col-form-label">Change phone</label>
+                                <div class="col-sm-10">
+                                    <input th:field="*{phone}"
+                                           th:errorclass="is-invalid"
+                                           type="text"
+                                           name="phone"
+                                           id="phone"
+                                           class="form-control">
+                                    <div class="text-primary text-center"
+                                         th:if="${#fields.hasErrors('phone')}"
+                                         th:errors="*{phone}">Please, enter your name!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <label for="facebookGroup"
+                                       class="col-sm-2 col-form-label">Change Facebook Group</label>
+                                <div class="col-sm-10">
+                                    <input th:field="*{facebookGroup}"
+                                           th:errorclass="is-invalid"
+                                           type="text"
+                                           name="facebookGroup"
+                                           id="facebookGroup"
+                                           class="form-control">
+                                    <div class="text-primary text-center"
+                                         th:if="${#fields.hasErrors('facebookGroup')}"
+                                         th:errors="*{facebookGroup}">Please, enter your name!
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
                                 <label for="formFile"
                                        class="col-sm-2 col-form-label">File Upload</label>
                                 <div class="col-sm-10">

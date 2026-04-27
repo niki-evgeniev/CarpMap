@@ -26,6 +26,10 @@ public class ReservoirsDetailsDTO {
 
     private String longitude;
 
+    private String phone;
+
+    private String facebookGroup;
+
     private String iFrameMap;
 
     private LocalDateTime createDate;
@@ -169,5 +173,21 @@ public class ReservoirsDetailsDTO {
 
     public void setFishNameDTO(List<FishNameDTO> fishNameDTO) {
         this.fishNameDTO = fishNameDTO;
+    }
+
+    public String getFacebookGroup() {
+        return facebookGroup;
+    }
+
+    public void setFacebookGroup(String facebookGroup) {
+        this.facebookGroup = facebookGroup;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
